@@ -1,0 +1,295 @@
+﻿
+@{
+    ViewBag.Title = "MeritOrderMonthlyReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>MeritOrderMonthlyReport</h2>
+
+<div id="pcontent">
+
+    <style type="text/css">
+        /* width */
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px grey;
+            border-radius: 5px;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #1D4A6D;
+            border-radius: 5px;
+        }
+
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+                background: #1D4A6D;
+            }
+
+        .txt-dark {
+            line-height: 5px !important;
+        }
+
+        .td, th {
+            padding: 0px !important;
+        }
+
+        table.dataTable tbody th, table.dataTable tbody td {
+            padding: 0px 8px !important;
+        }
+
+
+
+        /*******************************
+        * MODAL AS LEFT/RIGHT SIDEBAR
+        * Add "left" or "right" in modal parent div, after class="modal".
+        * Get free snippets on bootpen.com
+        *******************************/
+        .modal.left .modal-dialog,
+        .modal.right .modal-dialog {
+            position: fixed;
+            margin: auto;
+            width: 320px;
+            height: 100%;
+            -webkit-transform: translate3d(0%, 0, 0);
+            -ms-transform: translate3d(0%, 0, 0);
+            -o-transform: translate3d(0%, 0, 0);
+            transform: translate3d(0%, 0, 0);
+        }
+
+        .modal.left .modal-content,
+        .modal.right .modal-content {
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .modal.left .modal-body,
+        .modal.right .modal-body {
+            padding: 15px 15px 80px;
+        }
+
+        /*Left*/
+        .modal.left.fade .modal-dialog {
+            left: -320px;
+            -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+            -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+            -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+            transition: opacity 0.3s linear, left 0.3s ease-out;
+        }
+
+        .modal.left.fade.in .modal-dialog {
+            left: 0;
+        }
+
+        /*Right*/
+        .modal.right.fade .modal-dialog {
+            right: -320px;
+            -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+            -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+            -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+            transition: opacity 0.3s linear, right 0.3s ease-out;
+            width: 800px;
+        }
+
+        .modal.right.fade.in .modal-dialog {
+            right: 0;
+        }
+
+        /* ----- MODAL STYLE ----- */
+        .modal-content {
+            border-radius: 0;
+            border: none;
+        }
+
+        .modal-header {
+            border-bottom-color: #EEEEEE;
+            background-color: #FAFAFA;
+        }
+
+        /* ----- v CAN BE DELETED v ----- */
+        body {
+            background-color: #78909C;
+        }
+
+       
+        
+        .demo-footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 15px;
+            background-color: #212121;
+            text-align: center;
+        }
+
+            .demo-footer > a {
+                text-decoration: none;
+                font-weight: bold;
+                font-size: 16px;
+                color: #fff;
+            }
+
+        .darkblueBg {
+            background-color: #1d4a6deb;
+            color: white;
+            text-wrap: nowrap;
+        }
+
+        .fa-trash {
+            color: red;
+        }
+
+        .fa-edit {
+            color: blue;
+        }      
+
+        .noBorder {
+            border: none !important;
+        }
+
+        .noBottomBorder {
+            border-bottom: none !important;
+            font-weight: bold !important;
+        }
+
+        .OnlyLeftBorder {
+            border-top: none !important;
+            border-bottom: none !important;
+            border-right: none !important;
+        }
+
+        .table-bordered > thead > tr > td, .table-bordered > thead > tr > th {
+            border-width: 3px;
+        }
+
+        .td, th {
+            padding: 13px !important;
+        }
+        /*Aymen*/
+        
+        input[type=text] {
+            height: 35px;
+        }
+
+      
+        
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="container-fluid">
+
+                    <br />                   
+
+                    <br />
+                    <div class="table-responsive" style="overflow: auto; max-height: 642px; min-height: auto !important; ">
+                        
+                        <table class="table table-bordered" id="tbl_results_reportList">
+                            <thead style="position: sticky; top: -2px;">
+                           
+                                <tr style="height:35px;" class="ajaxRes_MR_Header">
+                                </tr>
+                            </thead>
+                            <tbody class="ajaxRes_MR" style="text-align:center;">
+                            </tbody>
+                                                        
+                        </table>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/plugins/moment/min/moment.min.js"></script>
+    <script>
+
+        
+        function fetchData() {
+            $.ajax({
+                type: "GET",
+                url: "../MeritOrder/GetMonthlyReport/",
+                dataType: 'json',
+                async: false,
+                beforeSend: function () {
+                    $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+                },
+                complete: function () {
+                    $.unblockUI();
+                },
+                success: function (data) {
+                    debugger;
+                    $('.ajaxRes_MR_Header').html('');
+                    $('.ajaxRes_MR').html('');
+                    debugger;
+
+                    var tempArr = data;
+                    if (tempArr.length > 0) {
+                        var allDates = [];
+                        $.each(tempArr, function (index, value) {
+                            for (var key in value) {
+                                if (key !== 'VENDOR_ID' && key !== 'VendorName' && !allDates.includes(key)) {
+                                    allDates.push(key);
+                                }
+                            }
+                        });
+
+                        // Appending headers for vendor names and dates
+                        var headerRow = '';
+
+                        // Appending vendor names
+                        headerRow += '<th scope="col" class="text-center darkblueBg">Vendor Name</th>';
+
+                        // Appending dates
+                        allDates.forEach(function (date) {
+                            headerRow += '<th scope="col" class="text-center darkblueBg">' + date + '</th>';
+                        });
+
+                        headerRow += '';
+                        $('.ajaxRes_MR_Header').append(headerRow);
+
+                        // Populating table body with values
+                        tempArr.forEach(function (item) {
+                            var row = '<tr>';
+                            debugger;
+                            // Adding vendor name
+                            row += '<td>' + item.VendorName + '</td>';
+
+                            // Adding date values
+                            allDates.forEach(function (date) {
+                                var cellValue = item[date];
+                                if (cellValue === 'No') {
+                                    row += '<td style="background-color: #E5F4F9; color: black;">X</td>'; // Replace 'No' with 'X'
+                                } else {
+                                    row += '<td>' + cellValue + '</td>';
+                                }
+                            });
+
+                            row += '</tr>';
+                            $('.ajaxRes_MR').append(row); // Append the row to your table body
+                        });
+                    }
+                    $.unblockUI();
+
+                },
+                error: function () {
+                    $.unblockUI();
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            fetchData(); // This will trigger the AJAX call when the page loads
+        });
+    </script>
+</div>

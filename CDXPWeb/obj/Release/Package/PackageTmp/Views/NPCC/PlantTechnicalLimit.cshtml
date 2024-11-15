@@ -1,0 +1,466 @@
+﻿
+@{
+    ViewBag.Title = "Plant Technical Limit";
+}
+<div id="pcontent">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff;"></i>
+                        <h6 class="panel-title txt-light">@ViewBag.Title</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+
+
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                        @*<a class="pull-left inline-block close-panel" href="#" data-effect="fadeOut">
+                                <i class="zmdi zmdi-close"></i>
+                            </a>*@
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body">
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Header</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <table class="tblFrm">
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Power Producer</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select tabindex="-1" class="form-control frm">
+                                            <option>Select</option>
+                                        </select>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Producer Site </label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select tabindex="-1" class="form-control frm">
+                                            <option>Select</option>
+                                        </select>
+                                    </td>
+                                </tr>
+
+                            </table>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button id="btnCancel" class="btn btn-success" type="button">
+                                            Search
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>@*END OF tab0*@
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Notice of Synchronize (Min)</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+
+
+                        <div style="margin-bottom20px;">
+                            <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" id="tblMeterData">
+
+
+                                <tbody>
+                                    <tr>
+
+                                        <th style="width:100px;text-align:center;" colspan="">From(Hours)</th>
+                                        <th style="width:100px;text-align:center;" colspan="">To(Hours)</th>
+                                        <th style="width:100px;text-align:Right;" colspan="">1st GT</th>
+                                        <th style="width:100px;text-align:Right;" colspan="">2nd GT</th>
+                                        <th style="width:100px;text-align:Right;" colspan="">3rd GT</th>
+                                        <th style="width:100px;text-align:Right;" colspan="">ST</th>
+
+
+                                    </tr>
+                                    <tr>
+
+                                        <th style="width:100px;text-align:center;" colspan="">0</th>
+                                        <th style="width:100px;text-align:center;" colspan="">24</th>
+                                        <th style="width:100px;text-align:center;" colspan=""></th>
+                                        <th style="width:100px;text-align:center;" colspan=""></th>
+                                        <th style="width:100px;text-align:center;" colspan=""></th>
+                                        <th style="width:100px;text-align:center;" colspan=""></th>
+
+                                    </tr>
+                                    <tr>
+                                        <th style="width:100px;text-align:center;" colspan="">24</th>
+                                        <th style="width:100px;text-align:center;" colspan=""></th>
+                                        <th style="width:100px;text-align:center;" colspan=""></th>
+                                        <th style="width:100px;text-align:center;" colspan=""></th>
+                                        <th style="width:100px;text-align:center;" colspan=""></th>
+                                        <th style="width:100px;text-align:center;" colspan=""></th>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Load Held Requirement (Stabilization Period)</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" id="tblMeterData">
+
+                                <tbody>
+                                    <tr>
+
+                                        <th style="width:100px;text-align:center;" colspan="">Load From(%)</th>
+                                        <th style="width:100px;text-align:center;" colspan="">Load To(%)</th>
+                                        <th style="width:100px;text-align:Right;" colspan="">Cold</th>
+                                        <th style="width:100px;text-align:Right;" colspan="">Hot</th>
+
+
+
+                                    </tr>
+                                    <tr>
+
+                                        <th style="width:100px;text-align:center;" colspan="">5</th>
+                                        <th style="width:100px;text-align:center;" colspan="">7</th>
+                                        <th style="width:100px;text-align:center;" colspan=""></th>
+                                        <th style="width:100px;text-align:center;" colspan=""></th>
+
+
+                                    </tr>
+                                    <tr>
+                                        <th style="width:100px;text-align:center;" colspan="">30</th>
+                                        <th style="width:100px;text-align:center;" colspan="">35</th>
+                                        <th style="width:100px;text-align:center;" colspan=""></th>
+                                        <th style="width:100px;text-align:center;" colspan=""></th>
+
+
+                                    </tr>
+                                    <tr>
+                                        <th style="width:100px;text-align:center;" colspan="">60</th>
+                                        <th style="width:100px;text-align:center;" colspan="">65</th>
+                                        <th style="width:100px;text-align:center;" colspan=""></th>
+                                        <th style="width:100px;text-align:center;" colspan=""></th>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Step Changes</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+
+                            <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" id="tblMeterData">
+
+
+                                <tbody>
+                                    <tr>
+
+                                        <th style="width:100px;text-align:center;" colspan=""></th>
+                                        <th style="width:100px;text-align:center;" colspan="">Change</th>
+                                        <th style="width:100px;text-align:center;" colspan="">Hot</th>
+
+                                    </tr>
+                                    <tr>
+
+                                        <th style="width:100px;text-align:center;" colspan="">Allowed up to </th>
+                                        <th style="width:100px;text-align:center;" colspan="">7%</th>
+                                        <th style="width:100px;text-align:center;" colspan=""></th>
+
+                                    </tr>
+                                    <tr>
+                                        <th style="width:100px;text-align:center;" colspan="">Complex Load greater than</th>
+                                        <th style="width:100px;text-align:center;" colspan="">28-33, 56-66, 85-100%</th>
+                                        <th style="width:100px;text-align:center;" colspan=""></th>
+
+
+
+                                    </tr>
+                                    <tr>
+                                        <th style="width:100px;text-align:center;" colspan="">Load Held (min)</th>
+                                        <th style="width:100px;text-align:center;" colspan="">10</th>
+                                        <th style="width:100px;text-align:center;" colspan=""></th>
+
+
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Ramp Rate</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+
+                            <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" id="tblMeterData">
+                                <tbody>
+                                    <tr>
+
+                                        <th style="width:100px;text-align:center;" colspan="">Load Range (GT)</th>
+                                        <th style="width:100px;text-align:center;" colspan="">Change</th>
+                                        <th style="width:100px;text-align:center;" colspan="">Hot</th>
+                                        <th style="width:100px;text-align:center;" colspan="">Hot</th>
+                                        <th style="width:100px;text-align:center;" colspan="">Hot</th>
+                                        <th style="width:100px;text-align:center;" colspan="">GT</th>
+
+                                    </tr>
+                                    <tr>
+
+                                        <th style="width:100px;text-align:center;" colspan="">From%</th>
+                                        <th style="width:100px;text-align:center;" colspan="">To%</th>
+                                        <th style="width:100px;text-align:center;" colspan="">% per min</th>
+                                        <th style="width:100px;text-align:center;" colspan="">% per min</th>
+                                        <th style="width:100px;text-align:center;" colspan="">% per min</th>
+                                        <th style="width:100px;text-align:center;" colspan=""></th>
+
+                                    </tr>
+                                    <tr>
+                                        <th style="width:100px;text-align:center;" colspan="">0.0</th>
+                                        <th style="width:100px;text-align:center;" colspan="">25.0</th>
+                                        <th style="width:100px;text-align:center;" colspan="">1.4</th>
+                                        <th style="width:100px;text-align:center;" colspan="">1.4</th>
+                                        <th style="width:100px;text-align:center;" colspan="">10.0</th>
+                                        <th style="width:100px;text-align:center;" colspan="">16.7</th>
+
+
+                                    </tr>
+                                    <tr>
+                                        <th style="width:100px;text-align:center;" colspan="">25.0</th>
+                                        <th style="width:100px;text-align:center;" colspan="">90.0</th>
+                                        <th style="width:100px;text-align:center;" colspan="">4.1</th>
+                                        <th style="width:100px;text-align:center;" colspan="">3.6</th>
+                                        <th style="width:100px;text-align:center;" colspan="">10.0</th>
+                                        <th style="width:100px;text-align:center;" colspan="">6.2</th>
+
+
+
+                                    </tr>
+                                    <tr>
+                                        <th style="width:100px;text-align:center;" colspan="">90.0</th>
+                                        <th style="width:100px;text-align:center;" colspan="">100.0</th>
+                                        <th style="width:100px;text-align:center;" colspan="">6.2</th>
+                                        <th style="width:100px;text-align:center;" colspan="">6.2</th>
+                                        <th style="width:100px;text-align:center;" colspan="">3.5</th>
+                                        <th style="width:100px;text-align:center;" colspan="">0.8</th>
+
+
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+                            <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" id="tblMeterData">
+
+
+
+                                <tbody>
+                                    <tr>
+
+                                        <th style="width:100px;text-align:center;" colspan="">Load Range (ST)</th>
+                                        <th style="width:100px;text-align:center;" colspan="">Change</th>
+                                        <th style="width:100px;text-align:center;" colspan="">Hot</th>
+                                        <th style="width:100px;text-align:center;" colspan="">Hot</th>
+                                        <th style="width:100px;text-align:center;" colspan="">Hot</th>
+                                        <th style="width:100px;text-align:center;" colspan=""></th>
+
+                                    </tr>
+                                    <tr>
+
+                                        <th style="width:100px;text-align:center;" colspan="">From%</th>
+                                        <th style="width:100px;text-align:center;" colspan="">To%</th>
+                                        <th style="width:100px;text-align:center;" colspan="">% per min</th>
+                                        <th style="width:100px;text-align:center;" colspan="">% per min</th>
+                                        <th style="width:100px;text-align:center;" colspan="">% per min</th>
+                                        <th style="width:100px;text-align:center;" colspan=""></th>
+
+                                    </tr>
+                                    <tr>
+                                        <th style="width:100px;text-align:center;" colspan="">0.0</th>
+                                        <th style="width:100px;text-align:center;" colspan="">25.0</th>
+                                        <th style="width:100px;text-align:center;" colspan="">1.4</th>
+                                        <th style="width:100px;text-align:center;" colspan="">1.4</th>
+                                        <th style="width:100px;text-align:center;" colspan="">10.0</th>
+                                        <th style="width:100px;text-align:center;" colspan=""></th>
+
+
+                                    </tr>
+                                    <tr>
+                                        <th style="width:100px;text-align:center;" colspan="">25.0</th>
+                                        <th style="width:100px;text-align:center;" colspan="">50.0</th>
+                                        <th style="width:100px;text-align:center;" colspan="">4.1</th>
+                                        <th style="width:100px;text-align:center;" colspan="">3.6</th>
+                                        <th style="width:100px;text-align:center;" colspan="">10.0</th>
+                                        <th style="width:100px;text-align:center;" colspan=""></th>
+
+
+
+                                    </tr>
+                                    <tr>
+                                        <th style="width:100px;text-align:center;" colspan="">50.0</th>
+                                        <th style="width:100px;text-align:center;" colspan="">100.0</th>
+                                        <th style="width:100px;text-align:center;" colspan="">6.2</th>
+                                        <th style="width:100px;text-align:center;" colspan="">6.2</th>
+                                        <th style="width:100px;text-align:center;" colspan="">3.5</th>
+                                        <th style="width:100px;text-align:center;" colspan=""></th>
+
+
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Time for Full Load (Mins)</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+
+                            <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" id="tblMeterData">
+
+                                <tbody>
+                                    <tr>
+
+                                        <th style="width:100px;text-align:center;" colspan=""></th>
+                                        <th style="width:100px;text-align:center;" colspan="">Cold Start</th>
+                                        <th style="width:100px;text-align:center;" colspan="">Warm Start</th>
+                                        <th style="width:100px;text-align:center;" colspan="">Hot Start</th>
+
+                                    </tr>
+                                    <tr>
+
+                                        <th style="width:100px;text-align:center;" colspan="">GT</th>
+                                        <th style="width:100px;text-align:center;" colspan="">33.0</th>
+                                        <th style="width:100px;text-align:center;" colspan="">24.0</th>
+                                        <th style="width:100px;text-align:center;" colspan="">27.0</th>
+
+
+                                    </tr>
+                                    <tr>
+                                        <th style="width:100px;text-align:center;" colspan="">ST</th>
+                                        <th style="width:100px;text-align:center;" colspan="">77.0</th>
+                                        <th style="width:100px;text-align:center;" colspan="">47.0</th>
+                                        <th style="width:100px;text-align:center;" colspan="">36.0</th>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Time for Full Load (Mins)</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <table class="tblFrm">
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">DySync Time </label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <div class='input-group date dtDateTime'>
+                                            <input id="txtReadingDateTime" type='text' class="form-control frm" />
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Off Bar Duration (Min) </label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input tabindex="-1" type="text" value="40" class="form-control frm" id="" readonly name="">
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Demand Time</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <div class='input-group date dtDateTime'>
+                                            <input id="txtReadingDateTime" type='text' class="form-control frm" />
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Duration (Min) </label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input tabindex="-1" type="text" value="120" class="form-control frm" id="" readonly name="">
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">GT Synch Time</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <div class='input-group date dtDateTime'>
+                                            <input id="txtReadingDateTime" type='text' class="form-control frm" />
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">State </label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input tabindex="-1" type="text" value="Hot" class="form-control frm" id="" readonly name="">
+                                    </td>
+
+                                </tr>
+
+                            </table>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<script type="text/javascript">
+            $(document).ready(function () {
+                alert("hello world...!");
+            });
+        </script>*@
+</div>
+

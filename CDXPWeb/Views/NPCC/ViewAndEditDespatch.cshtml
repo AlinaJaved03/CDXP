@@ -1,0 +1,561 @@
+﻿@{
+    ViewBag.Title = "Despatch Information";
+}
+<div id="pcontent">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff;"></i>
+                        <h6 class="panel-title txt-light" style="text-transform: none;">@ViewBag.Title</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                        @*<a class="pull-left inline-block close-panel" href="#" data-effect="fadeOut">
+                                <i class="zmdi zmdi-close"></i>
+                            </a>*@
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body">
+
+                        @*<div class="tab0">
+                                &nbsp;<div class="tab1">&nbsp;Search</div>
+                                <div class="tab2">&nbsp;</div>
+                            </div>*@
+
+                        <div style="margin-bottom: 20px;">
+
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 4)
+                                        {
+
+                                            <button id="btnCreateDespatch" style="float:right; margin-right: 10px;" class="btn btn-success" type="button">Previous Day Despatch</button>
+
+                                        }
+
+
+
+                                        <button id="btnSearch" class="btn btn-info" type="button" style="margin-right: 10px; display:none;">
+                                            Search
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>@*END OF tab0*@
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Declarations</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+
+
+                        <div style="margin-bottom:20px;">
+
+                            <div id="tblContainer"></div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+
+            $('body').on('click', '#btnCreateDespatch', function (e) {
+                e.preventDefault();
+
+                var options = {};
+                var $id = "0½N";
+                var fromdata = new FormData();
+                fromdata.append('vls', $id);
+                $("#pageContainer").hide('slide', options, 300);
+                $.ajax({
+                    type: "POST",
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    url: "/NPCC/PreviousDayDispatch" + $(location).attr('search'),
+
+                    success: function (result) {
+                        var options = {};
+                        $('#pageContainer').html($(result).find('#pcontent').html());
+                        $("#pageContainer").show('slide', options, 500);
+                    }
+                });
+            });
+
+
+            $('body').off('change', '#ddlIPP');
+            $('body').on('change', '#ddlIPP', function (e) {
+                //LoadVendorSites();
+                debugger;
+                LoaddllBlockFuel();
+            });// End of change
+
+
+            //$('body').off('change', '#ddlSite');
+            //$('body').on('change', '#ddlSite', function (e) {
+
+            //});// End of change
+
+            $('body').off('change', '#ddlBlock');
+            //$('body').on('change', '#ddlBlock', function (e) {
+            //    if ($('#ddlBlock').val() != null || $('#ddlBlock').val() != undefined) {
+            //        $('#txtFuel').val($('#ddlBlock').val().split('½')[1]);
+            //        $('#txtCapacity').val($('#ddlBlock').val().split('½')[2]);
+            //    }
+            //    else {
+            //        $('#txtFuel').val('');
+            //    }
+            //});// End of
+            $('body').off('click', '#btnSearch');
+            $('body').on('click', '#btnSearch', function(e) {
+                e.preventDefault();
+                //if ($('#txtFromDate').val() == "") {
+                //    $strflg = false;
+                //    swal({
+                //        title: "Error",
+                //        text: "Select Valid From Date... !",
+                //        type: "warning",
+                //        showCancelButton: false,
+                //        confirmButtonClass: "btn btn-danger",
+                //        confirmButtonText: "OK",
+                //        onAfterClose: () => {
+                //            setTimeout(() => $('#txtFromDate').focus(), 100);
+                //        }
+                //    });
+
+                //    return false;
+                //}
+                //if ($('#txtToDate').val() == "") {
+                //    $strflg = false;
+                //    swal({
+                //        title: "Error",
+                //        text: "Select Valid To Date... !",
+                //        type: "warning",
+                //        showCancelButton: false,
+                //        confirmButtonClass: "btn btn-danger",
+                //        confirmButtonText: "OK",
+                //        onAfterClose: () => {
+                //            setTimeout(() => $('#txtToDate').focus(), 100);
+                //        }
+                //    });
+
+                //    return false;
+                //}
+                debugger;
+                var vls = [];
+
+                var params = vls.join('½');
+                //alert(params);
+                $("#tblContainer").html('<div style="text-align:center;padding:20px;"><img alt="" src="../Content/img/DataLoader.gif" /></div>');
+                debugger;
+                var fromdata = new FormData();
+                var $and = "½";
+                @if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 7)
+                 {
+                    @: $and = "½Submitted";
+                 }
+                fromdata.append("vls", '22½' + params + $and);
+                var choice = {};
+                choice.url = '/NPCC/AjaxCall' + $(location).attr('search');
+                choice.type = "POST";
+                choice.data = fromdata;
+                choice.contentType = false;
+                choice.processData = false;
+                choice.success = function (response) {
+                    if ($('#tblJ1').hasClass('dataTable')) {
+                        $('#tblJ1').dataTable().fnDestroy();
+                    }
+                    $('#tblContainer').html(response);
+                    $($('#tblJ1 thead tr th')[0]).css('width', '35px');
+                    $('#tblJ1 tbody tr').each(function (index, element) {
+                        $($(this).find('td')[0]).html(parseInt(index) + 1);
+                    });
+
+                    var $editoption = '<i class="veditDACList fa fa-share-square" title="Acknowledgement of Submitted Dispatch!"  style="font-size:20px;"></i>';
+                 @if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 7)
+                 {
+                    @: $('#tblJ1 thead tr').append('<th></th>');
+                    @: $editoption = '<i class="vviewDACList fa fa-folder-open" title="Open"  style="font-size:20px;"></i>';
+                    @: $('#tblJ1 tbody tr').append('<td style="width: 35px;"><div class="controls center" style="text-align:center">\
+                    @:                                            '+ $editoption +'\
+                    @:                                      </div ></td> ');
+                 }
+                 else
+                 {
+                 @: $('#tblJ1 thead tr').append('<th style="width:35px;"></th><th style="width:35px;"></th><th style="width:35px;"></th>');
+                    @: $('#tblJ1 tbody tr').append('<td style="width: 35px;"><div class="controls center" style="text-align:center">\
+                    @:                                           </div ></td><td style="width: 35px;"></td><td><div class="controls center" style="text-align:center"><i class="vviewDACList fa fa-file" style="font-size:20px;" title="View"></i></div></td> ');
+                 }
+
+                    $('#tblJ1').append('<tfoot></tfoot>');
+                    $('#tblJ1 tfoot').html($('#tblJ1 thead').html());
+                    $('#tblJ1 tfoot tr').attr("style", "border-bottom: 1px solid #c4c4c4;border-right: 1px solid #c4c4c4;");
+
+
+
+                    $('#tblJ1').addClass('dynamicTable');
+
+                     @if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 4)
+                     {
+                       @: $('#tblJ1 tbody tr').each(function (index, element) {
+                       @: var $tr = $(this);
+                       @: var $tag = $(this).attr('tag');
+                       @:   if ($tag.split('½')[1] == "Draft") {
+                       @:     $($tr.find('td')[10]).html('');
+                       @:  }
+                       @: else { $($tr.find('td')[11]).html(''); }
+                       @: if ($tag.split('½')[3] != "DAC") {
+                       @:   $($tr.find('td')[10]).html('');
+                       @:  }
+                       @:});
+                    }
+
+
+                    $('#tblJ1 tfoot th').each(function () {
+                                     var title = $(this).text();
+                                     if ($.trim(title) != "") {
+                            $(this).html('<input type="text" class="form-control" style="width:90%;" placeholder="' + title + '" />');
+                                     }
+
+                                 });
+
+                                 var table = $('#tblJ1').DataTable({
+                                     "aLengthMenu": [[10, 25, 50, 100, 150, 250, 500, -1], [10, 25, 50, 100, 150, 250, 500, "All"]],
+                        "iDisplayLength": -1,
+                        //"bSort": false,
+                        "sPaginationType": "full_numbers",
+                        "bJQueryUI": false,
+                        "bAutoWidth": false,
+                        "bLengthChange": true,
+                        "fnInitComplete": function (oSettings, json) {
+                            $('.dataTables_filter>label>input').attr('id', 'search');
+                             }
+                         });
+                    table.columns().every(function () {
+                             var that = this;
+
+                        $('input', this.footer()).on('keyup change', function () {
+                                 if (that.search() !== this.value) {
+                                     that
+                                         .search(this.value)
+                                         .draw();
+                                 }
+                             });
+                         });
+
+                    $('#tblJ1_length').append('<input type="image" name="btnExcel" id="btnExcel" title="Export to Excel" class="Grd" src="../Content/img/xcel.png" style="margin-left: 30px;margin-top:5px;border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnWord" id="btnWord" title="Export to Word" class="Grd" src="../Content/img/wrd.png" style="border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnPNG" id="btnPNG" title="Export to PNG" class="Grd" src="../Content/img/png.png" style="width: 17px;border-width:0px;">');
+
+                     };
+                 choice.error = function (err) {
+                     console.log(err.statusText);
+                 };
+                $.ajax(choice);
+            });
+               function LoadGrid() {
+                $("#tblContainer").html('<div style="text-align:center;padding:20px;"><img alt="" src="../Content/img/DataLoader.gif" /></div>');
+                var $and = "";
+                @if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 7)
+                {
+                   @: $and = "Submitted";
+                }
+                var fromdata = new FormData();
+                fromdata.append("vls", '22½' + $and);
+                var choice = {};
+                choice.url = '/NPCC/AjaxCall' + $(location).attr('search');
+                choice.type = "POST";
+                choice.data = fromdata;
+                choice.contentType = false;
+                choice.processData = false;
+                choice.success = function (response) {
+                    if ($('#tblJ1').hasClass('dataTable')) {
+                        $('#tblJ1').dataTable().fnDestroy();
+                    }
+                    $('#tblContainer').html(response);
+                    $($('#tblJ1 thead tr th')[0]).css('width', '35px');
+                    $('#tblJ1 tbody tr').each(function (index, element) {
+                        $($(this).find('td')[0]).html(parseInt(index) + 1);
+                    });
+
+                    var $editoption = '<i class="veditDACList fa fa-share-square" title="Acknoeledgement of Submitted Dispatch!"  style="font-size:20px;"></i>';
+                 @if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 7)
+                 {
+                    @: $('#tblJ1 thead tr').append('<th></th>');
+                    @: $editoption = '<i class="vviewDACList fa fa-folder-open" title="Open"  style="font-size:20px;"></i>';
+                    @: $('#tblJ1 tbody tr').append('<td style="width: 35px;"><div class="controls center" style="text-align:center">\
+                    @:                                            '+ $editoption +'\
+                    @:                                      </div ></td> ');
+                 }
+                 else
+                 {
+                 @: $('#tblJ1 thead tr').append('<th style="width:35px;"></th><th style="width:35px;"></th><th style="width:35px;"></th>');
+                    @: $('#tblJ1 tbody tr').append('<td style="width: 35px;"><div class="controls center" style="text-align:center">\
+                    @:                                            </div ></td></td><td><div class="controls center" style="text-align:center"><i class="vviewDACList fa fa-file" style="font-size:20px;" title="View"></i></div></td> ');
+                 }
+
+                    $('#tblJ1').append('<tfoot></tfoot>');
+                    $('#tblJ1 tfoot').html($('#tblJ1 thead').html());
+                    $('#tblJ1 tfoot tr').attr("style", "border-bottom: 1px solid #c4c4c4;border-right: 1px solid #c4c4c4;");
+
+
+
+
+
+                    $('#tblJ1').addClass('dynamicTable');
+
+                     @if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 4)
+                     {
+                       @: $('#tblJ1 tbody tr').each(function (index, element) {
+                       @: var $tr = $(this);
+                       @: var $tag = $(this).attr('tag');
+                       @:   if ($tag.split('½')[1] == "Draft") {
+                       @:     $($tr.find('td')[11]).html('');
+                       @:     $($tr.find('td')[12]).html('');
+                       @:  }
+                       @: else {
+                       @: $($tr.find('td')[14]).html('');
+                       @: }
+                       @:});
+                    }
+
+
+                                           @*@:     if ($tag.split('½')[2] == "No") {
+                       @:         $($(this).find('td')[13]).html('');
+                       @:     }*@
+
+                    $('#tblJ1 tfoot th').each(function () {
+                        var title = $(this).text();
+                        if ($.trim(title) != "") {
+                            $(this).html('<input type="text" class="form-control" style="width:90%;" placeholder="' + title + '" />');
+                        }
+
+                    });
+
+
+
+
+                                 var table = $('#tblJ1').DataTable({
+                                     "aLengthMenu": [[10, 25, 50, 100, 150, 250, 500, -1], [10, 25, 50, 100, 150, 250, 500, "All"]],
+                        "iDisplayLength": -1,
+                        //"bSort": false,
+                        "sPaginationType": "full_numbers",
+                        "bJQueryUI": false,
+                        "bAutoWidth": false,
+                        "bLengthChange": true,
+                        "fnInitComplete": function (oSettings, json) {
+                            $('.dataTables_filter>label>input').attr('id', 'search');
+                             }
+                         });
+                    table.columns().every(function () {
+                             var that = this;
+
+                        $('input', this.footer()).on('keyup change', function () {
+                                 if (that.search() !== this.value) {
+                                     that
+                                         .search(this.value)
+                                         .draw();
+                                 }
+                             });
+                         });
+
+                    $('#tblJ1_length').append('<input type="image" name="btnExcel" id="btnExcel" title="Export to Excel" class="Grd" src="../Content/img/xcel.png" style="margin-left: 30px;margin-top:5px;border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnWord" id="btnWord" title="Export to Word" class="Grd" src="../Content/img/wrd.png" style="border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnPNG" id="btnPNG" title="Export to PNG" class="Grd" src="../Content/img/png.png" style="width: 17px;border-width:0px;">');
+
+                     };
+                 choice.error = function (err) {
+                     console.log(err.statusText);
+                 };
+                $.ajax(choice);
+            }//End of Load Grid
+            $(function () {
+                debugger;
+                //LoadVendorSites();
+                LoaddllBlockFuel();
+                LoadGrid();
+            });
+            function LoadVendorSites() {
+                var fromdata = new FormData();
+                fromdata.append('vls', '0½' + $('#ddlIPP').val());
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        $('#ddlSite').html(response);
+                        if ($('#ddlSite').val() != null || $('#ddlSite').val() != undefined) {
+                            LoaddllBlockFuel();
+                        }
+                        else {
+                            $('#ddlBlock').html('');
+                            $('#txtFuel').val('');
+                        }
+                    }
+                });
+            }//END OF LOAD
+
+            function LoaddllBlockFuel() {
+                var fromdata = new FormData();
+                fromdata.append('vls', '1½' + $('#ddlIPP').val());
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        $('#ddlBlock').html('<option value="%½%½%½%½%">All</option>'+response);
+                        if ($('#ddlBlock').val() != null || $('#ddlBlock').val() != undefined) {
+                            //$('#txtFuel').val($('#ddlBlock').val().split('½')[1]);
+                            //$('#txtCapacity').val($('#ddlBlock').val().split('½')[2]);
+                        }
+                        else {
+                            $('#txtFuel').val('');
+                        }
+                    }
+                });
+            }
+
+
+            $('body').off('click', '#btnExcel');
+            $('body').on('click', '#btnExcel', function (e) {
+
+                     e.preventDefault();
+                $('#tblJ1').tableExport({ type: 'excel', escape: 'false' });
+                     e.preventDefault();
+                 });
+            $('body').off('click', '#btnWord');
+            $('body').on('click', '#btnWord', function (e) {
+                     e.preventDefault();
+                $('#tblJ1').tableExport({ type: 'doc', escape: 'false' });
+                     e.preventDefault();
+                 });
+            $('body').off('click', '#btnPNG');
+            $('body').on('click', '#btnPNG', function (e) {
+                     e.preventDefault();
+                $('#tblJ1').tableExport({ type: 'png', escape: 'false' });
+                     e.preventDefault();
+                 });
+
+
+
+
+
+            $('body').off('click', '.vviewDACList');
+            $('body').on('click', '.vviewDACList', function (e) {
+                     e.preventDefault();
+                var $id = $(this).parent().parent().parent().attr('tag') + "½V";
+                debugger;
+                var $url = "";
+
+                    $url = "/NPCC/ViewDespatchDetail" + $(location).attr('search');
+
+
+
+                var options = {};
+                var fromdata = new FormData();
+                fromdata.append('vls', $id);
+                $("#pageContainer").hide('slide', options, 300);
+                $.ajax({
+                    type: "POST",
+                    url: $url,
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (result) {
+                        var options = {};
+                        $('#pageContainer').html($(result).find('#pcontent').html());
+                        $("#pageContainer").show('slide', options, 500);
+                    }
+                });
+            });
+            $('body').off('click', '.veditDACList');
+            $('body').on('click', '.veditDACList', function (e) {
+                e.preventDefault();
+                debugger;
+                var $id = $(this).parent().parent().parent().attr('tag') + "½E";
+                var $url = "/NPCC/PreviousDayDispatch" + $(location).attr('search');
+                if ($(this).parent().parent().parent().attr('tag').split('½')[1] == "Submitted" || $(this).parent().parent().parent().attr('tag').split('½')[1] == "Acknowledged") {
+                    $url = "/NPCC/ViewDespatchDetail" + $(location).attr('search');
+                    @if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 7)
+                    {
+                    @: $url = "/NPCC/PreviousDayDespatch" + $(location).attr('search');
+                    }
+                }
+                var options = {};
+                var fromdata = new FormData();
+                fromdata.append('vls', $id);
+                $("#pageContainer").hide('slide', options, 300);
+                $.ajax({
+                    type: "POST",
+                    url: $url,
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (result) {
+                        var options = {};
+                        $('#pageContainer').html($(result).find('#pcontent').html());
+                        $("#pageContainer").show('slide', options, 500);
+                    }
+                });
+            });
+
+            @*$('body').off('click', '.veditDACListthis');
+            $('body').on('click', '.veditDACListthis', function (e) {
+                     e.preventDefault();
+                var $id = $(this).parent().parent().parent().attr('tag');
+                var $url = "/NPCC/PreviousDayDispatch" + $(location).attr('search');
+                if ($(this).parent().parent().parent().attr('tag').split('½')[1] == "Submitted" || $(this).parent().parent().parent().attr('tag').split('½')[1] == "Acknowledged") {
+                    $url = "/NPCC/ViewDespatchDetail" + $(location).attr('search');
+                    @if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 7)
+                    {
+                    @: $url = "/NPCC/PreviousDayDispatch" + $(location).attr('search');
+                    }
+                }
+                var options = {};
+                var fromdata = new FormData();
+                fromdata.append('vls', $id);
+                $("#pageContainer").hide('slide', options, 300);
+                $.ajax({
+                    type: "POST",
+                    url: $url,
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (result) {
+                        var options = {};
+                        $('#pageContainer').html($(result).find('#pcontent').html());
+                        $("#pageContainer").show('slide', options, 500);
+                    }
+                });
+            });*@
+
+        });//end of doc ready
+    </script>
+</div>
+

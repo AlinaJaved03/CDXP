@@ -1,0 +1,1159 @@
+﻿@{
+    ViewBag.Title = "Verification of Invoice Data";
+}
+
+<div id="pcontent">
+    <style type="text/css">
+
+        .selectize-input {
+            background-color: rgb(251, 255, 193) !important;
+            border-radius: 0px !important;
+        }
+
+            .selectize-input:after {
+                border-width: 7px 3px 0 3px !important;
+                right: 7px !important;
+            }
+
+            .selectize-input.dropdown-active:after {
+                border-width: 0px 3px 7px 3px !important;
+            }
+
+        .table-striped > tbody > tr {
+            background-color: rgba(33, 33, 33, 0.05) !important;
+        }
+
+        input[type=password][disabled], input[type=text][disabled], input[type=file][disabled], input:not([type])[disabled], textarea[disabled], select[disabled], .sp-peoplepicker-topLevelDisabled, .ms-inputBoxDisabled {
+            color: black !important;
+        }
+
+        select {
+            padding: 6px 0px !important;
+        }
+
+        body {
+            color: black !important;
+        }
+
+        button {
+            min-width: 0px;
+        }
+
+        div.remarks-wrap {
+            width: 99%;
+            margin: 0 auto 1em auto;
+            position: relative;
+        }
+
+            div.remarks-wrap:first-child {
+                margin-top: 1em;
+            }
+
+        div.remarks-comment {
+            font-size: 1em;
+            position: relative;
+            margin-left: 60px;
+            border-radius: 0.75em 0.75em 0.75em 0.75em;
+            background: #f9f9f9;
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebebeb', endColorstr='#ffffff', GradientType=0 );
+            line-height: 1.4em;
+            font-family: Helvetica;
+            padding-bottom: 10px;
+            padding-top: 1px
+        }
+
+            div.remarks-comment::before {
+                content: attr(data-owner);
+                border-radius: 0.75em 0.75em 0 0;
+                background: rgba(235,235,235,1);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebebeb', endColorstr='#ffffff', GradientType=0 );
+                display: block;
+                text-indent: 2%;
+                border-bottom: 1px solid skyblue;
+                height: 25px;
+                padding-top: 5px;
+            }
+
+            div.remarks-comment::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 0;
+                border: 10px solid transparent;
+                border-right: 10px solid rgb(247, 247, 247);
+                margin: -10px 0 0 -20px;
+            }
+
+            div.remarks-comment p {
+                width: 96%;
+                margin: 5px auto 3px auto;
+                font-size: 13px;
+            }
+
+        .remarks-img {
+            position: absolute;
+            top: 50%;
+            width: 50px;
+            float: left;
+            border-radius: 10px;
+            margin-top: -25px;
+        }
+
+        p + ol.postscript {
+            width: 80%;
+            font-size: 0.8em;
+            margin: -0.5em auto 0 auto;
+        }
+
+        ol.postscript::after {
+            content: '';
+            height: 0.5em;
+            display: block;
+            clear: both;
+        }
+
+        ol.postscript li {
+            float: left;
+            margin-right: 0.5em;
+        }
+
+            ol.postscript li.date {
+                float: right;
+                margin-right: 0;
+            }
+
+        .remarks-wrap a:link,
+        .remarks-wrap a:visited {
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #333;
+        }
+
+        .remarks-wrap a:hover,
+        .remarks-wrap a:active,
+        .remarks-wrap a:focus {
+            color: #f00;
+            border-bottom: 1px solid #f00;
+        }
+
+        .files {
+            border: 1px solid gray;
+            margin: 10px;
+            padding: 5px;
+            /* background: #f6f6f6;*/
+        }
+
+            .files > .filedelete {
+                float: right;
+            }
+
+        .ui-dialog {
+            z-index: 1050;
+        }
+
+        .ui-dialog-content .input-group .form-control, .ui-dialog-content .selectize-input input {
+            z-index: 1060;
+        }
+
+        #tblHeaderV {
+            margin-top: 20px;
+        }
+
+            #tblHeaderV > tbody > tr > td {
+                border-top: none;
+            }
+
+            #tblHeaderV label {
+                font-weight: 700;
+            }
+
+        .tblImport thead tr th {
+            background: #f6f6f6;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+        }
+
+        .xldta {
+            border: none !important;
+            background: transparent;
+        }
+    </style>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff;"></i>
+                        <h6 class="panel-title txt-light">@ViewBag.Title</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+
+
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                        @*<a class="pull-left inline-block close-panel" href="#" data-effect="fadeOut">
+                                <i class="zmdi zmdi-close"></i>
+                            </a>*@
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                        @*++++++++++++++++++++++++++++++++++++++++++++++++++++++++*@
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Invoice Submission (Hourly)</div>
+                            <div class="tab2">&nbsp;</div>
+                            <strong id="monthlyMode" style="font-size:16px; color:black;float:right;">View</strong>
+                        </div>
+                        <div style="padding-left: 3%; padding-right: 3%;">
+                            <table class="table" id="tblHeaderV">
+                                <tr style="background-color: white;">
+                                    <td>
+                                        <label for="diarynumber">Transaction No</label>
+                                    </td>
+                                    <td>
+                                        <span style="width: 171px;" id="diarynumberV" name="diarynumber">
+                                        </span>
+                                        <input type="hidden" class="form-control" style="width: 171px;" id="tokenkeyV" name="tokenkey">
+                                        <input type="hidden" class="form-control" id="diaryHeaderIDV" name="diaryHeaderID">
+                                        <input type="hidden" class="form-control" id="invoiceTypeIDV" name="invoiceTypeID">
+                                        <input type="hidden" class="form-control" id="headerIDV" name="headerID">
+                                    </td>
+                                    <td>
+                                        <label for="creationdate">Creation Date</label>
+                                    </td>
+                                    <td>
+                                        <span id="creationdateV" name="creationdate">
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="powerProducer">Power Producer</label>
+                                    </td>
+                                    <td>
+                                        <span id="powerProducerV" name="powerProducer">
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <label for="submitDate">Submit Date</label>
+                                    </td>
+                                    <td>
+                                        <span id="submitDateV" name="submitDate">
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="producerSite">Producer Site</label>
+                                    </td>
+                                    <td>
+                                        <span id="producerSiteV" name="producerSite">
+                                        </span>
+                                    </td>
+                                    <td><label for="status">Status</label> </td>
+                                    <td>
+                                        <span id="statusV" name="status" readonly required="">
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="invoiceType">Invoice Type</label>
+                                    </td>
+                                    <td>
+                                        <span id="invoiceTypeV" name="invoiceType">
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <label for="invoiceDueDate">Payment Due Date</label>
+                                    </td>
+                                    <td><span id="invoiceDueDateV"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="invoiceLetterNumber">Invoice No</label>
+                                    </td>
+                                    <td>
+                                        <span id="invoiceLetterNumberV" name="invoiceLetterNumber" maxlength="19">
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <label for="remarks">Remarks</label>
+                                    </td>
+                                    <td style="width:400px;"><span id="remarksV"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="invoiceDate">
+                                            Invoice Date
+                                        </label>
+                                    </td>
+                                    <td><span id="invoiceDateV"></span></td>
+                                    <td>
+                                        <label for="parentInvoice">Parent Invoice</label>
+                                    </td>
+                                    <td><span id="parentInvoiceV"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="invoicePeriodFrom">
+                                            Invoice Period
+                                            From
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <span id="invoicePeriodFromV"></span>
+                                    </td>
+                                    <td>
+                                        <label for="currency">Currency</label>
+                                    </td>
+                                    <td><span id="currencyV"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="invoicePeriodTo">
+                                            Invoice Period
+                                            To
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <span id="invoicePeriodToV"></span>
+                                    </td>
+                                    <td>
+                                        <label for="totalClaim">Total Claim</label>
+                                    </td>
+                                    <td>
+                                        <span id="totalClaimV" name="totalClaimV">
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td id="VreceiveDateTtitle"></td>
+                                    <td id="VreceiveDateValue"></td>
+                                </tr>
+                                <tr id="hardCopyTR" style="display:none;">
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <label>Hard Copy Submission Date</label>
+                                    </td>
+                                    <td style="display: inline-flex;width: 100%;">
+                                        <input style="background-color:rgb(251, 255, 193);width:30%;" type="text" class="form-control" id="hardCopySub" readonly disabled="disabled">
+                                        <select id="hardCopySubTime" class="form-control" style="width: 60px;" disabled="disabled">
+                                            <option selected="">00:00</option>
+                                            <option>01:00</option>
+                                            <option>02:00</option>
+                                            <option>03:00</option>
+                                            <option>04:00</option>
+                                            <option>05:00</option>
+                                            <option>06:00</option>
+                                            <option>07:00</option>
+                                            <option>08:00</option>
+                                            <option>09:00</option>
+                                            <option>10:00</option>
+                                            <option>11:00</option>
+                                            <option>12:00</option>
+                                            <option>13:00</option>
+                                            <option>14:00</option>
+                                            <option>15:00</option>
+                                            <option>16:00</option>
+                                            <option>17:00</option>
+                                            <option>18:00</option>
+                                            <option>19:00</option>
+                                            <option>20:00</option>
+                                            <option>21:00</option>
+                                            <option>22:00</option>
+                                            <option>23:00</option>
+                                        </select>
+                                        <!--tanavush-->
+                                        <select id="hardCopyType" class="form-control" style="width: 150px;">
+                                            <option value="InPerson" selected="">In Person</option>
+                                            <option value="ByCourier">By Courier</option>
+                                            <option value="Facsimile">Facsimile</option>
+                                            <option value="Fax">Fax</option>
+                                            <option value="Email">Email</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr></tr>
+                            </table>
+                        </div>
+
+                        <div id="viewonly">
+                            <div class="tab0">
+                                &nbsp;<div class="tab1">&nbsp;Blocks and Fuels</div>
+                                <div class="tab2">&nbsp;</div>
+                            </div>
+                            <div id="viewContainer"></div>
+                        </div>
+                        <div id="edit">
+                            <p>
+                                <strong id="bf" style="font-size:18px; color:black;">Blocks and Fuels</strong>
+                            </p>
+                            <hr style="border-width:1px; margin-bottom:10px;">
+                            <div style="display:flex;">
+                                <button type="submit" class="btn btn-success btn-anim" id="addblockrow">
+                                    Add Row
+                                </button><select id="ddlAddBlock" style="width: 15%;height: 51px;margin-left: 10px;" class="form-control"><option value="0">Select</option></select>
+                            </div>
+                            <div style="overflow-x: auto;padding-top:20px;">
+                                <table class="table table-striped" id="tbl_monthly_epp" dellblock=""></table>
+                            </div>
+                            <p>
+                                <strong style="font-size:18px; color:black;">Hourly Data</strong>
+                            </p>
+                            <hr style="border-width:1px; margin-bottom:10px;">
+                            <div>
+                                <div id="dyntblContainer"></div>
+                            </div>
+                            <p>
+                                <strong style="font-size:18px; color:black;">Components</strong>
+                            </p>
+                            <hr style="border-width:1px; margin-bottom:10px;">
+                            <div style="overflow-x: auto;">
+                                <table class="table table-striped" id="tbl_monthly_cmp_tech">
+                                    <caption style="font-size:16px; color:black;">Technical Data</caption>
+                                    <thead>
+                                        <tr>
+                                            <th>Component Name </th>
+                                            <th>Units </th>
+                                            <th>Claim </th>
+                                            <th>Remarks</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                            <br />
+                            <br />
+                            <div style="overflow-x: auto;">
+                                <table class="table table-striped" id="tbl_monthly_cmp_fin">
+                                    <caption style="font-size:16px; color:black;">Financial Data</caption>
+                                    <thead>
+                                        <tr>
+                                            <th>Component Name </th>
+                                            <th>Units </th>
+                                            <th>Claim </th>
+                                            <th id="gstFinE" style="display: table-cell;">GST % *</th>
+                                            <th>Remarks</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        @*++++++++++++++++++++++++++++++++++++++++++++++++++++++++*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('body').off('click', '.clsbtnClose');
+            $('body').on('click', '.clsbtnClose', function (e) {
+                e.preventhefault();
+                var options = {};
+                $("#pageContainer").hide('slide', options, 300);
+                $.ajax({
+                    url: "/NPCC/VarficationOfInvoiceList" + $(location).attr('search'),
+                    success: function (result) {
+                        var options = {};
+                        $('#pageContainer').html($(result).find('#pcontent').html());
+                        $("#pageContainer").show('slide', options, 500);
+                    }
+                });
+            });//End of edit click
+
+            //$(function () {
+
+            //    $('#tblMeterData > tbody tr').each(function (index, element) {
+            //        // element == this
+            //        $($(this).find('td')[16]).html('<input class="form-control" type="text" value="">');
+            //        var $val = $.trim($($(this).find('td')[7]).html());
+            //        $($(this).find('td')[7]).html('<input class="form-control" type="text" value="' + $val + '">');
+            //    });
+
+            //});
+
+            function loadAdjInvDll() {
+                $.ajax({
+                    type: "GET",
+                    url: "https://cppagapiappstaging.azurewebsites.net/v1/npcc/Adjdll?VENDOR_SITE_ID_FK=" + $('#producerSite').val() + "&ppaInvTypeID=" + $('#invoiceType').val(),
+                    dataType: 'json',
+
+                    beforeSend: function () {
+                       // $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+                    },
+                    complete: function () {
+                       // $.unblockUI();
+                    },
+                    success: function (data) {
+                        if ($('#ddlPrefInvoice').hasClass('selectized')) {
+                            $('#ddlPrefInvoice')[0].selectize.destroy();
+                        }
+                        $("#ddlPrefInvoice").html(data);
+                        $("#ddlPrefInvoice").selectize();
+                    }, //end of ajax success
+                    error: function (request, textStatus, errorThrown) { }
+                });
+            } // end of loadAdjInvDll
+            function numberWithCommas(x) {
+                // return x.toString().replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                x = x.toString();
+                if (x % 1 == 0) {
+                    if (x.indexOf(".") < 0) {
+                        x = x.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                        x += ".0000";
+                    } else {
+                        x = x.replace('.0000', '').replace('.000', '').replace('.00', '').replace('.0', '');
+                        x = x.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                        x += ".0000";
+
+                    }
+                } else {
+                    var index = x.indexOf(".");
+                    var p1 = x.substring(0, index);
+                    p1 = p1.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                    var p2 = x.substring(index);
+                    p2 = p2 + "0000";
+                    p2 = p2.substring(0, 5);
+                    x = p1 + p2;
+                }
+                return x;
+            }
+            function numberWithCommasandMinusSign(x) {
+                // return x.toString().replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                x = x.toString();
+                if (x % 1 == 0) {
+                    if (x.indexOf(".") < 0) {
+                        x = x.replace(/\D-/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                        x += ".0000";
+                    } else {
+                        x = x.replace('.0000', '').replace('.000', '').replace('.00', '').replace('.0', '');
+                        x = x.replace(/\D-/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                        x += ".0000";
+
+                    }
+                } else {
+                    var index = x.indexOf(".");
+                    var p1 = x.substring(0, index);
+                    p1 = p1.replace(/\D-/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                    var p2 = x.substring(index);
+                    p2 = p2 + "0000";
+                    p2 = p2.substring(0, 5);
+                    x = p1 + p2;
+                }
+                return x;
+            }
+            function addComma() {
+                $('#totalClaim, .makeZero, .txtClaimTech, .txtClaimFin').each(function (index, element) {
+                    var $val = $(this).val().replace(/,/g, '');
+                    //if($($(this).parent().parent().children()[0]).children().val() == "Advance Already Verified"){
+                    $val = numberWithCommasandMinusSign($val);
+                    $(this).val($val);
+                    /*}
+                    else{
+                        $val = numberWithCommas($val);
+                        $(this).val($val);
+                    }*/
+                });
+            }
+            LoadMonthlyInvoiceByID();
+            function LoadMonthlyInvoiceByID() {
+
+                //debugger;
+                var DHI = '',
+                    LoadFor = '';
+                try {
+                    DHI = @ViewBag.diarynumber; //getParameterByName('diarynumber');
+                    LoadFor = "V";// getParameterByName('typ');
+                    if (LoadFor == "V") {
+                        $('#tblHeaderV').show();
+                        $('#tblHeader').hide();
+                        $('#rmxDisplay').show();
+                        $('#monthlyMode').html('View');
+                        $('#viewonly').show();
+                        $('#edit').hide();
+                    } else if (LoadFor == "E")
+                        $('#monthlyMode').html('Edit');
+                    else
+                        $('#monthlyMode').html('Create');
+                } catch (e) {
+                    return false;
+                }
+                if (DHI == '' || DHI == null) {
+                    return false;
+                }
+
+                $.ajax({
+                    type: "GET",
+                    url: "https://cppagapiappstaging.azurewebsites.net/v1/npcc/GetHourlyInvoice/" + DHI,
+                    dataType: 'json',
+                    beforeSend: function () {
+                       // $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+                    },
+                    complete: function () {
+                        //$.unblockUI();
+                    },
+                    success: function (data) {
+
+                        vendorID = data.DHIHDR.VENDOR_ID;
+                        blocksData = data.blklist;
+                        if (data.DTL.length > 0) {
+                            var blkData = data.DTL;
+                            if (LoadFor == "V") {
+                                var techCompts;
+                                $('#techSum > tbody').html('');
+                                var comps;
+                                if (blkData.length == 1) {
+                                    comps = $.parseJSON(blkData[0].COMPONENTS);
+                                    techCompts = $.grep(comps, function (v) {
+                                        return v.IS_INCLUDE_IN_TOTAL == "N";
+                                    });
+                                    if (techCompts.length > 1) {
+                                        $('#techSum').show();
+                                        var $value;
+                                        $.each(techCompts, function (i, j) {
+                                            $value = j.COMP_VALUE.toString().replace(/,/g, '');
+                                            $value = numberWithCommasandMinusSign($value);
+                                            $('#techSum > tbody').append('<tr><td><span style="margin-right: 5px;">' + j.COMP_NAME + ": " + '</span></td><td><span style="margin-right: 5px;">' + $value + '</span></td><td><span>' + j['CDXP.PPA_COMP_DEFS'][0].UNIT + '</span></td></tr>');
+                                        });
+                                    } else {
+                                        $('#techSum').hide();
+                                    }
+                                    //try {
+                                    //    var impData = $.parseJSON(blkData[0].tblHDR);
+                                    //    var hdr = "";
+                                    //    for (var ihdr = 0; ihdr < impData.length; ihdr++) {
+                                    //        var obj = impData[ihdr];
+                                    //        hdr += '<th style="min-width:100px;padding-right:50px;" r="' + r + '" tg="0" thid="' + impData[ihdr].id + '" ord="' + impData[ihdr].ord + '" tnm="' + impData[ihdr].tnm + '" >' + impData[ihdr].tnm + '</th>';
+                                    //    }
+                                    //    $('#dyntblContainer').append('<div r="' + r + '" class="imprt" style="display:none;"><div r="' + r + '" class="upld"><input r="' + r + '" class="File1" type="file"></div><div r="' + r + '" class="imptbl"><table class="table table-striped tblImport" r="' + r + '" style="display: block;overflow-x: auto;overflow-y: auto;max-height: 400px;white-space: nowrap;"><thead><tr>' + hdr + '</tr></thead><tbody></tbody></table></div></div>');
+
+                                    //} catch (e) {
+                                    //    console.log('Hourly PPA COMP NOT DEFIEND');
+                                    //}
+                                } else if (blkData.length > 1) {
+                                    var techArray = [],
+                                        total = 0,
+                                        name = '',
+                                        unit = '',
+                                        prevObj, array2;
+                                    $('#techSum').show();
+                                    $.each(blkData, function (x, y) {
+                                        comps = $.parseJSON(y.COMPONENTS);
+                                        if (comps != null) {
+                                            techCompts = $.grep(comps, function (v) {
+                                                return v.IS_INCLUDE_IN_TOTAL == "N";
+                                            });
+                                            $.each(techCompts, function (x, y) {
+                                                techArray.push(y);
+                                            });
+                                        }
+
+
+
+                                    });
+                                    if (techArray.length > 0) {
+                                        prevObj = '';
+                                        techArray.sort(function (a, b) {
+                                            return a.COMP_NAME.toLowerCase().localeCompare(b.COMP_NAME.toLowerCase());
+                                        });
+                                        array2 = techArray
+                                        for (var x = 0; x < techArray.length; x++) {
+                                            if (techArray[x].COMP_NAME != prevObj) {
+                                                total = 0;
+                                                for (var i = 0; i < array2.length; i++) {
+                                                    if (techArray[x].COMP_NAME == array2[i].COMP_NAME) {
+                                                        name = array2[i].COMP_NAME;
+                                                        unit = array2[i]['CDXP.PPA_COMP_DEFS'][0].UNIT;
+                                                        total += array2[i].COMP_VALUE;
+                                                    }
+                                                }
+                                                total = total.toString().replace(/,/g, '');
+                                                total = numberWithCommasandMinusSign(total);
+                                                $('#techSum > tbody').append('<tr><td><span style="margin-right: 5px;">' + name + ": " + '</span></td><td><span style="margin-right: 5px;">' + total + '</span></td><td><span>' + unit + '</span></td></tr>');
+                                                //$('#techSum').append('<li><span style="margin-right: 5px;">Total</span><span style="margin-right: 5px;">' + name + ": " + '</span><span style="margin-right: 5px;">' + total + '</span><span>' + unit + '</span></li>');
+                                                prevObj = techArray[x].COMP_NAME;
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    $('#techSum').hide();
+                                }
+
+                                var finCompts;
+                                $('#finSum > tbody').html('');
+                                var comps;
+                                if (blkData.length == 1) {
+                                    comps = $.parseJSON(blkData[0].COMPONENTS);
+                                    finCompts = $.grep(comps, function (v) {
+                                        return v.IS_INCLUDE_IN_TOTAL == "Y";
+                                    });
+                                    if (finCompts.length > 1) {
+                                        $('#finSum').show();
+                                        var $value;
+                                        $.each(finCompts, function (i, j) {
+                                            $value = j.COMP_VALUE.toString().replace(/,/g, '');
+                                            $value = numberWithCommasandMinusSign($value);
+                                            $('#finSum > tbody').append('<tr><td><span style="margin-right: 5px;">' + j.COMP_NAME + ": " + '</span></td><td><span style="margin-right: 5px;">' + j['CDXP.PPA_COMP_DEFS'][0].UNIT + '</span></td><td><span>' + $value + '</span></td></tr>');
+                                            //$('#finSum').append('<li><span style="margin-right: 5px;">Total</span><span style="margin-right: 5px;">' + j.COMP_NAME + ": " + '</span><span style="margin-right: 5px;">' + $value + '</span><span>' + j['CDXP.PPA_COMP_DEFS'][0].UNIT + '</span></li>');
+                                        });
+                                    } else {
+                                        $('#finSum').hide();
+                                    }
+                                } else if (blkData.length > 1) {
+                                    var finArray = [],
+                                        total = 0,
+                                        name = '',
+                                        unit = '',
+                                        prevObj, array2;
+                                    $('#finSum').show();
+                                    $.each(blkData, function (x, y) {
+                                        comps = $.parseJSON(y.COMPONENTS);
+                                        if (comps != null) {
+                                            finCompts = $.grep(comps, function (v) {
+                                                return v.IS_INCLUDE_IN_TOTAL == "Y";
+                                            });
+                                            $.each(finCompts, function (x, y) {
+                                                finArray.push(y);
+                                            });
+                                        }
+                                    });
+                                    if (finArray.length > 0) {
+                                        prevObj = '';
+                                        finArray.sort(function (a, b) {
+                                            return a.COMP_NAME.toLowerCase().localeCompare(b.COMP_NAME.toLowerCase());
+                                        });
+                                        array2 = finArray
+                                        for (var x = 0; x < finArray.length; x++) {
+                                            if (finArray[x].COMP_NAME != prevObj) {
+                                                total = 0;
+                                                for (var i = 0; i < array2.length; i++) {
+                                                    if (finArray[x].COMP_NAME == array2[i].COMP_NAME) {
+                                                        name = array2[i].COMP_NAME;
+                                                        unit = array2[i]['CDXP.PPA_COMP_DEFS'][0].UNIT;
+                                                        total += array2[i].COMP_VALUE;
+                                                    }
+                                                }
+                                                total = total.toString().replace(/,/g, '');
+                                                total = numberWithCommasandMinusSign(total);
+                                                $('#finSum > tbody').append('<tr><td><span style="margin-right: 5px;">' + name + ": " + '</span></td><td><span style="margin-right: 5px;">' + unit + '</span></td><td><span>' + total + '</span></td></tr>');
+                                                //$('#finSum').append('<li><span style="margin-right: 5px;">Total</span><span style="margin-right: 5px;">' + name + ": " + '</span><span style="margin-right: 5px;">' + total + '</span><span>' + unit + '</span></li>');
+                                                prevObj = finArray[x].COMP_NAME;
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    $('#finSum').hide();
+                                }
+
+                                $('#fuelWiseSummary > tbody').html('');
+                                if (data.FuelSummary != "") {
+                                    var fuelSummary = JSON.parse(data.FuelSummary);
+                                    $('#fuelWiseSummary').show();
+                                    $.each(fuelSummary, function (i, j) {
+                                        $('#fuelWiseSummary > tbody').append('<tr><td><span style="margin-right: 5px;">' + j.FUEL_TYPE + '</span></td><td><span style="margin-right: 5px;">' + j.COMP_NAME + '</span></td><td><span>' + j.UNIT + '</span></td><td><span>' + numberWithCommasandMinusSign(j.COMP_VALUE) + '</span></td></tr>');
+                                    });
+                                } else {
+                                    $('#fuelWiseSummary').hide();
+                                }
+                            }
+                        }
+                        $('#ddlAddBlock').html('</option><option value="0">Select</option>');
+                        $.each(blocksData, function (iii, jjj) {
+                            $('#ddlAddBlock').append('<option value="' + jjj.BLK_FUEL_ID_PK + '">' + jjj.BLOCK_NO + ' ( ' + jjj.FUEL_TYPE + ' )');
+                        });
+                        //$("#diarynumber").html(data.DHIHDR.TransactionNumber);
+                        $("#powerProducer").val(data.DHIHDR.VENDOR_NAME);
+                        $("#powerProducerV").html(data.DHIHDR.VENDOR_NAME);
+                        $("#producerSite").html('<option selected value="' + data.DHIHDR.ORGANIZATION_ID + '">' + data.DHIHDR.ADDRESS_LINE1 + '</option>');
+                        $("#producerSiteV").html(data.DHIHDR.ADDRESS_LINE1);
+                        $("#submitDate").val(data.DHIHDR.SUBMIT_DATE);
+                        $("#creationdate").html(data.DHIHDR.CREATION_DATE);
+                        if (data.DHIHDR.TransactionNumber == "0") {
+                            $("#diarynumberV").html('');
+                        } else {
+                            $("#diarynumberV").html(data.DHIHDR.TransactionNumber);
+                        }
+                        $("#hardCopySub").val(data.DHIHDR.HARD_COPY_SUBMISSION_DATE);
+                        $("#hardCopySubTime").val(data.DHIHDR.HARD_COPY_SUBMISSION_TIME);
+                        $("#hardCopyType").val(data.DHIHDR.HARD_COPY_SUBMISSION_TYPE);
+
+                        var colorCode = '';
+                        if (data.DHIHDR.APPROVED_STATUS == 'Received') {
+                            colorCode = 'green';
+                        } else if (data.DHIHDR.APPROVED_STATUS == 'Submitted') {
+                            colorCode = 'orange';
+                        } else if (data.DHIHDR.APPROVED_STATUS == 'Returned') {
+                            colorCode = 'red';
+                        } else if (data.DHIHDR.APPROVED_STATUS == "Draft")
+                            colorCode = 'black';
+                        else if (data.DHIHDR.APPROVED_STATUS == "Withdraw")
+                            colorCode = 'gray';
+                        else
+                            colorCode = '#0095eb';
+
+
+                        $("#creationdateV").html(data.DHIHDR.CREATION_DATE);
+                        $("#submitDateV").html(data.DHIHDR.SUBMIT_DATE);
+                        $("#status").val(data.DHIHDR.APPROVED_STATUS);
+                        $("#statusV").html(data.DHIHDR.APPROVED_STATUS).css('color', colorCode);
+                        $("#invoiceType").html('<option selected adjustments="' + data.DHIHDR.ADJUSTMENTS + '" tg="' + data.DHIHDR.IS_HOURLY + '" value="' + data.DHIHDR.INVOICE_TYPE_ID + '">' + data.DHIHDR.INVOICE_TYPES + '</option>');
+                        $("#invoiceTypeV").html(data.DHIHDR.INVOICE_TYPES);
+                        if (data.DHIHDR.IS_HOURLY == "N") {
+                            $('#invoicePeriodFromTime').val('00:00').attr('disabled', 'disabled');
+                            $('#invoicePeriodToTime').val('00:00').attr('disabled', 'disabled');
+                        }
+                        if (data.DHIHDR.ADJUSTMENTS == "Y") {
+                            $('#dvAdjustment').show();
+                        }
+                        //loadAdjInvDll();
+                        $("#invoiceDueDate").val(data.DHIHDR.INV_DUE_DATE);
+                        $("#invoiceDueDateV").html(data.DHIHDR.INV_DUE_DATE);
+                        $("#invoiceLetterNumber").val(data.DHIHDR.VEN_INV_LETTER_NO);
+                        //$("#invoiceLetterNumber").prop("disabled", true);
+                        $("#invoiceLetterNumberV").html(data.DHIHDR.VEN_INV_LETTER_NO);
+                        $("#remarks").val(data.DHIHDR.REMARKS);
+                        $("#remarksV").html(data.DHIHDR.REMARKS);
+                        $("#invoiceDate").val(data.DHIHDR.VEN_INV_LETTER_DATE);
+                        $("#invoiceDateV").html(data.DHIHDR.VEN_INV_LETTER_DATE);
+                        if (data.DHIHDR.INVOICE_TYPES == "General Sales Tax") {
+                            LoadParentInvoice(data.DHIHDR.PARENT_INVOICE_NO, data.DHIHDR.ORGANIZATION_ID);
+                        } else {
+                            $("#parentInvoice").val('0');
+                            $("#parentInvoice").attr('disabled', 'disabled');
+                            $("#parentInvoiceV").val('');
+                        }
+
+
+
+                        $("#invoicePeriodFrom").val(data.DHIHDR.INVOICE_PERIOD_FROM);
+                        $("#invoicePeriodFromV").html(data.DHIHDR.INVOICE_PERIOD_FROM + ' ' + data.DHIHDR.INVOICE_PERIOD_FROMTIME);
+
+                        $("#invoicePeriodTo").val(data.DHIHDR.INVOICE_PERIOD_TO);
+                        $("#invoicePeriodToV").html(data.DHIHDR.INVOICE_PERIOD_TO + ' ' + data.DHIHDR.INVOICE_PERIOD_TOTIME);
+
+                        $("#invoicePeriodFromTime").val(data.DHIHDR.INVOICE_PERIOD_FROMTIME);
+                        $("#invoicePeriodToTime").val(data.DHIHDR.INVOICE_PERIOD_TOTIME);
+
+                        $("#currency").val(data.DHIHDR.CURRENCY);
+                        $("#currencyV").html(data.DHIHDR.CURRENCY);
+
+
+                        $("#totalClaim").val(data.DHIHDR.TOTAL_CLAIM);
+                        $("#totalClaimV").html(data.DHIHDR.TOTAL_CLAIM);
+                        if (data.DHIHDR.FINANCE_UPDATE_DATE == '') {
+                            $('#VreceiveDateTtitle, #VreceiveDateValue').html('');
+                        } else {
+                            $('#VreceiveDateTtitle').html('<label for="totalClaim">Received Date</label>');
+                            $('#VreceiveDateValue').html('<span>' + data.DHIHDR.FINANCE_UPDATE_DATE + '</span>');
+                        }
+                        var hideable = 'style="display:none;"';
+                        isAdvance = data.DHIHDR.ADVANCE_PAYMENT;
+                        if (data.DHIHDR.ADVANCE_PAYMENT == 'Y') {
+                            hideable = '';
+                        } else {
+                            hideable = 'style="display:none;"';
+                        }
+
+                        $('#tbl_monthly_epp').html('<thead id="theaddynamic"><tr><th>Select</th>   <th style="width: 10%;">Block / Complex </th>    <th style="width: 10%;">Fuel Type </th>      <th style="width: 10%;">Rate Valid From </th>    <th style="width: 10%;">Rate Valid To </th>    <th>Claim Total (Current Month) </th>  <th id="advTAP" ' + hideable + '>Adv. Total (Already Verified) </th>    <th id="remCM" ' + hideable + '>Remaining (Current Month) </th>    <th id="advNM" ' + hideable + '>Advance (Next Month) </th>    <th id="payCM" ' + hideable + '>Payable Current Month</th><th>Remarks</th><th></th></tr></thead>');
+                        var blockBody = '';
+                        $('#tbl_monthly_cmp_fin > tbody').html('');
+                        $('#tbl_monthly_cmp_tech > tbody').html('');
+                        $('#viewContainer').html('');
+                        $('#dyntblContainer').html('');
+                        var vBhead = '<thead><tr><th style="width: 10%;">Block / Complex </th>    <th style="width: 200px;">Fuel Type </th>      <th style="width: 10%;">Rate Valid From </th>    <th style="width: 10%;">Rate Valid To </th>    <th style="width: 200px;">Claim Total (Current Month) </th>  <th id="advTAP" ' + hideable + '>Adv. Total (Already Verified) </th>    <th id="remCM" ' + hideable + '>Remaining (Current Month) </th>    <th id="advNM" ' + hideable + '>Advance (Next Month) </th>    <th id="payCM" ' + hideable + '>Payable Current Month</th><th>Remarks</th></tr></thead>';
+                        var vThead = '<thead><tr><th style="width:200px;">Component Name </th><th style="width:200px;">Units </th><th style="width:200px;">Claim </th><th>Remarks</th></tr></thead>';
+                        var vFhead = '<thead><tr><th style="width:200px;">Component Name </th><th style="width:200px;">Units </th><th style="width:200px;">Claim </th><th class="gstHeadV" style="width:200px;">GST % *</th><th>Remarks</th></tr></thead>';
+                        $.each(data.DTL, function (i, j) {
+
+
+                            var req = 'style="display:none;"';
+                            if (j.bisRequired == "1") {
+                                req = '';
+                            }
+
+                            blockBody += '<tr ' + req + ' bisrequired="1" r="' + j.BLK_FUEL_ID_PK + '" blockid="' + j.BLK_FUEL_ID_PK + '"><td><span class="radio radio-info"><input type="radio" name="blkRd" class="rd-blk" blockid="' + j.BLK_FUEL_ID_PK + '" r="' + j.BLK_FUEL_ID_PK + '"></span></td> <td><input type="text" class="form-control txtBlock clsblk" required="" readonly valueid="' + j.BLK_FUEL_ID_PK + '" value="' + j.BLOCK_NO + '"></td><td><input type="text" class="form-control txtFuelType clsblk" required="" readonly value="' + j.FUEL_TYPE + '"></td> <td><input type="text" class="form-control makeEmpty clsblk dtfrom" value="' + j.RATE_VALID_FROM + '" ratevalid="from" style="width:110px;background-color: rgb(251, 255, 193);" onchange="compdate(this);"></td> <td><input type="text" class="form-control dtToDate makeEmpty clsblk" ratevalid="to" style="width:110px;background-color: rgb(251, 255, 193);" value="' + j.RATE_VALID_TO + '" onchange="compdate(this);"></td> <td><input type="text" readonly class="form-control txtClaimAmount makeZero clsblk" blockid="' + j.BLK_FUEL_ID_PK + '" r="' + j.BLK_FUEL_ID_PK + '" value="' + j.CLAIM_TOTAL + '"></td><td ' + hideable + '><input type="text" class="form-control txtAdv makeZero clsblk" value="' + j.ADVANCE_PAID + '" readonly> </td> <td ' + hideable + '><input type="text" class="form-control txtAdv makeZero clsblk" value="' + j.REMAINING_CURRENT_MONTH + '" readonly> </td><td ' + hideable + '><input type="text" class="form-control txtAdv makeZero clsblk" value="' + j.ADVANCE_NEXT_MONTH + '" readonly> </td> <td ' + hideable + '><input type="text" class="form-control txtAdv makeZero clsblk txtPCM" value="' + j.PAYABLE_CURRENT_MONTH + '" readonly></td> <td><input type="text" class="form-control txtBlockRemarks makeEmpty clsblk" value="' + j.REMARKS + '"></td><td><i class="ti-trash btn-delete btn-block btn-blk-delete" title="Delete" style="text-align: center;line-height: 2;color: black;background: #c6c6c6; color:red;"  blockid="' + j.BLK_FUEL_ID_PK + '" r="' + j.BLK_FUEL_ID_PK + '"> </i></td></tr>';
+
+                            var vBdata = '<tr><td>' + j.BLOCK_NO + '</td>\
+                    <td>' + j.FUEL_TYPE + '</td>\
+                    <td>' + j.RATE_VALID_FROM + '</td>\
+                    <td>' + j.RATE_VALID_TO + '</td>\
+                    <td style="text-align: right;" class="comAaa">' + j.CLAIM_TOTAL + '</td>\
+                    <td ' + hideable + '>' + numberWithCommas(j.ADVANCE_PAID) + '</td>\
+                    <td ' + hideable + '>' + numberWithCommas(j.REMAINING_CURRENT_MONTH) + '</td>\
+                    <td ' + hideable + '>' + numberWithCommas(j.ADVANCE_NEXT_MONTH) + '</td>\
+                    <td ' + hideable + '>' + numberWithCommas(j.PAYABLE_CURRENT_MONTH) + '</td>\
+                    <td>' + j.REMARKS + '</td>\
+                    </tr>';
+                            var compData = $.parseJSON(j.COMPONENTS);
+                            var compTrsTech = '';
+                            var compTrsFin = '';
+                            var vcompTrsTech = '';
+                            var vcompTrsFin = '';
+                            var imptblData = '';
+                            if (compData != null) {
+                                $.each(compData, function (x, y) {
+
+                                    if (y.IS_INCLUDE_IN_TOTAL == 'Y') {
+                                        compTrsFin += '<tr style="display:none;" r="' + j.BLK_FUEL_ID_PK + '" blockid="' + j.BLK_FUEL_ID_PK + '" compheaderid="' + y.COM_HEADER_ID + '" compidppa="' + y.COM_DEF_ID_FK + '" comptype="fin"><td><input type="text" class="form-control clsfin" readonly="" value="' + y.COMP_NAME + '"></td><td><input type="text" class="form-control clsfin" readonly="" value="' + y["CDXP.PPA_COMP_DEFS"][0].UNIT + '"></td><td><input type="text" class="form-control txtClaimFin clsfin" blockid="' + j.BLK_FUEL_ID_PK + '" includeinclaimportal="' + y['CDXP.PPA_COMP_DEFS'][0].INCLUDE_IN_CLAIM_PORTAL + '" r="' + j.BLK_FUEL_ID_PK + '" value="' + y.COMP_VALUE + '"></td><td class="gstTD"><input type="number" min="0" max="100" class="form-control txtGSTFin clsfin" value="' + y.GST_PER + '"></td><td><input type="text" class="form-control txtCompFinRemarks clsfin"  value="' + y.REMARKS + '"></td></tr>';
+                                        vcompTrsFin += '<tr><td>' + y.COMP_NAME + '</td>\
+<td>' + y["CDXP.PPA_COMP_DEFS"][0].UNIT + '</td>\
+<td style="text-align: right;" class="comAaa">' + y.COMP_VALUE + '</td>\
+<td style="text-align: right;" class="comAaa gstTD">' + y.GST_PER + '</td>\
+<td>' + y.REMARKS + '</td></tr>';
+                                    } else {
+                                        compTrsTech += '<tr style="display:none;" blockid="' + j.BLK_FUEL_ID_PK + '" r="' + j.BLK_FUEL_ID_PK + '" compheaderid="' + y.COM_HEADER_ID + '" compidppa="' + y.COM_DEF_ID_FK + '" comptype="tech"><td><input type="text" class="form-control clstech" readonly="" value="' + y.COMP_NAME + '"></td><td><input type="text" class="form-control clstech" readonly="" value="' + y["CDXP.PPA_COMP_DEFS"][0].UNIT + '"></td><td><input type="text" class="form-control txtClaimTech clstech" blockid="' + j.BLK_FUEL_ID_PK + '" r="' + j.BLK_FUEL_ID_PK + '" value="' + y.COMP_VALUE + '"></td><td><input type="text" class="form-control txtCompFinRemarks clstech" value="' + y.REMARKS + '"></td></tr>';
+                                        vcompTrsTech += '<tr><td>' + y.COMP_NAME + '</td>\
+<td>' + y["CDXP.PPA_COMP_DEFS"][0].UNIT + '</td>\
+<td style="text-align: right;" class="comAaa">' + y.COMP_VALUE + '</td>\
+<td>' + y.REMARKS + '</td></tr>';
+                                    }
+                                }); //end inner loop
+                            }
+                            $('#tbl_monthly_cmp_fin > tbody').append(compTrsFin);
+                            $('#tbl_monthly_cmp_tech > tbody').append(compTrsTech);
+
+                            var tblHDR = $.parseJSON(j.tblHDR);
+                            if (tblHDR != null) {
+                                try {
+                                    var TRcols = [];
+                                    var impData = tblHDR;
+                                    var hdr = "";
+                                    for (var ihdr = 0; ihdr < impData.length; ihdr++) {
+                                        var obj = impData[ihdr];
+                                        TRcols.push(impData[ihdr].ord);
+                                        hdr += '<th style="min-width:100px;padding-right:50px;" r="' + j.BLK_FUEL_ID_PK + '" tg="0" thid="' + impData[ihdr].id + '" ord="' + impData[ihdr].ord + '" tnm="' + impData[ihdr].tnm + '" >' + impData[ihdr].tnm + '</th>';
+                                    }
+                                    //debugger;
+                                    var dtlTRall = "";
+                                    var tblHDRhourlyDTL = $.parseJSON(j.tblHDRhourlyDTL);
+                                    if (tblHDRhourlyDTL != null) {
+                                        $.each(tblHDRhourlyDTL, function (idtl, jdtl) {
+                                            dtlTR = '<tr>';
+                                            for (var itd = 0; itd < TRcols.length; itd++) {
+                                                //console.log(jdtl);
+                                                dtlTR += '<td><input type="text" class="form-control xldta" tg="' + jdtl['DET_ID_PK'] + '" r="' + j.BLK_FUEL_ID_PK + '" tdord="0" tnm="Date" ord="' + (TRcols[itd]).toString() + '" thid="' + jdtl['DET_ID_PK'] + '" lvalue="' + jdtl['COLUMN' + (TRcols[itd]).toString()] + '"  value="' + jdtl['COLUMN' + (TRcols[itd]).toString()] + '"></td>';
+                                            }
+                                            dtlTR += '</tr>';
+                                            dtlTRall += dtlTR;
+                                        });
+                                    }
+                                    $('#dyntblContainer').append('<div r="' + j.BLK_FUEL_ID_PK + '" class="imprt" style="display:none;"><div r="' + j.BLK_FUEL_ID_PK + '" class="upld" style="display:none;"><input r="' + j.BLK_FUEL_ID_PK + '" class="File1" type="file"></div><div r="' + j.BLK_FUEL_ID_PK + '" class="imptbl"><table class="table table-bordered tblImport" r="' + j.BLK_FUEL_ID_PK + '" style="display: block;overflow-x: auto;overflow-y: auto;max-height: 400px;white-space: nowrap;"><thead><tr>' + hdr + '</tr></thead><tbody r="' + j.BLK_FUEL_ID_PK + '" class="hourlyDTLdata">' + dtlTRall + '</tbody></table></div></div>');
+
+                                    imptblData = $('.imptbl[r="' + j.BLK_FUEL_ID_PK + '"]').html();
+                                    //debugger;
+
+
+                                } catch (e) {
+                                    console.log('Hourly PPA COMP NOT DEFIEND');
+                                }
+                            }
+                            $('#viewContainer').append('<div>\
+                        <table class="table table-bordered">' + vBhead + '<tbody>' + vBdata + '</tbody></table>\
+                        <div style="font-size: 13px;color: black;font-weight: bold;margin-left: 10%;width: 90%;">Hourly Data</div>\
+                        <div style="margin-left: 10%;width: 90%;"">'+ imptblData + '</div>\
+                        <table class="table table-bordered" style="margin-left: 10%;width:90%;"><caption style="font-size: 13px;font-weight: bold;color:black;">Technical Data</caption>' + vThead + '<tbody>' + vcompTrsTech + '</tbody></table>\
+                        <table class="table table-bordered" style="margin-left: 10%;width:90%;"><caption style="font-size: 13px;font-weight: bold;color:black;">Financial Data</caption>' + vFhead + '<tbody>' + vcompTrsFin + '</tbody></table>\
+                        </div>');
+                        }); //end of first each
+
+                        //checkBlkRequired();
+                        $('#tbl_monthly_epp').append('<tbody>' + blockBody + '</tbody>');
+                        $('.comAaa').each(function (index, element) {
+                            var $val = $(this).html();
+                            $(this).html(numberWithCommasandMinusSign($val));
+                        });
+
+
+                        $('#tblADJ tbody').html('');
+                        $.each(data.AdjList, function (a, b) {
+                            $('#tblADJ tbody').append('<tr aid="' + b.ADJ_HEADER_ID + '">\
+<td>' + b.REFERENCE_INVOICE_NUMBER + '</td>\
+<td>' + b.ADJ_TYPES + '</td>\
+<td>' + numberWithCommas(b.ADJ_AMOUNT) + '</td>\
+<td>' + b.REMARKS + '</td>\
+<td class="clsAJDEdit"><center><span class="adjedit zmdi zmdi-edit" style="cursor:pointer;color:#0095eb;font-size: 1.5em;"></span></center></td>\
+<td class="clsAJDDelete"><center><span class="adjdelete zmdi zmdi-delete" style="cursor: pointer; color: red; font-size: 1.5em; display: inline-block;"></span></center></td>\
+');
+                        });
+                        $('#btnAddAdjustment, .clsAJDEdit, .clsAJDDelete').hide();
+                        addComma();
+                        if (data.DHIHDR.SubmittionRemarks != null) {
+                            try {
+                                var rlist = data.DHIHDR.SubmittionRemarks.toString().split("¼");
+                                $('#rmxDisplay').html('');
+                                $.each(rlist, function (i, j) {
+                                    var rmx = j.split("½");
+                                    $('#rmxDisplay').append('<div class="remarks-wrap">\
+                            <img class= "remarks-img" src = "/_catalogs/masterpage/cppag/img/user1.png" />\
+                            <div class="remarks-comment" data-owner="' + rmx[1] + ' ' + rmx[2] + '">\
+                                <p>' + rmx[3] + '</p>\
+                            </div>\
+                                    </div >');
+                                });
+                            } catch (e) {
+                                $('#rmxDisplay').html('');
+                            }
+
+
+                        }
+                        //var fileButtons = '';
+                        $.each(data.FList, function (i, j) {
+                            //$("#ulFileList").append('<li class="files" fileid="' + j.ATTACH_HEADER_ID + '"  fname="' + j.FILE_NAME + '"   base64=""> <span download="' + j.FILE_NAME + '">' + j.ATTACHMENT_TITLE + '</span>&nbsp;&nbsp;&nbsp;<label class="filedelete" style="cursor:pointer;">Delete File</label><label class="dnload" fname="' + j.FILE_NAME + '"  fileid="' + j.ATTACH_HEADER_ID + '" style="cursor: pointer;float: right; margin-right: 40px;">Download</label></li>');
+                            //if (LoadFor == 'E') {
+                            //    fileButtons = '<td><center><span class="filedelete zmdi zmdi-delete" style="cursor:pointer;color:red;"></span></center></td><td><center><span class="dnload zmdi zmdi-format-valign-bottom zmdi-hc-2x" fname="' + j.FILE_NAME + '"  fileid="' + j.ATTACH_HEADER_ID + '" style="cursor: pointer;color:#0095eb;"></span></center></td>';
+                            //}
+                            //else if (LoadFor == 'V') {
+                            //    $('#btnFileDel').remove();
+                            //    fileButtons = '<td><center><span class="dnload zmdi zmdi-format-valign-bottom zmdi-hc-2x" fname="' + j.FILE_NAME + '"  fileid="' + j.ATTACH_HEADER_ID + '" style="cursor: pointer;color:#0095eb;"></span></center></td>';
+                            //}
+                            $("#tbl_attach > tbody").append('<tr class="files" fileid="' + j.ATTACH_HEADER_ID + '"  fname="' + j.FILE_NAME + '" ftitle="' + j.ATTACHMENT_TITLE + '" fdescription="' + j.ATTACHMENT_DESC + '"  base64=""><td><span download="' + j.FILE_NAME + '">' + j.ATTACHMENT_TITLE + '</span></td><td><span>' + j.ATTACHMENT_DESC + '</span></td><td><span>' + j.FILE_NAME + '</span></td>\
+                    <td class="clstdEdit"><center><span class="fileedit zmdi zmdi-edit" style="cursor:pointer;color:#0095eb;font-size: 1.5em;"></span></center></td>\
+                    <td class="clstdDelete"><center><span class="filedelete zmdi zmdi-delete" style="cursor:pointer;color:red;font-size: 1.5em;"></span></center></td>\
+                    <td><center><span class="dnload zmdi zmdi-format-valign-bottom zmdi-hc-2x" fileid="' + j.ATTACH_HEADER_ID + '" style="cursor: pointer;color:#0095eb;"></span></center></td></tr>');
+                        });
+                        $('.clstdEdit, .clstdDelete').hide();
+                        if (data.UserDtl.utyp == "7") {
+                            if (data.DHIHDR.APPROVED_STATUS == "Submitted" || data.DHIHDR.APPROVED_STATUS == "Received") {
+                                $('#btnClear').parent().parent().hide();
+                                $('#btnAddFiles, .btn-blk-delete, .filedelete, #btnAddRow').hide();
+                                $('#addblockrow').parent().hide();
+                                $('#prevTxtAreaRemarks').parent().hide();
+                                $('#rmxDisplay').parent().parent().append('<div style="width:100%;padding-top: 35px;text-align: right;"><a style="color: white;" class="btn btn-danger clsbtnClose" href="#">Close</a></div>');
+                            } else {
+                                $('#btnClear').parent().parent().hide();
+                                $('#btnAddFiles, .btn-blk-delete, .filedelete, #btnAddRow').hide();
+                                $('#addblockrow').parent().hide();
+                                $('#prevTxtAreaRemarks').parent().hide();
+                                $('#rmxDisplay').parent().parent().append('<div class="dynDiv" style="width:100%;padding-top: 35px;text-align: right;"><button type="button" class="btn btn-success btn-anim btnEdit">Edit</button> <a style="color: white;" class="btn btn-danger clsbtnClose" href="#">Close</a></div>');
+
+                                if (data.DHIHDR.APPROVED_STATUS == "Returned") {
+                                    $('#btnWithDraw').parent().show();
+                                }
+                                if (data.DHIHDR.APPROVED_STATUS == "Withdraw") {
+                                    $('.btnEdit').remove();
+                                }
+                            }
+                        }
+                        $('#hardCopyTR').hide();
+                        if (data.UserDtl.utyp == "1") {
+                            TechnicalHide();
+                        } else if (data.UserDtl.utyp == "2") {
+                            if (data.DHIHDR.APPROVED_STATUS == "Submitted" && data.DHIHDR.IS_APPROVED_BY_TECHNICAL == "1") {
+                                $('#status').val('Forwarded to Finance');
+                                $('#statusV').html('Forwarded to Finance');
+                                TechnicalHide();
+                            }
+                            if (data.DHIHDR.APPROVED_STATUS == "Submitted" && data.DHIHDR.IS_APPROVED_BY_TECHNICAL == "0") {
+                                $('#status').val('Return to Power Producer');
+                                $('#statusV').html('Return to Power Producer');
+                                TechnicalHide();
+                            } else if (data.DHIHDR.APPROVED_STATUS == "Received" && data.DHIHDR.IS_APPROVED_BY_TECHNICAL == "1") {
+                                TechnicalHide();
+                            } else if (data.DHIHDR.APPROVED_STATUS == "Returned" && data.DHIHDR.IS_APPROVED_BY_TECHNICAL == "0") {
+                                TechnicalHide();
+                            } else if (data.DHIHDR.APPROVED_STATUS == "Returned" && data.DHIHDR.IS_APPROVED_BY_TECHNICAL == "1") {
+                                TechnicalHide();
+                            } else if (data.DHIHDR.APPROVED_STATUS == "Returned" && data.DHIHDR.IS_APPROVED_BY_TECHNICAL == null) {
+                                TechnicalHide();
+                            } else if (data.DHIHDR.APPROVED_STATUS == "Submitted" && data.DHIHDR.IS_APPROVED_BY_TECHNICAL == "0") {
+                                $('#status').val('Returned by Technical');
+                                $('#statusV').html('Received by Technical');
+                                //showBtns(data);
+                                TechnicalHide();
+                            } else if (data.DHIHDR.APPROVED_STATUS == "Submitted" && data.DHIHDR.IS_APPROVED_BY_TECHNICAL == null) {
+                                showBtns(data);
+                            }
+                        }
+                        if (data.UserDtl.utyp == "3") {
+                            $('#hardCopyTR').show();
+                            if (data.DHIHDR.APPROVED_STATUS != 'Submitted') {
+                                $('#hardCopySub').prop('disabled', true);
+                                $('#hardCopySubTime').prop('disabled', true);
+                                $('#hardCopyType').prop('disabled', true);
+                            } else {
+                                $('#hardCopySub').prop('disabled', false);
+                                $('#hardCopySubTime').prop('disabled', false);
+                                $('#hardCopyType').prop('disabled', false);
+                            }
+                            if (data.DHIHDR.APPROVED_STATUS == "Received" && data.DHIHDR.IS_APPROVED_BY_FINANCE == "1") {
+                                $('#status').val('Received by Finance');
+                                $('#statusV').html('Received by Finance');
+                                TechnicalHide();
+                            } else if (data.DHIHDR.APPROVED_STATUS == "Returned" && data.DHIHDR.IS_APPROVED_BY_FINANCE == "0") {
+                                TechnicalHide();
+                            } else if (data.DHIHDR.APPROVED_STATUS == "Returned" && data.DHIHDR.IS_APPROVED_BY_FINANCE == "1") {
+                                TechnicalHide();
+                            } else if (data.DHIHDR.APPROVED_STATUS == "Returned" && data.DHIHDR.IS_APPROVED_BY_FINANCE == null) {
+                                TechnicalHide();
+                            } else if (data.DHIHDR.APPROVED_STATUS == "Submitted" && data.DHIHDR.IS_APPROVED_BY_FINANCE == "0") {
+                                $('#status').val('Returned by Finance');
+                                $('#statusV').html('Return by Finance');
+                                TechnicalHide();
+                            } else if (data.DHIHDR.APPROVED_STATUS == "Submitted" && data.DHIHDR.IS_APPROVED_BY_FINANCE == "1") {
+                                $('#status').val('Received by Finance');
+                                $('#statusV').html('Received by Finance');
+                                TechnicalHide();
+                            } else if (data.DHIHDR.APPROVED_STATUS == "Submitted" && data.DHIHDR.IS_APPROVED_BY_FINANCE == null) {
+                                showBtns(data);
+                            }
+                        }
+
+                        if (LoadFor == "V") {
+
+                            $('.txtClaimFin, .txtBlockRemarks, .dtfrom, .dtToDate, .txtGSTFin, .txtClaimTech, .txtCompFinRemarks').prop('disabled', true);
+                        }
+                        if (LoadFor == "E" && data.UserDtl.utyp == "7") {
+                            $($('.btnEdit')[0]).click();
+                        }
+
+                        $('#totalClaimV').html($('#totalClaim').val());
+
+                        $('#invoicePeriodFrom').datepicker("option", { setDate: null, minDate: null, maxDate: null });
+                        $('#invoicePeriodTo').datepicker("option", { setDate: null, minDate: null, maxDate: null });
+                        $('#invoiceDueDate').datepicker("option", { setDate: null, minDate: null, maxDate: null });
+
+                        $('#invoicePeriodTo').datepicker('option', 'minDate', data.DHIHDR.INVOICE_PERIOD_FROM);
+                        $('#invoiceDueDate').datepicker('option', 'minDate', data.DHIHDR.INVOICE_PERIOD_FROM);
+
+                        $('#btnSave').attr('tg', data.DHIHDR.DIARY_HEADER_ID);
+
+                        if (data.DHIHDR.INVOICE_TYPES == 'Capacity Purchase Price') {
+                            $('.gstTD').hide();
+                            $('.gstHeadV').hide();
+                        } else if (data.DHIHDR.INVOICE_TYPES == 'Bonus') {
+                            $('.gstTD').hide();
+                            $('.gstHeadV').hide();
+                        } else {
+                            $('.gstTD').show();
+                            $('.gstHeadV').show();
+                        }
+
+                    }, //END OF AJAX SUCCESS
+                    error: function (request, textStatus, errorThrown) {
+                        // alert(request.getResponseHeader('some_header'));
+                        $.unblockUI();
+                    }
+                }); //END OF AJAX CALL
+            } //End of load invoice method
+        });// end of docready
+    </script>
+
+</div>
+

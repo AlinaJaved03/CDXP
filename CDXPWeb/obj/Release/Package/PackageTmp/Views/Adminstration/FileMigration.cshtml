@@ -1,0 +1,148 @@
+﻿
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="pcontent">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff;"></i>
+                        <h6 class="panel-title txt-light">@ViewBag.Title</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body" style="min-height: 300px;">
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;File Migration to ECM</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div>
+                            <table style="width: 80%;margin-left: 10%;margin-right: 10%;" id="tbl_Search">
+                                <thead></thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="width: 130px;">
+                                            <label>Diary Header ID</label>
+                                        </td>
+                                        <td>
+                                            <input style="background-color: rgb(251, 255, 193); width: 208px;" type="text" class="form-control frm" id="diaryId" required>
+                                        </td>
+                                        <td style="width: 130px;"></td>
+                                        <td style="width: 130px;">
+                                            <label>Vender Name</label>
+                                        </td>
+                                        <td>
+                                            <input style="background-color: rgb(251, 255, 193); width: 208px;" type="text" class="form-control frm" id="venderName" required>
+                                        </td>
+                                        <td style="width: 130px;">
+                                            <label>Vender Site ID</label>
+                                        </td>
+                                        <td>
+                                            <input style="background-color:rgb(251, 255, 193); width:208px;" type="text" class="form-control frm" id="venderSiteId" required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5" style="text-align:right;">
+                                            <button id="btnCreate" class="btn btn-default" style="margin-top: 3px;">SAVE</button>
+                                            <input type="hidden" class="form-control frm" id="UserId" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('body').off('click', '#btnCreate');
+            $('body').on('click','#btnCreate', function (event) {
+                event.preventDefault();
+                debugger;
+                    var bodyContent = "{\r\n \"diary_header_id\":\"{0}\",\r\n \"Vname\": \"{1}\",\r\n \"VsiteID\": \"{2}\"\r\n}";
+                bodyContent = bodyContent.FormatRow($('#diaryId').val(), $('#venderName').val(), $('#venderSiteId').val());
+                debugger;
+                    $.ajax({
+                        url: "https://prod-186.westeurope.logic.azure.com:443/workflows/958ff3d2453542f98f437f622b605310/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=ESbdnlEkh3SYNruJ9fRZsJqqzrlSdaO3-wIB7C-d-Ec",
+                        crossDomain: true,
+                        method: "POST",
+                        data: bodyContent,
+                        processData: false,
+                        headers: {
+                            "content-type": "application/json",
+                            "cache-control": "no-cache"
+                        },
+                        success: function (data) {
+
+                            swal({
+                                title: "Attachment Transfer!",
+                                text: "Attachment has been transferred successfully.",
+                                type: "success",
+                                showCancelButton: false,
+                                showConfirmButton: true
+                            });
+
+                            console.log(data);
+                        },
+                        error: function (err) {
+                            debugger;
+                            var fromdata = new FormData();
+                           // var VsiteID = VsiteID.toString();
+                            fromdata.append("diary_id", $('#diaryId').val());
+                            fromdata.append("Vname", $('#venderName').val());
+                            fromdata.append("VsiteID", $('#venderSiteId').val());
+                            $.ajax({
+                                url: "/Invoice/CreateECMMail" + $(location).attr("search"),
+                                method: "POST",
+                                data: fromdata,
+                                contentType: false,
+                                processData: false,
+                                success: function (data) {
+                                    console.log(data);
+                                },
+                                error: function (err) {
+                                    console.log(err);
+                                }
+                            });
+                            console.log(err);
+                        }
+                    });
+                }); //End of edit click
+        });
+        String.prototype.FormatRow = function () {
+            try {
+                var content = this;
+                for (var i = 0; i < arguments.length; i++) {
+                    var replacement = '{' + i + '}';
+                    content = content.replace(replacement, arguments[i]);
+                }
+                return content;
+            }
+            catch (e) {
+                console.log("Error occurred in FormatRow " + e.message);
+            }
+        }
+    </script>
+</div>
+

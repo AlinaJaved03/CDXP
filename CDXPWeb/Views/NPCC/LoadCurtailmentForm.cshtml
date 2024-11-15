@@ -1,0 +1,1527 @@
+﻿
+
+@{
+    ViewBag.Title = "Load Curtailment Instruction";
+}
+<div id="pcontent">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff;"></i>
+                        <h6 class="panel-title txt-light">@ViewBag.Title</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+
+
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                        @*<a class="pull-left inline-block close-panel" href="#" data-effect="fadeOut">
+                                <i class="zmdi zmdi-close"></i>
+                            </a>*@
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body">
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Header</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+
+
+
+                        <div style="margin-bottom: 20px;">
+                            <table class="tblFrm">
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="IPPType">Power Producer Type<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%;" id="editable" tg="@ViewBag.tg">
+                                        <select class="form-control frm requiredFieldBGC" id="ddlLC_IPPType" required>
+                                            <option value="-1">-Select-</option>
+                                            @Html.Raw(@ViewBag.IPPType)
+                                        </select>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="multIPP">
+                                            <input type="checkbox" id="multIPP" name="multipleIPP">
+                                            Select Multiple &nbsp;
+                                        </label>
+                                    </td>
+                                    <td style="width: 25%;"></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Power Producer<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%;" id="editable" tg="@ViewBag.tg">
+                                        <select class="form-control frm requiredFieldBGC" id="ddlLC_IPP" required></select>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="ddlLC_ProducerSite">Producer Site<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control frm requiredFieldBGC" id="ddlLC_ProducerSite" required></select>
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Notification Date & Time</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" value="@ViewBag.currentDate" class="form-control frm dtDateTime npcc" id="dateLC_notificationTime">
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Instruction Type<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control frm requiredFieldBGC npcc" id="ddlLC_instructionType" required>
+                                            <option value="-1" selected="selected">Select</option>
+                                            <option>Curtailment Start</option>
+                                            <option>Curtailment End</option>
+                                            <option>Change in Curtailment level</option>
+
+                                        </select>
+                                    </td>
+                                    <td style="width: 25%;" class="tdLC_CurtailmentStart">
+                                        <select class="form-control frm requiredFieldBGC npcc" id="ddlLC_CurtailmentStart" style="width:161px;" required>
+                                            <option>Load Curtailment To</option>
+                                            <option>WTG Curtailment</option>
+                                            <option>Load Curtailment By</option>
+                                        </select>
+                                    </td>
+                                    <td style="width: 25%;" class="tdLC_CurtailmentStart">
+                                        <input type="text" value="" id="txtLC_CurtailmentStart" class="form-control frm requiredFieldBGC clsAddComa npcc" style="text-align:right;" required>
+                                    </td>
+                                </tr>
+                                <tr id="WindOnly" style="display:none;">
+                                    <td style="width: 25%;">
+                                        <label for="txtLC_WTG_Cluster">Cluster</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" style="text-align:right;" class="form-control frm requiredFieldBGC npcc" id="txtLC_WTG_Cluster" readonly>
+                                    </td>
+
+                                    <td style="width: 25%;">
+                                        <label for="txtLC_WTG_Tariff">Tariff</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" style="text-align:right;" class="form-control frm requiredFieldBGC npcc" id="txtLC_WTG_Tariff" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="txtLC_totalWTG">Total WTG<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" value="" style="text-align:right;" class="form-control frm requiredFieldBGC clsNumber ipp" id="txtLC_totalWTG" required>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="txtLC_availableWTG">Available WTG<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" style="text-align:right;" class="form-control frm requiredFieldBGC clsNumber ipp" id="txtLC_availableWTG" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="txtLC_unavailableDueToFO">No. of WTG under FO<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" value="" class="form-control frm requiredFieldBGC clsAddComa ipp" style="display:inline-block;width:90%;text-align:right;" id="txtLC_unavailableDueToFO" required>
+                                        @*<label style="display:inline-block;">MW</label>*@
+                                    </td>
+
+                                    <td style="width: 25%;">
+                                        <label for="txtLC_unavailableDueToSO">No. of WTG under SO<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" value="" class="form-control frm requiredFieldBGC clsAddComa ipp" style="display:inline-block;width:90%;text-align:right;" id="txtLC_unavailableDueToSO" required>
+                                        @*<label style="display:inline-block;">MW</label>*@
+                                    </td>
+                                </tr>
+
+
+                                @*
+                                    <tr>
+                                        <td style="width: 25%;" colspan="4">
+                                            <label for="Disconame" style="display:inline-block;">
+                                                <input type="radio" name="curtailmentType" id="radioLC_wtgCurtailment" required /> WTG Curtailment&nbsp;
+                                                <input type="radio" name="curtailmentType" id="radioLC_loadCurtailment" /> Load Curtailment<span class="startColor"> *</span>
+
+                                            </label>
+                                            <input style="display:inline-block; width:75%; float:right;" type="text" value="" class="form-control frm requiredFieldBGC" required>
+                                        </td>
+                                    </tr>*@
+
+
+
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Actual Achievement Date & Time<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input id="dateLC_actualAchievementTime" type="text" class="form-control frm requiredFieldBGC dtDateTime ipp" required>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        @*<label for="Disconame">Load Prior to Curtailment<span class="startColor"> *</span></label>*@
+                                        <label for="Disconame">Spot MW<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%; ">
+                                        <input style="display:inline-block; width:90%;text-align:right;" type="text" value="" class="form-control frm requiredFieldBGC clsAddComa ipp" id="txtLC_priorToCurtailment" required>
+                                        <label style="display:inline-block;">MW</label>
+                                    </td>
+
+                                    <td style="width: 25%;">
+                                        @*<label for="WndRadPrior">Wind Speed Prior to Curtailment<span class="startColor"> *</span></label>*@
+                                        <label for="WndRadPrior">Spot Wind Speed<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%; ">
+                                        <input style="display:inline-block; width:90%;text-align:right;" type="text" value="" class="form-control frm requiredFieldBGC clsAddComa ipp" id="WndRadPrior" required>
+
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        @*<label for="Disconame">After Curtailment<span class="startColor"> *</span></label>*@
+                                        <label for="Disconame">Load Achieved as per Despach Instruction<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%; ">
+                                        <input style="display:inline-block; width:90%;text-align:right;" type="text" value="" class="form-control frm requiredFieldBGC clsAddComa ipp" id="txtLC_afterCurtailment" required>
+                                        <label style="display:inline-block;">MW</label>
+                                    </td>
+
+                                    <td style="width: 25%;">
+                                        @*<label for="WndRadAfter">Wind Speed After Curtailment<span class="startColor"> *</span></label>*@
+                                        <label for="WndRadAfter">Availability as per Wind Speed<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%; ">
+                                        <input style="display:inline-block; width:90%;text-align:right;" type="text" value="" class="form-control frm requiredFieldBGC clsAddComa ipp" id="WndRadAfter" required>
+
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td style="width: 25%;">
+                                        @*<label for="txtLC_WTG_priorToCurtailment">WTG Prior to Curtailment<span class="startColor"> *</span></label>*@
+                                        <label for="txtLC_WTG_priorToCurtailment">No. of WTGs in Operation Prior to new instruction<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" style="text-align:right;" class="form-control frm requiredFieldBGC clsNumber ipp" id="txtLC_WTG_priorToCurtailment" required>
+                                    </td>
+
+                                    <td style="width: 25%;">
+                                        @*<label for="txtLC_WTG_afterCurtailment">WTG After Curtailment<span class="startColor"> *</span></label>*@
+                                        <label for="txtLC_WTG_afterCurtailment">After Despatch instruction fulfilled<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" style="text-align:right;" class="form-control frm requiredFieldBGC clsNumber ipp" id="txtLC_WTG_afterCurtailment" required>
+                                    </td>
+                                </tr>
+
+                                <tr style="display:none;">
+
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Sync / Dysync Date & Time<span class="startColor">*</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input id="dateLC_SyDyTime" type="text" class="form-control frm requiredFieldBGC dtDateTime ipp" required>
+                                    </td>
+
+                                </tr>
+                            </table>
+                        </div>@*End Of Table*@
+
+
+
+                        <div class="tab0">
+                            <div class="tab1">&nbsp;NPCC Remarks</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <table class="tblFrm">
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Sender Name</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" value="@ViewBag.name" readonly class="form-control frm" id="txtLC_senderName" name="txtLC_senderName">
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Sender Designation</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" value="@ViewBag.designation" readonly class="form-control frm" id="txtLC_senderDesg" name="txtLC_senderDesg">
+                                    </td>
+                                </tr>
+                            </table>
+                            <label>Sender Notes<span class="startColor"> *</span></label>
+                            <textarea cols="70" rows="6" maxlength="2000" id="txtLC_NPCCRemarks" class="requiredFieldBGC" style="width: 100%;" required></textarea>
+
+
+                        </div>
+                        <div class="form-actions" id="npccAction">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button id="btnLC_Submit" style="float:left;" class="btn btn-success" type="button">
+                                        Submit
+                                    </button>
+                                    <button id="btnClose" style="float:left;" class="btn btn-default btnnpcc" type="button">
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab0" id="ippRemarks">
+                            &nbsp;<div class="tab1">&nbsp;Power Producer Remarks</div>
+                            <div class="tab2">&nbsp;</div>
+                            <div style="margin-bottom: 20px;">
+                                <table class="tblFrm">
+                                    <tr>
+                                        <td style="width: 25%;">
+                                            <label for="Disconame">Receiver Name</label>
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <input type="text" placeholder="@ViewBag.name" class="form-control frm" id="txtLC_IPPUser" name="txtLC_IPPUser">
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <label for="Disconame">Receiver Designation</label>
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <input type="text" value="@ViewBag.designation" class="form-control frm" id="txtLC_IPPUserDesignation" name="txtLC_IPPUserDesignation">
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <label>Receiver Notes<span class="startColor"> *</span></label>
+                                <textarea cols="70" rows="6" maxlength="2000" class="requiredFieldBGC" id="prevTxtAreaRemarks" style="width: 100%;" required></textarea>
+                            </div>
+                            <div class="form-actions" id="ippAction">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button id="btnLC_Ack" style="float:left;" class="btn btn-success" type="button">
+                                            Acknowledge
+                                        </button>
+                                        <button id="btnAckClose" style="float:left;" class="btn btn-default" type="button">
+                                            Close
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="tab0" id="ippAchieveRemarks">
+                            &nbsp;<div class="tab1">&nbsp;Power Producer Achieve Remarks</div>
+                            <div class="tab2">&nbsp;</div>
+                            <div style="margin-bottom: 20px;">
+                                <table class="tblFrm">
+                                    <tr>
+                                        <td style="width: 25%;">
+                                            <label for="Disconame">Receiver Name</label>
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <input type="text" placeholder="@ViewBag.name" class="form-control frm" id="txtLC_IPPUser2" name="txtLC_IPPUser2">
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <label for="Disconame">Receiver Designation</label>
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <input type="text" value="@ViewBag.designation" class="form-control frm" id="txtLC_IPPUserDesignation2" name="txtLC_IPPUserDesignation2">
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <label>Achieved Notes<span class="startColor"> *</span></label>
+                                <textarea cols="70" rows="6" maxlength="2000" class="requiredFieldBGC" id="achieveTxtAreaRemarks" style="width: 100%;" required></textarea>
+                            </div>
+                            <div class="form-actions" id="ippAchieveAction">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button id="btnLC_Achieve" style="float:left;" class="btn btn-warning" type="button">
+                                            Achieved
+                                        </button>
+                                        <button id="btnAchClose" style="float:left;" class="btn btn-default" type="button">
+                                            Close
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        debugger;
+        var usertype = 0;
+        var $status = "";
+        var $recordId = 0;
+        var curtailmentStartVisible = false;
+
+        //ON LOAD FUNCTIONS
+        $(function () {
+            debugger;
+
+            LoadData();
+            //$('#ddlLC_IPPType').change();
+
+            CheckUser();
+          });
+        $('body').off('change', '#multIPP');
+        $('body').on('change', '#multIPP', function (e)
+        {
+            debugger;
+            if ($(this).is(':checked')) {
+                $('#ddlLC_IPP').attr('multiple', 'multiple');
+                $('label[for="ddlLC_ProducerSite"]').hide();
+                $('#ddlLC_ProducerSite').hide();
+                $('label[for="txtLC_totalWTG"]').hide();
+                $('#txtLC_totalWTG').hide();
+                $('label[for="txtLC_WTG_Cluster"]').hide();
+                $('#txtLC_WTG_Cluster').hide();
+                $('label[for="txtLC_WTG_Tariff"]').hide();
+                $('#txtLC_WTG_Tariff').hide();
+
+            }
+            else {
+                $('#ddlLC_IPP').removeAttr('multiple');
+                $('label[for="ddlLC_ProducerSite"]').hide();
+                $('#ddlLC_ProducerSite').show();
+                $('label[for="txtLC_totalWTG"]').show();
+                $('#txtLC_totalWTG').show();
+                $('label[for="txtLC_WTG_Cluster"]').show();
+                $('#txtLC_WTG_Cluster').show();
+                $('label[for="txtLC_WTG_Tariff"]').show();
+                $('#txtLC_WTG_Tariff').show();
+            }
+            //$("#ddlLC_IPP").attr("multiple", (this.checked) ? "multiple" : "");
+        });
+
+        function CheckUser() {
+            debugger;
+                @if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 7 || ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 9) //NPCC
+                {
+                     @: usertype = 7;
+                }
+                else if(ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 10) //IPP
+                {
+                    @: usertype = 4;
+                }
+                //BY DEFAULT HIDDEN
+                $('#npccAction').hide();
+                $('#ippAction').hide();
+                $('#ippRemarks, #ippAchieveRemarks').hide();
+                $('#btnLC_Achieve').hide();
+                console.log('L Status = ' + $status);
+                //BUTTONS
+                $('#btnLC_Submit').hide();
+               if (usertype == 7)
+               {
+                   $('#npccAction').show();
+                   $('#ippAction').hide();
+                   $('.ipp').attr('disabled', 'disabled');
+                   $('.ipp').removeAttr('required');
+                   $('#btnLC_Submit').show();
+
+                   if ($status == "") {
+
+                    $('#npccAction').show();
+                    $('#ippAction').hide();
+                    $('#ippRemarks, #ippAchieveRemarks, #ippAchieveAction').hide();
+                    $('#btnLC_Submit').show();
+
+                    return false;
+                }
+
+                if ($status == "Submitted") {
+                    $('#npccAction').show();
+                    $('#ippAction, #ippAchieveAction').hide();
+                    $('#ippRemarks, #ippAchieveRemarks').hide();
+                    $('#btnLC_Submit').hide();
+                    $('label[for="IPPType"]').hide();
+                    $('#ddlLC_IPPType').hide();
+                    $('label[for="multIPP"]').hide();
+                    $('#multIPP').hide();
+                    $('.frm, .rdtop').prop("disabled", true);
+                    $('#txtLC_NPCCRemarks').attr('disabled', 'disabled');
+                    return false;
+                }
+
+                if ($status == "Acknowledged") {
+
+                    $('#npccAction').show();
+                    $('label[for="IPPType"]').hide();
+                    $('#ddlLC_IPPType').hide();
+                    $('label[for="multIPP"]').hide();
+                    $('#multIPP').hide();
+                    $('#ippAchieveAction, #ippAchieveRemarks').hide();
+                    $('#btnClose').hide();
+                    $('#ippAction').show();
+                    $('#ippRemarks, #btnAckClose').show();
+                    $('#btnLC_Submit').hide();
+                    $('#btnLC_Ack').hide();
+                    $('.frm, .rdtop').prop("disabled", true);
+                    $('#prevTxtAreaRemarks, #txtLC_NPCCRemarks').prop("disabled", true);
+                    $('#txtLC_NPCCRemarks').attr('readonly', 'readonly');
+                    return false;
+                }
+
+                if ($status == "Achieved") {
+                    $('#ippAction').show();
+                    $('#ippRemarks, #btnAckClose, #ippAchieveRemarks, #ippAchieveAction').show();
+                    $('label[for="IPPType"]').hide();
+                    $('#ddlLC_IPPType').hide();
+                    $('label[for="multIPP"]').hide();
+                    $('#multIPP').hide();
+                    $('#btnAckClose, #btnLC_Ack, #btnLC_Submit, #btnClose').hide();
+
+                    $('.frm, .rdtop').prop("disabled", true);
+                    $('#prevTxtAreaRemarks, #txtLC_NPCCRemarks,  #achieveTxtAreaRemarks').prop("disabled", true);
+
+                    return false;
+                }
+
+               }
+               else if (usertype == 4)
+               {
+                  
+                       debugger;
+                       //if ($('#ddlLC_IPP').parent().attr('tg').split('½')[1] == 'v')
+                       //{
+                       //    $('#btnLC_Ack').hide();
+                       //    $('#btnLC_Achieve').hide();
+                       //    $('.requiredFieldBGC').prop("readonly", true);
+                       //    $('#prevTxtAreaRemarks, #txtLC_NPCCRemarks,  #achieveTxtAreaRemarks').prop("disabled", true);
+                       //}
+
+                       $("#txtLC_totalWTG").attr('readonly', 'readonly');
+                       $("#ddlLC_IPP").attr('readonly', 'readonly');
+                       $("#ddlLC_ProducerSite").attr('readonly', 'readonly');
+                       $("#ddlLC_instructionType").attr('readonly', 'readonly');
+
+                       if ($('#ddlLC_instructionType').val() == 'Curtailment End') {
+                           $('.tdLC_CurtailmentStart').hide();
+                           curtailmentStartVisible = false;
+
+                       } debugger;
+                   //if ($('#ddlLC_IPP').parent().attr('tg').split('½')[1] == 'v')
+                   //{
+                   //    $('#btnLC_Ack').hide();
+                   //    $('#btnLC_Achieve').hide();
+                   //    $('.requiredFieldBGC').prop("readonly", true);
+                   //    $('#prevTxtAreaRemarks, #txtLC_NPCCRemarks,  #achieveTxtAreaRemarks').prop("disabled", true);
+                   //}
+
+                   if ($status == "Submitted") {
+
+                    $('#npccAction').show();
+                    $('#ippAction').show();
+                    $('#ippAchieveAction').hide();
+                    $('#ippRemarks').show();
+                    $('#ippAchieveRemarks').hide();
+                    $('#btnLC_Submit').hide();
+                    $('.btnnpcc').hide();
+                   // $('.frm, .rdtop').prop("readonly", true);
+
+                    $('label[for="IPPType"]').hide();
+                       $('#ddlLC_IPPType').hide();
+                       $('label[for="multIPP"]').hide();
+                       $('#multIPP').hide();
+                       $('.npcc, #ddlLC_IPP, #ddlLC_ProducerSite').attr('disabled', 'disabled');
+                       $('.ipp').attr('disabled', false);
+
+                       //$('#txtLC_NPCCRemarks, #txtLC_IPPUser, #txtLC_IPPUserDesignation').attr('disabled', 'disabled');
+                       $('#txtLC_NPCCRemarks').attr('disabled', 'disabled');
+                       if ($('#ddlLC_IPP').parent().attr('tg').split('½')[1] == 'v')
+                       {
+                           $('#btnLC_Ack').hide();
+                          // $('#btnLC_Achieve').hide();
+                           $('.requiredFieldBGC').prop("readonly", true);
+                           $('#prevTxtAreaRemarks, #txtLC_NPCCRemarks,  #achieveTxtAreaRemarks').prop("disabled", true);
+
+                       }
+                    return false;
+                }
+                if ($status == "Acknowledged") {
+                    $('label[for="IPPType"]').hide();
+                    $('#ddlLC_IPPType').hide();
+                    $('label[for="multIPP"]').hide();
+                    $('#multIPP').hide();
+                    $('#npccAction').hide();
+                    $('#ippAchieveAction').show();
+                    $('#ippAction').show();
+                    $('#ippRemarks, #ippAchieveRemarks').show();
+                    $('#btnLC_Ack').hide();
+                    $('#btnAckClose').hide();
+                    $('#btnLC_Achieve').show();
+                    $('#btnLC_Submit').hide();
+                    $('.frm, .rdtop').prop("readonly", true);
+                    $('#txtLC_NPCCRemarks').attr('disabled', 'disabled');
+                    $('#txtLC_NPCCRemarks, #prevTxtAreaRemarks').attr('disabled', 'disabled');
+
+                    if ($('#ddlLC_IPP').parent().attr('tg').split('½')[1] == 'v')
+                    {
+                       // $('#btnLC_Ack').hide();
+                         $('#btnLC_Achieve').hide();
+                       // $('.requiredFieldBGC').prop("readonly", true);
+                        $('#achieveTxtAreaRemarks').prop("disabled", true);
+
+                    }
+                    return false;
+                }
+                   if ($status == "Achieved") {
+                       $('label[for="IPPType"]').hide();
+                       $('#ddlLC_IPPType').hide();
+                       $('label[for="multIPP"]').hide();
+                       $('#multIPP').hide();
+                    $('#ippAchieveAction').show();
+                    $('#npccAction').hide();
+                    $('#ippAction').show();
+                    $('#ippRemarks, #ippAchieveRemarks').show();
+                    $('#btnLC_Ack, #btnAckClose').hide();
+                    $('#btnLC_Submit').hide();
+                    $('#btnLC_Achieve').hide();
+                    $('.frm, .rdtop').prop("readonly", true);
+                    $('#txtLC_NPCCRemarks').attr('disabled', 'disabled');
+                    $('#prevTxtAreaRemarks, #achieveTxtAreaRemarks').attr('disabled', 'disabled');
+                    return false;
+                   }
+
+
+               }
+                //if (usertype == 7 && $status == "") {
+
+                //    $('#npccAction').show();
+                //    $('#ippAction').hide();
+                //    $('#ippRemarks, #ippAchieveRemarks, #ippAchieveAction').hide();
+                //    $('#btnLC_Submit').show();
+
+                //    return false;
+                //}
+
+                //if (usertype == 7 && $status == "Submitted") {
+                //    $('#npccAction').show();
+                //    $('#ippAction, #ippAchieveAction').hide();
+                //    $('#ippRemarks, #ippAchieveRemarks').hide();
+                //    $('#btnLC_Submit').hide();
+                //    $('.frm, .rdtop').prop("disabled", true);
+                //    $('#txtLC_NPCCRemarks').attr('disabled', 'disabled');
+                //    return false;
+                //}
+
+                //if (usertype == 7 && $status == "Acknowledged") {
+
+                //    $('#npccAction').show();
+
+                //    $('#ippAchieveAction, #ippAchieveRemarks').hide();
+                //    $('#btnClose').hide();
+                //    $('#ippAction').show();
+                //    $('#ippRemarks, #btnAckClose').show();
+                //    $('#btnLC_Submit').hide();
+                //    $('#btnLC_Ack').hide();
+                //    $('.frm, .rdtop').prop("disabled", true);
+                //    $('#prevTxtAreaRemarks, #txtLC_NPCCRemarks').prop("disabled", true);
+                //    $('#txtLC_NPCCRemarks').attr('readonly', 'readonly');
+                //    return false;
+                //}
+
+                //if (usertype == 7 && $status == "Achieved") {
+                //    $('#ippAction').show();
+                //    $('#ippRemarks, #btnAckClose, #ippAchieveRemarks, #ippAchieveAction').show();
+
+                //    $('#btnAckClose, #btnLC_Ack').hide();
+
+                //    $('.frm, .rdtop').prop("disabled", true);
+                //    $('#prevTxtAreaRemarks, #txtLC_NPCCRemarks,  #achieveTxtAreaRemarks').prop("disabled", true);
+
+                //    return false;
+                //}
+
+                //if (usertype == 4 && $status == "Submitted") {
+                //    $('#npccAction').show();
+                //    $('#ippAction').show();
+                //    $('#ippAchieveAction').hide();
+                //    $('#ippRemarks').show();
+                //    $('#ippAchieveRemarks').hide();
+                //    $('#btnLC_Submit').hide();
+                //    $('.frm, .rdtop').prop("readonly", true);
+                //    $('#txtLC_NPCCRemarks, #txtLC_IPPUser, #txtLC_IPPUserDesignation').attr('disabled', 'disabled');
+                //    return false;
+                //}
+                //if (usertype == 4 && $status == "Acknowledged") {
+
+                //    $('#npccAction').hide();
+                //    $('#ippAchieveAction').show();
+                //    $('#ippAction').show();
+                //    $('#ippRemarks, #ippAchieveRemarks').show();
+                //    $('#btnLC_Ack').hide();
+                //    $('#btnAckClose').hide();
+                //    $('#btnLC_Achieve').show();
+                //    $('#btnLC_Submit').hide();
+                //    $('.frm, .rdtop').prop("readonly", true);
+                //    $('#txtLC_NPCCRemarks').attr('disabled', 'disabled');
+                //    $(' #txtLC_IPPUser, #txtLC_IPPUserDesignation, #txtLC_NPCCRemarks, #prevTxtAreaRemarks').attr('disabled', 'disabled');
+                //    return false;
+                //}
+                //if (usertype == 4 && $status == "Achieved") {
+                //    $('#ippAchieveAction').show();
+                //    $('#npccAction').hide();
+                //    $('#ippAction').show();
+                //    $('#ippRemarks, #ippAchieveRemarks').show();
+                //    $('#btnLC_Ack, #btnAckClose').hide();
+                //    $('#btnLC_Submit').hide();
+                //    $('#btnLC_Achieve').hide();
+                //    $('.frm, .rdtop').prop("readonly", true);
+                //    $('#txtLC_NPCCRemarks').attr('disabled', 'disabled');
+                //    $('#prevTxtAreaRemarks, #achieveTxtAreaRemarks').attr('disabled', 'disabled');
+                //    return false;
+                //}
+           	}
+
+            
+            $('body').on('focus', ".dtDateTime", function () {
+                $(this).datetimepicker({
+                    format: 'DD-MMM-YYYY HH:mm'
+                });
+            });
+
+            $('body').on('focus', '#txtLC_WTG_priorToCurtailment, #txtLC_WTG_afterCurtailment, #txtLC_priorToCurtailment, #txtLC_afterCurtailment, #txtLC_unavailableDueToFO, #txtLC_unavailableDueToSO, #txtLC_totalWTG, #txtLC_availableWTG', function () {
+                removeComma();
+            });
+
+            $('body').on('focusout', '#txtLC_WTG_priorToCurtailment, #txtLC_WTG_afterCurtailment, #txtLC_priorToCurtailment, #txtLC_afterCurtailment, #txtLC_unavailableDueToFO, #txtLC_unavailableDueToSO, #txtLC_totalWTG, #txtLC_availableWTG', function () {
+                addComma();
+            });
+
+            $('body').off("change", '#txtLC_WTG_priorToCurtailment, #txtLC_WTG_afterCurtailment, #txtLC_priorToCurtailment, #txtLC_afterCurtailment, #txtLC_unavailableDueToFO, #txtLC_unavailableDueToSO, #txtLC_totalWTG, #txtLC_availableWTG');
+            $('body').on("change", '#txtLC_WTG_priorToCurtailment, #txtLC_WTG_afterCurtailment, #txtLC_priorToCurtailment, #txtLC_afterCurtailment, #txtLC_unavailableDueToFO, #txtLC_unavailableDueToSO, #txtLC_totalWTG, #txtLC_availableWTG', function (e) {
+                addComma();
+            });
+
+            $('body').off('keypress', '.clsAddComa');
+            $('body').on('keypress', '.clsAddComa', function (event) {
+                var keyCode = event.keyCode || event.which;
+                if (keyCode == 9) {
+                    event.preventDefault();
+                    // call custom function here
+                }
+                var $this = $(this);
+                if ((event.which != 46 || $this.val().indexOf('.') != -1) &&
+                    ((event.which < 48 || event.which > 57) &&
+                        (event.which != 0 && event.which != 8))) {
+                    event.preventDefault();
+
+                }
+
+                var text = $(this).val();
+                text = text.replace(/,/g, '');
+                if ((event.which == 46) && (text.indexOf('.') == -1)) {
+                    setTimeout(function () {
+                        if ($this.val().substring($this.val().indexOf('.')).length > 5) {
+                            $this.val($this.val().substring(0, $this.val().indexOf('.') + 5));
+                        }
+                    }, 1);
+                }
+
+                if ((text.indexOf('.') != -1) &&
+                    (text.substring(text.indexOf('.')).length > 4) &&
+                    (event.which != 0 && event.which != 8) &&
+                    ($(this)[0].selectionStart >= text.length - 4)) {
+                    event.preventDefault();
+                }
+
+            });
+
+            $('body').off("paste", '.clsAddComa');
+            $('body').on("paste", '.clsAddComa', function (e) {
+                var thisCtrl = $(this);
+                var text = e.originalEvent.clipboardData.getData('Text');
+                text = text.replace(/,/g, '');
+                if ($.isNumeric(text)) {
+                    if ((text.substring(text.indexOf('.')).length >= 5) && (text.indexOf('.') > -1)) {
+                        e.preventDefault();
+                        thisCtrl.val(text.substring(0, text.indexOf('.') + 5));
+                        thisCtrl.change();
+                    }
+                }
+                else {
+                    e.preventDefault();
+                    swal({
+                        title: "Invalid Input",
+                        text: "Please enter only numeric values!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => thisCtrl.focus(), 100)
+                        }
+                    });
+                }
+            });
+
+            $('body').off('click', '#btnClose');
+            $('body').on('click', '#btnClose', function (e) {
+                e.preventDefault();
+                var options = {};
+                $("#pageContainer").hide('slide', options, 300);
+                $.ajax({
+        type:"POST",
+                    url: "/NPCC/LoadCurtailmentList" + $(location).attr('search'),
+                    success: function (result) {
+                        var options = {};
+                        $('#pageContainer').html($(result).find('#pcontent').html());
+                        $("#pageContainer").show('slide', options, 500);
+                    }
+                });
+            });//End of edit click
+
+            $('body').off('click', '#btnAchClose');
+            $('body').on('click', '#btnAchClose', function (e) {
+                e.preventDefault();
+                var options = {};
+                $("#pageContainer").hide('slide', options, 300);
+                $.ajax({
+        type:"POST",
+                    url: "/NPCC/LoadCurtailmentList" + $(location).attr('search'),
+                    success: function (result) {
+                        var options = {};
+                        $('#pageContainer').html($(result).find('#pcontent').html());
+                        $("#pageContainer").show('slide', options, 500);
+                    }
+                });
+            });
+
+            $('body').off('click', '#btnAckClose');
+            $('body').on('click', '#btnAckClose', function (e) {
+                e.preventDefault();
+                var options = {};
+                $("#pageContainer").hide('slide', options, 300);
+                $.ajax({
+        type:"POST",
+                    url: "/NPCC/LoadCurtailmentList" + $(location).attr('search'),
+                    success: function (result) {
+                        var options = {};
+                        $('#pageContainer').html($(result).find('#pcontent').html());
+                        $("#pageContainer").show('slide', options, 500);
+                    }
+                });
+            });//End of edit click
+
+
+
+            $('body').off('change', '#ddlLC_instructionType');
+            $('body').on('change', '#ddlLC_instructionType', function (e) {
+                e.preventDefault();
+                var thisCtrl = $(this);
+                if (thisCtrl.val() == "Curtailment Start" || thisCtrl.val() == "Change in Curtailment level") {
+                    $('.tdLC_CurtailmentStart').show();
+                    curtailmentStartVisible = true;
+                }
+                else {
+                    $('.tdLC_CurtailmentStart').hide();
+                    curtailmentStartVisible = false;
+                    $('#txtLC_CurtailmentStart').val('.0000');
+                }
+
+            });
+            $('body').off('click', '#btnLC_Submit');
+            $('body').on('click', '#btnLC_Submit', function (e) {
+            debugger;
+                e.preventDefault();
+                removeComma();
+                var ctrl = $(this);
+                var wtgCurtailment = false, loadCurtailment = false; toCurtailment = false;
+                if (curtailmentStartVisible) {
+                    if ($('#ddlLC_CurtailmentStart').val() == 'WTG Curtailment' || $('#ddlLC_CurtailmentStart').val() == 'Radiation Curtailment')
+                        wtgCurtailment = true;
+                    else if ($('#ddlLC_CurtailmentStart').val() == 'Load Curtailment By')
+                        loadCurtailment = true;
+                    else if ($('#ddlLC_CurtailmentStart').val() == 'Load Curtailment To')
+                        toCurtailment = true;
+                }
+                var TimeCheck = true;
+                var isTrue = validations();
+                if (isTrue) {
+
+                    if ($('#multIPP').is(':checked')) {
+
+                        var fromdata = new FormData();
+                        fromdata.append("vls", '44½' + $('#ddlLC_IPP').val() + '½' + $('#ddlLC_instructionType').val() + '½' + wtgCurtailment + '½' + loadCurtailment + '½' + toCurtailment + '½' + $('#txtLC_CurtailmentStart').val() + '½' + $('#dateLC_notificationTime').val() + '½' + $('#txtLC_senderName').val() + '½' + $('#txtLC_senderDesg').val() + '½' + $('#txtLC_NPCCRemarks').val() + '½Submitted½' + $('#ddlLC_IPPType').val());
+
+                        swal({
+                            title: "Are you sure?",
+                            text: "Do you really want to save Load Curtailment?",
+                            type: "warning",
+                            showCancelButton: true,
+                            confirmButtonClass: "btn-danger",
+                            confirmButtonText: "Yes, Save it!",
+                            closeOnConfirm: false
+                        }, function () {
+
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                                    data: fromdata,
+                                    async: false,
+                                    contentType: false,
+                                    processData: false,
+                                    success: function (response) {
+
+
+                                        var options = {};
+                                        $("#pageContainer").hide('slide', options, 300);
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "/NPCC/LoadCurtailmentList" + $(location).attr('search'),
+                                            success: function (response) {
+                                                var options = {};
+                                                $('#pageContainer').html($(response).find('#pcontent').html());
+                                                $("#pageContainer").show('slide', options, 500);
+                                                $($('.btnClose')).click()
+                                            }
+                                        });
+
+                                    }
+
+                                });
+                            });
+                    }
+                    else {
+                        var fromdata = new FormData();
+                        fromdata.append("vls", '11½' + $('#ddlLC_IPP').val() + '½' + $('#ddlLC_IPP option:selected').text().split('--')[0].trim() + '½' + $('#txtLC_totalWTG').val() + '½' + $('#ddlLC_instructionType').val() + '½' + wtgCurtailment + '½' + loadCurtailment + '½' + toCurtailment + '½' + $('#txtLC_CurtailmentStart').val() + '½' + $('#dateLC_notificationTime').val() + '½' + $('#txtLC_senderName').val() + '½' + $('#txtLC_senderDesg').val() + '½' + $('#txtLC_NPCCRemarks').val() + '½' + $('#ddlLC_ProducerSite option:selected').text() + '½Submitted½' + $('#ddlLC_ProducerSite').val() + '½' + $('#ddlLC_IPPType').val());
+
+                        swal({
+                            title: "Are you sure?",
+                            text: "Do you really want to save Load Curtailment?",
+                            type: "warning",
+                            showCancelButton: true,
+                            confirmButtonClass: "btn-danger",
+                            confirmButtonText: "Yes, Save it!",
+                            closeOnConfirm: true
+                        },
+                            function () {
+
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                                    data: fromdata,
+                                   // async: false,
+                                    contentType: false,
+                                    processData: false,
+                                    success: function (response) {
+                                        if (response == "ALREADY_PRESENT") {
+
+                                            swal({
+                                                title: "Error",
+                                                text: "The Record is already present for " + $('#ddlLC_instructionType').val() + " for: " + $('#dateLC_notificationTime').val(),
+                                                type: "warning",
+                                                showCancelButton: false,
+                                                confirmButtonClass: "btn btn-danger",
+                                                confirmButtonText: "OK"
+                                                //,onAfterClose: () => {
+                                                //              setTimeout(() => $('#invoiceLetterNumber').focus(), 100);
+                                                //          }
+                                            }, function () {
+                                                setTimeout(() => $('#ddlBlock').focus(), 100);
+                                            });
+                                            //   return false;
+
+                                        }
+                                        else {
+                                            swal("Success!", "Record has been saved Successfully.", "success");
+                                            var options = {};
+                                            $("#pageContainer").hide('slide', options, 300);
+                                            $.ajax({
+                                                type: "POST",
+                                                url: "/NPCC/LoadCurtailmentList" + $(location).attr('search'),
+                                                success: function (response) {
+                                                    var options = {};
+                                                    $('#pageContainer').html($(response).find('#pcontent').html());
+                                                    $("#pageContainer").show('slide', options, 500);
+                                                    $($('.btnClose')[0]).click();
+                                                }
+                                            });
+                                        }
+                                    }
+
+                                });
+                            });
+                            }
+                }
+            }); //Button click ends
+
+
+        LoadVendorSites();
+
+        $('body').off('change', '#ddlLC_IPPType');
+        $('body').on('change', '#ddlLC_IPPType', function (e) {
+            e.preventDefault();
+            debugger;
+            var fromdata = new FormData();
+            if ($('#ddlLC_IPPType').val() == null || $('#ddlLC_IPPType').val() == undefined || $('#ddlLC_IPPType').val() == "")
+            {
+                $('#ddlLC_IPP').html('');
+                $('#ddlLC_ProducerSite').html('');
+
+                return false;
+            }
+            fromdata.append("vls", '43½' + $('#ddlLC_IPPType').val());
+            $.ajax({
+                type: "POST",
+                url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                data: fromdata,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    debugger;
+                    $('#ddlLC_IPP').html(response);
+                    $('#ddlLC_IPP').change();
+                    if ($('#ddlLC_IPPType').val() == 1168)
+                    {
+                        $("label[for = txtLC_availableWTG]").html("Available Radiation <span class=" + '"startColor"' + "> *</span>");
+                        $("label[for = txtLC_WTG_priorToCurtailment").html("No. of Radiations in Operation Prior to new instruction<span class=" + '"startColor"' + "> *</span>");
+                        //$("label[for = txtLC_WTG_afterCurtailment]").html("Radiation After Curtailment <span class=" + '"startColor"' + "> *</span>");
+                        $("label[for = txtLC_totalWTG]").html("Total Radiation <span class=" + '"startColor"' + "> *</span>");
+                        $('#ddlLC_CurtailmentStart option').eq(1).text('Radiation Curtailment');
+                        $("label[for = WndRadPrior]").html("Spot Radiations <span class=" + '"startColor"' + "> *</span>");
+                        $("label[for = WndRadAfter]").html("Availability as per Radiations <span class=" + '"startColor"' + "> *</span>");
+                        $("label[for = txtLC_unavailableDueToFO]").html("No. of Radiations under FO <span class=" + '"startColor"' + "> *</span>");
+                        $("label[for = txtLC_unavailableDueToSO]").html("No. of Radiations under SO <span class=" + '"startColor"' + "> *</span>");
+                        $("#txtLC_totalWTG").val('0');
+                        $("#txtLC_totalWTG").attr('readonly', 'readonly')
+                        $("#txtLC_totalWTG").change();
+
+                    }
+                    else if ($('#ddlLC_IPPType').val() == 1169)
+                    {
+                        $("label[for = txtLC_availableWTG]").html("Available WTG <span class=" + '"startColor"' + "> *</span>");
+                        $("label[for = txtLC_WTG_priorToCurtailment").html("No. of WTGs in Operation Prior to new instruction<span class=" + '"startColor"' + "> *</span>");
+                        //$("label[for = txtLC_WTG_afterCurtailment]").html("WTG After Curtailment <span class=" + '"startColor"' + "> *</span>");
+                        $("label[for = txtLC_totalWTG]").html("Total WTG <span class=" + '"startColor"' + "> *</span>");
+                        $('#ddlLC_CurtailmentStart option').eq(1).text('WTG Curtailment');
+                        $("label[for = WndRadPrior]").html("Spot Wind Speed <span class=" + '"startColor"' + "> *</span>");
+                        $("label[for = WndRadAfter]").html("Availability as per Wind Speed <span class=" + '"startColor"' + "> *</span>");
+                        $("label[for = txtLC_unavailableDueToFO]").html("No. of WTGs under FO <span class=" + '"startColor"' + "> *</span>");
+                        $("label[for = txtLC_unavailableDueToSO]").html("No. of WTGs under SO <span class=" + '"startColor"' + "> *</span>");
+                        $("#txtLC_totalWTG").val('0');
+                        $("#txtLC_totalWTG").val($('option:selected', '#ddlLC_IPP').attr('details').split('½')[0]);
+                        $("#txtLC_totalWTG").attr('readonly', 'readonly')
+                        $("#txtLC_totalWTG").change();
+                        $("#WindOnly").show();
+                        $("#txtLC_WTG_Cluster").val($('option:selected', '#ddlLC_IPP').attr('details').split('½')[1]);
+                        $("#txtLC_WTG_Tariff").val($('option:selected', '#ddlLC_IPP').attr('details').split('½')[2]);
+
+                    }
+
+                }
+            });
+        });
+
+          $('body').off('change', '#ddlLC_IPP');
+        $('body').on('change', '#ddlLC_IPP', function (e) {
+            debugger;
+            e.preventDefault();
+            if (!$('#multIPP').is(':checked'))
+            {
+                if ($('#ddlLC_IPPType').val() == 1169) {
+                    $("#txtLC_totalWTG").val($('option:selected', '#ddlLC_IPP').attr('details').split('½')[0]);
+                    $("#txtLC_totalWTG").attr('readonly', 'readonly')
+                    $("#txtLC_totalWTG").change();
+                    $("#WindOnly").show();
+                    $("#txtLC_WTG_Cluster").val($('option:selected', '#ddlLC_IPP').attr('details').split('½')[1]);
+                    $("#txtLC_WTG_Tariff").val($('option:selected', '#ddlLC_IPP').attr('details').split('½')[2]);
+                }
+                else {
+                    $("#txtLC_totalWTG").val('0');
+                    $("#txtLC_totalWTG").attr('readonly', 'readonly')
+                    $("#txtLC_totalWTG").change();
+                    $("#WindOnly").hide();
+
+                }
+            LoadVendorSites();
+            }
+        });// End of ddlLC_IPP change
+
+
+        $('body').off('click', '#btnLC_Ack');
+        $('body').on('click', '#btnLC_Ack', function (e) {
+            e.preventDefault();
+            removeComma();
+            var isTrue = validations();
+            if (isTrue) {
+                var fromdata = new FormData();
+                fromdata.append("vls", '30½' + $('#txtLC_IPPUser').val() + '½' + $('#txtLC_IPPUserDesignation').val() + '½' + $('#prevTxtAreaRemarks').val() + '½' + 'Acknowledged' + '½' + $recordId + '½' + $('#txtLC_totalWTG').val() + '½' + $('#txtLC_availableWTG').val() + '½' + $('#txtLC_unavailableDueToFO').val() + '½' + $('#txtLC_unavailableDueToSO').val() + '½' + $('#dateLC_actualAchievementTime').val() + '½' + $('#txtLC_priorToCurtailment').val() + '½' + $('#txtLC_afterCurtailment').val() + '½' + $('#txtLC_WTG_priorToCurtailment').val() + '½' + $('#txtLC_WTG_afterCurtailment').val() + '½' + $('#WndRadPrior').val() + '½' + $('#WndRadAfter').val());
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                    data: fromdata,
+
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        swal("Success!", "Load curtailment instruction Acknowledged successfully", "success");
+                        $($('#btnClose')[0]).click();
+                    }
+
+                });
+            }
+            else {
+                return isTrue;
+            }
+            });
+
+            $('body').off('click', '#btnLC_Achieve');
+            $('body').on('click', '#btnLC_Achieve', function (e) {
+                e.preventDefault();
+
+                var fromdata = new FormData();
+                fromdata.append("vls", '31½' + 'Achieved' + '½' + $('#achieveTxtAreaRemarks').val() + '½' + $recordId);
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        swal("Load Curtailment Achieved!", "Load Curtailment instruction Achieved successfully", "success");
+                        $($('#btnClose')[0]).click();
+
+                    }
+
+                });
+            });
+
+        function LoadVendorSites() {
+            debugger;
+                var fromdata = new FormData();
+                if ($('#ddlLC_IPP').val()==null || $('#ddlLC_IPP').val()== undefined || $('#ddlLC_IPP').val()=="") {
+                    $('#ddlLC_ProducerSite').html('');
+                    return false;
+                }
+                fromdata.append("vls", '0½' + $('#ddlLC_IPP').val());
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    async: false,
+                    processData: false,
+                    success: function (response) {
+                        $('#ddlLC_ProducerSite').html(response);
+                    }
+                });
+            }//END OF LOADVendorSites
+
+
+
+        function validations() {
+            debugger;
+            let flag = true;
+            if (usertype == 7)
+            {
+                if ($('#ddlLC_IPP').val() == '') {
+                    swal({
+                        title: "Error",
+                        text: "Please select power producer!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK"
+                    }, function () {
+                        setTimeout(() => $('#ddlLC_IPP').focus(), 100)
+                    });
+                    return false;
+                }
+                if ($('#ddlLC_ProducerSite').val() == '' && $('#multIPP').is(':checked')) {
+                    swal({
+                        title: "Error",
+                        text: "Please select power producer site!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK"
+                    }, function () {
+                        setTimeout(() => $('#ddlLC_ProducerSite').focus(), 100)
+                    });
+                    return false;
+                }
+                if ($('#ddlLC_instructionType').val() == "-1")
+                {
+                    swal({
+                        title: "Error",
+                        text: "Please select instruction type!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK"
+                    }, function () {
+                        setTimeout(() => $('#ddlLC_instructionType').focus(), 100)
+                    });
+                    return false;
+                }
+                if ($('#txtLC_CurtailmentStart').val() == '' && curtailmentStartVisible) {
+                    swal({
+                        title: "Error",
+                        text: "Please enter " + $('#ddlLC_CurtailmentStart option:selected').text() + "!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK"
+                    }, function () {
+                        setTimeout(() => $('#txtLC_CurtailmentStart').focus(), 100)
+                    });
+                    return false;
+                }
+
+
+                if ($('#dateLC_notificationTime').val() == '') {
+                    swal({
+                        title: "Error",
+                        text: "Please select Notification Date & Time!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK"
+                    }, function () {
+                        setTimeout(() => $('#dateLC_notificationTime').focus(), 100)
+                    });
+                    return false;
+                }
+                if ($('#txtLC_totalWTG').val() == '' && !$('#multIPP').is(':checked')) {
+                    swal({
+                        title: "Error",
+                        text: "Please enter " + $("label[for = txtLC_totalWTG]").text().replace(/[^A-Z0-9 ]/ig, "").trim() + "!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK"
+                    }, function () {
+                        setTimeout(() => $('#txtLC_totalWTG').focus(), 100)
+                    });
+                    return false;
+                }
+            }
+            else if (usertype == 4)
+            {
+                if ($('#ddlLC_IPP').val() == '-1') {
+                    swal({
+                        title: "Error",
+                        text: "The Power Producer not Selected!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK"
+                    }, function () {
+                        setTimeout(() => $('#ddlLC_IPP').focus(), 100)
+                    });
+                    return false;
+                }
+                if ($('#ddlLC_ProducerSite').val() == '-1') {
+                    swal({
+                        title: "Error",
+                        text: "The Power Producer Site Not Selected!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK"
+                    }, function () {
+                        setTimeout(() => $('#ddlLC_ProducerSite').focus(), 100)
+                    });
+                    return false;
+                }
+
+                if ($('#txtLC_availableWTG').val() == '') {
+                    swal({
+                        title: "Error",
+                        text: "Please enter " + $("label[for = txtLC_availableWTG]").text().replace(/[^A-Z0-9 ]/ig, "").trim() + "!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK"
+                    }, function () {
+                        setTimeout(() => $('#txtLC_availableWTG').focus(), 100)
+                    });
+                    return false;
+                }
+                if ($('#txtLC_unavailableDueToFO').val() == '') {
+                    swal({
+                        title: "Error",
+                        text: "Please enter Unavailable due to FO!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK"
+                    }, function () {
+                        setTimeout(() => $('#txtLC_unavailableDueToFO').focus(), 100)
+                    });
+                    return false;
+                }
+                if ($('#txtLC_unavailableDueToSO').val() == '') {
+                    swal({
+                        title: "Error",
+                        text: "Please enter Unavailable due to SO!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK"
+                    }, function () {
+                        setTimeout(() => $('#txtLC_unavailableDueToSO').focus(), 100)
+                    });
+                    return false;
+                }
+
+                if ($('#dateLC_actualAchievementTime').val() == '') {
+                    swal({
+                        title: "Error",
+                        text: "Please enter actual achievement date & time!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK"
+                    }, function () {
+                        setTimeout(() => $('#dateLC_actualAchievementTime').focus(), 100)
+                    });
+                    return false;
+                }
+                if ($('#txtLC_priorToCurtailment').val() == '') {
+                    swal({
+                        title: "Error",
+                        text: "Please enter " + $("label[for = txtLC_priorToCurtailment]").text().replace(/[^A-Z0-9 ]/ig, "").trim() + "!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK"
+                    }, function () {
+                        setTimeout(() => $('#txtLC_priorToCurtailment').focus(), 100)
+                    });
+                    return false;
+                }
+                if ($('#txtLC_afterCurtailment').val() == '') {
+                    swal({
+                        title: "Error",
+                        text: "Please enter after curtailment!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK"
+                    }, function () {
+                        setTimeout(() => $('#txtLC_afterCurtailment').focus(), 100)
+                    });
+                    return false;
+                }
+                if ($('#txtLC_WTG_priorToCurtailment').val() == '') {
+                    swal({
+                        title: "Error",
+                        text: "Please enter " + $("label[for = txtLC_WTG_priorToCurtailment]").text().replace(/[^A-Z0-9 ]/ig, "").trim() + "!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK"
+                    }, function () {
+                        setTimeout(() => $('#txtLC_WTG_priorToCurtailment').focus(), 100)
+                    });
+                    return false;
+                }
+                if ($('#txtLC_WTG_afterCurtailment').val() == '') {
+                    swal({
+                        title: "Error",
+                        text: "Please enter " + $("label[for = txtLC_WTG_afterCurtailment]").text().replace(/[^A-Z0-9 ]/ig, "").trim() +"!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK"
+                    }, function () {
+                        setTimeout(() => $('#txtLC_WTG_afterCurtailment').focus(), 100)
+                    });
+                    return false;
+                }
+            }
+                return true;
+            }
+
+            function removeComma() {
+                $('.clsAddComa').each(function (index, element) {
+                    var $val = $(this).val().replace(/,/g, '');
+                    $(this).val($val);
+                });
+            }
+
+            function addComma() {
+                $('.clsAddComa').each(function (index, element) {
+                    var $val = $(this).val().replace(/,/g, '');
+                    $val = numberWithCommas($val);
+                    $(this).val($val);
+                });
+            }
+
+            function numberWithCommas(x) {
+                // return x.toString().replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                x = x.toString();
+                if (x % 1 == 0) {
+                    if (x.indexOf(".") < 0) {
+                        x = x.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                        x += ".0000";
+                    } else {
+                        x = x.replace('.0000', '').replace('.000', '').replace('.00', '').replace('.0', '');
+                        x = x.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                        x += ".0000";
+
+                    }
+                } else {
+                    var index = x.indexOf(".");
+                    var p1 = x.substring(0, index);
+                    p1 = p1.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                    var p2 = x.substring(index);
+                    p2 = p2 + "0000";
+                    p2 = p2.substring(0, 5);
+                    x = p1 + p2;
+                }
+                return x;
+            }
+
+            //LOADS AND GET THE SPECIFIC DATA FOR THE QUERY
+            function LoadData() {
+                var fromdata = new FormData();
+                debugger;
+                fromdata.append("vls", '29½' + $('#editable').attr('tg'));
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        debugger;
+                        if (response == "[]") {
+                            return false;
+                        }
+                        var fd = $.parseJSON(response);
+                        console.log(fd[0]);
+
+                        $recordId = fd[0].WP_NPCC_LOAD_CURTAILMENT_ID_PK;
+                        $status = fd[0].STATUS;
+                        debugger;
+                        $('#ddlLC_IPP').html('<option>' + fd[0].GENERATION_COMPANY + ' </option>');
+                        $('#ddlLC_ProducerSite').html('<option>' + fd[0].SITE + ' </option>');
+                        $('#txtLC_totalWTG').val(fd[0].TOTAL_WTG);
+                        $('#txtLC_availableWTG').val(fd[0].AVAILABLE_WTG);
+                        $('#txtLC_unavailableDueToFO').val(fd[0].UNAVAILABLE_DUE_TO_FO);
+                        $('#txtLC_unavailableDueToSO').val(fd[0].UNAVAILABLE_DUE_TO_SO);
+                        $('#ddlLC_instructionType').html('<option>' + fd[0].INSTRUCTION_TYPE + ' </option>');
+                        $('#dateLC_notificationTime').val(fd[0].NOTIFICATION_TIME);
+
+                        if (fd[0].INSTRUCTION_TYPE == 'Curtailment Start') {
+                            $('#ddlLC_CurtailmentStart').show();
+                            $('#txtLC_CurtailmentStart').show();
+                            $('#txtLC_CurtailmentStart').val(fd[0].CURTAILMENT_DETAIL);
+
+                            if (fd[0].IPPTYPE == 1168)
+                            {
+                                $("label[for = txtLC_availableWTG]").html("Available Radiation <span class=" + '"startColor"' + "> *</span>");
+                                $("label[for = txtLC_WTG_priorToCurtailment").html("No. of Radiations in Operation Prior to new instruction<span class=" + '"startColor"' + "> *</span>");
+                                //$("label[for = txtLC_WTG_afterCurtailment]").html("Radiation After Curtailment <span class=" + '"startColor"' + "> *</span>");
+                                $("label[for = txtLC_totalWTG]").html("Total Radiation <span class=" + '"startColor"' + "> *</span>");
+                                $('#ddlLC_CurtailmentStart option').eq(1).text('Radiation Curtailment');
+                                $("label[for = WndRadPrior]").html("Spot Radiations <span class=" + '"startColor"' + "> *</span>");
+                                $("label[for = WndRadAfter]").html("Availability as per Radiations <span class=" + '"startColor"' + "> *</span>");
+                                $("label[for = txtLC_unavailableDueToFO]").html("No. of Radiations under FO <span class=" + '"startColor"' + "> *</span>");
+                                $("label[for = txtLC_unavailableDueToSO]").html("No. of Radiations under SO <span class=" + '"startColor"' + "> *</span>");
+                            }
+                            else if (fd[0].IPPTYPE == 1169) {
+                                $("label[for = txtLC_availableWTG]").html("Available WTG <span class=" + '"startColor"' + "> *</span>");
+                                $("label[for = txtLC_WTG_priorToCurtailment").html("No. of WTGs in Operation Prior to new instruction<span class=" + '"startColor"' + "> *</span>");
+                                //$("label[for = txtLC_WTG_afterCurtailment]").html("WTG After Curtailment <span class=" + '"startColor"' + "> *</span>");
+                                $("label[for = txtLC_totalWTG]").html("Total WTG <span class=" + '"startColor"' + "> *</span>");
+                                $('#ddlLC_CurtailmentStart option').eq(1).text('WTG Curtailment');
+                                $("label[for = WndRadPrior]").html("Spot Wind Speed <span class=" + '"startColor"' + "> *</span>");
+                                $("label[for = WndRadAfter]").html("Availability as per Wind Speed <span class=" + '"startColor"' + "> *</span>");
+                                $("label[for = txtLC_unavailableDueToFO]").html("No. of WTGs under FO <span class=" + '"startColor"' + "> *</span>");
+                                $("label[for = txtLC_unavailableDueToSO]").html("No. of WTGs under SO <span class=" + '"startColor"' + "> *</span>");
+                            }
+
+                            if (fd[0].WTG_CURTAILMENT == true && fd[0].IPPTYPE == 1168) {
+                                $('#ddlLC_CurtailmentStart').html('<option>Radiation Curtailment</option>');
+                            }
+                            else if (fd[0].WTG_CURTAILMENT == true && fd[0].IPPTYPE == 1169) {
+                                $('#ddlLC_CurtailmentStart').html('<option>WTG Curtailment</option>');
+                            }
+                            else if (fd[0].LOAD_CURTAILMENT == true) {
+                                $('#ddlLC_CurtailmentStart').html('<option>Load Curtailment By</option>');
+                            }
+                            else if (fd[0].TO_CURTAILMENT == true) {
+                                $('#ddlLC_CurtailmentStart').html('<option>Load Curtailment To</option>');
+                            }
+                            else $('#ddlLC_CurtailmentStart').html('<option>No Curtailment Record</option>');
+                        }
+
+                        //NO IDEA
+                        //$('#ddlLC_CurtailmentStart').html('<option>' + fd[0].INTIMATION_TIME + ' </option>'); //demand date
+                        //$('#txtLC_CurtailmentStart').val(fd[0].TARGET_DEMAND);
+
+                       // $('#dateLC_SyDyTime').val(fd[0].SYNC_DYSYNC_TIME);
+                        $('#dateLC_actualAchievementTime').val(fd[0].ACTUAL_ACHIEVEMENT_TIME);
+
+                        $('#txtLC_priorToCurtailment').val(fd[0].PRIOR_TO_CURTAILMENT);
+                        $('#txtLC_afterCurtailment').val(fd[0].AFTER_CURTAILMENT);
+                        $('#txtLC_WTG_priorToCurtailment').val(fd[0].WTG_PRIOR_TO_CURTAILMENT);
+                        $('#txtLC_WTG_afterCurtailment').val(fd[0].WTG_AFTER_CURTAILMENT);
+
+                        $('#txtLC_senderName').val(fd[0].SENDER_NAME);
+                        $('#txtLC_senderDesg').val(fd[0].SENDER_DESIGNATION);
+                        $('#txtLC_NPCCRemarks').val(fd[0].NPCC_REMARKS);
+
+                        $('#txtLC_IPPUser').val(fd[0].RECEIVER_NAME);
+                        $('#txtLC_IPPUser2').val(fd[0].RECEIVER_NAME);
+                        $('#txtLC_IPPUserDesignation').val(fd[0].RECEIVER_DESIGNATION);
+                        $('#txtLC_IPPUserDesignation2').val(fd[0].RECEIVER_DESIGNATION);
+                        $('#prevTxtAreaRemarks').val(fd[0].GC_REMARKS);
+                        $('#WndRadPrior').val(fd[0].WndRad_BEFORE);
+                        $('#WndRadAfter').val(fd[0].WndRad_AFTER);
+                        $('#prevTxtAreaAcknowledgement').val(fd[0].GC_REMARKS);
+
+                        $('#achieveTxtAreaRemarks').text(fd[0].ACH_REMARKS);
+                        console.log('HELLO' + fd[0].ACH_REMARKS);
+
+                        CheckUser();
+
+                    }
+                });
+            }
+
+            function LockFields() {
+                $('input, select').attr('readonly', 'readonly');
+            }
+
+    </script>
+</div>

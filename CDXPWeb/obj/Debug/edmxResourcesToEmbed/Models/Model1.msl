@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="APP1DBModelStoreContainer" CdmEntityContainer="DBSEntities">
+    <EntitySetMapping Name="CPPA_PPA_SCH_10">
+      <EntityTypeMapping TypeName="APP1DBModel.CPPA_PPA_SCH_10">
+        <MappingFragment StoreEntitySet="CPPA_PPA_SCH_10">
+          <ScalarProperty Name="SCH_10_ID" ColumnName="SCH_10_ID" />
+          <ScalarProperty Name="VENDOR_ID" ColumnName="VENDOR_ID" />
+          <ScalarProperty Name="HEADER_ID_PK" ColumnName="HEADER_ID_PK" />
+          <ScalarProperty Name="FUEL_LOOKUP_CODE" ColumnName="FUEL_LOOKUP_CODE" />
+          <ScalarProperty Name="SCH_10_TYPE" ColumnName="SCH_10_TYPE" />
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+          <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CPPA_PPA_SCH_10_DTL">
+      <EntityTypeMapping TypeName="APP1DBModel.CPPA_PPA_SCH_10_DTL">
+        <MappingFragment StoreEntitySet="CPPA_PPA_SCH_10_DTL">
+          <ScalarProperty Name="SCH_10_DTL_ID" ColumnName="SCH_10_DTL_ID" />
+          <ScalarProperty Name="SCH_10_ID" ColumnName="SCH_10_ID" />
+          <ScalarProperty Name="Ambient_Temperature" ColumnName="Ambient_Temperature" />
+          <ScalarProperty Name="NetPlant_Output" ColumnName="NetPlant_Output" />
+          <ScalarProperty Name="Correction_Factor" ColumnName="Correction_Factor" />
+          <ScalarProperty Name="DG_Output" ColumnName="DG_Output" />
+          <ScalarProperty Name="STG_Output" ColumnName="STG_Output" />
+          <ScalarProperty Name="Equivalent_Output" ColumnName="Equivalent_Output" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

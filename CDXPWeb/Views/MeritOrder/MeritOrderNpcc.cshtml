@@ -1,0 +1,416 @@
+﻿
+@{
+    ViewBag.Title = "Merit Order - NPCC";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div id="pcontent">
+
+    <style type="text/css">
+        /* width */
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px grey;
+            border-radius: 5px;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #1D4A6D;
+            border-radius: 5px;
+        }
+
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+                background: #1D4A6D;
+            }
+
+        .txt-dark {
+            line-height: 5px !important;
+        }
+
+        .td, th {
+            padding: 0px !important;
+        }
+
+        table.dataTable tbody th, table.dataTable tbody td {
+            padding: 0px 8px !important;
+        }
+
+
+
+        /*******************************
+        * MODAL AS LEFT/RIGHT SIDEBAR
+        * Add "left" or "right" in modal parent div, after class="modal".
+        * Get free snippets on bootpen.com
+        *******************************/
+        .modal.left .modal-dialog,
+        .modal.right .modal-dialog {
+            position: fixed;
+            margin: auto;
+            width: 320px;
+            height: 100%;
+            -webkit-transform: translate3d(0%, 0, 0);
+            -ms-transform: translate3d(0%, 0, 0);
+            -o-transform: translate3d(0%, 0, 0);
+            transform: translate3d(0%, 0, 0);
+        }
+
+        .modal.left .modal-content,
+        .modal.right .modal-content {
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .modal.left .modal-body,
+        .modal.right .modal-body {
+            padding: 15px 15px 80px;
+        }
+
+        /*Left*/
+        .modal.left.fade .modal-dialog {
+            left: -320px;
+            -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+            -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+            -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+            transition: opacity 0.3s linear, left 0.3s ease-out;
+        }
+
+        .modal.left.fade.in .modal-dialog {
+            left: 0;
+        }
+
+        /*Right*/
+        .modal.right.fade .modal-dialog {
+            right: -320px;
+            -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+            -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+            -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+            transition: opacity 0.3s linear, right 0.3s ease-out;
+            width: 800px;
+        }
+
+        .modal.right.fade.in .modal-dialog {
+            right: 0;
+        }
+
+        /* ----- MODAL STYLE ----- */
+        .modal-content {
+            border-radius: 0;
+            border: none;
+        }
+
+        .modal-header {
+            border-bottom-color: #EEEEEE;
+            background-color: #FAFAFA;
+        }
+
+        /* ----- v CAN BE DELETED v ----- */
+        body {
+            background-color: #78909C;
+        }
+
+        .demo {
+            padding-top: 60px;
+            padding-bottom: 110px;
+        }
+
+        .btn-demo {
+            margin: 15px;
+            padding: 10px 15px;
+            border-radius: 0;
+            font-size: 16px;
+            background-color: #FFFFFF;
+        }
+
+            .btn-demo:focus {
+                outline: 0;
+            }
+
+        .demo-footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 15px;
+            background-color: #212121;
+            text-align: center;
+        }
+
+            .demo-footer > a {
+                text-decoration: none;
+                font-weight: bold;
+                font-size: 16px;
+                color: #fff;
+            }
+
+        .customRoundbutton {
+            border-radius: 20px;
+        }
+
+        .darkblueBg {
+            background-color: #1d4a6deb;
+            color: white;
+        }
+
+        .fa-trash {
+            color: red;
+        }
+
+        .fa-edit {
+            color: blue;
+        }
+
+        .dropdownCustomStyle {
+            background: #1d4a6deb;
+            color: white;
+            border-radius: 10px !important;
+        }
+
+        .noBorder {
+            border: none !important;
+        }
+
+        .noBottomBorder {
+            border-bottom: none !important;
+            font-weight: bold !important;
+        }
+
+        .OnlyLeftBorder {
+            border-top: none !important;
+            border-bottom: none !important;
+            border-right: none !important;
+        }
+
+        .roundedDate {
+            border-radius: 15px !important;
+        }
+
+
+
+        .table-bordered > thead > tr > td, .table-bordered > thead > tr > th {
+            border-width: 3px;
+        }
+
+        .td, th {
+            padding: 13px !important;
+        }
+        /*Aymen*/
+        .customRoundbutton {
+            border-radius: 7px;
+            line-height: 14px;
+            float: right;
+        }
+
+        input[type=text] {
+            height: 35px;
+        }
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <!--Aymen-->
+                        <h5 class="text-left" style="color: #1d4a6deb !important; font-weight: bold !important;">Based on revised fuel prices, effective from <span id="headerDate"> </span></h5>
+                    </div>
+                    <div style=" margin-right: -10px; display:none;">
+                        <input class="form-control text-align-center" id="datepicker" />
+                    </div>
+                    <div class="col-md-4" style="padding:0;">
+                        <button class="btn btn-primary customRoundbutton" id="btnExport" style=" border-color: #1d4a6deb; background-color: #1d4a6deb; margin-right: 4%; text-align: center;">
+                            <i class="fa fa-download"></i> Export
+                        </button>
+                    </div><!--Aymen-->
+                </div>
+                <div class="container">
+                    <div class="row">
+
+                        <div class="table-responsive" style="height: 400px; overflow: auto;">
+                            <table class="table table-bordered" id="tbl_results">
+                                <thead style="position: sticky; top: 0;">
+                                    <tr style="height: 35px;">
+                                        <th scope="col" class="text-center darkblueBg noBorder">Sr.No.</th>
+                                        <th scope="col" class="text-center darkblueBg OnlyLeftBorder">Plant Groups</th>
+                                        <th scope="col" class="text-center darkblueBg noBorder">Fuel Type</th>
+                                        <th scope="col" class="text-center darkblueBg noBorder">Other Cost Rs./kWh</th>
+                                        <th scope="col" class="text-center darkblueBg noBorder">Fuel Cost Rs./kWh</th>
+                                        <th scope="col" class="text-center darkblueBg OnlyLeftBorder">VO & M Rs./kWh</th>
+                                        <th scope="col" class="text-center darkblueBg noBorder">Specific Cost Rs./kWh</th>
+                                        <th scope="col" class="text-center darkblueBg noBorder">Total Applicable for MO Rs./kWh</th>
+                                        <th scope="col" class="text-center darkblueBg noBorder">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ajaxRes_meritOrder_npcc">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="notes" style=" color: #1d4a6deb; margin-top: 3%;">
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/plugins/moment/min/moment.min.js"></script>
+    <script>
+        debugger;
+        var date = new Date();
+        date.setDate(date.getDate() + 1);
+
+        $("#datepicker").datepicker({ 
+            dateFormat: 'dd-M-yy',
+            monthNames: ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        });
+
+        $("#datepicker").datepicker("setDate", date);
+
+
+        var tempDate = new Date(date);
+
+        var headerDate = moment(tempDate).format('DD-MMM-YYYY');
+        $('#headerDate').text(headerDate);
+
+        var meritOrderDate = $("#datepicker").val();
+        $.ajax({
+            type: "GET",
+            url: "../MeritOrder/MOCppa?date=" + meritOrderDate,
+            dataType: 'json',
+            async: false,
+
+            beforeSend: function () {
+                $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+            },
+            complete: function () {
+                $.unblockUI();
+            },
+            success: function (data) {
+                debugger;
+                $('#ajaxRes_meritOrder_npcc').html('');
+                if (data.length > 0) {
+                    var ak = 0;
+                    $.each(data, function (index, value) {
+                        ak++;
+                        const momentTimestamp = moment(value.COD_Date);
+                        var formatedDate = momentTimestamp.format("DD-MMM-YYYY");
+                        $('#ajaxRes_meritOrder_npcc').append(
+                            '<tr>\
+                                            <td align="right">'+ ak + '</td>\
+                                            <td align="left">'+ value.vendor_name + '</td>\
+                                            <td align="left">'+ value.Fuel_type + '</td>\
+                                            <td align="right">'+ currencyFormat(isNullAndUndef(value.MeritOrder_MO_OtherCost)) + '</td>\
+                                            <td align="right">'+ currencyFormat(isNullAndUndef(value.MeritOrder_Fuel_Cost)) + '</td>\
+                                            <td align="right">'+ currencyFormat(isNullAndUndef(value.MeritOrder_VOM_Cost)) + '</td>\
+                                            <td align="right">'+ currencyFormat(isNullAndUndef(value.MeritOrder_Specific_cost)) + '</td>\
+                                            <td align="right">'+ currencyFormat(isNullAndUndef(value.merit_order_total)) + '</td>\
+                                            <td align="right">'+ value.FinalMeritOrderDetail_MeritOrder + '</td>\
+                                        </tr>\ '
+                        );
+                    });
+                }
+                else {
+                    $('#ajaxRes_meritOrder_npcc').append(
+                        '<tr>\
+                                            <td colspan="8" align="center">No Record Found</td>\
+                                        </tr>\ '
+                    );
+                }
+
+                $("#tbl_results").DataTable({
+                    "ordering": false,
+                    "searching": false,
+                    //"aLengthMenu": [[10, 25, 50, 100, 150, 250, 500, -1], [10, 25, 50, 100, 150, 250, 500, "All"]],
+                    //"iDisplayLength": 10,
+                    "bLengthChange": false,
+                    "paging": false
+                });
+                $.unblockUI();
+
+            },
+            error: function (request, textStatus, errorThrown) {
+                // alert(request.getResponseHeader('some_header'));
+                $.unblockUI();
+            }
+        });
+
+
+        $.ajax({
+            type: "GET",
+            url: "../MeritOrder/MoDataNotes",
+            async: false,
+
+            beforeSend: function () {
+                $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+            },
+            complete: function () {
+                $.unblockUI();
+            },
+            success: function (data) {
+                debugger;
+                var resArr = JSON.parse(data);
+
+                $('#notes').html('');
+                $('#notes').html(resArr[0].MO_NOTES);
+
+                $.unblockUI();
+
+            },
+            error: function (request, textStatus, errorThrown) {
+                // alert(request.getResponseHeader('some_header'));
+                $.unblockUI();
+            }
+        });
+
+        $('body').off('click', '#btnExport');
+        $('body').on('click', '#btnExport', function (e) {
+            e.preventDefault();
+
+            //$('#dvexl').show();
+            $('#tbl_results').tableExport({ fileName: 'Exported Data', type: 'excel', escape: 'false' });
+            //$('#dvexl').hide();
+            e.preventDefault();
+        });
+
+        
+
+        function isNullAndUndef(variable) {
+
+            if (variable !== null && variable !== undefined && variable !== '') {
+                variable = variable;
+            }
+            return variable;
+
+        }
+
+        function currencyFormat(value) {
+            debugger;
+            //var amount = parseFloat(value);
+            //amount = amount.toLocaleString('en-US');
+            //return amount;
+            var amount = value.toLocaleString(undefined, {
+                minimumFractionDigits: 4,
+                maximumFractionDigits: 4
+            });
+            return amount;
+        }
+
+    </script>
+</div>

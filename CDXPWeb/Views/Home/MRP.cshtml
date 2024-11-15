@@ -1,0 +1,2408 @@
+﻿@{
+    ViewBag.Title = "MeterReadingProforma";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="pcontent">
+
+    <style type="text/css">
+        .center {
+            text-align: center;
+            padding-top: 9px;
+        }
+
+        .vedit {
+            font-size: 18px;
+            cursor: pointer !important;
+        }
+
+        .vdelete {
+            display: none;
+        }
+
+        .tblFrm tr td:nth-child(odd) {
+            padding-left: 10% !important;
+            vertical-align: top;
+            padding-top: 20px !important;
+        }
+
+        .bootstrap-datetimepicker-widget tr td:nth-child(odd) {
+            padding-left: 0% !important;
+            padding-top: 5px !important;
+        }
+
+        input[type=text] {
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        .tblFrm input[type=text] {
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .clstdEdit {
+            display: none;
+        }
+    </style>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff"></i>
+                        <h6 class="panel-title txt-light">Meter Reading Proforma</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+
+
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                        @*<a class="pull-left inline-block close-panel" href="#" data-effect="fadeOut">
+                                <i class="zmdi zmdi-close"></i>
+                            </a>*@
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                        @*======================*@
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;CDP Header</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <table class="tblFrm">
+
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">DISCO Name</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        @*<input id="txtDISCOName" type="text" value="" class="form-control" readonly>*@
+                                        <select class="form-control frm" id="ddlDISCOs" style="-webkit-appearance: none;-moz-appearance: none;text-indent: 1px;text-overflow: '';">@Html.Raw(@ViewBag.ddlDISCOs)</select>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="invoiceType">CDP Number</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control frm" tg="@Html.Raw(@ViewBag.ddlCDPNumber_tg)" id="ddlCDPNumber" style="-webkit-appearance: none;-moz-appearance: none;text-indent: 1px;text-overflow: '';"></select>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="submitDate">
+                                            Feeder Name/Line
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input id="FEEDER_NAME_CODE" type="text" value="" class="form-control" readonly />
+                                    </td>
+
+                                    <td>
+                                        <label for="submitDate">
+                                            Grid Station Name
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input id="GRID_STATION_NAME" type="text" value="" class="form-control" readonly />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="Disconame">Energy From</label>
+                                    </td>
+                                    <td>
+                                        <input id="ENGY_IMP_EXP_FROM_CODE" type="text" class="form-control" value="" readonly />
+                                    </td>
+                                    <td>
+                                        <label for="submitDate">
+                                            Energy To
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input id="ENGY_IMP_EXP_TO_CODE" type="text" class="form-control" value="" readonly />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="Disconame">Location Code</label>
+                                    </td>
+                                    <td>
+                                        <input id="LOCATION_CODE" type="text" class="form-control" value="" readonly />
+                                    </td>
+                                    <td>
+                                        <label for="totalClaim">Location Name</label>
+                                    </td>
+                                    <td>
+                                        <input id="LOCATION_NAME" type="text" class="form-control" value="" readonly />
+                                    </td>
+                                </tr>
+
+
+
+                                <tr>
+                                    <td><label for="submitDate">Transaction Type<span style="color:rgb(0, 149, 235);">*</span></label></td>
+                                    <td>
+                                        <select id="ddlCategory" class="form-control frm" style="background-color: rgb(251, 255, 193);">
+                                            <option>Monthly Reading</option>
+                                            <option>Fortnightly Reading</option>
+                                            <option>Defective Meter - Primary</option>
+                                            <option>Defective Meter - Backup</option>
+                                            <option>Replacement of Meter</option>
+                                        </select>
+                                    </td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="Disconame">Primary Meter No.</label>
+                                    </td>
+                                    <td>
+                                        @*<input id="PRIMARY_METER_NO" type="text" class="form-control" value="" readonly />*@
+                                        <select id="PRIMARY_METER_NO" class="form-control frm" style="-webkit-appearance: none;-moz-appearance: none;text-indent: 1px;text-overflow: '';"></select>
+                                    </td>
+                                    <td>
+                                        <label for="submitDate">Back-up Meter No.</label>
+                                    </td>
+                                    <td>
+                                        @*<input id="BACKUP_METER_NO" type="text" class="form-control" value="" readonly />*@
+                                        <select id="BACKUP_METER_NO" class="form-control frm" style="-webkit-appearance: none;-moz-appearance: none;text-indent: 1px;text-overflow: '';"></select>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="padding-top: 14px !important;">
+                                        <label for="submitDate">
+                                            Primary Meter Previous Reading Date / Time
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input id="PM_PREVIOUS_READING_DATE_TIME" type="text" class="form-control" value="" readonly>
+                                    </td>
+                                    <td style="padding-top: 14px !important;">
+                                        <label for="submitDate">
+                                            Backup Meter  Previous Reading Date / Time
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input id="BM_PREVIOUS_READING_DATE_TIME" type="text" class="form-control" value="" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="BillingMeter">
+                                            Billing Meter
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="billingmeter" value="Y" checked> Primary
+                                        <input type="radio" name="billingmeter" value="N"> Backup
+                                    </td>
+                                    <td>
+                                        <label for="producerSite">Billing Month</label>
+                                    </td>
+                                    <td>
+                                        <select class="form-control frm" id="ddlMonths" disabled style="-webkit-appearance: none;-moz-appearance: none;text-indent: 1px;text-overflow: '';">@Html.Raw(@ViewBag.ddlMonths)</select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top: 14px !important;">
+                                        <label for="PresentReadingDate/Time">
+                                            Primary Meter Present Reading Date/Time<span style="color:rgb(0, 149, 235);">*</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        @*<div class='input-group date dtDateTime' id='datetimepicker1'>
+                                                <input id="txtReadingDateTime" type='text' class="form-control frm" style="background-color:rgb(251, 255, 193);" />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>*@
+
+                                        <div class='input-group date dtDateTimeA' id="DtxtReadingDateTime">
+                                            <input id="txtReadingDateTime" type='text' class="form-control frm" style="margin: 0px 1px 0px 0px;background-color: rgb(251, 255, 193);" />
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+
+                                        @*<input id="txtReadingDateTime" style="background-color:rgb(251, 255, 193);" type="text" class="form-control dtDateTime frm" value="" />*@
+
+                                    </td>
+                                    <td style="padding-top: 14px !important;">
+                                        <label for="PresentReadingDate/Time">
+                                            Backup Meter Present Reading Date/Time<span style="color:rgb(0, 149, 235);">*</span>
+                                        </label>
+                                    </td>
+                                    <td>
+
+                                        <div class='input-group date dtDateTimeA' id="DtxtReadingDateTime2">
+                                            <input id="txtReadingDateTime2" type='text' class="form-control frm" style="margin: 0px 1px 0px 0px;background-color: rgb(251, 255, 193);" />
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                        @*<input id="txtReadingDateTime2" style="background-color:rgb(251, 255, 193);" type="text" class="form-control dtDateTime frm" value="" />*@
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="padding-top: 14px !important;">
+                                        <label for="Disconame">Meter Reading From Date Time</label>
+                                    </td>
+                                    <td>
+                                        <div class='input-group date dtDateTimeA' id="DtxtReadingFromDate">
+                                            <input id="txtReadingFromDate" type='text' class="form-control frm" style="margin: 0px 1px 0px 0px;background-color: rgb(251, 255, 193);" />
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                        @*<input id="txtReadingFromDate" type="text" style="background-color:rgb(251, 255, 193);" class="form-control dtDateTime frm" value="" />*@
+                                    </td>
+                                    <td style="padding-top: 14px !important;">
+                                        <label for="submitDate">Meter Reading To Date Time</label>
+                                    </td>
+                                    <td>
+                                        <div class='input-group date dtDateTimeA' id="DtxtReadingToDate">
+                                            <input id="txtReadingToDate" type='text' class="form-control frm" style="margin: 0px 1px 0px 0px;background-color: rgb(251, 255, 193);" />
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                        @*<input id="txtReadingToDate" type="text" style="background-color:rgb(251, 255, 193);" class="form-control dtDateTime frm" value="" />*@
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+
+                                    <td>
+                                        <label for="submitDate">
+                                            Data Entry Status
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input id="txtStatus" type="text" value="DRAFT" class="form-control" readonly>
+                                    </td>
+
+                                    <td>
+                                        <label for="submitDate">
+                                            Submit Date
+                                        </label>
+                                    </td>
+                                    <td>
+                                        @*<input type="text" class="form-control" value=@ViewBag.dtToday readonly>*@
+                                        <input id="txtStatusDateTime" type="text" class="form-control" value="" readonly>
+                                    </td>
+
+                                </tr>
+
+                            </table>
+                        </div>@*END OF tab0*@
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Meter Readings</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <style type="text/css">
+                                .MeterReading {
+                                    font-weight: normal;
+                                    color: black;
+                                    text-align: right;
+                                }
+
+                                    .MeterReading .thstyl {
+                                        border: 1px solid gray;
+                                        text-align: center !important;
+                                        font-size: 15px !important;
+                                        font-weight: normal;
+                                        background: #eeeeee;
+                                    }
+
+                                    .MeterReading tbody tr td:first-child {
+                                        font-size: 15px !important;
+                                        font-weight: normal;
+                                        background: #eeeeee;
+                                    }
+
+                                    .MeterReading tbody tr td {
+                                        border: 1px solid gray;
+                                    }
+
+                                        .MeterReading tbody tr td input {
+                                            text-align: right;
+                                        }
+                            </style>
+                            <table class="MeterReading" data-tablesaw-mode="swipe" id="tblMeterData">
+                                <thead>
+                                    <tr>
+                                        <th style="width:200px; text-align:center;"></th>
+                                        <th class="thstyl" style="width:200px;text-align:center;" colspan="4">PRIMARY METER</th>
+                                        <th class="thstyl" style="width:200px;text-align:center;" colspan="4">BACK-UP METER</th>
+                                    </tr>
+                                    <tr>
+                                        <th style="width:200px;text-align:center;"></th>
+                                        <th class="thstyl" style="width:200px;text-align:center;" colspan="2">Import</th>
+                                        <th class="thstyl" style="width:200px;text-align:center;" colspan="2">Export</th>
+                                        <th class="thstyl" style="width:200px;text-align:center;" colspan="2">Import</th>
+                                        <th class="thstyl" style="width:200px;text-align:center;" colspan="2">Export</th>
+                                    </tr>
+                                    <tr>
+                                        <th style="width:200px;"></th>
+                                        <th class="thstyl" style="width:200px;">Active</th>
+                                        <th class="thstyl" style="width:200px;">Reactive</th>
+                                        <th class="thstyl" style="width:200px;">Active</th>
+                                        <th class="thstyl" style="width:200px;">Reactive</th>
+                                        <th class="thstyl" style="width:200px;">Active</th>
+                                        <th class="thstyl" style="width:200px;">Reactive</th>
+                                        <th class="thstyl" style="width:200px;">Active</th>
+                                        <th class="thstyl" style="width:200px;">Reactive</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="width:200px; text-align:left;">
+                                            Round Completed
+                                        </td>
+                                        <td><input type="checkbox" id="pRoundCompletedIA" class="form-control rndcomp" c="1" style="height: 20px;"></td>
+                                        <td><input type="checkbox" id="pRoundCompletedIR" class="form-control rndcomp" c="2" style="height: 20px;"></td>
+                                        <td><input type="checkbox" id="pRoundCompletedEA" class="form-control rndcomp" c="3" style="height: 20px;"></td>
+                                        <td><input type="checkbox" id="pRoundCompletedER" class="form-control rndcomp" c="4" style="height: 20px;"></td>
+                                        <td><input type="checkbox" id="bRoundCompletedIA" class="form-control rndcomp" c="5" style="height: 20px;"></td>
+                                        <td><input type="checkbox" id="bRoundCompletedIR" class="form-control rndcomp" c="6" style="height: 20px;"></td>
+                                        <td><input type="checkbox" id="bRoundCompletedEA" class="form-control rndcomp" c="7" style="height: 20px;"></td>
+                                        <td><input type="checkbox" id="bRoundCompletedER" class="form-control rndcomp" c="8" style="height: 20px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:200px; text-align:left;">
+                                            Previous Reading
+                                        </td>
+                                        <td id="previous_PIAR"></td>
+                                        <td id="previous_PIRR"></td>
+                                        <td id="previous_PEAR"></td>
+                                        <td id="previous_PERR"></td>
+                                        <td id="previous_BIAR"></td>
+                                        <td id="previous_BIRR"></td>
+                                        <td id="previous_BEAR"></td>
+                                        <td id="previous_BERR"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:200px; text-align:left;">
+                                            Present Reading
+                                        </td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control pReading frm" c="1" id="PIAR" maxlength="18"></td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control pReading frm" c="2" id="PIRR" maxlength="18"></td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control pReading frm" c="3" id="PEAR" maxlength="18"></td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control pReading frm" c="4" id="PERR" maxlength="18"></td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control pReading frm" c="5" id="BIAR" maxlength="18"></td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control pReading frm" c="6" id="BIRR" maxlength="18"></td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control pReading frm" c="7" id="BEAR" maxlength="18"></td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control pReading frm" c="8" id="BERR" maxlength="18"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:200px; text-align:left;">
+                                            Difference
+                                        </td>
+                                        <td id="PIA_DIFF"></td>
+                                        <td id="PIR_DIFF"></td>
+                                        <td id="PEA_DIFF"></td>
+                                        <td id="PER_DIFF"></td>
+                                        <td id="BIA_DIFF"></td>
+                                        <td id="BIR_DIFF"></td>
+                                        <td id="BEA_DIFF"></td>
+                                        <td id="BER_DIFF"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:200px; text-align:left;">
+                                            Multiplying Factor
+                                        </td>
+                                        <td class="PmfENERGY" id="PIA_MF_E"></td>
+                                        <td class="PmfENERGY" id="PIR_MF_E"></td>
+                                        <td class="PmfENERGY" id="PEA_MF_E"></td>
+                                        <td class="PmfENERGY" id="PER_MF_E"></td>
+                                        <td class="BmfENERGY" id="BIA_MF_E"></td>
+                                        <td class="BmfENERGY" id="BIR_MF_E"></td>
+                                        <td class="BmfENERGY" id="BEA_MF_E"></td>
+                                        <td class="BmfENERGY" id="BER_MF_E"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:200px; text-align:left;">
+                                            Adjustments
+                                        </td>
+                                        <td><input value="0" type="text" class="form-control ADJ frm" c="1" id="PIA_ADJ" maxlength="18"></td>
+                                        <td><input value="0" type="text" class="form-control ADJ frm" c="2" id="PIR_ADJ" maxlength="18"></td>
+                                        <td><input value="0" type="text" class="form-control ADJ frm" c="3" id="PEA_ADJ" maxlength="18"></td>
+                                        <td><input value="0" type="text" class="form-control ADJ frm" c="4" id="PER_ADJ" maxlength="18"></td>
+                                        <td><input value="0" type="text" class="form-control ADJ frm" c="5" id="BIA_ADJ" maxlength="18"></td>
+                                        <td><input value="0" type="text" class="form-control ADJ frm" c="6" id="BIR_ADJ" maxlength="18"></td>
+                                        <td><input value="0" type="text" class="form-control ADJ frm" c="7" id="BEA_ADJ" maxlength="18"></td>
+                                        <td><input value="0" type="text" class="form-control ADJ frm" c="8" id="BER_ADJ" maxlength="18"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:200px; text-align:left;">
+                                            Total Units (kWh)
+                                        </td>
+                                        <td id="PIA_TTL">0</td>
+                                        <td id="PIR_TTL">0</td>
+                                        <td id="PEA_TTL">0</td>
+                                        <td id="PER_TTL">0</td>
+                                        <td id="BIA_TTL">0</td>
+                                        <td id="BIR_TTL">0</td>
+                                        <td id="BEA_TTL">0</td>
+                                        <td id="BER_TTL">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:200px; text-align:left;">
+                                            MDI (GW/MW/KW)
+                                        </td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control MDI frm" c="1" id="PIAMDI" maxlength="18"></td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control MDI frm" c="2" id="PIRMDI" maxlength="18"></td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control MDI frm" c="3" id="PEAMDI" maxlength="18"></td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control MDI frm" c="4" id="PERMDI" maxlength="18"></td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control MDI frm" c="5" id="BIAMDI" maxlength="18"></td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control MDI frm" c="6" id="BIRMDI" maxlength="18"></td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control MDI frm" c="7" id="BEAMDI" maxlength="18"></td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control MDI frm" c="8" id="BERMDI" maxlength="18"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:200px; text-align:left;">
+                                            Multiplying Factor
+                                        </td>
+                                        <td class="PmfMDI" id="PIA_MF_MDI"></td>
+                                        <td class="PmfMDI" id="PIR_MF_MDI"></td>
+                                        <td class="PmfMDI" id="PEA_MF_MDI"></td>
+                                        <td class="PmfMDI" id="PER_MF_MDI"></td>
+                                        <td class="BmfMDI" id="BIA_MF_MDI"></td>
+                                        <td class="BmfMDI" id="BIR_MF_MDI"></td>
+                                        <td class="BmfMDI" id="BEA_MF_MDI"></td>
+                                        <td class="BmfMDI" id="BER_MF_MDI"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:200px; text-align:left;">
+                                            MDI (kW)
+                                        </td>
+                                        <td id="PIA_MDI"></td>
+                                        <td id="PIR_MDI"></td>
+                                        <td id="PEA_MDI"></td>
+                                        <td id="PER_MDI"></td>
+                                        <td id="BIA_MDI"></td>
+                                        <td id="BIR_MDI"></td>
+                                        <td id="BEA_MDI"></td>
+                                        <td id="BER_MDI"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>@*END OF tab0*@
+
+
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1" style="float: left">&nbsp;Attachments</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <button type="button" id="btnAddFiles" class="btn btn-primary" style="float:right;">
+                                Upload Meter Reading Proforma
+                            </button>
+                            <div>
+                                <table class="table table-bordered" dellist="" data-tablesaw-mode="swipe" id="tbl_attach">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                                                Title
+                                            </th>
+                                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                                                Description
+                                            </th>
+                                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                                                Details
+                                            </th>
+                                            <th class="clstdEdit" style="width:36px;" scope="col" data-tablesaw-sortable-col="" data-tablesaw-sortable-default-col="" data-tablesaw-priority="3"></th>
+                                            <!--id="btnFileDel"-->
+                                            <th class="clstdDelete" style="width:36px;" scope="col" data-tablesaw-sortable-col="" data-tablesaw-sortable-default-col="" data-tablesaw-priority="3"></th>
+                                            <th class="clstdDownload" scope="col" style="width:36px;" data-tablesaw-sortable-col="" data-tablesaw-sortable-default-col="" data-tablesaw-priority="3"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>@*END OF tab0*@
+
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1" style="float: left">&nbsp;Remarks</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <textarea cols="70" rows="6" maxlength="2000" id="prevTxtAreaRemarks" style="width: 100%;"></textarea>
+                        </div>@*END OF tab0*@
+
+
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button id="btnCancel" tg="@Html.Raw(@ViewBag.closeCondition)" class="btn btn-default" type="button">
+                                        Close
+                                    </button>
+                                    <button id="btnSave" class="btn btn-info" value="@Html.Raw(@ViewBag.WP_DISCO_CDP_MONTHLY_DATA_ID)" conn="@Html.Raw(@ViewBag.Condition)" type="button">
+                                        @*<i class="fa fa-save"></i>*@
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        @*+++++++++++++++++++++++++*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="myModal" title="Attach File" style="display:none;">
+        <div class="form-group">
+            <label class="control-label mb-10" for="attachmentFile">
+                Select File
+            </label>
+            <div class="input-group" style="width:100%;">
+                <input style="padding-bottom: 50px;" class="form-control" id="attachmentFile" name="attachmentFile" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf" type="file">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label mb-10" for="attachmentTitle">
+                Attachment Title *
+            </label>
+            <div class="input-group" style="width:100%;">
+                <input name="attachmentTitle" style="padding-right: 300px;" class="form-control" id="attachmentTitle" placeholder="Attachment Title" maxlength="50" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label mb-10" for="attachmentType">
+                Attachment Type
+            </label>
+            <div class="input-group" style="width:100%;">
+                <select id="attachmentType" class="form-control" disabled="disabled" style="width:100%;">
+                    <option>File</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label mb-10" for="attachmentDesc">
+                Description
+            </label>
+            <div class="input-group" style="width:100%;">
+                <textarea style="resize: none;" maxlength="100" name="attachmentTitle" cols="50" class="form-control" id="attachmentDesc" placeholder="Description Title" rows="4"></textarea>
+            </div>
+        </div>
+        <div style="text-align:right;">
+            <button type="button" tg="0" typ="0" class="btn btn-info" id="btnUpload" name="btnUpload">
+                Attach File
+            </button>
+            <button type="button" id="btnCloseDialog" class="btn btn-default">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $(function () {
+                // debugger;
+                if ($('#ddlCDPNumber').attr('tg').split('½')[1] == "N") {
+                    fnCDPLoad();
+                }
+                else {
+                    fnMonthlyDataLoad();
+                }
+
+
+                $('#DtxtReadingFromDate').datetimepicker({
+                    format: 'DD-MMM-YYYY HH:mm'
+                });
+
+                $('#DtxtReadingToDate').datetimepicker({
+                    format: 'DD-MMM-YYYY HH:mm'
+                });
+
+                $("#DtxtReadingFromDate").on("dp.change", function (e) {
+                    $('#DtxtReadingToDate').data("DateTimePicker").minDate(e.date);
+                });
+                $("#DtxtReadingToDate").on("dp.change", function (e) {
+                    $('#DtxtReadingFromDate').data("DateTimePicker").maxDate(e.date);
+                });
+
+            });
+
+
+            $('body').off('change', '#ddlCategory');
+            $('body').on('change', '#ddlCategory', function (e) {
+                //debugger;
+
+
+                $('.rndcomp[c=1],.rndcomp[c=2],.rndcomp[c=3],.rndcomp[c=4],.rndcomp[c=5],.rndcomp[c=6],.rndcomp[c=7],.rndcomp[c=8],.pReading[c=1],.pReading[c=2],.pReading[c=3],.pReading[c=4],.pReading[c=5],.pReading[c=6],.pReading[c=7],.pReading[c=8],.ADJ[c=1],.ADJ[c=2],.ADJ[c=3],.ADJ[c=4],.MDI[c=1],.MDI[c=2],.MDI[c=3],.MDI[c=4],.ADJ[c=5],.ADJ[c=6],.ADJ[c=7],.ADJ[c=8],.MDI[c=5],.MDI[c=6],.MDI[c=7],.MDI[c=8]').prop('disabled', false);
+                $('.pReading[c=1],.pReading[c=2],.pReading[c=3],.pReading[c=4],.pReading[c=5],.pReading[c=6],.pReading[c=7],.pReading[c=8],.ADJ[c=1],.ADJ[c=2],.ADJ[c=3],.ADJ[c=4],.MDI[c=1],.MDI[c=2],.MDI[c=3],.MDI[c=4],.ADJ[c=5],.ADJ[c=6],.ADJ[c=7],.ADJ[c=8],.MDI[c=5],.MDI[c=6],.MDI[c=7],.MDI[c=8]').css('background', 'rgb(251, 255, 193)');
+                if ($(this).val() == "Defective Meter - Primary") {
+                    $('.rndcomp[c=1],.rndcomp[c=2],.rndcomp[c=3],.rndcomp[c=4]').prop('checked', false);
+                    $('.rndcomp[c=1],.rndcomp[c=2],.rndcomp[c=3],.rndcomp[c=4]').prop('disabled', true);
+                    $('.pReading[c=1],.pReading[c=2],.pReading[c=3],.pReading[c=4]').prop('disabled', true);
+                    $('.pReading[c=1],.pReading[c=2],.pReading[c=3],.pReading[c=4]').css('background', '#eee');
+                    $('.pReading[c=1]').val($('#previous_PIAR').html());
+                    $('.pReading[c=2]').val($('#previous_PIRR').html());
+                    $('.pReading[c=3]').val($('#previous_PEAR').html());
+                    $('.pReading[c=4]').val($('#previous_PERR').html());
+                    $('.ADJ[c=1],.ADJ[c=2],.ADJ[c=3],.ADJ[c=4],.MDI[c=1],.MDI[c=2],.MDI[c=3],.MDI[c=4]').val('0');
+                    $('#PIA_MDI,#PIR_MDI,#PEA_MDI,#PER_MDI').html('0');
+
+                    $('.ADJ[c=1],.ADJ[c=2],.ADJ[c=3],.ADJ[c=4],.MDI[c=1],.MDI[c=2],.MDI[c=3],.MDI[c=4]').prop('disabled', true);
+                    $('.ADJ[c=1],.ADJ[c=2],.ADJ[c=3],.ADJ[c=4],.MDI[c=1],.MDI[c=2],.MDI[c=3],.MDI[c=4]').css('background', '#eee');
+
+                    $('.pReading').change();
+                }
+                if ($(this).val() == "Defective Meter - Backup") {
+                    $('.rndcomp[c=5],.rndcomp[c=6],.rndcomp[c=7],.rndcomp[c=8]').prop('checked', false);
+                    $('.rndcomp[c=5],.rndcomp[c=6],.rndcomp[c=7],.rndcomp[c=8]').prop('disabled', true);
+                    $('.pReading[c=5],.pReading[c=6],.pReading[c=7],.pReading[c=8]').prop('disabled', true);
+                    $('.pReading[c=5],.pReading[c=6],.pReading[c=7],.pReading[c=8]').css('background', '#eee');
+                    $('.pReading[c=5]').val($('#previous_BIAR').html());
+                    $('.pReading[c=6]').val($('#previous_BIRR').html());
+                    $('.pReading[c=7]').val($('#previous_BEAR').html());
+                    $('.pReading[c=8]').val($('#previous_BERR').html());
+                    $('.ADJ[c=5],.ADJ[c=6],.ADJ[c=7],.ADJ[c=8],.MDI[c=5],.MDI[c=6],.MDI[c=7],.MDI[c=8]').val('0');
+                    $('#BIA_MDI,#BIR_MDI,#BEA_MDI,#BER_MDI').html('0');
+                    $('.ADJ[c=5],.ADJ[c=6],.ADJ[c=7],.ADJ[c=8],.MDI[c=5],.MDI[c=6],.MDI[c=7],.MDI[c=8]').prop('disabled', true);
+                    $('.ADJ[c=5],.ADJ[c=6],.ADJ[c=7],.ADJ[c=8],.MDI[c=5],.MDI[c=6],.MDI[c=7],.MDI[c=8]').css('background', '#eee');
+                    $('.pReading').change();
+                }
+
+            })
+
+            $('body').off('keydown', '[tabindex]');
+            $('body').on('keydown', '[tabindex]', function (e) {
+                var keyCode = e.keyCode || e.which;
+                var tabindex = $(this).attr('tabindex');
+                if (keyCode == 9 && ($('[tabindex="1"]').length != 1 || $('.sweet-alert').length != 0)) {
+                    var t = parseInt(tabindex) + 1;
+                    $('[tabindex="' + t + '"]').focus();
+                }
+
+            });
+
+
+            $('body').off('keypress', '.ADJ');
+            $('body').on('keypress', '.ADJ', function (event) {
+
+                var keyCode = event.keyCode || event.which;
+                if (keyCode == 9) {
+                    event.preventDefault();
+                    // call custom function here
+                }
+                var $this = $(this);
+                if ((event.which != 45 || $this.val().indexOf('-') != -1) &&
+                    (event.which != 46 || $this.val().indexOf('.') != -1) &&
+                    ((event.which < 48 || event.which > 57) &&
+                        (event.which != 0 && event.which != 8))) {
+                    event.preventDefault();
+
+                }
+
+                var text = $(this).val();
+                text = text.replace(/,/g, '');
+                if ((event.which == 46) && (text.indexOf('.') == -1)) {
+                    setTimeout(function () {
+                        if ($this.val().substring($this.val().indexOf('.')).length > 5 + 2) {
+                            $this.val($this.val().substring(0, $this.val().indexOf('.') + 5 + 2));
+                        }
+                    }, 1);
+                }
+
+                if ((text.indexOf('.') != -1) &&
+                    (text.substring(text.indexOf('.')).length > 4 + 2) &&
+                    (event.which != 0 && event.which != 8) &&
+                    ($(this)[0].selectionStart >= text.length - 4 + 2)) {
+                    event.preventDefault();
+                }
+
+            });
+
+            $('body').off("paste", '.ADJ');
+            $('body').on("paste", '.ADJ', function (e) {
+                var thisCtrl = $(this);
+                var text = e.originalEvent.clipboardData.getData('Text');
+                text = text.replace(/,/g, '');
+                if ($.isNumeric(text)) {
+                    if ((text.substring(text.indexOf('.')).length >= 5 + 2) && (text.indexOf('.') > -1)) {
+                        e.preventDefault();
+                        thisCtrl.val(text.substring(0, text.indexOf('.') + 5 + 2));
+                        thisCtrl.change();
+                    }
+                }
+                else {
+                    e.preventDefault();
+                    swal({
+                        title: "Invalid Input",
+                        text: "Please enter only numeric values!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => thisCtrl.focus(), 100)
+                        }
+                    });
+                }
+            });
+
+            $('body').off('keypress', '.pReading,.MDI');
+            $('body').on('keypress', '.pReading,.MDI', function (event) {
+                var keyCode = event.keyCode || event.which;
+                if (keyCode == 9) {
+                    event.preventDefault();
+                    // call custom function here
+                }
+                var $this = $(this);
+                if (
+                    (event.which != 46 || $this.val().indexOf('.') != -1) &&
+                    ((event.which < 48 || event.which > 57) &&
+                        (event.which != 0 && event.which != 8))) {
+                    event.preventDefault();
+
+                }
+
+                var text = $(this).val();
+                text = text.replace(/,/g, '');
+                if ((event.which == 46) && (text.indexOf('.') == -1)) {
+                    setTimeout(function () {
+                        if ($this.val().substring($this.val().indexOf('.')).length > 5 + 2) {
+                            $this.val($this.val().substring(0, $this.val().indexOf('.') + 5 + 2));
+                        }
+                    }, 1);
+                }
+
+                if ((text.indexOf('.') != -1) &&
+                    (text.substring(text.indexOf('.')).length > 4 + 2) &&
+                    (event.which != 0 && event.which != 8) &&
+                    ($(this)[0].selectionStart >= text.length - 4 + 2)) {
+                    event.preventDefault();
+                }
+
+            });
+
+            $('body').off("paste", '.pReading,.MDI');
+            $('body').on("paste", '.pReading,.MDI', function (e) {
+                var thisCtrl = $(this);
+                var text = e.originalEvent.clipboardData.getData('Text');
+                text = text.replace(/,/g, '');
+                if ($.isNumeric(text)) {
+                    if ((text.substring(text.indexOf('.')).length >= 5 + 2) && (text.indexOf('.') > -1)) {
+                        e.preventDefault();
+                        thisCtrl.val(text.substring(0, text.indexOf('.') + 5 + 2));
+                        thisCtrl.change();
+                    }
+                }
+                else {
+                    e.preventDefault();
+                    swal({
+                        title: "Invalid Input",
+                        text: "Please enter only numeric values!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => thisCtrl.focus(), 100)
+                        }
+                    });
+                }
+            });
+
+
+            function fnMonthlyDataLoad() {
+                var fromdata = new FormData();
+                fromdata.append("vls", '10½' + $('#ddlCDPNumber').attr('tg').split('½')[0]);
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/AjaxCall" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+
+                        try {
+                            var ev = $.parseJSON(response);
+                            $('#ddlCategory').val(ev[0].TRANSACTION_TYPE);
+                            $('#ddlCategory').change();
+                            $('#ddlDISCOs').html(ev[0].ddlDISCOs);
+                            $('#ddlCDPNumber').html(ev[0].ddlCDPNumber);
+                            $('#FEEDER_NAME_CODE').val(ev[0].FEEDER_NAME_CODE);
+                            $('#GRID_STATION_NAME').val(ev[0].GRID_STATION_NAME);
+                            $('#ENGY_IMP_EXP_FROM_CODE').val(ev[0].ENGY_IMP_EXP_FROM_CODE);
+                            $('#ENGY_IMP_EXP_TO_CODE').val(ev[0].ENGY_IMP_EXP_TO_CODE);
+                            $('#LOCATION_CODE').val(ev[0].LOCATION_CODE);
+                            $('#LOCATION_NAME').val(ev[0].LOCATION_NAME);
+
+
+                            $('#PRIMARY_METER_NO').html(ev[0].PRIMARY_METER_NO);
+                            $('#PRIMARY_METER_NO').attr('dtl', ev[0].PRIMARY_METER_NO_DTL);
+                            $('#BACKUP_METER_NO').html(ev[0].BACKUP_METER_NO);
+                            $('#BACKUP_METER_NO').attr('dtl', ev[0].BACKUP_METER_NO_DTL);
+
+
+                            $('#PM_PREVIOUS_READING_DATE_TIME').val(ev[0].PM_PREVIOUS_READING_DATE_TIME);
+                            $('#BM_PREVIOUS_READING_DATE_TIME').val(ev[0].BM_PREVIOUS_READING_DATE_TIME);
+                            //debugger;
+
+                            try {
+                                debugger;
+                                var PDate = new Date(ev[0].P_MINDATE.match(/\d+/)[0] * 1);
+                                var BDate = new Date(ev[0].B_MINDATE.match(/\d+/)[0] * 1);
+                                $("#DtxtReadingDateTime").datetimepicker({
+                                    format: 'DD-MMM-YYYY HH:mm'
+                                });
+
+                                $("#DtxtReadingFromDate").datetimepicker({
+                                    format: 'DD-MMM-YYYY HH:mm'
+                                });
+
+                                $("#DtxtReadingToDate").datetimepicker({
+                                    format: 'DD-MMM-YYYY HH:mm'
+                                });
+
+                                $("#DtxtReadingDateTime2").datetimepicker({
+                                    format: 'DD-MMM-YYYY HH:mm'
+                                });
+                                debugger;
+                                if ($('#PM_PREVIOUS_READING_DATE_TIME').val() != "") {
+                                    $("#DtxtReadingDateTime").data("DateTimePicker").minDate(PDate);//.datetimepicker("option", "minDate", ev[0].P_MINDATE);
+                                    $("#DtxtReadingFromDate").data("DateTimePicker").minDate(PDate);
+                                    $("#DtxtReadingToDate").data("DateTimePicker").minDate(PDate);
+                                    $("#DtxtReadingDateTime2").data("DateTimePicker").minDate(BDate);//.datetimepicker("option", "minDate", ev[0].B_MINDATE);
+                                }
+                            } catch (e) {
+
+                            }
+
+
+
+
+
+                            $('#ddlMonths').html(ev[0].ddlMonths);
+                            $("input[name='billingmeter'][value='" + ev[0].IS_PRIMARY_METER + "']").prop('checked', true);
+
+                            $('#txtReadingDateTime').val(ev[0].PM_READING_DATE_TIME);
+                            $('#txtReadingDateTime2').val(ev[0].BM_READING_DATE_TIME);
+
+                            $('#txtReadingFromDate').val(ev[0].FROM_DATE);
+                            $('#txtReadingToDate').val(ev[0].TO_DATE);
+
+
+                            $('#txtStatus').val(ev[0].Status);
+                            $('#txtStatusDateTime').val(ev[0].SUBMITT_DATE_TIME);
+                            $('#prevTxtAreaRemarks').val(ev[0].REMARKS);
+
+
+                            if (ev[0].Auxilary == true) {
+
+                                $($($('#tblMeterData > tbody > tr')[0 + 1]).find('td')[1]).html(0);
+                                $($($('#tblMeterData > tbody > tr')[0 + 1]).find('td')[2]).html(0);
+                                $($($('#tblMeterData > tbody > tr')[0 + 1]).find('td')[3]).html(0);
+                                $($($('#tblMeterData > tbody > tr')[0 + 1]).find('td')[4]).html(0);
+                                $($($('#tblMeterData > tbody > tr')[0 + 1]).find('td')[5]).html(0);
+                                $($($('#tblMeterData > tbody > tr')[0 + 1]).find('td')[6]).html(0);
+                                $($($('#tblMeterData > tbody > tr')[0 + 1]).find('td')[7]).html(0);
+                                $($($('#tblMeterData > tbody > tr')[0 + 1]).find('td')[8]).html(0);
+
+
+                                $('#PIAR').val(0);
+                                $('#PIRR').val(0);
+                                $('#PEAR').val(0);
+                                $('#PERR').val(0);
+                                $('#BIAR').val(0);
+                                $('#BIRR').val(0);
+                                $('#BEAR').val(0);
+                                $('#BERR').val(0);
+
+                            }
+                            else {
+                                let PR1 = ev[0].PR1 || '0';
+                                let PR2 = ev[0].PR2 || '0';
+                                let PR3 = ev[0].PR3 || '0';
+                                let PR4 = ev[0].PR4 || '0';
+                                let PR5 = ev[0].PR5 || '0';
+                                let PR6 = ev[0].PR6 || '0';
+                                let PR7 = ev[0].PR7 || '0';
+                                let PR8 = ev[0].PR8 || '0';
+
+                                $($($('#tblMeterData > tbody > tr')[0 + 1]).find('td')[1]).html(PR1);
+                                $($($('#tblMeterData > tbody > tr')[0 + 1]).find('td')[2]).html(PR2);
+                                $($($('#tblMeterData > tbody > tr')[0 + 1]).find('td')[3]).html(PR3);
+                                $($($('#tblMeterData > tbody > tr')[0 + 1]).find('td')[4]).html(PR4);
+                                $($($('#tblMeterData > tbody > tr')[0 + 1]).find('td')[5]).html(PR5);
+                                $($($('#tblMeterData > tbody > tr')[0 + 1]).find('td')[6]).html(PR6);
+                                $($($('#tblMeterData > tbody > tr')[0 + 1]).find('td')[7]).html(PR7);
+                                $($($('#tblMeterData > tbody > tr')[0 + 1]).find('td')[8]).html(PR8);
+
+                                let piar = ev[0].PRIMARY_IMPORT_ACTIVE_READING || '0';
+                                let pirr = ev[0].PRIMARY_IMPORT_REACTIVE_READING || '0';
+                                let pear = ev[0].PRIMARY_EXPORT_ACTIVE_READING || '0';
+                                let perr = ev[0].PRIMARY_EXPORT_REACTIVE_READING || '0';
+                                let biar = ev[0].BACKUP_IMPORT_ACTIVE_READING || '0';
+                                let birr = ev[0].BACKUP_IMPORT_REACTIVE_READING || '0';
+                                let bear = ev[0].BACKUP_EXPORT_ACTIVE_READING || '0';
+                                let berr = ev[0].BACKUP_EXPORT_REACTIVE_READING || '0';
+
+                                $('#PIAR').val(piar);
+                                $('#PIRR').val(pirr);
+                                $('#PEAR').val(pear);
+                                $('#PERR').val(perr);
+                                $('#BIAR').val(biar);
+                                $('#BIRR').val(birr);
+                                $('#BEAR').val(bear);
+                                $('#BERR').val(berr);
+                            }
+
+                            let PIA_ADJ = ev[0].PRIMARY_IMPORT_ACTIVE_AJD || '0';
+                            let PIR_ADJ = ev[0].PRIMARY_IMPORT_REACTIVE_ADJ || '0';
+                            let PEA_ADJ = ev[0].PRIMARY_EXPORT_ACTIVE_AJD || '0';
+                            let PER_ADJ = ev[0].PRIMARY_EXPORT_REACTIVE_ADJ || '0';
+                            let BIA_ADJ = ev[0].BACKUP_IMPORT_ACTIVE_AJD || '0';
+                            let BIR_ADJ = ev[0].BACKUP_IMPORT_REACTIVE_ADJ || '0';
+                            let BEA_ADJ = ev[0].BACKUP_EXPORT_ACTIVE_AJD || '0';
+                            let BER_ADJ = ev[0].BACKUP_EXPORT_REACTIVE_ADJ || '0';
+
+                            $('#PIA_ADJ').val(PIA_ADJ);
+                            $('#PIR_ADJ').val(PIR_ADJ);
+                            $('#PEA_ADJ').val(PEA_ADJ);
+                            $('#PER_ADJ').val(PER_ADJ);
+                            $('#BIA_ADJ').val(BIA_ADJ);
+                            $('#BIR_ADJ').val(BIR_ADJ);
+                            $('#BEA_ADJ').val(BEA_ADJ);
+                            $('#BER_ADJ').val(BER_ADJ);
+
+
+                            let PIAMDI = ev[0].PRIMARY_IMPORT_ACTIVE_MDI || '0';
+                            let PIRMDI = ev[0].PRIMARY_IMPORT_REACTIVE_MDI || '0';
+                            let PEAMDI = ev[0].PRIMARY_EXPORT_ACTIVE_MDI || '0';
+                            let PERMDI = ev[0].PRIMARY_EXPORT_REACTIVE_MDI || '0';
+                            let BIAMDI = ev[0].BACKUP_IMPORT_ACTIVE_MDI || '0';
+                            let BIRMDI = ev[0].BACKUP_IMPORT_REACTIVE_MDI || '0';
+                            let BEAMDI = ev[0].BACKUP_EXPORT_ACTIVE_MDI || '0';
+                            let BERMDI = ev[0].BACKUP_EXPORT_REACTIVE_MDI || '0';
+
+                            $('#PIAMDI').val(PIAMDI);
+                            $('#PIRMDI').val(PIRMDI);
+                            $('#PEAMDI').val(PEAMDI);
+                            $('#PERMDI').val(PERMDI);
+                            $('#BIAMDI').val(BIAMDI);
+                            $('#BIRMDI').val(BIRMDI);
+                            $('#BEAMDI').val(BEAMDI);
+                            $('#BERMDI').val(BERMDI);
+
+
+
+                            $('#pRoundCompletedIA').prop('checked', ev[0].PM_ROUND_COMPLETED_IA);
+                            $('#bRoundCompletedIA').prop('checked', ev[0].BM_ROUND_COMPLETED_IA);
+                            $('#pRoundCompletedIR').prop('checked', ev[0].PM_ROUND_COMPLETED_IR);
+                            $('#bRoundCompletedIR').prop('checked', ev[0].BM_ROUND_COMPLETED_IR);
+                            $('#pRoundCompletedEA').prop('checked', ev[0].PM_ROUND_COMPLETED_EA);
+                            $('#bRoundCompletedEA').prop('checked', ev[0].BM_ROUND_COMPLETED_EA);
+                            $('#pRoundCompletedER').prop('checked', ev[0].PM_ROUND_COMPLETED_ER);
+                            $('#bRoundCompletedER').prop('checked', ev[0].BM_ROUND_COMPLETED_ER);
+
+
+
+
+                            try {
+                                $('.PmfENERGY').html(ev[0].PRIMARY_METER_NO_DTL.split('½')[1]);
+                            } catch (e) {
+                                $('.PmfENERGY').html("0");
+                            }
+                            try {
+                                $('.BmfENERGY').html(ev[0].BACKUP_METER_NO_DTL.split('½')[1]);
+                            } catch (e) {
+                                $('.BmfENERGY').html("0");
+                            }
+                            try {
+                                $('.PmfMDI').html(ev[0].PRIMARY_METER_NO_DTL.split('½')[2]);
+                            } catch (e) {
+                                $('.PmfMDI').html("0");
+                            }
+                            try {
+                                $('.BmfMDI').html(ev[0].BACKUP_METER_NO_DTL.split('½')[2]);
+                            } catch (e) {
+                                $('.BmfMDI').html("0");
+                            }
+                            $('.pReading').change();
+                            $('.ADJ').change();
+                            $('.MDI').change();
+
+                            try {
+                                var attachments = $.parseJSON(ev[0].AttachedFiles);
+
+                                console.log(attachments);
+                                $('#tbl_attach > tbody').html('')
+                                if ($('#btnSave').attr('conn') != "E") {
+
+
+
+                                    $.each(attachments, function (ati, atj) {
+
+                                        $('#tbl_attach > tbody').append('<tr class="files" fileid="' + atj.WP_FILE_ID + '" fext="' + atj.FILE_EXT + '" ftype="' + atj.FILE_TYPE + '" fname="' + atj.FILES_NAME + '" ftitle="' + atj.FILE_TITLE + '" fdescription="' + atj.FILE_DESCRIPTION + '" base64=""> \
+<td><a href="'+ atj.ONLINE_URL + '" download="' + atj.FILES_NAME + ' target="_blank">' + atj.FILES_NAME + '</a></td>\
+<td><span>'+ atj.FILE_TITLE + '</span></td>\
+<td><span>'+ atj.FILE_DESCRIPTION + '</span></td>\
+<td class="clstdEdit" title="Edit file info.."></td>\
+<td class="clstdDelete" title="Delete file.." customtooltip="Delete file.."></td>\
+<td title="Download file.." customtooltip="Download file.."><center><span class="dnload zmdi zmdi-format-valign-bottom zmdi-hc-2x" fileid="' + atj.WP_FILE_ID + '" style="cursor: pointer;color:#0095eb;"></span></center></td>\
+</tr> \
+');
+
+                                    });
+
+
+                                }
+                                else {
+                                    $('#ddlCategory').css('background', '#eee');
+                                    $('#ddlCategory').prop('disabled', true);
+                                    $.each(attachments, function (ati, atj) {
+
+                                        $('#tbl_attach > tbody').append('<tr class="files" fileid="' + atj.WP_FILE_ID + '" fext="' + atj.FILE_EXT + '" ftype="' + atj.FILE_TYPE + '" fname="' + atj.FILES_NAME + '" ftitle="' + atj.FILE_TITLE + '" fdescription="' + atj.FILE_DESCRIPTION + '" base64=""> \
+<td><a href="'+ atj.ONLINE_URL + '" download="' + atj.FILES_NAME + ' target="_blank">' + atj.FILES_NAME + '</a></td>\
+<td><span>'+ atj.FILE_TITLE + '</span></td>\
+<td><span>'+ atj.FILE_DESCRIPTION + '</span></td>\
+<td class="clstdEdit" title="Edit file info.."><center><span class="fileedit zmdi zmdi-edit" style="cursor:pointer;color:#0095eb;font-size: 1.5em;"></span></center></td>\
+<td class="clstdDelete" title="Delete file.." customtooltip="Delete file.."><center><span class="filedelete zmdi zmdi-delete" style="cursor:pointer;color:red;font-size: 1.5em;"></span></center></td>\
+<td title="Download file.." customtooltip="Download file.."><center><span class="dnload zmdi zmdi-format-valign-bottom zmdi-hc-2x" fileid="' + atj.WP_FILE_ID + '" style="cursor: pointer;color:#0095eb;"></span></center></td>\
+</tr> \
+');
+
+                                    });
+                                }
+
+
+                            } catch (e) {
+
+                            }
+
+
+                            if ($('#btnSave').attr('conn') != "E") {
+
+                                $('#pRoundCompletedIA').prop('disabled', true);
+                                $('#bRoundCompletedIA').prop('disabled', true);
+                                $('#pRoundCompletedIR').prop('disabled', true);
+                                $('#bRoundCompletedIR').prop('disabled', true);
+                                $('#pRoundCompletedEA').prop('disabled', true);
+                                $('#bRoundCompletedEA').prop('disabled', true);
+                                $('#pRoundCompletedER').prop('disabled', true);
+                                $('#bRoundCompletedER').prop('disabled', true);
+                                $('.pReading').each(function (index, element) {
+                                    var v = $(this).val();
+                                    $(this).parent().html(v);
+                                });
+
+                                $('.ADJ').each(function (index, element) {
+                                    var v = $(this).val();
+                                    $(this).parent().html(v);
+                                });
+                                $('.MDI').each(function (index, element) {
+                                    var v = $(this).val();
+                                    $(this).parent().html(v);
+                                });
+                                $('#btnSave').remove();
+                                $('#btnAddFiles').remove();
+                                $('#ddlCategory').css('background', '#eee');
+
+
+                                $('#txtReadingDateTime,#txtReadingDateTime2,#txtReadingFromDate,#txtReadingToDate').css('background', '#eee');
+                                $('input[name="billingmeter"],#ddlDISCOs,#ddlCDPNumber,#PRIMARY_METER_NO,#BACKUP_METER_NO,#txtReadingDateTime,#txtReadingDateTime2,#txtReadingFromDate,#txtReadingToDate,#ddlCategory,#prevTxtAreaRemarks').prop('disabled', true);
+                            }
+                            $("[tabindex]").each(function (i) {
+                                $(this).removeAttr('tabindex');
+                            });
+
+
+
+
+
+                            $("#pageContainer :input:not(:hidden)").each(function (i) { $(this).attr('tabindex', i + 1); });
+                        } catch (e) {
+
+                        }
+
+
+                    }
+                });
+            }
+
+
+
+            function fnCDPLoad() {
+
+                var $id = $('#ddlCDPNumber').attr('tg').split('½')[0];
+                if ($id == "0") {
+                    $('#ddlMonths').val("0");
+                    $('#ddlMonths').prop('disabled', true);
+                    return false;
+                }
+                var thisData = '0½' + $id;
+                var fromdata = new FormData();
+                fromdata.append("vls", thisData);
+                var choice = {};
+                choice.url = '/Home/AjaxCall' + $(location).attr('search');
+                choice.type = "POST";
+                choice.data = fromdata;
+                choice.contentType = false;
+                choice.processData = false;
+                choice.success = function (result) {
+                    var $thisdata = $.parseJSON(result);
+                    $('#ddlCDPNumber').html('<option value="' + $id + '">' + $thisdata[0].CDP_NUMBER + '</option>');
+                    $('#GRID_STATION_NAME').val($thisdata[0].GRID_STATION_NAME);
+                    $('#FEEDER_NAME_CODE').val($thisdata[0].FEEDER_NAME_CODE);
+                    $('#ENGY_IMP_EXP_FROM_CODE').val($thisdata[0].ENGY_IMP_EXP_FROM_CODE);
+                    $('#ENGY_IMP_EXP_TO_CODE').val($thisdata[0].ENGY_IMP_EXP_TO_CODE);
+                    $('#LOCATION_CODE').val($thisdata[0].LOCATION_CODE);
+                    $('#LOCATION_NAME').val($thisdata[0].LOCATION_NAME);
+                    ////============>BRING MULTIPLE METERS IN JSON FORMAT SO THAT MULTIPLE DATA CAN B DRAWN
+                    try {
+                        // debugger;
+                        var optvals = "";
+                        if ($thisdata[0].PRIMARY_METER_NO.indexOf("½") >= 0) {
+                            var lst = $thisdata[0].PRIMARY_METER_NO.split(',');
+                            $.each(lst, function (ati, atj) {
+                                if (atj.indexOf("½") >= 0) {
+                                    optvals += '<option  dtl="' + atj + '" value="' +
+                                        atj.split('½')[0] +
+                                        '">' +
+                                        atj.split('½')[6] +
+                                        '</option>';
+                                }
+
+                            });
+                        }
+                        $('#PRIMARY_METER_NO').html(optvals);
+                    } catch (e) {
+                        $('#PRIMARY_METER_NO').html('');
+                        $('.frm[c="1"]').val("0").hide();
+                        $('.frm[c="2"]').val("0").hide();
+                        $('.frm[c="3"]').val("0").hide();
+                        $('.frm[c="4"]').val("0").hide();
+
+                    }
+
+                    try {
+                        //debugger;
+                        var optvals = "";
+                        if ($thisdata[0].BACKUP_METER_NO.indexOf("½") >= 0) {
+                            var lst = $thisdata[0].BACKUP_METER_NO.split(',');
+                            $.each(lst, function (ati, atj) {
+                                if (atj.indexOf("½") >= 0) {
+                                    optvals += '<option dtl="' + atj + '" value="' +
+                                        atj.split('½')[0] +
+                                        '">' +
+                                        atj.split('½')[6] +
+                                        '</option>';
+                                }
+
+                            });
+                        }
+                        $('#BACKUP_METER_NO').html(optvals);
+                        //$('#BACKUP_METER_NO').html('<option value="' + $thisdata[0].BACKUP_METER_NO.split('½')[0] + '">' + $thisdata[0].BACKUP_METER_NO.split('½')[1] + '</option>');
+                        if ($thisdata[0].BACKUP_METER_NO.split('½')[1] == "N/A") {
+                            $($("input[name='billingmeter']")[1]).prop('disabled', true);
+                        }
+                    } catch (e) {
+                        $('#BACKUP_METER_NO').html('');
+                        $('.frm[c="5"]').val("0").hide();
+                        $('.frm[c="6"]').val("0").hide();
+                        $('.frm[c="7"]').val("0").hide();
+                        $('.frm[c="8"]').val("0").hide();
+                    }
+
+                    $('#PRIMARY_METER_NO').attr('dtl', $('option:selected', $('#PRIMARY_METER_NO')).attr('dtl'));
+                    $('#BACKUP_METER_NO').attr('dtl', $('option:selected', $('#BACKUP_METER_NO')).attr('dtl'));
+                    //debugger;
+                    try {
+
+                        $('.PmfENERGY').html($('#PRIMARY_METER_NO').attr('dtl').split('½')[1]);
+                    } catch (e) {
+                        $('.PmfENERGY').html("0");
+                    }
+                    try {
+                        $('.BmfENERGY').html($('#BACKUP_METER_NO').attr('dtl').split('½')[1]);
+                    } catch (e) {
+                        $('.BmfENERGY').html("0");
+                    }
+                    try {
+                        $('.PmfMDI').html($('#PRIMARY_METER_NO').attr('dtl').split('½')[2]);
+                    } catch (e) {
+                        $('.PmfMDI').html("0");
+                    }
+                    try {
+                        $('.BmfMDI').html($('#BACKUP_METER_NO').attr('dtl').split('½')[2]);
+                    } catch (e) {
+                        $('.BmfMDI').html("0");
+                    }
+
+                    //var AccountingMonth = $.parseJSON($thisdata[0].AccountingMonth);
+                    //$('#ddlMonths').html('<option value="0">Select Month</option><option value="' + AccountingMonth[0].ACCOUNTING_MONTH_ID + '">' + AccountingMonth[0].DISPLAY + '</option>');
+                    //$('#ddlMonths').prop('disabled', false);
+                    fnLoadLastMeterReading();
+                    //$('.frm').each(function (index, element) {
+                    //    $(this).attr('tabindex', "-1");
+                    //});
+
+                    $("[tabindex]").each(function (i) {
+                        $(this).removeAttr('tabindex');
+                    });
+                    //$(":input:not(:hidden)").each(function (i)
+                    //{
+                    //    $(this).removeAttr('tabindex');
+                    //});
+                    $("#pageContainer :input:not(:hidden)").each(function (i) {
+                        $(this).attr('tabindex', i + 1);
+                        // $(this).css('background', 'red');
+                    });
+                    //$(".frm").each(function (i) { $(this).attr('tabindex', i + 1); });
+                    // $(":input:not(:hidden)").each(function (i) { $(this).attr('tabindex', i + 1); });
+                };//END OF SUCCESS
+                choice.error = function (err) {
+                    console.log(err.statusText);
+                };
+                $.ajax(choice);
+            }//end of fnCDPLoad
+            $('body').off('click', '#btnSave');
+            $('body').on('click', '#btnSave', function (e) {
+                e.preventDefault();
+                var $strflg = true;
+
+                debugger;
+
+                if (parseFloat($('#PIA_DIFF').html()) < 0 || parseFloat($('#PIR_DIFF').html()) < 0 || parseFloat($('#PEA_DIFF').html()) < 0 || parseFloat($('#PER_DIFF').html()) < 0 || parseFloat($('#BIA_DIFF').html()) < 0 || parseFloat($('#BIR_DIFF').html()) < 0 || parseFloat($('#BEA_DIFF').html()) < 0 || parseFloat($('#BER_DIFF').html()) < 0) {
+                    $strflg = false;
+                    swal({
+                        title: "Error",
+                        text: "Difference of Previous and Current Meter Reading value cannot be negative !",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#PIAR').focus(), 100)
+                        }
+                    });
+
+                    return false;
+                }
+
+                if ($('#txtReadingDateTime').val() == "") {
+                    $strflg = false;
+                    swal({
+                        title: "Error",
+                        text: "Primary Meter Reading Date value cannot be empty !",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#txtReadingDateTime').focus(), 100)
+                        }
+                    });
+
+                    return false;
+                }
+
+                if ($('#txtReadingDateTime2').val() == "") {
+                    $strflg = false;
+                    swal({
+                        title: "Error",
+                        text: "Backup Meter Reading Date value cannot be empty !",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#txtReadingDateTime2').focus(), 100)
+                        }
+                    });
+
+                    return false;
+                }
+
+                if ($('#txtReadingFromDate').val() == "") {
+                    $strflg = false;
+                    swal({
+                        title: "Error",
+                        text: "Meter Reading From Date Time value cannot be empty !",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#txtReadingFromDate').focus(), 100)
+                        }
+                    });
+
+                    return false;
+                }
+
+                if ($('#txtReadingToDate').val() == "") {
+                    $strflg = false;
+                    swal({
+                        title: "Error",
+                        text: "Meter Reading To Date Time value cannot be empty !",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#txtReadingToDate').focus(), 100)
+                        }
+                    });
+
+                    return false;
+                }
+                //=======
+
+                if ($('#PIAR').val() == "") {
+                    $strflg = false;
+
+                    swal({
+                        title: "Error",
+                        text: "Primary Meter -> Import Active Reading value cannot be empty !",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#PIAR').focus(), 100)
+                        }
+                    });
+
+                    return false;
+
+                }
+
+                if ($('#PIRR').val() == "") {
+                    $strflg = false;
+
+                    swal({
+                        title: "Error",
+                        text: "Primary Meter -> Import Reactive Reading value cannot be empty !",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#PIRR').focus(), 100)
+                        }
+                    });
+
+                    return false;
+
+                }
+
+                if ($('#PEAR').val() == "") {
+                    $strflg = false;
+
+                    swal({
+                        title: "Error",
+                        text: "Primary Meter -> Export Active Reading value cannot be empty !",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#PEAR').focus(), 100)
+                        }
+                    });
+
+                    return false;
+
+                }
+
+                if ($('#PERR').val() == "") {
+                    $strflg = false;
+
+                    swal({
+                        title: "Error",
+                        text: "Primary Meter -> Export Reactive Reading value cannot be empty !",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#PERR').focus(), 100)
+                        }
+                    });
+
+                    return false;
+
+                }
+
+                if ($('#BIAR').val() == "") {
+                    $strflg = false;
+
+                    swal({
+                        title: "Error",
+                        text: "Back-up Meter -> Import Active Reading value cannot be empty !",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#BIAR').focus(), 100)
+                        }
+                    });
+
+                    return false;
+
+                }
+
+                if ($('#BIRR').val() == "") {
+                    $strflg = false;
+
+                    swal({
+                        title: "Error",
+                        text: "Back-up Meter -> Import Reactive Reading value cannot be empty !",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#BIRR').focus(), 100)
+                        }
+                    });
+
+                    return false;
+
+                }
+
+                if ($('#BEAR').val() == "") {
+                    $strflg = false;
+
+                    swal({
+                        title: "Error",
+                        text: "Back-up Meter -> Export Active Reading value cannot be empty !",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#BEAR').focus(), 100)
+                        }
+                    });
+
+                    return false;
+
+                }
+
+                if ($('#BERR').val() == "") {
+                    $strflg = false;
+
+                    swal({
+                        title: "Error",
+                        text: "Back-up Meter -> Export Reactive Reading value cannot be empty !",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#BERR').focus(), 100)
+                        }
+                    });
+
+                    return false;
+
+                }
+
+                if ($('#PIAMDI').val() == "") {
+                    $strflg = false;
+
+                    swal({
+                        title: "Error",
+                        text: "Primary Meter -> Import Active MDI value cannot be empty!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#PIAMDI').focus(), 100)
+                        }
+                    });
+
+                    return false;
+
+                }
+
+                if ($('#PIRMDI').val() == "") {
+                    $strflg = false;
+
+                    swal({
+                        title: "Error",
+                        text: "Primary Meter -> Import Reactive MDI value cannot be empty!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#PIRMDI').focus(), 100)
+                        }
+                    });
+
+                    return false;
+
+                }
+
+                if ($('#PEAMDI').val() == "") {
+                    $strflg = false;
+
+                    swal({
+                        title: "Error",
+                        text: "Primary Meter -> Export Active MDI value cannot be empty!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#PEAMDI').focus(), 100)
+                        }
+                    });
+
+                    return false;
+
+                }
+
+                if ($('#PERMDI').val() == "") {
+                    $strflg = false;
+
+                    swal({
+                        title: "Error",
+                        text: "Primary Meter -> Export Reactive MDI value cannot be empty!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#PERMDI').focus(), 100)
+                        }
+                    });
+
+                    return false;
+
+                }
+
+                if ($('#BIAMDI').val() == "") {
+                    $strflg = false;
+
+                    swal({
+                        title: "Error",
+                        text: "Back-up Meter -> Import Active MDI value cannot be empty!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#BIAMDI').focus(), 100)
+                        }
+                    });
+
+                    return false;
+
+                }
+
+                if ($('#BIRMDI').val() == "") {
+                    $strflg = false;
+
+                    swal({
+                        title: "Error",
+                        text: "Back-up Meter -> Import Reactive MDI value cannot be empty!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#BIAMDI').focus(), 100)
+                        }
+                    });
+
+                    return false;
+
+                }
+
+                if ($('#BEAMDI').val() == "") {
+                    $strflg = false;
+
+                    swal({
+                        title: "Error",
+                        text: "Back-up Meter -> Export Active MDI value cannot be empty!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#BEAMDI').focus(), 100)
+                        }
+                    });
+
+                    return false;
+
+                }
+
+                if ($('#BERMDI').val() == "") {
+                    $strflg = false;
+
+                    swal({
+                        title: "Error",
+                        text: "Back-up Meter -> Export Reactive MDI value cannot be empty!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#BERMDI').focus(), 100)
+                        }
+                    });
+
+                    return false;
+
+                }
+
+
+
+                if ($('#txtReadingDateTime').val() == "") {
+                    $strflg = false;
+
+                    swal({
+                        title: "Error",
+                        text: "Please input Present Reading Date Time.",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#txtReadingDateTime').focus(), 100)
+                        }
+                    });
+
+                    return false;
+
+                }
+
+                if (!$strflg) {
+                    return false;
+                }
+
+                // start sz
+
+                swal({
+                    title: "Are you sure?",
+                    text: "Do you really want to Save CDPs Record?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "Yes, Save it!",
+                    closeOnConfirm: false
+                },
+                    function () {
+                        var $input = "½";
+                        var $input2 = "";
+                        var $input3 = "";
+                        var $input4 = "";
+                        var $input5 = "";
+                        $('.frm').each(function (index, element) {
+                            $input += $(this).val() + "½";
+                        });
+                        debugger;
+                        $input2 += $("input[name='billingmeter']:checked").val() + "½" + $("#prevTxtAreaRemarks").val();
+
+                        //if ($("input[name='billingmeter']:checked").val() == "Y") {
+                        $input3 += '½' + $('#PIA_TTL').html() + '½' + $('#PEA_TTL').html() + '½' + $('#PIA_MDI').html() + '½' + $('#PEA_MDI').html();
+                        //}
+                        //else {
+                        $input3 += '½' + $('#BIA_TTL').html() + '½' + $('#BEA_TTL').html() + '½' + $('#BIA_MDI').html() + '½' + $('#BEA_MDI').html();
+                        //}
+                        var ttr1 = $($('#tblMeterData tbody tr')[0 + 1]);
+                        $input4 += '½' + $('#PM_PREVIOUS_READING_DATE_TIME').val() + '½' + $('#BM_PREVIOUS_READING_DATE_TIME').val()
+                            + '½' + $(ttr1.find('td')[1]).html()
+                            + '½' + $(ttr1.find('td')[2]).html()
+                            + '½' + $(ttr1.find('td')[3]).html()
+                            + '½' + $(ttr1.find('td')[4]).html()
+                            + '½' + $(ttr1.find('td')[5]).html()
+                            + '½' + $(ttr1.find('td')[6]).html()
+                            + '½' + $(ttr1.find('td')[7]).html()
+                            + '½' + $(ttr1.find('td')[8]).html();
+                        $input5 += '½' + $('#pRoundCompletedIA').prop('checked') + '½' + $('#bRoundCompletedIA').prop('checked') + '½' + $('#pRoundCompletedIR').prop('checked') + '½' + $('#bRoundCompletedIR').prop('checked') + '½' + $('#pRoundCompletedEA').prop('checked') + '½' + $('#bRoundCompletedEA').prop('checked') + '½' + $('#pRoundCompletedER').prop('checked') + '½' + $('#bRoundCompletedER').prop('checked');
+                        var fls = "";
+                        $('.files[fileid="0"]').each(function (iii, jjj) {
+                            fls += $(this).attr('fext') + "½" + $(this).attr('ftype') + "½" + $(this).attr('fname') + "½" + $(this).attr('ftitle') + "½" + $(this).attr('fdescription') + "½" + $(this).attr('base64') + "¼";
+                        });
+                        if (fls.endsWith('¼')) {
+                            fls += '¡';
+                            fls = fls.replace('¼¡', '');
+                        }
+                        var fromdata = new FormData();
+                        //debugger;
+                        fromdata.append("vls", '0½' + $("#btnSave").val() + $input + $input2 + $input3 + $input4 + $input5);
+                        fromdata.append("fls", encodeURIComponent(fls));
+                        $('.sa-button-container').hide();
+                        $('.sweet-alert > h2').html('Please Wait..!');
+                        $('.sweet-alert > P').html('Processing..!');
+                        //$('.sa-icon').html('<img src="./Content/img/DataLoader.gif" style="width: 80px;margin-top: 2px;">');
+                        $.ajax({
+                            type: "POST",
+                            url: "/Home/MRPAjaxCall" + $(location).attr("search"),
+                            data: fromdata,
+                            contentType: false,
+                            processData: false,
+                            success: function (response) {
+
+                                //$('.sa-icon').html('<span class="sa-body pulseWarningIns"></span><span class="sa-dot pulseWarningIns"></span>');
+                                //debugger;
+                                $('.sa-button-container').show();
+
+                                //var $thisdata = $.parseJSON(response);
+
+                                if (response == "1") {
+
+
+                                    var $url = "";
+                                    if ($('#btnCancel').attr('tg') == "0") {
+                                        $url = "/Home/DISCO_Monthly_Data" + $(location).attr('search');
+                                    }
+                                    else {
+                                        $url = "/Home/CPPAG_CDP_PROCESS" + $(location).attr('search');
+                                    }
+
+
+                                    swal("Success!", "Record has been saved Successfully.", "success");
+
+                                    var options = {};
+                                    $("#pageContainer").hide('slide', options, 300);
+                                    $.ajax({
+                                        type: "POST",
+                                        url: $url,
+                                        success: function (result) {
+                                            var options = {};
+                                            $('#pageContainer').html($(result).find('#pcontent').html());
+                                            $("#pageContainer").show('slide', options, 500);
+                                        }
+                                    });
+
+                                }
+                                else {
+                                    swal({
+                                        title: "Error!",
+                                        text: response,
+                                        type: "warning",
+                                        showCancelButton: false,
+                                        showConfirmButton: true
+                                    });
+
+                                    return false;
+                                }
+                            }
+                        });
+
+                        //var fromdata = new FormData();
+                        //fromdata.append("vls", '7½' + dta.split('½')[5] + '½' + '2');
+                        //$.ajax({
+                        //    type: "POST",
+                        //    url: "/Home/Meter_Reading_Proforma" + $(location).attr("search"),
+                        //    data: fromdata,
+                        //    contentType: false,
+                        //    processData: false,
+                        //    success: function (response) {
+                        //        var $thisdata = $.parseJSON(response);
+
+                        //        if ($thisdata == "1") {
+
+
+                        //            swal("Success!", "Recrods have been Received Successfully.", "success");
+
+                        //            var options = {};
+                        //            $("#pageContainer").hide('slide', options, 300);
+                        //            $.ajax({
+                        //                url: "/Home/DISCO_Monthly_Data" + $(location).attr('search'),
+                        //                success: function (result) {
+                        //                    var options = {};
+                        //                    $('#pageContainer').html($(result).find('#pcontent').html());
+                        //                    $("#pageContainer").show('slide', options, 500);
+                        //                }
+                        //            });
+
+                        //        }
+                        //        else {
+                        //            swal({
+                        //                title: "Error!",
+                        //                text: $thisdata,
+                        //                type: "warning",
+                        //                showCancelButton: false,
+                        //                showConfirmButton: true
+                        //            });
+
+                        //            return false;
+                        //        }
+                        //    }
+                        //});
+
+
+
+                        return true;
+                    }
+
+                );
+
+                // end sz
+
+            });//end of save
+
+            $('body').off('click', '#btnCancel');
+            $('body').on('click', '#btnCancel', function (e) {
+                e.preventDefault();
+
+                var $url = "";
+                if ($(this).attr('tg') == "0") {
+                    $url = "/Home/DISCO_Monthly_Data" + $(location).attr('search');
+                }
+                else {
+                    $url = "/Home/CPPAG_CDP_PROCESS" + $(location).attr('search');
+                }
+
+                var options = {};
+                $("#pageContainer").hide('slide', options, 300);
+                $.ajax({
+                    type: "POST",
+                    url: $url,
+                    success: function (result) {
+                        var options = {};
+                        $('#pageContainer').html($(result).find('#pcontent').html());
+                        $("#pageContainer").show('slide', options, 500);
+                    }
+                });
+
+            });//end of cancel
+
+
+            $('body').off('click', '.rndcomp');
+            $('body').on('click', '.rndcomp', function () {
+                var $c = $(this).attr('c');
+                $('.pReading[c="' + $c + '"]').change();
+
+            });
+
+            $('body').off('change', '.pReading');
+            $('body').on('change', '.pReading', function () {
+                debugger;
+                var $c = $(this).attr('c');
+
+
+
+                if ($.trim($(this).val()) == "") {
+                    $($($('#tblMeterData > tbody > tr')[2 + 1]).find('td')[$c]).html('');
+                    $($($('#tblMeterData > tbody > tr')[5 + 1]).find('td')[$c]).html('');
+                    return false;
+                }
+                var roundCompleted = $('.rndcomp[c="' + $c + '"]').prop('checked');
+
+
+
+                var $valNext = $($($($('#tblMeterData > tbody > tr')[4 + 1]).find('td')[$c]).find('input[type="text"]')[0]).val();
+                if (roundCompleted) {
+                    var tmp;
+                    var maxval = 0;
+                    if ($c <= 4) {
+                        maxval = parseFloat($('#PRIMARY_METER_NO').attr('dtl').split('½')[5]);
+                    }
+                    else {
+                        maxval = parseFloat($('#BACKUP_METER_NO').attr('dtl').split('½')[5]);
+                    }
+                    $($($('#tblMeterData > tbody > tr')[2 + 1]).find('td')[$c]).html((parseFloat($(this).val()) - parseFloat($($($('#tblMeterData > tbody > tr')[0 + 1]).find('td')[$c]).html()) + parseFloat(maxval)).toFixed(6));
+                }
+                else {
+                    if ($($($('#tblMeterData > tbody > tr')[0 + 1]).find('td')[$c]).html() == "") {
+                        tmp = 0;
+                    }
+                    else {
+                        tmp = parseFloat($($($('#tblMeterData > tbody > tr')[0 + 1]).find('td')[$c]).html());
+                    }
+                    $($($('#tblMeterData > tbody > tr')[2 + 1]).find('td')[$c]).html((parseFloat($(this).val()) - tmp).toFixed(6));
+                }
+                $($($('#tblMeterData > tbody > tr')[5 + 1]).find('td')[$c]).html(((parseFloat($($($('#tblMeterData > tbody > tr')[2 + 1]).find('td')[$c]).html()) * parseFloat($($($('#tblMeterData > tbody > tr')[3 + 1]).find('td')[$c]).html())) + parseFloat($valNext)).toFixed(6));
+                if ($($($('#tblMeterData > tbody > tr')[5 + 1]).find('td')[$c]).html() == "NaN") {
+                    $($($('#tblMeterData > tbody > tr')[5 + 1]).find('td')[$c]).html('');
+                }
+            });//end of
+
+            $('body').off('change', '.ADJ');
+            $('body').on('change', '.ADJ', function () {
+                var $c = $(this).attr('c');
+                $($($('#tblMeterData > tbody > tr')[5 + 1]).find('td')[$c]).html(((parseFloat($($($('#tblMeterData > tbody > tr')[2 + 1]).find('td')[$c]).html()) * parseFloat($($($('#tblMeterData > tbody > tr')[3 + 1]).find('td')[$c]).html())) + parseFloat($(this).val())).toFixed(6));
+                if ($($($('#tblMeterData > tbody > tr')[5 + 1]).find('td')[$c]).html() == "NaN") {
+                    $($($('#tblMeterData > tbody > tr')[5 + 1]).find('td')[$c]).html('');
+                }
+
+            });//end of
+
+            $('body').off('change', '.MDI');
+            $('body').on('change', '.MDI', function () {
+                var $c = $(this).attr('c');
+                $($($('#tblMeterData > tbody > tr')[8 + 1]).find('td')[$c]).html((parseFloat($(this).val()) * parseFloat($($($('#tblMeterData > tbody > tr')[7 + 1]).find('td')[$c]).html())).toFixed(6));
+                if ($($($('#tblMeterData > tbody > tr')[8 + 1]).find('td')[$c]).html() == "NaN") {
+                    $($($('#tblMeterData > tbody > tr')[8 + 1]).find('td')[$c]).html('');
+                }
+            });//end of
+
+
+            $('body').off('change', '#PRIMARY_METER_NO');
+            $('body').on('change', '#PRIMARY_METER_NO', function () {
+                $('#PRIMARY_METER_NO').attr('dtl', $('option:selected', $('#PRIMARY_METER_NO')).attr('dtl'));
+
+                try {
+                    $('.PmfENERGY').html($thisdata[0].PIMARY_DTL.split('½')[1]);
+                } catch (e) {
+                    //debugger;
+                    $('.PmfENERGY').html("0");
+                }
+
+                try {
+                    $('.PmfMDI').html($thisdata[0].PIMARY_DTL.split('½')[2]);
+                } catch (e) {
+                    //debugger;
+                    $('.PmfMDI').html("0");
+                }
+
+                fnLoadLastPrimaryMeterReading();
+
+            });
+
+            $('body').off('change', '#BACKUP_METER_NO');
+            $('body').on('change', '#BACKUP_METER_NO', function () {
+
+                $('#BACKUP_METER_NO').attr('dtl', $('option:selected', $('#BACKUP_METER_NO')).attr('dtl'));
+
+                try {
+                    $('.BmfENERGY').html($thisdata[0].BACKUP_DTL.split('½')[1]);
+                } catch (e) {
+                    $('.BmfENERGY').html("0");
+                }
+
+                try {
+                    $('.BmfMDI').html($thisdata[0].BACKUP_DTL.split('½')[2]);
+                } catch (e) {
+                    $('.BmfMDI').html("0");
+                }
+                fnLoadLastBackupMeterReading();
+            });
+            function fnLoadLastMeterReading() {
+                fnLoadLastPrimaryMeterReading();
+                fnLoadLastBackupMeterReading();
+            }
+            function fnLoadLastPrimaryMeterReading() {
+                if ($('#PRIMARY_METER_NO').val() != null || $('#PRIMARY_METER_NO').val() != "" || $('#PRIMARY_METER_NO').val() != undefined) {
+                    var fromdata = new FormData();
+                    fromdata.append("vls", '1½' + $('#PRIMARY_METER_NO').val() + '½Y½' + $('#ddlDISCOs').val());
+                    $.ajax({
+                        type: "POST",
+                        url: "/Home/AjaxCall" + $(location).attr("search"),
+                        data: fromdata,
+                        contentType: false,
+                        processData: false,
+                        success: function (response) {
+                            try {
+                                var $dta = $.parseJSON(response);
+                                $('#PM_PREVIOUS_READING_DATE_TIME').val($dta[0].READING_DATE_TIME);
+                                //debugger;
+                                try {
+                                    var PDate = new Date($dta[0].P_MINDATE.match(/\d+/)[0] * 1);
+                                    //var BDate = new Date($dta[0]].B_MINDATE.match(/\d+/)[0] * 1);
+                                    $("#DtxtReadingDateTime").datetimepicker({
+                                        format: 'DD-MMM-YYYY HH:mm'
+                                    });
+                                    $("#DtxtReadingFromDate").datetimepicker({
+                                        format: 'DD-MMM-YYYY HH:mm'
+                                    });
+                                    $("#DtxtReadingToDate").datetimepicker({
+                                        format: 'DD-MMM-YYYY HH:mm'
+                                    });
+                                    if ($.trim($('#PM_PREVIOUS_READING_DATE_TIME').val()) != "") {
+                                        $("#DtxtReadingDateTime").data("DateTimePicker").minDate(PDate);//.datetimepicker("option", "minDate", $dta[0].P_MINDATE);
+                                        $("#DtxtReadingFromDate").data("DateTimePicker").minDate(PDate);
+                                        $("#DtxtReadingToDate").data("DateTimePicker").minDate(PDate);
+                                    }
+
+
+                                } catch (e) {
+
+                                }
+
+                                if ($dta[0].Auxilary == true) {
+                                    $('#previous_PIAR').html(0);
+                                    $('#previous_PIRR').html(0);
+                                    $('#previous_PEAR').html(0);
+                                    $('#previous_PERR').html(0);
+                                }
+
+                                else {
+                                    $('#previous_PIAR').html($dta[0].PRIMARY_IMPORT_ACTIVE_READING);
+                                    $('#previous_PIRR').html($dta[0].PRIMARY_IMPORT_REACTIVE_READING);
+                                    $('#previous_PEAR').html($dta[0].PRIMARY_EXPORT_ACTIVE_READING);
+                                    $('#previous_PERR').html($dta[0].PRIMARY_EXPORT_REACTIVE_READING);
+                                }
+                            } catch (e) {
+                                $('#PM_PREVIOUS_READING_DATE_TIME').val('');
+                                $('#previous_PIAR').html('0');
+                                $('#previous_PIRR').html('0');
+                                $('#previous_PEAR').html('0');
+                                $('#previous_PERR').html('0');
+                            }
+
+
+                        }
+                    });
+                }
+            }
+            function fnLoadLastBackupMeterReading() {
+                if ($('#BACKUP_METER_NO').val() != null || $('#BACKUP_METER_NO').val() != "" || $('#BACKUP_METER_NO').val() != undefined) {
+                    var fromdata = new FormData();
+                    fromdata.append("vls", '1½' + $('#BACKUP_METER_NO').val() + '½N½' + $('#ddlDISCOs').val());
+                    $.ajax({
+                        type: "POST",
+                        url: "/Home/AjaxCall" + $(location).attr("search"),
+                        data: fromdata,
+                        contentType: false,
+                        processData: false,
+                        success: function (response) {
+
+
+
+
+                            try {
+                                var $dta = $.parseJSON(response);
+                                $('#BM_PREVIOUS_READING_DATE_TIME').val($dta[0].READING_DATE_TIME);
+                                //debugger;
+                                try {
+                                    //var PDate = new Date($dta[0].P_MINDATE.match(/\d+/)[0] * 1);
+                                    var BDate = new Date($dta[0].B_MINDATE.match(/\d+/)[0] * 1);
+
+                                    $("#DtxtReadingDateTime2").datetimepicker({
+                                        format: 'DD-MMM-YYYY HH:mm'
+                                    });
+
+                                    if ($.trim($('#BM_PREVIOUS_READING_DATE_TIME').val()) != "") {
+                                        $("#DtxtReadingDateTime2").data("DateTimePicker").minDate(BDate);//.datetimepicker("option", "minDate", $dta[0].B_MINDATE);
+                                    }
+
+                                } catch (e) {
+
+                                }
+                                if ($dta[0].Auxilary == true) {
+                                    $('#previous_BIAR').html(0);
+                                    $('#previous_BIRR').html(0);
+                                    $('#previous_BEAR').html(0);
+                                    $('#previous_BERR').html(0);
+                                }
+                                else {
+                                    $('#previous_BIAR').html($dta[0].BACKUP_IMPORT_ACTIVE_READING);
+                                    $('#previous_BIRR').html($dta[0].BACKUP_IMPORT_REACTIVE_READING);
+                                    $('#previous_BEAR').html($dta[0].BACKUP_EXPORT_ACTIVE_READING);
+                                    $('#previous_BERR').html($dta[0].BACKUP_EXPORT_REACTIVE_READING);
+                                }
+                            } catch (e) {
+                                $('#BM_PREVIOUS_READING_DATE_TIME').val('');
+                                $('#previous_BIAR').html('0');
+                                $('#previous_BIRR').html('0');
+                                $('#previous_BEAR').html('0');
+                                $('#previous_BERR').html('0');
+                            }
+                        }
+                    });
+                }
+            }
+
+            //Attachments
+            $('#myModal').dialog({
+                autoOpen: false,
+                height: 800,
+                width: 650,
+                modal: true,
+                show: {
+                    effect: "clip",
+                    duration: 500
+                },
+                hide: {
+                    effect: "clip",
+                    duration: 500
+                }
+            });
+            $('body').off('change', '#txtIPPTitle');
+            $('body').on('change', '#txtIPPTitle', function (e) {
+                LoadVendorSites();
+            });// End of change
+            function LoadVendorSites() {
+
+                var fromdata = new FormData();
+                fromdata.append('vls', '7½' + $('#txtIPPTitle').val());
+                $.ajax({
+                    type: "POST",
+                    url: "/EMO/AjaxCall" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        $('#ddlVendors').html(response);
+                        if ($('#ddlVendors').val() != null || $('#ddlVendors').val() != undefined) {
+                            var fromdata = new FormData();
+                            fromdata.append("vls", '0½' + $('#ddlVendors').val());
+                            $.ajax({
+                                type: "POST",
+                                url: "/EMO/AjaxCall" + $(location).attr("search"),
+                                data: fromdata,
+                                contentType: false,
+                                processData: false,
+                                success: function (response) {
+                                    $('#ddlBlocks').html(response);
+                                    Load_ddlFuel();
+                                }
+                            });
+                        }
+                        else {
+                            $('#ddlBlocks').html('');
+                            $('#ddlFuel').html('');
+                            $('#tblContainer').html('');
+                        }
+                    }
+                });
+            }//END OF LOAD
+
+            $('body').off('click', '#btnAddFiles');
+            $('body').on('click', '#btnAddFiles', function (e) {
+                e.preventDefault();
+                $('#attachmentTitle').val('');
+                $('#attachmentDesc').val('');
+                $('#btnUpload').attr('tg', '0');
+                $('#btnUpload').attr('typ', "0");
+                $('#myModal').dialog('open');
+            });//end of btnAddFiles
+
+            $('body').off("click", '#btnCloseDialog');
+            $('body').on("click", '#btnCloseDialog', function (e) {
+                e.preventDefault();
+                $('#myModal').dialog('close');
+                $('#attachmentTitle').val('');
+                $('#attachmentDesc').val('');
+                $('#attachmentFile').val('');
+                try {
+                    if ($.browser.msie) {
+                        $('#attachmentFile').replaceWith($('#attachmentFile').clone());
+                    }
+                    else {
+                        $('#attachmentFile').val('');
+                    }
+                    $('#attachmentFile').html('');
+                } catch (e) {
+                    return false;
+                }
+            });
+
+
+            $('body').off('click', '.fileedit');
+            $('body').on('click', '.fileedit', function (e) {
+                e.preventDefault();
+                var fid = $(this).parent().parent().parent().attr('fileid');
+                var $tr = $(this).parent().parent().parent();
+                $('#tbl_attach tbody tr').removeAttr('bisedit');
+                $tr.attr('bisedit', 'bisedit');
+                $('#attachmentTitle').val($tr.attr('ftitle'));
+                $('#attachmentDesc').val($tr.attr('fdescription'));
+                $('#btnUpload').attr('tg', fid);
+                $('#btnUpload').attr('typ', "1");
+                $('#myModal').dialog('open');
+            });//END OF Edit BUTNN
+
+
+            $('body').off('click', '#btnUpload');
+            $('body').on('click', '#btnUpload', function (e) {
+                e.preventDefault();
+                var $typ = $(this).attr('typ');
+                var $tg = $(this).attr('tg');
+                if ($('#attachmentFile')[0].files.length == 0 && $(this).attr('typ') == "0") {
+                    swal({
+                        title: "Error",
+                        text: "Please Select File!",
+                        type: "warning"
+                    });
+                    return false;
+                }
+
+                var ext = $('#attachmentFile').val().split('.').pop().toLowerCase();
+                if ($.inArray(ext, ['xlsx', 'xls', 'doc', 'docx', 'ppt', 'pptx', 'txt', 'pdf', 'gif', 'png', 'jpg', 'jpeg']) == -1) {
+                    swal({
+                        title: "Error",
+                        text: "Please Select Valid file...!",
+                        type: "warning"
+                    });
+                    return false;
+                }
+
+
+
+                if ($('#attachmentTitle').val() == '') {
+                    swal({
+                        title: "Error",
+                        text: "Please enter attachment title!",
+                        type: "warning"
+                    });
+                    return false;
+                }
+                if ($('#attachmentFile')[0].files.length == 0 && $typ == "1") {
+                    $('#tbl_attach tbody tr[bisedit="bisedit"]').attr('ftitle', $('#attachmentTitle').val());
+                    $('#tbl_attach tbody tr[bisedit="bisedit"]').attr('fdescription', $('#attachmentDesc').val());
+                    $($('#tbl_attach tbody tr[bisedit="bisedit"]').find('td')[0]).html('<span>' + $('#attachmentTitle').val() + '</span>');
+                    $($('#tbl_attach tbody tr[bisedit="bisedit"]').find('td')[1]).html('<span>' + $('#attachmentDesc').val() + '</span>');
+                    if ($tg != "0") {
+                        $('#tbl_attach tbody tr[bisedit="bisedit"]').attr('fileupdate', 'fileupdate');
+                    }
+                    $('#myModal').dialog('close');
+                    return false;
+                }
+                else if ($('#attachmentFile')[0].files.length > 0 && $typ == "1") {
+                    $($('#tbl_attach tbody tr[bisedit="bisedit"]').find('.filedelete')[0]).click();
+                    $('#tbl_attach tbody tr[bisedit="bisedit"]').remove();
+
+
+                }
+
+                var fileTitle = $('#attachmentTitle').val();
+                var fileDesc = $('#attachmentDesc').val();
+                var file = $('#attachmentFile')[0].files[0],
+                    fileName = file.name,
+                    fileType = file.type,
+                    fileSize = file.size;
+                var sizeLimit = 0, fileSizeMsg = '';
+                if (fileType == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || fileType == 'application/vnd.ms-excel') {
+                    sizeLimit = 5242880;
+                    fileSizeMsg = "Excel sheet size must be less than 5MB!";
+                }
+                else {
+                    sizeLimit = 2097152;
+                    fileSizeMsg = "File size must be less than 2MB!";
+                }
+
+                if (fileSize > sizeLimit) {
+                    swal({
+                        title: "Error",
+                        text: fileSizeMsg,
+                        type: "warning"
+                    });
+                    return false;
+                }
+
+                var filedata;
+                var input = $('#attachmentFile');
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var arrayBuffer = reader.result;
+
+                    arrayBuffer = arrayBuffer.substring(arrayBuffer.indexOf(",") + 1);
+                    var base64String = arrayBuffer;
+                    var ext = fileName.split('.').pop();
+                    //$("#ulFileList").append('<li class="files" fileid="0" fext=".' + ext + '" ftype="' + fileType + '" fname="' + fileName + '" ftitle="' + $('#attachmentTitle').val() + '" fdescription="' + $('#attachmentDesc').val() + '"  base64="' + base64String + '"> <a href="data:' + fileType + ";base64," + base64String + '" download="' + fileName + '">' + fileTitle + '</a>&nbsp;&nbsp;&nbsp;<label class="filedelete" style="cursor:pointer;">Delete File</label><label class="dnload" fileid="0" style="cursor: pointer;float: right; margin-right: 40px;">Download</label></li>');
+                    $("#tbl_attach > tbody").append('<tr class="files" fileid="0" fext=".' + ext + '" ftype="' + fileType + '" fname="' + fileName + '" ftitle="' + $('#attachmentTitle').val() + '" fdescription="' + $('#attachmentDesc').val() + '"  base64="' + base64String + '"> <td><a href="data:' + fileType + ";base64," + base64String + '" download="' + fileName + '">' + fileTitle + '</a></td><td><span>' + fileDesc + '</span></td><td><span>' + fileName + '</span></td>\
+                                                                                                                                                                                    <td class="clstdEdit"  title="Edit file info.."><center><span class="fileedit zmdi zmdi-edit" style="cursor:pointer;color:#0095eb;font-size: 1.5em;"></span></center></td>\
+                                                                                                                                                                                    <td class="clstdDelete"  title="Delete file.."><center><span class="filedelete zmdi zmdi-delete" style="cursor:pointer;color:red;font-size: 1.5em;"></span></center></td>\
+                                                                                                                                                                                    <td title="Download file.."><center><span class="dnload zmdi zmdi-format-valign-bottom zmdi-hc-2x" fileid="0" style="cursor: pointer;color:#0095eb;"></span></center></td></tr>');
+                    $('#myModal').dialog('close');
+                    $('#attachmentTitle').val('');
+                    $('#attachmentDesc').val('');
+                    $('#attachmentFile').val('');
+                    try {
+                        if ($.browser.msie) {
+                            $('#attachmentFile').replaceWith($('#attachmentFile').clone());
+                        }
+                        else {
+                            $('#attachmentFile').val('');
+                        }
+                        $('#attachmentFile').html('');
+                    } catch (e) {
+                        return false;
+                    }
+                };
+                reader.readAsDataURL(file);
+
+            });//end of click event
+
+
+
+
+
+
+
+            $('body').off('click', '.filedelete');
+            $('body').on('click', '.filedelete', function (e) {
+                e.preventDefault();
+                var fid = $(this).parent().parent().parent().attr('fileid');
+                if (fid != "0") {
+                    var pdlist = "";
+                    try {
+                        //pdlist = $('#ulFileList').attr('dellist');
+                        pdlist = $('#tbl_attach').attr('dellist');
+                        if (pdlist == "") {
+                            pdlist = fid
+                        }
+                        else {
+                            pdlist = pdlist + '½' + fid;
+                        }
+                        //$('#ulFileList').attr('dellist', pdlist);
+                        $('#tbl_attach').attr('dellist', pdlist);
+                    } catch (e) {
+                        pdlist = fid;
+                        //$('#ulFileList').attr('dellist', pdlist);
+                        $('#tbl_attach').attr('dellist', pdlist);
+                    }
+                }
+
+                $(this).parent().parent().parent().remove();
+            });//END OF DELETE BUTNN
+
+
+            $('body').off('click', '.dnload');
+            $('body').on('click', '.dnload', function (e) {
+                e.preventDefault();
+                var $id = $(this).attr('fileid');
+                var $fname = $(this).attr('fname');
+                //debugger;
+                if ($id == "0") {
+                    var link = $(this).parent().parent().parent().find('a')[0];
+                    link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
+                }
+                else {
+                    var link = $(this).parent().parent().parent().find('a')[0];
+                    var win = window.open(link, '_blank');
+                    if (win) {
+                        //Browser has allowed it to be opened
+                        win.focus();
+                    } else {
+                        //Browser has blocked it
+                        alert('Please allow popups for this website');
+                    }
+                }
+            });
+
+            //Attachments end
+        });//END OF DOC READY
+
+    </script>
+
+</div>

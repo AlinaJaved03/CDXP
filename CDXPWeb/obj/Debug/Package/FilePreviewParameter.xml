@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="cppa" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\cppa\\MIGRATION\\CDXP\\CDXP\\CDXPWeb\\obj\\Debug\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^D:\\cppa\\MIGRATION\\CDXP\\CDXP\\CDXPWeb\\obj\\Debug\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="ClientId" description="Value for ClientId here." value="cf434359-fbaf-4a84-b524-2c9b8ee138f2" tags="applicationSettings">
+    <parameterEntry kind="XmlFile" scope="web.config$" match="/configuration/appSettings/add[@key='ClientId']/@value" />
+  </parameter>
+  <parameter name="ClientSecret" description="Value for ClientSecret here." value="MlgjVDF9C58wOQp1KHKXM5V1spyD9fvU1kVguvLREs0=" tags="applicationSettings">
+    <parameterEntry kind="XmlFile" scope="web.config$" match="/configuration/appSettings/add[@key='ClientSecret']/@value" />
+  </parameter>
+</parameters>

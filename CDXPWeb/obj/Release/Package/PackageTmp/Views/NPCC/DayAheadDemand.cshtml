@@ -1,0 +1,473 @@
+﻿@{ ViewBag.Title = "Day Ahead Demand"; }
+<div id="pcontent">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff;"></i>
+                        <h6 class="panel-title txt-light">@ViewBag.Title</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+
+
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                        @*<a class="pull-left inline-block close-panel" href="#" data-effect="fadeOut">
+                                <i class="zmdi zmdi-close"></i>
+                            </a>*@
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body">
+
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Criteria</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <table class="tblFrm">
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Generation Company</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select id="ddlIPP" class="form-control srch">@Html.Raw(@ViewBag.IPP)</select>
+                                    </td>
+
+
+                                    <td style="width: 25%;">
+                                        <label for="DeclaretionType">Declaration Type </label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control srch">
+                                            <option value="%">All</option>
+                                            <option value="DAD">Day Ahead Demand</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="ddlBlock">Block / Complex </label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select id="ddlBlock" class="form-control srch">
+                                            <option value="%½%½%½%½%">All</option>
+                                        </select>
+                                    </td>
+
+
+                                    <td style="width: 25%;">
+                                        <label for="ddlStatus">Status </label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select id="ddlStatus" class="form-control srch">
+                                            <option value="%">All</option>
+                                            <option value="Draft">Draft</option>
+                                            <option value="Submitted">Submitted</option>
+                                            <option value="Acknowledged">Acknowledged</option>
+                                        </select>
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="txtFromDate">From Date </label>
+                                    </td>
+                                    <td><input id="txtFromDate" type="text" class="form-control srch dtDate" readonly /></td>
+                                    <td><label for="txtToDate">To Date </label></td>
+                                    <td><input id="txtToDate" type="text" class="form-control srch dtDate" readonly /></td>
+                                </tr>
+
+
+
+
+                            </table>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 7 || ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 9)
+                                        {
+                            <button id="btnCreateDAD" style="float:right;" class="btn btn-success" type="button">New Day Ahead Demand</button>}
+                                        <button id="btnSearch" class="btn btn-info" type="button" style="margin-right: 10px;">
+                                            Search
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>@*END OF tab0*@
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Day Ahead Demand</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+
+
+                        <div style="margin-bottom:20px;">
+                            <div id="tblContainer"></div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('body').off('click', '#btnCreateDAD');
+            $('body').on('click', '#btnCreateDAD', function (e) {
+                e.preventDefault();
+                var options = {};
+                $("#pageContainer").hide('slide', options, 300);
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/DayAheadNotificationForm" + $(location).attr('search'),
+                    success: function (result) {
+                        var options = {};
+                        $('#pageContainer').html($(result).find('#pcontent').html());
+                        $("#pageContainer").show('slide', options, 500);
+                    }
+                });
+            });//End of edit click
+            $('body').off('change', '#ddlIPP');
+            $('body').on('change', '#ddlIPP', function (e) {
+                LoaddllBlockFuel();
+                //LoadVendorSites();
+            });// End of change
+            $('body').off('change', '#ddlSite');
+            $('body').on('change', '#ddlSite', function (e) {
+                LoaddllBlockFuel();
+            });// End of change
+
+            $('body').off('change', '#ddlBlock');
+            //$('body').on('change', '#ddlBlock', function (e) {
+            //    if ($('#ddlBlock').val() != null || $('#ddlBlock').val() != undefined) {
+            //        $('#txtFuel').val($('#ddlBlock').val().split('½')[1]);
+            //        $('#txtCapacity').val($('#ddlBlock').val().split('½')[2]);
+            //    }
+            //    else {
+            //        $('#txtFuel').val('');
+            //    }
+            //});// End of
+
+            $(function () {
+              //  LoaddllBlockFuel(); Aymen
+                //LoadVendorSites();
+                LoadGrid();
+            });
+            function LoadVendorSites() {
+                var fromdata = new FormData();
+                fromdata.append('vls', '0½' + $('#ddlIPP').val());
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        $('#ddlSite').html(response);
+                        if ($('#ddlSite').val() != null || $('#ddlSite').val() != undefined) {
+                            LoaddllBlockFuel();
+                        }
+                        else {
+                            $('#ddlBlock').html('');
+                            $('#txtFuel').val('');
+                        }
+                    }
+                });
+            }//END OF LOAD
+
+            //function LoaddllBlockFuel() { Aymen
+            //    var fromdata = new FormData();
+            //    fromdata.append('vls', '1½' + $('#ddlIPP').val());
+            //    $.ajax({
+            //        type: "POST",
+            //        url: "/NPCC/AjaxCall" + $(location).attr("search"),
+            //        data: fromdata,
+            //        contentType: false,
+            //        processData: false,
+            //        success: function (response) {
+            //           // $('#ddlBlock').html('<option value="%½%½%½%½%">All</option>'+response);
+            //            if ($('#ddlBlock').val() != null || $('#ddlBlock').val() != undefined) {
+            //                //$('#txtFuel').val($('#ddlBlock').val().split('½')[1]);
+            //                //$('#txtCapacity').val($('#ddlBlock').val().split('½')[2]);
+            //            }
+            //            else {
+            //                $('#txtFuel').val('');
+            //            }
+            //        }
+            //    });
+            //}
+                        $('body').off('click', '#btnSearch');
+            $('body').on('click', '#btnSearch', function(e) {
+                e.preventDefault();
+                if ($('#txtFromDate').val() == "") {
+                    $strflg = false;
+                    swal({
+                        title: "Error",
+                        text: "Select Valid From Date... !",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#txtFromDate').focus(), 100);
+                        }
+                    });
+
+                    return false;
+                }
+                if ($('#txtToDate').val() == "") {
+                    $strflg = false;
+                    swal({
+                        title: "Error",
+                        text: "Select Valid To Date... !",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#txtToDate').focus(), 100);
+                        }
+                    });
+
+                    return false;
+                }
+                var vls = [];
+                $('.srch').each(function (index, element) {
+                    vls.push($(this).val());
+                });
+                var params = vls.join('½');
+                //alert(params);
+                $("#tblContainer").html('<div style="text-align:center;padding:20px;"><img alt="" src="../Content/img/DataLoader.gif" /></div>');
+
+                var fromdata = new FormData();
+                var $and = "";
+                 @if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 10)
+                 {
+                    @: $and = "½Draft";
+                 }
+                fromdata.append("vls", '18½' + params + $and);
+                var choice = {};
+                choice.url = '/NPCC/AjaxCall' + $(location).attr('search');
+                choice.type = "POST";
+                choice.data = fromdata;
+                choice.contentType = false;
+                choice.processData = false;
+                choice.success = function (response) {
+                if ($('#tblJ1').hasClass('dataTable')) {
+                        $('#tblJ1').dataTable().fnDestroy();
+                                                            }
+                    $('#tblContainer').html(response);
+                    $($('#tblJ1 thead tr th')[0]).css('width', '35px');
+                    $('#tblJ1 tbody tr').each(function (index, element) {
+                        $($(this).find('td')[0]).html(parseInt(index) + 1);
+                                                            });
+                    $('#tblJ1 thead tr').append('<th></th>');
+                    var $editoption = '<i class="veditDAD fa fa-edit" title="Edit" style="font-size: 20px;"></i>';
+                 @if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 10)
+                 {
+                    @: $editoption = '<i class="veditDAD fa fa-folder-open" title="Open" style="font-size: 20px;"></i>';
+                 }
+                    $('#tblJ1 tbody tr').append('<td style="width: 35px;"><div class="controls center" style="text-align: center;margin-top: 7px;">\
+                        '+ $editoption+'\
+                        </div></td>');
+                    $('#tblJ1').append('<tfoot></tfoot>');
+                    $('#tblJ1 tfoot').html($('#tblJ1 thead').html());
+                    $('#tblJ1 tfoot tr').attr("style", "border-bottom: 1px solid #c4c4c4;border-right: 1px solid #c4c4c4;");
+                    $('#tblJ1').addClass('dynamicTable');
+                    $('#tblJ1 tfoot th').each(function () {
+                                                        var title = $(this).text();
+                                                        if ($.trim(title) != "") {
+                            $(this).html('<input type="text" class="form-control" style="width:90%;" placeholder="' + title + '" />');
+                                                        }
+
+                                                    });
+
+                    var table = $('#tblJ1').DataTable({
+                                                        "aLengthMenu": [[10, 25, 50, 100, 150, 250, 500, -1], [10, 25, 50, 100, 150, 250, 500, "All"]],
+                        "iDisplayLength": -1,
+                        //"bSort": false,
+                        "sPaginationType": "full_numbers",
+                        "bJQueryUI": false,
+                        "bAutoWidth": false,
+                        "bLengthChange": true,
+                        "fnInitComplete": function (oSettings, json) {
+                            $('.dataTables_filter>label>input').attr('id', 'search');
+                                                    }
+                                                });
+                    table.columns().every(function () {
+                                                    var that = this;
+
+                        $('input', this.footer()).on('keyup change', function () {
+                                                        if (that.search() !== this.value) {
+                                                            that
+                                                                .search(this.value)
+                                                                .draw();
+                                                        }
+                                                    });
+                                                });
+
+                    $('#tblJ1_length').append('<input type="image" name="btnExcel" id="btnExcel" title="Export to Excel" class="Grd" src="../Content/img/xcel.png" style="margin-left: 30px;margin-top:5px;border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnWord" id="btnWord" title="Export to Word" class="Grd" src="../Content/img/wrd.png" style="border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnPNG" id="btnPNG" title="Export to PNG" class="Grd" src="../Content/img/png.png" style="width: 17px;border-width:0px;">');
+
+                                            };
+                                            choice.error = function (err) {
+                                                console.log(err.statusText);
+                                            };
+                $.ajax(choice);
+            });
+            function LoadGrid() {
+                $("#tblContainer").html('<div style="text-align:center;padding:20px;"><img alt="" src="../Content/img/DataLoader.gif" /></div>');
+
+                var fromdata = new FormData();
+                var $and = "";
+                 @if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 10)
+                 {
+                    @: $and = "Draft";
+                 }
+                fromdata.append("vls", '10½' + $and);
+                var choice = {};
+                choice.url = '/NPCC/AjaxCall' + $(location).attr('search');
+                choice.type = "POST";
+                choice.data = fromdata;
+                choice.contentType = false;
+                choice.processData = false;
+                choice.success = function (response) {
+                    debugger;
+                if ($('#tblJ1').hasClass('dataTable')) {
+                        $('#tblJ1').dataTable().fnDestroy();
+                                                            }
+                    $('#tblContainer').html(response);
+                    $($('#tblJ1 thead tr th')[0]).css('width', '35px');
+                    $('#tblJ1 tbody tr').each(function (index, element) {
+                        $($(this).find('td')[0]).html(parseInt(index) + 1);
+                                                            });
+                    $('#tblJ1 thead tr').append('<th style="width:35px;"><div class="controls center" style="text-align:center"><i id="btnloadList" title="Refresh" class="fa fa-refresh" style="font-size:30px;color:green"></i></div ></th>');
+                    var $editoption = '<i class="veditDAD fa fa-edit" title="Edit" style="font-size: 20px;"></i>';
+                 @if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 10)
+                 {
+                    @: $editoption = '<i class="veditDAD fa fa-folder-open" title="Open" style="font-size: 20px;"></i>';
+                 }
+                    $('#tblJ1 tbody tr').append('<td style="width: 35px;"><div class="controls center" style="text-align: center;margin-top: 7px;">\
+                        '+ $editoption+'\
+                        </div></td>');
+
+
+
+                    $('#tblJ1').append('<tfoot></tfoot>');
+                    $('#tblJ1 tfoot').html($('#tblJ1 thead').html());
+                    $('#tblJ1 tfoot tr').attr("style", "border-bottom: 1px solid #c4c4c4;border-right: 1px solid #c4c4c4;");
+                    $('#tblJ1').addClass('dynamicTable');
+                    $('#tblJ1 tfoot th').each(function () {
+                                                        var title = $(this).text();
+                                                        if ($.trim(title) != "") {
+                            $(this).html('<input type="text" class="form-control" style="width:90%;" placeholder="' + title + '" />');
+                                                        }
+
+                                                    });
+
+                    var table = $('#tblJ1').DataTable({
+                                                        "aLengthMenu": [[10, 25, 50, 100, 150, 250, 500, -1], [10, 25, 50, 100, 150, 250, 500, "All"]],
+                        "iDisplayLength": -1,
+                        //"bSort": false,
+                        "sPaginationType": "full_numbers",
+                        "bJQueryUI": false,
+                        "bAutoWidth": false,
+                        "bLengthChange": true,
+                        "fnInitComplete": function (oSettings, json) {
+                            $('.dataTables_filter>label>input').attr('id', 'search');
+                                                    }
+                                                });
+                    table.columns().every(function () {
+                                                    var that = this;
+
+                        $('input', this.footer()).on('keyup change', function () {
+                                                        if (that.search() !== this.value) {
+                                                            that
+                                                                .search(this.value)
+                                                                .draw();
+                                                        }
+                                                    });
+                                                });
+
+                    $('#tblJ1_length').append('<input type="image" name="btnExcel" id="btnExcel" title="Export to Excel" class="Grd" src="../Content/img/xcel.png" style="margin-left: 30px;margin-top:5px;border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnWord" id="btnWord" title="Export to Word" class="Grd" src="../Content/img/wrd.png" style="border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnPNG" id="btnPNG" title="Export to PNG" class="Grd" src="../Content/img/png.png" style="width: 17px;border-width:0px;">');
+
+                                            };
+                                            choice.error = function (err) {
+                                                console.log(err.statusText);
+                                            };
+                $.ajax(choice);
+            }//End of Load Grid
+            $('body').off('click', '#btnloadList');
+            $('body').on('click', '#btnloadList', function (e) {
+                LoadGrid();
+            });
+
+            $('body').off('click', '#btnExcel');
+            $('body').on('click', '#btnExcel', function (e) {
+
+                e.preventDefault();
+                $('#tblJ1').tableExport({ type: 'excel', escape: 'false' });
+                e.preventDefault();
+            });
+            $('body').off('click', '#btnWord');
+            $('body').on('click', '#btnWord', function (e) {
+                e.preventDefault();
+                $('#tblJ1').tableExport({ type: 'doc', escape: 'false' });
+                e.preventDefault();
+            });
+            $('body').off('click', '#btnPNG');
+            $('body').on('click', '#btnPNG', function (e) {
+                e.preventDefault();
+                $('#tblJ1').tableExport({ type: 'png', escape: 'false' });
+                e.preventDefault();
+            });
+
+            $('body').off('click', '.veditDAD');
+            $('body').on('click', '.veditDAD', function (e) {
+                debugger;
+                e.preventDefault();
+                var $id = $(this).parent().parent().parent().attr('tag');
+                //var $url = "/NPCC/DayAheadNotificationForm" + $(location).attr('search');
+                //if ($(this).parent().parent().parent().attr('tag').split('½')[1] == "Submit") {
+                //    $url = "/NPCC/DayAheadNotificationForm" + $(location).attr('search');
+                //}
+                $id += "½v"
+                var options = {};
+                var fromdata = new FormData();
+                fromdata.append('vls', $id);
+                $("#pageContainer").hide('slide', options, 300);
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/DayAheadNotificationForm" + $(location).attr('search'),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (result) {
+                        var options = {};
+                        $('#pageContainer').html($(result).find('#pcontent').html());
+                        $("#pageContainer").show('slide', options, 500);
+                    }
+                });
+            });
+
+
+        });//end of doc ready
+    </script>
+</div>

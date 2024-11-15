@@ -1,0 +1,538 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="APP1DB" Class="DBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="ConnectionString" ConnectionString="Data Source=appdb0a.database.windows.net;Initial Catalog=APP1DB;Persist Security Info=True;User ID=CPPA;Password=Azcpp@786;Connect Timeout=740" Provider="System.Data.SqlClient" />
+  <Table Name="CPPA_CA.DIARY_HEADER_INTERFACE" Member="DIARY_HEADER_INTERFACEs">
+    <Type Name="DIARY_HEADER_INTERFACE">
+      <Column Name="DIARY_HEADER_ID" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PPA_HEADER_ID" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="INVOICE_TYPE_ID" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="VEN_INV_LETTER_NO" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="VEN_INV_LETTER_DATE" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="INVOICE_PERIOD_FROM" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="INVOICE_PERIOD_TO" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="CURRENCY" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TOTAL_CLAIM" Type="System.Decimal" DbType="Decimal(38,4) NOT NULL" CanBeNull="false" />
+      <Column Name="SUBMIT_DATE" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="APPROVED_STATUS" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="INV_DUE_DATE" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="REMARKS" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ORGANIZATION_ID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="GST_PER" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="VERIFIED_AMOUNT" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
+      <Column Name="ADJ_AMOUNT_SUM" Type="System.Decimal" DbType="Decimal(38,0)" CanBeNull="true" />
+      <Column Name="INTERFACE_STATUS" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CREATION_DATE" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="CREATED_BY" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="LAST_UPDATE_DATE" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="LAST_UPDATE_LOGIN" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ERP_TRANSFER_CHECK" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="PORTAL_TRANSFER_CHECK" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="INTERFACE_TRANSFER_CHECK" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="PARENT_INVOICE_NO" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="IS_DIFFERENTIAL" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="ERP_TABLE_ID" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="INITIAL_VERIFICATION_CPPA" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="DIARY_EDITABLE" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="IS_APPROVED_BY_FINANCE" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="IS_APPROVED_BY_TECHNICAL" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="TransactionNumber" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="SubmittionRemarks" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="INVOICE_TYPES" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="TECHNICAL_UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FINANCE_UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="VENDOR_SITE_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="VENDOR_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ORG_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HARD_COPY_SUBMISSION_DATETIME" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HARD_COPY_SUBMISSION_TYPE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FORM_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Error_Email_sent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="CPPA_CA.BLOCKS_HEADER_INTERFACE" Member="BLOCKS_HEADER_INTERFACEs">
+    <Type Name="BLOCKS_HEADER_INTERFACE">
+      <Column Name="BLOCK_HEADER_ID" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DIARY_HEADER_ID" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="PPA_BLOCK_HEADER_ID" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="RATE_VALID_FROM" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="RATE_VALID_TO" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="CLAIM_TOTAL" Type="System.Decimal" DbType="Decimal(30,4) NOT NULL" CanBeNull="false" />
+      <Column Name="ADVANCE_PAID" Type="System.Decimal" DbType="Decimal(30,0)" CanBeNull="true" />
+      <Column Name="REMAINING_CURRENT_MONTH" Type="System.Decimal" DbType="Decimal(30,0)" CanBeNull="true" />
+      <Column Name="ADVANCE_NEXT_MONTH" Type="System.Decimal" DbType="Decimal(30,0)" CanBeNull="true" />
+      <Column Name="PAYABLE_CURRENT_MONTH" Type="System.Decimal" DbType="Decimal(30,0)" CanBeNull="true" />
+      <Column Name="VERIFIED_AMOUNT" Type="System.Decimal" DbType="Decimal(30,0)" CanBeNull="true" />
+      <Column Name="REMARKS" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="CREATION_DATE" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="CREATED_BY" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="LAST_UPDATE_DATE" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="LAST_UPDATE_BY" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="LAST_UPDATE_LOGIN" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ERP_TRANSFER_CHECK" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="PORTAL_TRANSFER_CHECK" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="INTERFACE_TRANSFER_CHECK" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="PPA_COMP_TYP_HEADER_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PPA_FUEL_TYP_HEADER_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="bisRequired" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DIFF_PAR_ID_FK" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="CPPA_CA.PPA_APPLICABLE_INVOICES" Member="PPA_APPLICABLE_INVOICEs">
+    <Type Name="PPA_APPLICABLE_INVOICE">
+      <Column Name="APP_INVOICES_ID_PK" Type="System.Double" DbType="Float NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="HEADER_ID_FK" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="INVOICE_TYPES" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="IS_HOURLY" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="ORGANIZATION_ID" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CREATION_DATE" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="CREATED_BY" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LAST_UPDATE_DATE" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="LAST_UPDATED_BY" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LAST_UPDATE_LOGIN" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ADVANCE_PAYMENT" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="ADJUSTMENTS" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="CPPA_CA.FND_LOOKUP_VALUES" Member="FND_LOOKUP_VALUEs">
+    <Type Name="FND_LOOKUP_VALUE">
+      <Column Name="FND_LOOKUP_VALUES_ID_PK" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LOOKUP_TYPE" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="LANGUAGE" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="LOOKUP_CODE" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="MEANING" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="DESCRIPTION" Type="System.String" DbType="VarChar(240)" CanBeNull="true" />
+      <Column Name="ENABLED_FLAG" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="START_DATE_ACTIVE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="END_DATE_ACTIVE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATED_BY" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CREATION_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LAST_UPDATED_BY" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LAST_UPDATE_LOGIN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LAST_UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SOURCE_LANG" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+      <Column Name="SECURITY_GROUP_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="VIEW_APPLICATION_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TERRITORY_CODE" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="ATTRIBUTE_CATEGORY" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="ATTRIBUTE1" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="ATTRIBUTE2" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="ATTRIBUTE3" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="ATTRIBUTE4" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="ATTRIBUTE5" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="ATTRIBUTE6" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="ATTRIBUTE7" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="ATTRIBUTE8" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="ATTRIBUTE9" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="ATTRIBUTE10" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="ATTRIBUTE11" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="ATTRIBUTE12" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="ATTRIBUTE13" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="ATTRIBUTE14" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="ATTRIBUTE15" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="TAG" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="LEAF_NODE" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="ZD_EDITION_NAME" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="CPPA_CA.WP_GC_ADJUSTMENTS" Member="WP_GC_ADJUSTMENTs">
+    <Type Name="WP_GC_ADJUSTMENT">
+      <Column Name="ADJ_HEADER_ID" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DIARY_HEADER_ID" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="REFERENCE_INVOICE_ID" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="REFERENCE_INVOICE_NUMBER" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ADJ_TYPES" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ADJ_AMOUNT" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ATTRIBUTE1" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="ATTRIBUTE2" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="ATTRIBUTE3" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="ATTRIBUTE4" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="REMARKS" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CREATION_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATED_BY" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="LAST_UPDATE_DATE" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="LAST_UPDATED_BY" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="LAST_UPDATE_LOGIN" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ERP_TRANSFER_CHECK" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="PORTAL_TRANSFER_CHECK" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="INTERFACE_TRANSFER_CHECK" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="CPPA_CA.WP_GC_INV_DIFF_PARENT" Member="WP_GC_INV_DIFF_PARENTs">
+    <Type Name="WP_GC_INV_DIFF_PARENT">
+      <Column Name="DIFF_PAR_ID_PK" Type="System.Decimal" DbType="Decimal(23,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PARENT_INV_ID_FK" Type="System.Decimal" DbType="Decimal(23,0)" CanBeNull="true" />
+      <Column Name="PRE_POST" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IPP_INV_NO" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="INVOICE_TYPE" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="PAR_INV_PER_FRM" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PAR_INV_PER_TO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PAR_INV_AMOUNT" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CLAIM_AMOUNT" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="REMARKS" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="CREATION_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATED_BY" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LAST_UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LAST_UPDATED_BY" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LAST_UPDATE_LOGIN" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DIARY_HEADER_ID_FK" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="CURRENT_CLAIM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ACTUALID" Type="System.Decimal" DbType="Decimal(23,0)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="CPPA_CA.WP_GC_INTEREST_DETAIL" Member="WP_GC_INTEREST_DETAILs">
+    <Type Name="WP_GC_INTEREST_DETAIL">
+      <Column Name="INT_DET_ID_PK" Type="System.Decimal" DbType="Decimal(23,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PAYMENT_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NO_OF_DAYS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AMOUNT_PAID" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="INTEREST_RATE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="INTEREST_AMOUNT" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FROM_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="End_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HEADER_ID_FK" Type="System.Decimal" DbType="Decimal(23,0)" CanBeNull="true" />
+      <Column Name="DIFF_PAR_ID_FK" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="CREATION_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CREATED_BY" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LAST_UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LAST_UPDATED_BY" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LAST_UPDATE_LOGIN" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PPA_BLOCK_HEADER_ID" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="COM_DEF_ID_FK" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Block_Complex" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FULE_TYPE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="COMPONENT" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="UNITS" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="REMARKS" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="IS_INCLUDE_IN_TOTAL" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="CPPA_CA.COMP_HEADER_INTERFACE" Member="COMP_HEADER_INTERFACEs">
+    <Type Name="COMP_HEADER_INTERFACE">
+      <Column Name="COM_HEADER_ID" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="BLOCK_HEADER_ID" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="COM_DEF_ID_FK" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="COMP_NAME" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="COMP_VALUE" Type="System.Decimal" DbType="Decimal(30,4) NOT NULL" CanBeNull="false" />
+      <Column Name="VARIFIED_AMOUNT" Type="System.Decimal" DbType="Decimal(30,0)" CanBeNull="true" />
+      <Column Name="REMARKS" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="GST_PER" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="CREATION_DATE" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="CREATED_BY" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="LAST_UPDATE_DATE" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="LAST_UPDATED_BY" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="LAST_UPDATE_LOGIN" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ERP_TRANSFER_CHECK" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="PORTAL_TRANSFER_CHECK" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="INTERFACE_TRANSFER_CHECK" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="IS_INCLUDE_IN_TOTAL" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="IS_MANDATORY" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.APP_SUPPLIER_SITE_ALL_STOCKS" Member="APP_SUPPLIER_SITE_ALL_STOCKs">
+    <Type Name="APP_SUPPLIER_SITE_ALL_STOCK">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="VENDOR_ID" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="VENDOR_SITE_ID" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="ADDRESS_LINE1" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="STOCK_FUEL_ID" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="STOCK_FUEL_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="CPPA_CA.ApiUsers" Member="ApiUsers">
+    <Type Name="ApiUser">
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PPA_HEADER_ID_FK" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="UserType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="EmailSubscription" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Designation" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="USER_NAME" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="Is_Department_Head" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IS_STOCK_MENU_ACCESS" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="IS_POST_USER" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="CPPA_CA.ATTACHMENT_HEADER" Member="ATTACHMENT_HEADERs">
+    <Type Name="ATTACHMENT_HEADER">
+      <Column Name="ATTACH_HEADER_IDA" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="DIARY_HEADER_ID" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="ATTACHMENT_TYPE" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="ATTACHMENT_TITLE" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ATTACHMENT_DESC" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ATTACHMENT_CATEGORY" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ATTACHMENT_SHORT_TEXT" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="FILE_NAME" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="FILE_TYPE" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="FILE_DATA" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CREATION_DATE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CREATED_BY" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="LAST_UPDATE_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LAST_UPDATE_BY" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LAST_UPDATE_LOGIN" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ERP_TRANSFER_CHECK" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="INTERFACE_TRANSFER_CHECK" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="PORTAL_TRANSFER_CHECK" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="IS_TEMP" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="bisDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Encoded64" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="xxxID" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="ATTACH_HEADER_ID" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ECM_FILE_TRANSFER" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="FILE_LINK" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.uspDiaryUpdateRemakOnly" Method="uspDiaryUpdateRemakOnly">
+    <Parameter Name="DIARY_HEADER_ID" Parameter="dIARY_HEADER_ID" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Remarks" Parameter="remarks" Type="System.String" DbType="VarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.uspDiaryUpdateRemak" Method="uspDiaryUpdateRemak">
+    <Parameter Name="DIARY_HEADER_ID" Parameter="dIARY_HEADER_ID" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="Remarks" Parameter="remarks" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="UserID" Parameter="userID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="dtDatetime" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="condition" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="RemarksLenth" Parameter="remarksLenth" Type="System.Int32" DbType="Int" />
+    <Parameter Name="HARD_COPY_SUBMISSION_DATETIME" Parameter="hARD_COPY_SUBMISSION_DATETIME" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="HARD_COPY_SUBMISSION_TYPE" Parameter="hARD_COPY_SUBMISSION_TYPE" Type="System.String" DbType="VarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_DHI_BY_ID" Method="sp_DHI_BY_ID">
+    <Parameter Name="DIARY_HEADER_ID" Parameter="dIARY_HEADER_ID" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="sp_DHI_BY_IDResult">
+      <Column Name="DIARY_HEADER_ID" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="PPA_HEADER_ID" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="INVOICE_TYPE_ID" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="VEN_INV_LETTER_NO" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="VEN_INV_LETTER_DATE" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="INVOICE_PERIOD_FROM" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="INVOICE_PERIOD_FROMTIME" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="INVOICE_PERIOD_TO" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="INVOICE_PERIOD_TOTIME" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="CURRENCY" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TOTAL_CLAIM" Type="System.Decimal" DbType="Decimal(38,4) NOT NULL" CanBeNull="false" />
+      <Column Name="SUBMIT_DATE" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="APPROVED_STATUS" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="INV_DUE_DATE" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="REMARKS" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ORGANIZATION_ID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="CREATION_DATE" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="LAST_UPDATE_DATE" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="PARENT_INVOICE_NO" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="IS_DIFFERENTIAL" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="INITIAL_VERIFICATION_CPPA" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="DIARY_EDITABLE" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="IS_APPROVED_BY_FINANCE" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="IS_APPROVED_BY_TECHNICAL" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="TransactionNumber" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="SubmittionRemarks" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="VENDOR_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ADVANCE_PAYMENT" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="IS_HOURLY" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="ADJUSTMENTS" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="INVOICE_TYPES" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="VENDOR_NAME" Type="System.String" DbType="VarChar(240)" CanBeNull="true" />
+      <Column Name="ADDRESS_LINE1" Type="System.String" DbType="VarChar(240)" CanBeNull="true" />
+      <Column Name="VENDOR_SITE_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FINANCE_UPDATE_DATE" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_DDTL_BY_DHIID" Method="sp_DDTL_BY_DHIID">
+    <Parameter Name="DIARY_HEADER_ID" Parameter="dIARY_HEADER_ID" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="sp_DDTL_BY_DHIIDResult">
+      <Column Name="BLK_FUEL_ID_PK" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="BLK_FUEL_ID_PKX" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="HEADER_ID_FK" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="INVOICE_TYPE_ID" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="BLOCK_NO" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FUEL_TYPE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="RATE_VALID_FROM" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="RATE_VALID_TO" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="CLAIM_TOTAL" Type="System.Decimal" DbType="Decimal(30,4) NOT NULL" CanBeNull="false" />
+      <Column Name="ADVANCE_PAID" Type="System.Decimal" DbType="Decimal(30,0)" CanBeNull="true" />
+      <Column Name="REMAINING_CURRENT_MONTH" Type="System.Decimal" DbType="Decimal(30,0)" CanBeNull="true" />
+      <Column Name="ADVANCE_NEXT_MONTH" Type="System.Decimal" DbType="Decimal(30,0)" CanBeNull="true" />
+      <Column Name="PAYABLE_CURRENT_MONTH" Type="System.Decimal" DbType="Decimal(30,0)" CanBeNull="true" />
+      <Column Name="REMARKS" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="bisRequired" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="COMPONENTS" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_DifferentialDTL_BY_DHIID" Method="sp_DifferentialDTL_BY_DHIID">
+    <Parameter Name="DIARY_HEADER_ID" Parameter="dIARY_HEADER_ID" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="sp_DifferentialDTL_BY_DHIIDResult">
+      <Column Name="DIFF_PAR_ID_PK" Type="System.Decimal" DbType="Decimal(23,0) NOT NULL" CanBeNull="false" />
+      <Column Name="PARENT_INV_ID_FK" Type="System.Decimal" DbType="Decimal(23,0)" CanBeNull="true" />
+      <Column Name="PRE_POST" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IPP_INV_NO" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="INVOICE_TYPE" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="PAR_INV_PER_FRM" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="PAR_INV_PER_TO" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="PAR_INV_AMOUNT" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CLAIM_AMOUNT" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="REMARKS" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="CREATION_DATE" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="CREATED_BY" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LAST_UPDATE_DATE" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="LAST_UPDATED_BY" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LAST_UPDATE_LOGIN" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DIARY_HEADER_ID_FK" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="CURRENT_CLAIM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="COMPONENTS" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_InterestDTL_BY_DHIID" Method="sp_InterestDTL_BY_DHIID">
+    <Parameter Name="DIARY_HEADER_ID" Parameter="dIARY_HEADER_ID" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <ElementType Name="sp_InterestDTL_BY_DHIIDResult">
+      <Column Name="DIFF_PAR_ID_PK" Type="System.Decimal" DbType="Decimal(23,0) NOT NULL" CanBeNull="false" />
+      <Column Name="PARENT_INV_ID_FK" Type="System.Decimal" DbType="Decimal(23,0)" CanBeNull="true" />
+      <Column Name="PRE_POST" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IPP_INV_NO" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="INVOICE_TYPE" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="PAR_INV_PER_FRM" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="PAR_INV_PER_TO" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="PAR_INV_AMOUNT" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CLAIM_AMOUNT" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="REMARKS" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="CREATION_DATE" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="CREATED_BY" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LAST_UPDATE_DATE" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="LAST_UPDATED_BY" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LAST_UPDATE_LOGIN" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DIARY_HEADER_ID_FK" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="CURRENT_CLAIM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="COMPONENTS" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_INVOICE_TYPES4Interest_by_VENDOR_SITE_ID" Method="sp_INVOICE_TYPES4Interest_by_VENDOR_SITE_ID">
+    <Parameter Name="VENDOR_SITE_ID" Parameter="vENDOR_SITE_ID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_INVOICE_TYPES4Interest_by_VENDOR_SITE_IDResult">
+      <Column Name="APP_INVOICES_ID_PK" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="INVOICE_TYPES" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="IS_HOURLY" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="ADJUSTMENTS" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_Upload_FileNew" Method="sp_Upload_FileNew">
+    <Parameter Name="DIARY_HEADER_ID" Parameter="dIARY_HEADER_ID" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="ATTACHMENT_TYPE" Parameter="aTTACHMENT_TYPE" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="ATTACHMENT_TITLE" Parameter="aTTACHMENT_TITLE" Type="System.String" DbType="VarChar(120)" />
+    <Parameter Name="ATTACHMENT_DESC" Parameter="aTTACHMENT_DESC" Type="System.String" DbType="Text" />
+    <Parameter Name="FILE_NAME" Parameter="fILE_NAME" Type="System.String" DbType="VarChar(500)" />
+    <Parameter Name="FILE_TYPE" Parameter="fILE_TYPE" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="FILE_DATA" Parameter="fILE_DATA" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="CREATION_DATE" Parameter="cREATION_DATE" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="CREATED_BY" Parameter="cREATED_BY" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="ATTACH_HEADER_ID" Parameter="aTTACH_HEADER_ID" Type="System.Decimal" DbType="Decimal(23,0)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_DHI_BY_IDNEW" Method="sp_DHI_BY_IDNEW">
+    <Parameter Name="DIARY_HEADER_ID" Parameter="dIARY_HEADER_ID" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="UserId" Parameter="userId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="dtDateTime" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Action" Parameter="action" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="vendor_site_id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Description" Parameter="description" Type="System.String" DbType="NVarChar(500)" />
+    <ElementType Name="sp_DHI_BY_IDNEWResult">
+      <Column Name="DIARY_HEADER_ID" Type="System.Decimal" DbType="Decimal(20,0) NOT NULL" CanBeNull="false" />
+      <Column Name="PPA_HEADER_ID" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="INVOICE_TYPE_ID" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="VEN_INV_LETTER_NO" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="VEN_INV_LETTER_DATE" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="ORGANIZATION_ID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="INVOICE_PERIOD_FROM" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="INVOICE_PERIOD_FROMTIME" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="INVOICE_PERIOD_TO" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="INVOICE_PERIOD_TOTIME" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="CURRENCY" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TOTAL_CLAIM" Type="System.Decimal" DbType="Decimal(38,4) NOT NULL" CanBeNull="false" />
+      <Column Name="SUBMIT_DATE" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="APPROVED_STATUS" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="INV_DUE_DATE" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="REMARKS" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ORGANIZATION_ID1" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="CREATION_DATE" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="LAST_UPDATE_DATE" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="PARENT_INVOICE_NO" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="IS_DIFFERENTIAL" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="INITIAL_VERIFICATION_CPPA" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="DIARY_EDITABLE" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="IS_APPROVED_BY_FINANCE" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="IS_APPROVED_BY_TECHNICAL" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="TransactionNumber" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="SubmittionRemarks" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="VENDOR_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ADVANCE_PAYMENT" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="IS_HOURLY" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="ADJUSTMENTS" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="INVOICE_TYPES" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="VENDOR_NAME" Type="System.String" DbType="VarChar(240)" CanBeNull="true" />
+      <Column Name="ADDRESS_LINE1" Type="System.String" DbType="VarChar(293)" CanBeNull="true" />
+      <Column Name="VENDOR_SITE_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="HARD_COPY_SUBMISSION_DATE" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+      <Column Name="HARD_COPY_SUBMISSION_TIME" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="HARD_COPY_SUBMISSION_TYPE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FINANCE_UPDATE_DATE" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetAllBlockFuelsByPPAHeaderIDandAppInvTypeIDJSON" Method="GetAllBlockFuelsByPPAHeaderIDandAppInvTypeIDJSON">
+    <Parameter Name="PPAHeaderID" Parameter="pPAHeaderID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PPAAppInvTypeID" Parameter="pPAAppInvTypeID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetAllBlockFuelsByPPAHeaderIDandAppInvTypeIDJSONResult">
+      <Column Name="BLK_FUEL_ID_PK" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="HEADER_ID_FK" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="APP_INVOICES_ID_FK" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="BLOCK_NO" Type="System.String" DbType="VarChar(120)" CanBeNull="true" />
+      <Column Name="FUEL_TYPE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ORGANIZATION_ID" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="CREATION_DATE" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="CREATED_BY" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="LAST_UPDATE_DATE" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="LAST_UPDATED_BY" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="LAST_UPDATE_LOGIN" Type="System.Decimal" DbType="Decimal(20,0)" CanBeNull="true" />
+      <Column Name="GROUP_COMP" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Is_Required" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="ADVANCE_PAID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="REMAINING_CURRENT_MONTH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ADVANCE_NEXT_MONTH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PAYABLE_CURRENT_MONTH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="bisRequired" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="ADVANCE_PAYMENT" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="COMPONENTS" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_DHI_Email_InfoNEW" Method="sp_DHI_Email_InfoNEW">
+    <Parameter Name="TransactionNumber" Parameter="transactionNumber" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="UserId" Parameter="userId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="dtDateTime" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Action" Parameter="action" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Description" Parameter="description" Type="System.String" DbType="NVarChar(500)" />
+    <ElementType Name="sp_DHI_Email_InfoNEWResult">
+      <Column Name="DATETIME" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="VENDOR_NAME" Type="System.String" DbType="VarChar(240)" CanBeNull="true" />
+      <Column Name="INVOICE_TYPE" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="ADDRESS_LINE1" Type="System.String" DbType="VarChar(240)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_DHI_Email_InfoReceiveReturn" Method="sp_DHI_Email_InfoReceiveReturn">
+    <Parameter Name="DIARY_HEADER_ID" Parameter="dIARY_HEADER_ID" Type="System.Decimal" DbType="Decimal(20,0)" />
+    <Parameter Name="UserId" Parameter="userId" Type="System.Int32" DbType="Int" />
+    <Parameter Name="dtDateTime" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Action" Parameter="action" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Description" Parameter="description" Type="System.String" DbType="NVarChar(500)" />
+    <ElementType Name="sp_DHI_Email_InfoReceiveReturnResult">
+      <Column Name="DATETIME" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="APPROVED_STATUS" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="IS_APPROVED_BY_FINANCE" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="TransactionNumber" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="IS_APPROVED_BY_TECHNICAL" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="VENDOR_NAME" Type="System.String" DbType="VarChar(240)" CanBeNull="true" />
+      <Column Name="INVOICE_TYPE" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="ADDRESS_LINE1" Type="System.String" DbType="VarChar(240)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(8000)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

@@ -1,0 +1,903 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div id="pcontent">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+                <div class="panel panel-default card-view panel-refresh">
+                    <div class="refresh-container">
+                        <div class="la-anim-1"></div>
+                    </div>
+                    <div class="panel-heading">
+                        <div class="pull-left" style="display: inline-flex;">
+                            <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff;"></i>
+                            <h6 class="panel-title txt-light">@ViewBag.Title</h6>
+                        </div>
+                        <div class="pull-right">
+                            <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                                <i class="zmdi zmdi-chevron-down"></i>
+                                <i class="zmdi zmdi-chevron-up"></i>
+                            </a>
+
+
+                            <a href="#" class="pull-left inline-block full-screen mr-15">
+                                <i class="zmdi zmdi-fullscreen"></i>
+                            </a>
+                            @*<a class="pull-left inline-block close-panel" href="#" data-effect="fadeOut">
+                                <i class="zmdi zmdi-close"></i>
+                            </a>*@
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div id="collapse_1" class="panel-wrapper collapse in">
+                        <div class="panel-body" style="min-height: 300px;">
+                            @*====Body Start===*@
+                            <div class="tab0">
+                                &nbsp;<div class="tab1" id="tabID">&nbsp;Purchase of Power Invoices</div>
+                                <strong id="ppiSearchLink" style="float:right;padding: 3px;cursor: pointer;" class="btn-success">View All</strong>
+                                @*<button id="btnCreateDACList" style="float:right;" class="btn btn-success" type="button">New Availability</button>*@
+                                @*<a id="ppiSearchLink" class="pull-right" href="https://cppag.sharepoint.com/Pages/SearchForm.aspx">
+                                    <span>
+                                        View All
+                                    </span>
+                                </a>*@
+                                <div class="tab2">&nbsp;</div>
+                            </div>
+                            <div style="background-color: white;">
+                                <div style="overflow-x: scroll; padding:5px;">
+                                    <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" id="tblpopi">
+                                        <thead>
+                                            <tr style="width:100%;">
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                                                    Transaction No
+                                                </th>
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                                                    Invoice No
+                                                </th>
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                                                    Submission Date
+                                                </th>
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                                                    Form Type
+                                                </th>
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-sortable-default-col="" data-tablesaw-priority="">
+                                                    Invoice Type
+                                                </th>
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                    Invoice From
+                                                </th>
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                    Invoice To
+                                                </th>
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                    Amount
+                                                </th>
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                    Final Status
+                                                </th>
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                    HC Submission Date
+                                                </th>
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                    Edit
+                                                </th>
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                    Delete
+                                                </th>
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                    View
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            @*====Body End=====*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="historyModal" title="History" style="display:none;">
+            <table class="table-bordered table-hover table borderWidth" data-tablesaw-mode="swipe" id="tbl_history">
+                <thead>
+                <tr>
+                    <th id="org" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                        User Name
+                    </th>
+                    <th id="org" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                        Designation
+                    </th>
+                    <th id="org" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                        Permission Level
+                    </th>
+                    <th id="org" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                        Date/Time
+                    </th>
+                    <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                        Action
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <div style="text-align:right;">
+                <button type="button" id="btnCloseDialog2" class="btn btn-default">
+                    Close
+                </button>
+            </div>
+        </div>
+        <script src="~/Content/plugins/moment/min/moment.min.js"></script>
+        <script src="~/Content/vendors/bower_components/moment/min/datetime-moment.js"></script>
+        <script type="text/javascript">
+            (function () {
+                @if (@ViewBag.StockAccess=="0")
+                {
+                    @: $('a[data-target="#cppag_l56"]').parent().remove();
+                }
+                $('#tooltip').remove();
+                if ($('.slide-nav-toggle').length>0) {
+                    $('#toggle_nav_btn').click();
+                }
+                var _swal = window.swal;
+
+                window.swal = function() {
+
+                    var previousWindowKeyDown = window.onkeydown;
+
+                    _swal.apply(this, Array.prototype.slice.call(arguments, 0));
+
+                    window.onkeydown = previousWindowKeyDown;
+
+                };
+
+            })();
+
+            function goToHome() {
+                var options = {};
+                var $id = "0½0";
+                var fromdata = new FormData();
+                fromdata.append('vls', $id);
+                $("#pageContainer").hide('slide', options, 300);
+                $.ajax({
+                    type: "POST",
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    url: "/Invoice/IppDashboard" + $(location).attr('search'),
+
+                    success: function(result) {
+                        var options = {};
+                        $('#pageContainer').html($(result).find('#pcontent').html());
+                        $("#pageContainer").show('slide', options, 500);
+                    }
+                });
+            }
+
+            function deleteInvoice(id) {
+                swal({
+                        title: "Are you sure?",
+                        text: "You will not be able to recover this file!",
+                        type: "warning",
+                        showCancelButton: true,
+                        focusCancel: true,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "Yes, delete",
+                        cancelButtonText: "No, cancel",
+                        closeOnConfirm: false,
+                    },
+                    function() { //var data1 = { "DIARY_HEADER_ID": id, "APPROVED_STATUS": "Deleted" };
+                        //var url = "https://cppa2.azurewebsites.net/v1/D_H_Interface/UpdateStatus";
+                        var fromdata = new FormData();
+                        fromdata.append("vls", '14½' + id);
+
+                        $.ajax({
+                            //url: url,
+                            //type: 'PUT',
+                            //data: JSON.stringify(data1),
+                            //contentType: "application/json;charset=utf-8",
+                            //headers: {
+                            //    "Token": Token
+                            //},
+                            beforeSend: function() {
+                                $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+                            },
+                            complete: function() {
+                                $.unblockUI();
+                            },
+                            type: "POST",
+                            url: "/Invoice/AjaxCall" + $(location).attr("search"),
+                            data: fromdata,
+                            contentType: false,
+                            processData: false,
+                            success: function(response) {
+                                $.unblockUI();
+                                $('span[id="' + id + '"]').parent().parent().parent().remove();
+                                //swal("Deleted!", "Invoice has been deleted.", "success");
+                                swal({
+                                        title: "Deleted!",
+                                        text: "Invoice has been deleted.",
+                                        type: "success",
+                                        showCancelButton: false,
+                                        showConfirmButton: true
+                                    },
+                                    function() {
+                                        goToHome();
+                                    });
+                                //location.href = _spPageContextInfo.webAbsoluteUrl + "/Pages/Home.aspx";
+                                return false;
+                            },
+                            error: function(jqXHR, status) {
+                                //$.unblockUI();
+                            }
+                        });
+                        return true;
+                    }
+                );
+            } // END OF DELETE FUNCTION
+
+            $(document).ready(function() {
+
+                $('#historyModal').dialog({
+                    autoOpen: false,
+                    height: 455,
+                    width: 650,
+                    modal: true,
+                    show: {
+                        effect: "clip",
+                        duration: 500
+                    },
+                    hide: {
+                        effect: "clip",
+                        duration: 500
+                    }
+                });
+                $('body').off("click", '#btnCloseDialog2');
+                $('body').on("click", '#btnCloseDialog2', function (e) {
+                    e.preventDefault();
+                    $('#historyModal').dialog('close');
+                    $('#attachmentTitle').val('');
+                    $('#attachmentDesc').val('');
+                    $('#attachmentFile').val('');
+                    try {
+                        if ($.browser.msie) {
+                            $('#attachmentFile').replaceWith($('#attachmentFile').clone());
+                        }
+                        else {
+                            $('#attachmentFile').val('');
+                        }
+                        $('#attachmentFile').html('');
+                    } catch (e) {
+                        return false;
+                    }
+                });
+
+                $('body').off('click', '.history');
+                $('body').on('click', '.history', function(e){
+                    e.preventDefault();
+                    var fromdata = new FormData();
+                    fromdata.append("vls", '16½' + $(this).attr('itemid'));
+                    $.ajax
+                    ({
+                        //type: "GET",
+                        //url: "https://cppa2.azurewebsites.net/v1/invoice/GetInvoiceHistory/" + $(this).attr('itemid'),
+                        //dataType: 'json',
+                        //headers: {
+                        //    "Token": Token
+                        //},
+                        type: "POST",
+                        url: "/Invoice/AjaxCall" + $(location).attr("search"),
+                        data: fromdata,
+                        contentType: false,
+                        processData: false,
+                        beforeSend: function () {
+                            $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+                        },
+                        complete: function () {
+                            $.unblockUI();
+                        },
+                        success: function (data) {
+                            var historyData = JSON.parse(data);
+                            $('#tbl_history>tbody').html('');
+                            $.each(historyData, function (index, value) {
+                                if(value.Action != "VIEWED")
+                                    $('#tbl_history>tbody').append('<tr><td><span  class="txt-dark weight-500">' + value.Name + '</span></td><td><span  class="txt-dark weight-500">' + value.Designation + '</span></td><td><span  class="txt-dark weight-500">' + value['User Type'] + '</span></td><td><span  class="txt-dark weight-500">' + value['Date Time'] + '</span></td><td><span  class="txt-dark weight-500">' + value.Action + '</span></td></tr>');
+                            });
+                            $('#historyModal').dialog('open');
+                        },//end of success
+                        error: function (request, textStatus, errorThrown) {
+                            console.log(request);
+                            $.unblockUI();
+                        }
+                    });// end of ajax call
+                });
+
+                $('body').off('click', 'a[hrf]');
+                $('body').on('click',
+                    'a[hrf]',
+                    function(e) {
+                        e.preventDefault();
+
+                        var $lnk = $(this).attr('hrf');
+                        var TargetView = "";
+                        if ($lnk.split('?')[0].toLowerCase().indexOf("monthlyform.aspx") >= 0) {
+                            TargetView = "MonthlyInvoice";
+                        }
+                        if ($lnk.split('?')[0].toLowerCase().indexOf("differentialinvoice.aspx") >= 0) {
+                            TargetView = "DifferentialInvoice";
+                        }
+                        if ($lnk.split('?')[0].toLowerCase().indexOf("interestinvoice.aspx") >= 0) {
+                            TargetView = "InterestInvoice";
+                        }
+                        var parms = $lnk.split('?')[1];
+                        var arr = [];
+                        if (parms.length > 0) {
+                            var p = parms.split('&');
+                            for (var i = 0; i < p.length; i++) {
+                                var sval = { name: p[i].split('=')[0], vl: p[i].split('=')[1] };
+                                arr.push(sval);
+                            }
+                        } // end of if
+
+                        for (var i = 0; i < arr.length; i++) {
+                            sessionStorage.setItem(arr[i].name, arr[i].vl);
+                        }
+                        debugger;
+
+                        var options = {};
+                        var $id = "0½0";
+                        var fromdata = new FormData();
+                        fromdata.append('vls', $id);
+                        $("#pageContainer").hide('slide', options, 300);
+                        $.ajax({
+                            type: "POST",
+                            data: fromdata,
+                            contentType: false,
+                            processData: false,
+                            url: "../Invoice/" + TargetView + $(location).attr('search'),
+
+                            success: function(result) {
+                                var options = {};
+                                $('#pageContainer').html($(result).find('#pcontent').html());
+                                $("#pageContainer").show('slide', options, 500);
+                            }
+                        });
+                        //location.href = $lnk.split('?')[0];
+
+                    });
+
+                $('body').off('click', '#ppiSearchLink');
+                $('body').on('click',
+                    '#ppiSearchLink',
+                    function(e) {
+                        e.preventDefault();
+                        var viewname = "SearchForm";
+                        if (@ViewBag.UserType == "2" || @ViewBag.UserType == "3") {
+                            viewname = "SearchInvoices";
+                        }
+                        var options = {};
+                        var $id = "0½N";
+                        var fromdata = new FormData();
+                        fromdata.append('vls', $id);
+                        $("#pageContainer").hide('slide', options, 300);
+                        $.ajax({
+                            type: "POST",
+                            data: fromdata,
+                            contentType: false,
+                            processData: false,
+                            url: "/Invoice/" + viewname + $(location).attr('search'),
+
+                            success: function(result) {
+                                var options = {};
+                                $('#pageContainer').html($(result).find('#pcontent').html());
+                                $("#pageContainer").show('slide', options, 500);
+                            }
+                        });
+                    }); //End of edit click
+
+
+                function numberWithCommas(x) {
+                    // return x.toString().replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                    x = x.toString();
+                    if (x % 1 == 0) {
+                        if (x.indexOf(".") < 0) {
+                            x = x.replace(/\D-/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                            x += ".0000";
+                        } else {
+                            x = x.replace('.0000', '');
+                            x = x.replace(/\D-/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                            x += ".0000";
+
+                        }
+                    } else {
+                        var index = x.indexOf(".");
+                        var p1 = x.substring(0, index);
+                        p1 = p1.replace(/\D-/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                        var p2 = x.substring(index);
+                        p2 = p2 + "0000";
+                        p2 = p2.substring(0, 5);
+                        x = p1 + p2;
+                    }
+                    return x;
+                }
+
+                $(function() {
+
+                    if (@ViewBag.UserType == "1" || @ViewBag.UserType == "16") {
+                        var options = {};
+                        var $id = "0½0";
+                        var fromdata = new FormData();
+                        fromdata.append('vls', $id);
+                        $("#pageContainer").hide('slide', options, 300);
+                        $.ajax({
+                            type: "POST",
+                            data: fromdata,
+                            contentType: false,
+                            processData: false,
+                            url: "../Adminstration/Dashboard" + $(location).attr('search'),
+
+                            success: function (result) {
+                                var options = {};
+                                $('#pageContainer').html($(result).find('#pcontent').html());
+                                $("#pageContainer").show('slide', options, 500);
+                            }
+                        });
+                        return false;
+                    }
+                    if (@ViewBag.UserType == "2" || @ViewBag.UserType == "3") {
+                        $('#tabID').html('Submitted Invoices');
+                        $('#ppiSearchLink').html('Search');
+                        $('#tblpopi > thead').html('<tr>\
+    <th id="org" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist" style="display:none;">\
+    Power Producer </th>\
+    <th id="org" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist" >\
+    Site </th>\
+    <th id="org" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">\
+    Invoice No</th>\
+    <th id="org" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">\
+    Transaction No</th>\
+    <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">\
+    Submission Date</th>\
+    <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-sortable-default-col="" data-tablesaw-priority="3">\
+    Invoice Type </th>\
+    <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="2">\
+    Invoice From </th>\
+    <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="2">\
+    Invoice To </th>\
+    <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="1">\
+    Amount</th>\
+    <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">\
+    HC Submission Date </th>\
+    <th id="ownStatus"scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="4">\
+    </th>\
+    <th id="otherStatus" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="4">\
+    </th>\
+    <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="4" class="notExport">\
+    </th>\
+    <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="4" class="notExport">\
+    </th>\
+    </tr>');
+                        //$('#tblpopi > tbody').html('<tr><td colspan="14" style="text-align: center;"><img src="Content/img/DataLoader.gif"></td></tr>');
+                        data = @Html.Raw(@ViewBag.response);
+                        $.each(data,
+                            function(index, value) {
+                                var L_Form_Name = value.Form_Name;
+                                var site = value.ADDRESS_LINE1;
+                                var letterNo = value.VEN_INV_LETTER_NO;
+                                var submissionDate = value.SUBMIT_DATE;
+                                //var subTime = new Date(value.LAST_UPDATE_DATE);
+                                //subTime = "  " + ("0" + subTime.getHours()).slice(-2) + ":" + ("0" + subTime.getMinutes()).slice(-2);
+                                //submissionDate += subTime;
+                                var InvoiceType = value.INVOICE_TYPE;
+                                //var BillingMonth = value.INVOICE_PERIOD_FROM + ' , ' + value.INVOICE_PERIOD_TO;
+                                var Amount = value.TOTAL_CLAIM;
+                                Amount = numberWithCommas(Amount);
+                                //Amount += ".0000";
+                                var invoiceFrom = value.INVOICE_PERIOD_FROM;
+                                var invoiceTo = value.INVOICE_PERIOD_TO;
+                                var lastupdatedby = value.Last_Updated_By;
+                                var HCDate = value.HARD_COPY_SUBMISSION_DATETIME;
+                                var ownStatus = value.STATUS;
+
+                                if (HCDate == null) {
+                                    HCDate = '';
+                                }
+
+
+                                var stl;
+
+                                var otherStatus = '';
+                                if (@ViewBag.UserType == 2) {
+                                    $('#ownStatus').html('Portal Status (Technical)');
+                                    $('#otherStatus').html('Portal Status (Finance)');
+                                    if (value.IS_APPROVED_BY_FINANCE === null || value.IS_APPROVED_BY_FINANCE === "")
+                                        otherStatus = '<td><span style="color:black;">In Process</span></td>';
+                                    else if (value.IS_APPROVED_BY_FINANCE == "0")
+                                        otherStatus = '<td><span style="color:red;">Returned</span></td>';
+                                    else if (value.IS_APPROVED_BY_FINANCE == "1")
+                                        otherStatus = '<td><span style="color:green;">Received</span></td>';
+                                } else if (@ViewBag.UserType == 3) {
+                                    $('#ownStatus').html('Portal Status (Finance)');
+                                    $('#otherStatus').html('Portal Status (Technical)');
+                                    if (value.IS_APPROVED_BY_TECHNICAL === null ||
+                                        value.IS_APPROVED_BY_TECHNICAL === "")
+                                        otherStatus = '<td><span style="color:black;">In Process</span></td>';
+                                    else if (value.IS_APPROVED_BY_TECHNICAL == "0")
+                                        otherStatus = '<td><span style="color:red;">Returned</span></td>';
+                                    else if (value.IS_APPROVED_BY_TECHNICAL == "1")
+                                        otherStatus = '<td><span style="color:green;">Received</span></td>';
+                                }
+                                if (@ViewBag.UserType == 2 || @ViewBag.UserType == 3) {
+                                    stl = "";
+                                    $('#org').attr('style', '');
+                                } else {
+                                    stl = "style='display:none;";
+                                    $('#org').attr('style', 'display:none;');
+                                }
+                                var vUrl = '';
+
+                                vUrl = "/Pages/" + L_Form_Name + "?typ=V&diarynumber=" + value.DIARY_HEADER_ID + "&vendorSiteId=" + value.ORGANIZATION_ID;
+
+                                var color = '';
+                                if (ownStatus == "Received")
+                                    color = 'green';
+                                else if (ownStatus == "Submitted")
+                                    color = 'Orange';
+                                else if (ownStatus == "Withdraw")
+                                    ownStatus = 'gray';
+                                else if (ownStatus.includes("Forwarded to Finance") ||
+                                    ownStatus.includes("Received by"))
+                                    color = 'green';
+                                else if (ownStatus.includes("Returned by"))
+                                    color = 'red';
+                                else if (ownStatus == "Returned")
+                                    color = 'red';
+
+
+                                if (value.TransactionNumber == 0) {
+
+                                    $('#tblpopi > tbody').append('<tr><td ' +
+                                        stl +
+                                        '><span  class="txt-dark weight-500">' +
+                                        value.ORGANIZATION +
+                                        '</span></td><td><span class="txt-dark weight-500">' +
+                                        site +
+                                        '</span></td><td><span class="txt-dark weight-500">' +
+                                        letterNo +
+                                        '</span></td><td style="text-align: center;"><span class="txt-dark weight-500">' +
+                                        '' +
+                                        '</span></td><td><span class="txt-dark weight-500">' +
+                                        submissionDate +
+                                        '</span></td><td><span class="txt-dark weight-500">' +
+                                        InvoiceType +
+                                        '</span></td><td><span class="txt-dark weight-500">' +
+                                        invoiceFrom +
+                                        '</span></td><td><span class="txt-dark weight-500">' +
+                                        invoiceTo +
+                                        '</span></td><td><span class="txt-dark weight-500 pull-right">' +
+                                        Amount +
+                                        '</span></td><td><span class="txt-dark weight-500 pull-right">' +
+                                        HCDate +
+                                        '</span></td><td><span style="color: ' +
+                                        color +
+                                        ';">' +
+                                        ownStatus +
+                                        '</span></td>' +
+                                        otherStatus +
+                                        '<td></td><td><center><span title="Record History" class="zmdi zmdi-time-restore zmdi-hc-lg history" itemid="' +
+                                        value.DIARY_HEADER_ID +
+                                        '" style="color: #926f2f;cursor:pointer;"></span></center></td></tr>'); //Change by Ahmad 7/30/2018
+                                } else {
+                                    $('#tblpopi > tbody').append('<tr><td ' +
+                                        stl +
+                                        '><span  class="txt-dark weight-500">' +
+                                        value.ORGANIZATION +
+                                        '</span></td><td><span class="txt-dark weight-500">' +
+                                        site +
+                                        '</span></td><td><span class="txt-dark weight-500">' +
+                                        letterNo +
+                                        '</span></td><td style="text-align: center;"><span class="txt-dark weight-500">' +
+                                        value.TransactionNumber +
+                                        '</span></td><td><span class="txt-dark weight-500">' +
+                                        submissionDate +
+                                        '</span></td><td><span class="txt-dark weight-500">' +
+                                        InvoiceType +
+                                        '</span></td><td><span class="txt-dark weight-500">' +
+                                        invoiceFrom +
+                                        '</span></td><td><span class="txt-dark weight-500">' +
+                                        invoiceTo +
+                                        '</span></td><td><span class="txt-dark weight-500 pull-right">' +
+                                        Amount +
+                                        '</span></td><td><span class="txt-dark weight-500 pull-right">' +
+                                        HCDate +
+                                        '</span></td><td><span style="color: ' +
+                                        color +
+                                        ';">' +
+                                        ownStatus +
+                                        '</span></td>' +
+                                        otherStatus +
+                                        '<td><center><a class="txt-dark weight-500" href="#" hrf="' +
+                                        vUrl +
+                                        '"><span title="View" class="zmdi zmdi-file" style="color: #0095eb;"></span></a></center></td><td><center><span title="Record History" class="zmdi zmdi-time-restore zmdi-hc-lg history" itemid="' +
+                                        value.DIARY_HEADER_ID +
+                                        '" style="color: #926f2f;cursor:pointer;"></span></center></td></tr>'); //Change by Ahmad 7/30/2018
+
+
+                                }
+
+                            });
+
+
+                        $('#tblpopi thead').append($('#tblpopi thead').html());
+                        $('#tblpopi thead tr:eq(1)').attr("style",
+                            "border-bottom: 1px solid #c4c4c4;border-right: 1px solid #c4c4c4;");
+                        $('#tblpopi').addClass('dynamicTable');
+                        $('#tblpopi thead tr:eq(1) th').each(function() {
+                            var title = this.innerText;
+                            if ($.trim(title) != "") {
+                                $(this).html(
+                                    '<input type="text" class="form-control column_search" style="width:90%;" placeholder="Search ' +
+                                    title +
+                                    '" />');
+                            }
+
+                        });
+                        $.fn.dataTable.moment('DD-MMM-YYYY');
+                        $('.dynamicTable').first().children().children().first().children().last().html('History');
+                        $('.dynamicTable').first().children().children().first().children().last().prev().html('View');
+                        var table = $('#tblpopi').DataTable({
+                            "dom": 'lBfrtip',
+                            "aLengthMenu": [
+                                [10, 25, 50, 100, 150, 250, 500, -1], [10, 25, 50, 100, 150, 250, 500, "All"]
+                            ],
+                            "iDisplayLength": 10,
+                            "bSortCellsTop": true,
+                            "sPaginationType": "full_numbers",
+                            "bJQueryUI": false,
+                            "bAutoWidth": false,
+                            "bLengthChange": true,
+                            "fnInitComplete": function(oSettings, json) {
+                                $('.dataTables_filter>label>input').attr('id', 'search');
+                                $('.dataTables_filter>label>input').attr('placeholder', 'Search All');
+                            },
+                            columnDefs: [
+                                { orderable: false, targets: [-1, -2] }
+                            ]
+                            //            ,
+                            //            buttons: [
+                            //			{
+                            //    			extend: 'excel',
+                            //    			text: 'Export to Excel',
+                            //    			exportOptions: {
+                            //    		    	modifier: {
+                            //            			page: 'current'
+                            //        			},
+                            //        			columns: ':not(.notExport)'
+                            //    			}
+                            //			}
+                            //]
+                        });
+
+                        $('#tblpopi_length').append(
+                            '<div class="dt-buttons" style="margin-left: 15px;"><a id="tblpopiExport" class="dt-button buttons-excel buttons-html5 form-control" tabindex="0" aria-controls="tblpopi" href="#" style="min-height: 88%;line-height: 40px;background-color: #1d4a6d;"><span>Export to Excel</span></a></div>');
+                        $('#tblpopi_length').attr('style', 'width: 400px;display: inline-flex;');
+                        $('#tblpopi thead').on('keyup',
+                            ".column_search",
+                            function() {
+
+                                table
+                                    .column($(this).parent().index())
+                                    .search(this.value)
+                                    .draw();
+                            });
+
+                    } //END OF 2 3
+
+
+                    if (@ViewBag.UserType == "4") {
+                        //                $.ajax
+                        //({
+                        //    type: "GET",
+                        //    url: 'https://cppa2.azurewebsites.net/v1/D_H_Interface/GetTopThreeDiaries',
+                        //    dataType: 'json',
+                        //    headers: {
+                        //        "Token": UserToken
+                        //    },
+                        //    beforeSend: function () {
+                        //        $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+                        //    },
+                        //    complete: function () {
+                        //        $.unblockUI();
+                        //    },
+                        //    success: function (data) {
+                        //found data
+
+                        var data = @Html.Raw(@ViewBag.response);
+
+                        //alert(data);
+                        //data = $.parseJSON(data);
+                        $('#tblpopi > thead').html('<tr style="width:100%;">\
+                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">\
+                            Transaction No</th>\
+                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">\
+                            Invoice No</th>\
+                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">\
+                            Submission Date</th>\
+                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">\
+                            Form Type</th>\
+                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-sortable-default-col="" data-tablesaw-priority="">\
+                            Invoice Type </th>\
+                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">\
+                            Invoice From </th>\
+                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">\
+                            Invoice To </th>\
+                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">\
+                            Amount</th><th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">\
+                            Final Status </th>\
+                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">\
+                            HC Submission Date </th>\
+                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">\
+                            Edit</th>\
+                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">\
+                            Delete</th>\
+                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">\
+                            View</th>\
+                            </tr>');
+                        $('#tblpopi > tbody').html('');
+                        $.each(data,
+                            function(index, value) {
+
+
+                                var letterNo = value.VEN_INV_LETTER_NO;
+                                var submissionDate = value.SUBMIT_DATE;
+                                var transNo = value.TransactionNumber || "";
+
+                                var InvoiceType = value.INVOICE_TYPE;
+
+                                var Amount = value.TOTAL_CLAIM;
+                                var invoiceFrom = value.INVOICE_PERIOD_FROM;
+                                var invoiceTo = value.INVOICE_PERIOD_TO;
+                                var HCDate = value.HARD_COPY_SUBMISSION_DATETIME;
+                                if (HCDate == null) {
+                                    HCDate = '';
+                                }
+
+                                Amount = numberWithCommas(Amount);
+                                var lastupdatedby = value.Last_Updated_By;
+                                var Status = value.STATUS;
+
+
+                                var url = '', vUrl = '', formType = '';
+
+
+                                url = "/Invoice/" + value.FORM_NAME + "?typ=E&diarynumber=" + value.DIARY_HEADER_ID + "&vendorSiteId=" + value.ORGANIZATION_ID;
+                                debugger;
+                                vUrl = "/Invoice/" + value.FORM_NAME + "?typ=V&diarynumber=" + value.DIARY_HEADER_ID + "&vendorSiteId=" + value.ORGANIZATION_ID;
+
+
+                                if (Status != "Deleted") {
+
+                                    var color = '';
+                                    if (Status == "Received")
+                                        color = 'green';
+                                    else if (Status == "Submitted")
+                                        color = 'Orange';
+                                    else if (Status == "Withdraw")
+                                        color = 'gray';
+                                    else if (Status == "Draft")
+                                        color = 'black';
+                                    else if (Status == "Returned")
+                                        color = 'red';
+                                    else
+                                        color = '#0095eb';
+
+                                    if (Status == "Draft") {
+                                        $('#tblpopi >tbody').append(
+                                            '<tr><td><span class="txt-dark weight-500 pull-right">' +
+                                            transNo +
+                                            '</span></td><td><span class="txt-dark weight-500">' +
+                                            letterNo +
+                                            '</span></td><td><span class="txt-dark weight-500"></span></td> <td><span class="txt-dark weight-500">' +
+                                            formType +
+                                            '</span></td> <td><span class="txt-dark weight-500">' +
+                                            InvoiceType +
+                                            '</span></td><td><span class="txt-dark weight-500">' +
+                                            invoiceFrom +
+                                            '</span></td><td><span class="txt-dark weight-500">' +
+                                            invoiceTo +
+                                            '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                            Amount +
+                                            '</span></td><td><span style="color: ' +
+                                            color +
+                                            ';">' +
+                                            Status +
+                                            '</span></td><td><span class="txt-dark weight-500 pull-right">' +
+                                            HCDate +
+                                            '</span></td><td><center><a href="#" hrf="' +
+                                            url +
+                                            '"><span title="Edit" class="zmdi zmdi-edit" style="color: #0095eb;"> </span></a></center></td><td><center><span id="' +
+                                            value.DIARY_HEADER_ID +
+                                            '" class="zmdi zmdi-delete" title="Delete" style="color: red;cursor: pointer;" onclick="deleteInvoice(this.id)"></span></center></td><td><center><a href="#" hrf="' +
+                                            vUrl +
+                                            '"><span title="View" class="zmdi zmdi-file" style="color: #0095eb;"></span></a></center></td></tr>'); // 8-4-2018 add edit/update link by Ahmad
+                                    } else if (Status == "Returned") {
+                                        $('#tblpopi >tbody').append(
+                                            '<tr><td><span class="txt-dark weight-500 pull-right">' +
+                                            transNo +
+                                            '</span></td><td><span class="txt-dark weight-500">' +
+                                            letterNo +
+                                            '</span></td> <td><span class="txt-dark weight-500">' +
+                                            submissionDate +
+                                            '</span></td><td><span class="txt-dark weight-500">' +
+                                            formType +
+                                            '</span></td>  <td><span class="txt-dark weight-500">' +
+                                            InvoiceType +
+                                            '</span></td><td><span class="txt-dark weight-500">' +
+                                            invoiceFrom +
+                                            '</span></td><td><span class="txt-dark weight-500">' +
+                                            invoiceTo +
+                                            '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                            Amount +
+                                            '</span></td><td><span style="color: ' +
+                                            color +
+                                            ';">' +
+                                            Status +
+                                            '</span></td><td><span class="txt-dark weight-500 pull-right">' +
+                                            HCDate +
+                                            '</span></td><td><center><a href="#" hrf="' +
+                                            url +
+                                            '"><span title="Edit" class="zmdi zmdi-edit" style="color: #0095eb;"> </span></a></center></td><td class= "unselectable" > <center><span class="zmdi zmdi-delete"></span></center></td><td><center><a href="#" hrf="' +
+                                            vUrl +
+                                            '"><span title="View" class="zmdi zmdi-file" style="color: #0095eb;"></span></a></center></td></tr>'); // 8-4-2018 add edit/update link by Ahmad
+                                    } else {
+                                        $('#tblpopi >tbody').append(
+                                            '<tr><td><span class="txt-dark weight-500 pull-right">' +
+                                            transNo +
+                                            '</span></td><td><span class="txt-dark weight-500">' +
+                                            letterNo +
+                                            '</span></td> <td><span class="txt-dark weight-500">' +
+                                            submissionDate +
+                                            '</span></td><td><span class="txt-dark weight-500">' +
+                                            formType +
+                                            '</span></td> <td><span class="txt-dark weight-500">' +
+                                            InvoiceType +
+                                            '</span></td><td><span class="txt-dark weight-500">' +
+                                            invoiceFrom +
+                                            '</span></td><td><span class="txt-dark weight-500">' +
+                                            invoiceTo +
+                                            '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                            Amount +
+                                            '</span></td><td><span style="color: ' +
+                                            color +
+                                            ';">' +
+                                            Status +
+                                            '</span></td> <td><span class="txt-dark weight-500 pull-right">' +
+                                            HCDate +
+                                            '</span></td><td class="unselectable"><center><span class="zmdi zmdi-edit"> </span></center></td><td class="unselectable"><center><span class="zmdi zmdi-delete"></span></center></td><td><center><a href="#" hrf="' +
+                                            vUrl +
+                                            '"><span title="View" class="zmdi zmdi-file" style="color: #0095eb;"></span></a></center></td></tr>'); // 8-4-2018 add edit/update link by Ahmad
+                                    }
+                                }
+
+                            });
+                        //    },//END OS SUCCESS FUNC
+                        //    error: function (request, textStatus, errorThrown) {
+
+                        //    }
+                        //});
+                    }
+                }); //End of run function
+                $('body').off('click', '#tblpopiExport');
+                $('body').on('click', '#tblpopiExport', function (e) {
+                    e.preventDefault();
+                    $('#tblpopi').tableExport({fileName: 'Submitted Invoices', type: 'excel', escape: 'false' });
+                    e.preventDefault();
+                });
+            }); //End of Doc Ready
+        </script>
+    </div>

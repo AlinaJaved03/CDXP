@@ -1,0 +1,282 @@
+﻿
+@{
+    ViewBag.Title = "UploadGraphs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="pcontent">
+    <style>
+        #additionalRemarks {
+            width: 95%;
+            line-height: 30px;
+        }
+
+        #graphType {
+            width: 95%;
+        }
+    </style>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff;"></i>
+                        <h6 class="panel-title txt-light">@ViewBag.Title</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body" style="min-height: 300px;">
+
+
+                        <div>
+                            <table style="width: 100%;" id="tbl_graph">
+                                <thead></thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="width: 130px;">
+                                            <label for="invoiceType">Graph Type<span style="color:rgb(0, 149, 235);"></span></label>
+                                        </td>
+                                        <td>
+                                            <select tabindex="1" class="form-control frm getBloks" id="graphType" name="graphType" required="required">
+                                                <option value="-1">Select</option>
+                                            </select>
+                                        </td>
+
+                                        <td style="width: 130px;"></td>
+                                        <td style="width: 130px;">
+                                            <label>Graph Date</label>
+                                        </td>
+                                        <td>
+                                            <input tabindex="2" style="background-color: rgb(251, 255, 193); width: 95%;" type="text" class="form-control frm" id="graphDate" required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+
+                                        <td style="width: 130px;">
+                                            <label for="datasource">Attach File  </label>
+                                        </td>
+                                        <td>
+                                            <input tabindex="3" type="file" id="graphExcel" name="graphExcel" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+                                        </td>
+                                        <td style="width: 130px;"></td>
+                                        <td style="width: 130px;">
+                                            <label>Additional Remarks</label>
+                                        </td>
+                                        <td>
+                                            <textarea tabindex="4" rows="2" cols="10" maxlength="100" style="resize:none" class="form-control frm" id="additionalRemarks"></textarea>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+
+                                        <td style="width: 130px;">
+                                            <label>Bar Color </label>
+                                        </td>
+                                        <td>
+                                            <input type="text" id="barColor" value="07A6E1" tabindex="5" style="background-color: rgb(251, 255, 193); font-size: 16px; width: 85%;" class="frm" required>
+                                        </td>
+                                        <td style="width: 130px;"></td>
+                                        <td style="width: 130px;">
+                                            <label>Line Color</label>
+                                        </td>
+                                        <td>
+                                            <input type="text" id="lineColor" value="2B80BE" tabindex="6" style="background-color: rgb(251, 255, 193); font-size: 16px; width: 85%;" class="frm" required>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5" style="text-align:right;">
+                                            <button id="btnCreate" class="btn btn-default" style="margin-top: 25px; width: 25%;">SAVE</button>
+                                            <input type="hidden" class="form-control frm" id="UserId" />
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+
+
+            //$(function () {
+            //    $('#barColor').colorpicker({
+            //        parts: 'full',
+            //        alpha: true,
+            //        showOn: 'both',
+            //        buttonColorize: true,
+            //        showNoneButton: true
+            //    });
+            //});
+
+            //$(function () {
+            //    $('#lineColor').colorpicker({
+            //        parts: 'full',
+            //        alpha: true,
+            //        showOn: 'both',
+            //        buttonColorize: true,
+            //        showNoneButton: true
+            //    });
+            //});
+
+            var data = @Html.Raw(@ViewBag.GraphTypes);
+            debugger;
+            var options;
+            if (data != null && data != "") {
+                $(data).each(function (index, option) {
+                    $('#graphType').append('<option value="' + option.LuGraphTypes_Id + '" style="background-color:white">' + option.LuGraphTypes_ChartType + '</option>');
+                });
+            }
+
+            $('#graphDate').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "1900:",
+                dateFormat: 'dd-M-yy'
+
+            }).datepicker('setDate', getPreviousDay());
+
+
+
+            $('body').off('click', '#btnCreate');
+            $('body').on('click', '#btnCreate', function (event) {
+                event.preventDefault();
+                var fileUpload = $("#graphExcel").get(0);
+                var files = fileUpload.files;
+                debugger;
+                // Create FormData object
+                var fileData = new FormData();
+
+                // Looping over all files and add it to FormData object
+                for (var i = 0; i < files.length; i++) {
+                    fileData.append(files[i].name, files[i]);
+                }
+                fileData.append('GraphType', $('#graphType').val());
+                fileData.append('GraphDate', $('#graphDate').val());
+                fileData.append('AdditionalRemarks', $('#additionalRemarks').val());
+                fileData.append('BarColor', $('#barColor').val());
+                fileData.append('LineColor', $('#lineColor').val());
+
+                $.ajax({
+                    url: '/Adminstration/InsertGraphData',
+                    type: "POST",
+                    contentType: false, // Not to set any content header
+                    processData: false, // Not to process data
+                    data: fileData,
+                    beforeSend: function () {
+                        $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+                    },
+                    complete: function () {
+                        $.unblockUI();
+                    },
+                    success: function (result) {
+                        if (result == "1") {
+                            swal("Success!", "The Graph Data has been Saved.", "success");
+                        }
+                        else {
+                            swal("Error", result, "error");
+                        }
+                    },
+                    error: function (err) {
+                        alert(err.statusText);
+                    }
+                });
+
+
+            });
+            function getPreviousDay(date = new Date()) {
+                const previous = new Date(date.getTime());
+                previous.setDate(date.getDate() - 1);
+
+                return previous;
+            }
+
+            function checkEmpty() {
+                if ($('#graphType').val() == '-1') {
+                    swal({
+                        title: "Error",
+                        text: "Please select grpaph type!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK"
+                    }, function () { setTimeout(() => $('#graphType').focus(), 100); });
+                    return false;
+                }
+
+                else if ($('#barColor').val() == '') {
+                    swal({
+                        title: "Error",
+                        text: "Please select color for graph bar!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK"
+                    }, function () {
+                        setTimeout(() => $('#barColor').focus(), 100);
+                    });
+                    return false;
+                }
+                else if ($('#lineColor').val() == '') {
+                    swal({
+                        title: "Error",
+                        text: "Please select color for graph line!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK"
+                    }, function () {
+                        setTimeout(() => $('#lineColor').focus(), 100);
+                    });
+                    return false;
+                }
+                else if ($('#graphDate').val() == '') {
+                    swal({
+                        title: "Error",
+                        text: "Please enter graph date!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK"
+                    }, function () {
+                        setTimeout(() => $('#graphDate').focus(), 100);
+                    });
+                    return false;
+                }
+                else if ($('#graphExcel')[0].files.length == 0 ) {
+                    swal({
+                        title: "Error",
+                        text: "Please Select File!",
+                        type: "warning"
+                    });
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            }
+
+    });
+
+    </script>
+</div>

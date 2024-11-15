@@ -1,0 +1,203 @@
+﻿<div id="pcontent">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff"></i>
+                        <h6 class="panel-title txt-light">@ViewBag.ViewTitle</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+
+
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                        @*<a class="pull-left inline-block close-panel" href="#" data-effect="fadeOut">
+                                <i class="zmdi zmdi-close"></i>
+                            </a>*@
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;User Entity Allocation</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <table class="tblFrm">
+
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Menue Title<span style="color:rgb(0, 149, 235);">*</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" value="" class="form-control frm">
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="invoiceType">href Link<span style="color:rgb(0, 149, 235);">*</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" value="#" class="form-control frm" title="Leave # in this input">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="submitDate">
+                                            Class Name<span style="color:rgb(0, 149, 235);">*</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input type="text" value="" class="form-control frm" title="Enter Menu Class like 'fa fa-spin' or 'fa fa-gear' or 'fa fa-th-large' or any other" />
+                                    </td>
+
+                                    <td>
+                                        <label for="submitDate">
+                                            Menu Order Number
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input type="text" value="" class="form-control frm" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="Disconame">Description</label>
+                                    </td>
+                                    <td colspan="3">
+                                        <textarea rows="2" cols="20" class="form-control frm"></textarea>
+                                    </td>
+
+                                </tr>
+
+                            </table>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button id="btnCancel" class="btn btn-default" type="button">
+                                            Cancel
+                                        </button>
+                                        <button id="btnSave" class="btn btn-info frm" value="0" type="button">
+                                            <i class="fa fa-save"></i>
+                                            Submit
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>@*END OF tab0*@
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;User Wise Allocated Entities</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <div id="tblContainer"></div>
+                        </div>@*END OF tab0*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            LoadGrid();
+            function LoadGrid() {
+                $("#tblContainer").html('<div style="text-align:center;padding:20px;"><img alt="" src="../Content/img/DataLoader.gif" /></div>');
+                var thisData = '1';
+                var fromdata = new FormData();
+                fromdata.append("vls", thisData);
+                var choice = {};
+                choice.url = '/Adminstration/Meter_Reading_Proforma' + $(location).attr('search');
+                choice.type = "POST";
+                choice.data = fromdata;
+                choice.contentType = false;
+                choice.processData = false;
+                choice.success = function (response) {
+                    if ($('#tblJ1').hasClass('dataTable')) {
+                        $('#tblJ1').dataTable().fnDestroy();
+                    }
+                    $('#tblContainer').html(response);
+                    $($('#tblJ1 thead tr th')[0]).css('width', '35px');
+                    $('#tblJ1 tbody tr').each(function (index, element) {
+                        $($(this).find('td')[0]).html(parseInt(index) + 1);
+                    });
+                    $('#tblJ1 thead tr').append('<th></th>');
+                    $('#tblJ1 tbody tr').append('<td style="width: 35px;"><div class="controls center">\
+                                                        <i class="vedit fa fa-edit" title="Edit"></i>\
+                                                        <i class="vdelete fa fa-times" title="Delete"></i>\
+                                                    </div></td>');
+                    $('#tblJ1').append('<tfoot></tfoot>');
+                    $('#tblJ1 tfoot').html($('#tblJ1 thead').html());
+                    $('#tblJ1 tfoot tr').attr("style", "border-bottom: 1px solid #c4c4c4;border-right: 1px solid #c4c4c4;");
+                    $('#tblJ1').addClass('dynamicTable');
+                    $('#tblJ1 tfoot th').each(function () {
+                        var title = $(this).text();
+                        if ($.trim(title) != "") {
+                            $(this).html('<input type="text" class="form-control" style="width:90%;" placeholder="' + title + '" />');
+                        }
+
+                    });
+
+                    var table = $('#tblJ1').DataTable({
+                        "aLengthMenu": [[10, 25, 50, 100, 150, 250, 500, -1], [10, 25, 50, 100, 150, 250, 500, "All"]],
+                        "iDisplayLength": 10,
+                        //"bSort": false,
+                        "sPaginationType": "full_numbers",
+                        "bJQueryUI": false,
+                        "bAutoWidth": false,
+                        "bLengthChange": true,
+                        "fnInitComplete": function (oSettings, json) {
+                            $('.dataTables_filter>label>input').attr('id', 'search');
+                        }
+                    });
+                    table.columns().every(function () {
+                        var that = this;
+
+                        $('input', this.footer()).on('keyup change', function () {
+                            if (that.search() !== this.value) {
+                                that
+                                    .search(this.value)
+                                    .draw();
+                            }
+                        });
+                    });
+
+                    $('#tblJ1_length').append('<input type="image" name="btnExcel" id="btnExcel" title="Export to Excel" class="Grd" src="../Content/img/xcel.png" style="margin-left: 30px;margin-top:5px;border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnWord" id="btnWord" title="Export to Word" class="Grd" src="../Content/img/wrd.png" style="border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnPNG" id="btnPNG" title="Export to PNG" class="Grd" src="../Content/img/png.png" style="width: 17px;border-width:0px;">');
+
+                };
+                choice.error = function (err) {
+                    console.log(err.statusText);
+                };
+                $.ajax(choice);
+            }//End of Load Grid
+            $('body').off('click', '#btnExcel');
+            $('body').on('click', '#btnExcel', function (e) {
+
+                e.preventDefault();
+                $('#tblJ1').tableExport({ type: 'excel', escape: 'false' });
+                e.preventDefault();
+            });
+            $('body').off('click', '#btnWord');
+            $('body').on('click', '#btnWord', function (e) {
+                e.preventDefault();
+                $('#tblJ1').tableExport({ type: 'doc', escape: 'false' });
+                e.preventDefault();
+            });
+            $('body').off('click', '#btnPNG');
+            $('body').on('click', '#btnPNG', function (e) {
+                e.preventDefault();
+                $('#tblJ1').tableExport({ type: 'png', escape: 'false' });
+                e.preventDefault();
+            });
+        });//end of doc ready
+    </script>
+</div>

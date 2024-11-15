@@ -1,0 +1,635 @@
+﻿@{
+    ViewBag.Title = "NPCC Dashboard";
+}
+<div id="pcontent">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff;"></i>
+                        <h6 class="panel-title txt-light">@ViewBag.Title</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                        @*<a class="pull-left inline-block close-panel" href="#" data-effect="fadeOut">
+                                <i class="zmdi zmdi-close"></i>
+                            </a>*@
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+
+                    <div class="tab0">
+                        &nbsp;<div class="tab1">&nbsp;Declarations / Revisions / Adjustments</div>
+                        <div class="tab2">&nbsp;</div>
+                        <div style="float:right;padding-top: 10px;">
+                            <span class="clsNew" tg="1" style="color: blue;cursor: pointer;">New</span>
+                            <span class="clsAll" tg="1" style="margin-left: 20px;color: blue;cursor: pointer;">View All</span>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <div id="tbl_DecRevAdj"></div>
+                    </div>@*END OF tab0*@
+
+
+                    <div>
+                        <div style="width: 49%; float: left">
+                            <div class="tab0">
+                                &nbsp;<div class="tab1">&nbsp;Dispatch Instructions</div>
+                                <div class="tab2">&nbsp;</div>
+                                <div style="float:right;padding-top: 10px;">
+                                    <span class="clsNew" tg="2" style="color: blue;cursor: pointer;">New</span>
+                                    <span class="clsAll" tg="2" style="margin-left: 20px;color: blue;cursor: pointer;">View All</span>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 20px;">
+                                <div id="tbl_DI"></div>
+                            </div>
+                        </div>
+                        <div style="width: 49%; float: right">
+                            <div class="tab0">
+                                &nbsp;<div class="tab1">&nbsp;Plant Events</div>
+                                <div class="tab2">&nbsp;</div>
+                                <div style="float:right;padding-top: 10px;">
+                                    <span class="clsNew" tg="3" style="color: blue;cursor: pointer;">New</span>
+                                    <span class="clsAll" tg="3" style="margin-left: 20px;color: blue;cursor: pointer;">View All</span>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 20px;">
+                                <div id="tbl_PlantEvents"></div>
+                            </div>@*END OF tab0*@
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="tab0" style="display:none">
+                        &nbsp;<div class="tab1">&nbsp;Verification</div>
+                        <div class="tab2">&nbsp;</div>
+                        <div style="float:right;padding-top: 10px;">
+                            <span class="clsNew" tg="4" style="color: blue;cursor: pointer;">New</span>
+                            <span class="clsAll" tg="4" style="margin-left: 20px;color: blue;cursor: pointer;">View All</span>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 20px;display:none">
+
+                        <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" id="tblMeterData">
+                            <thead>
+                                <tr>
+
+                                    <th style="width:200px;text-align:Center;" colspan="">Power Producer</th>
+                                    <th style="width:200px;text-align:Center;" colspan="">Producer Site</th>
+                                    <th style="width:200px;text-align:Center;" colspan="">Month</th>
+                                    <th style="width:200px;text-align:Center;" colspan=""> Period from </th>
+                                    <th style="width:200px;text-align:Center;" colspan="">Period To</th>
+                                    <th style="width:200px;text-align:Center;" colspan="">Invoice No</th>
+                                    <th style="width:200px;text-align:Center;" colspan="">Invoice Date</th>
+                                    <th style="width:200px;text-align:Center;" colspan=""></th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+
+
+
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+
+
+
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+
+
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>@*End of table*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('body').off('click', '.clsNew');
+            $('body').on('click', '.clsNew', function (e) {
+                e.preventDefault();
+                var $tg = $(this).attr("tg");
+                var $url = "";
+                var $id = "0½N";
+                var fromdata = new FormData();
+                if ($tg == "1") {
+                    $url = "/NPCC/ResourseDeclarationOfAvailCapacity";
+                    fromdata.append('vls', $id);
+                    $("#pageContainer").hide('slide', options, 300);
+                    $.ajax({
+                        type: "POST",
+                        data: fromdata,
+                        contentType: false,
+                        processData: false,
+                        url: $url + $(location).attr('search'),
+
+                        success: function (result) {
+                            var options = {};
+                            $('#pageContainer').html($(result).find('#pcontent').html());
+                            $("#pageContainer").show('slide', options, 500);
+                        }
+                    });
+                }
+                if ($tg == "2") {
+                    $url = "/NPCC/DICreate";
+                    $("#pageContainer").hide('slide', options, 300);
+                    $.ajax({
+                        type: "POST",
+                        contentType: false,
+                        processData: false,
+                        url: $url + $(location).attr('search'),
+
+                        success: function (result) {
+                            var options = {};
+                            $('#pageContainer').html($(result).find('#pcontent').html());
+                            $("#pageContainer").show('slide', options, 500);
+                        }
+                    });
+                }
+                if ($tg == "3") {
+                    $url = "/NPCC/PlantEventsForm";
+                    $id = null;
+                    $("#pageContainer").hide('slide', options, 300);
+                    $.ajax({
+                        type: "POST",
+                        contentType: false,
+                        processData: false,
+                        url: $url + $(location).attr('search'),
+
+                        success: function (result) {
+                            var options = {};
+                            $('#pageContainer').html($(result).find('#pcontent').html());
+                            $("#pageContainer").show('slide', options, 500);
+                        }
+                    });
+                }
+                if ($url == "") {
+                    return false;
+                }
+                var options = {};
+
+
+            });//End of edit click
+
+            $('body').off('click', '.clsAll');
+            $('body').on('click', '.clsAll', function (e) {
+                e.preventDefault();
+                var $tg = $(this).attr("tg");
+                var $url = "";
+                if ($tg == "1") {
+                    $url = "/NPCC/DeclarationOfAvailCapacityList";
+                }
+                if ($tg == "2") {
+                    $url = "/NPCC/DespatchInstructionList";
+                }
+                if ($tg == "3") {
+                    $url = "/NPCC/PlantEventsList";
+                }
+                if ($url == "") {
+                    return false;
+                }
+                var options = {};
+                var $id = "0½N";
+                var fromdata = new FormData();
+                fromdata.append('vls', $id);
+                $("#pageContainer").hide('slide', options, 300);
+                $.ajax({
+                    type: "POST",
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    url: $url + $(location).attr('search'),
+
+                    success: function (result) {
+                        var options = {};
+                        $('#pageContainer').html($(result).find('#pcontent').html());
+                        $("#pageContainer").show('slide', options, 500);
+                    }
+                });
+            });//End of edit click
+
+            function GetPolicies() {
+                $("#txtDIF_currentAvailability").html('<div style="text-align:center;padding:20px;"><img alt="" src="../Content/img/DataLoader.gif" /></div>');
+                var fromdata = new FormData();
+                fromdata.append("vls", '20½' + $("#ddl_Policies option:selected").val());
+                var choice = {};
+                choice.url = '/NPCC/AjaxCallNext' + $(location).attr('search');
+                choice.type = "POST";
+                choice.data = fromdata;
+                choice.contentType = false;
+                choice.processData = false;
+                choice.success = function (response) {
+                    if ($('#tblJ1').hasClass('dataTable')) {
+                        $('#tblJ1').dataTable().fnDestroy();
+                    }
+                    $('#txtDIF_currentAvailability').html(response);
+                    $($('#tblJ1 thead tr th')[0]).css('width', '35px');
+                    $('#tblJ1 tbody tr').each(function (index, element) {
+                        $($(this).find('td')[0]).html(parseInt(index) + 1);
+                    });
+                };
+                choice.error = function (err) {
+                    console.log(err.statusText);
+                };
+                $.ajax(choice);
+            }
+            //GetPolicies();
+
+            function LoadDecRevAdj() {
+                //console.log('Load Dec/Rev/Adj function');
+                $("#tbl_DecRevAdj").html('<div style="text-align:center;padding:20px;"><img alt="" src="../Content/img/DataLoader.gif" /></div>');
+
+                var fromdata = new FormData();
+                fromdata.append("vls", '33½');
+                var choice = {};
+                console.log(fromdata);
+                choice.url = '/NPCC/AjaxCallNext' + $(location).attr('search');
+                choice.type = "POST";
+                choice.data = fromdata;
+                choice.contentType = false;
+                choice.processData = false;
+                choice.success = function (response) {
+                    if ($('#tblDB1').hasClass('dataTable')) {
+                        $('#tblDB1').dataTable().fnDestroy();
+                    }
+                    $('#tbl_DecRevAdj').html(response);
+                    $($('#tblDB1 thead tr th')[0]).css('width', '35px');
+                    $('#tblDB1 tbody tr').each(function (index, element) {
+                        $($(this).find('td')[0]).html(parseInt(index) + 1);
+                    });
+                };
+                choice.error = function (err) {
+                    console.log(err.statusText);
+                };
+                $.ajax(choice);
+            }
+            LoadDecRevAdj();
+            //DI Load
+            function LoadDI() {
+                //console.log('DI Function');
+                $("#tbl_DI").html('<div style="text-align:center;padding:20px;"><img alt="" src="../Content/img/DataLoader.gif" /></div>');
+
+                var fromdata = new FormData();
+                fromdata.append("vls", '34½');
+                var choice = {};
+                choice.url = '/NPCC/AjaxCallNext' + $(location).attr('search');
+                choice.type = "POST";
+                choice.data = fromdata;
+                choice.contentType = false;
+                choice.processData = false;
+                choice.success = function (response) {
+                    if ($('#tblDB2').hasClass('dataTable')) {
+                        $('#tblDB2').dataTable().fnDestroy();
+                    }
+                    $('#tbl_DI').html(response);
+                    $($('#tblDB2 thead tr th')[0]).css('width', '35px');
+                    $('#tblDB2 tbody tr').each(function (index, element) {
+                        $($(this).find('td')[0]).html(parseInt(index) + 1);
+                    });
+                };
+                choice.error = function (err) {
+                    console.log(err.statusText);
+                };
+                $.ajax(choice);
+            }
+            LoadDI(); //dispatch instructions
+
+            function LoadPE() {
+                $('#tbl_PlantEvents').html('<div style="text-align:center;padding:20px;"><img alt="" src="../Content/img/DataLoader.gif" /></div>');
+
+                var fromdata = new FormData();
+                fromdata.append("vls", '35½');
+                var choice = {};
+                choice.url = '/NPCC/AjaxCallNext' + $(location).attr('search');
+                choice.type = "POST";
+                choice.data = fromdata;
+                choice.contentType = false;
+                choice.processData = false;
+                choice.success = function (response) {
+                    if ($('#tblDB3').hasClass('dataTable')) {
+                        $('#tblDB3').dataTable().fnDestroy();
+                    }
+                    $('#tbl_PlantEvents').html(response);
+                    $($('#tblDB3 thead tr th')[0]).css('width', '35px');
+                    $('#tblDB3 tbody tr').each(function (index, element) {
+                        $($(this).find('td')[0]).html(parseInt(index) + 1);
+                    });
+                };
+                choice.error = function (err) {
+                    console.log(err.statusText);
+                };
+                $.ajax(choice);
+            }
+            LoadPE(); //plant events
+
+            //AVAILABILITY
+            //POLICY WISE
+            //var value1994 = LoadPolicyWise("1994");
+            //var value2002 = LoadPolicyWise("2002");
+            //var value2006 = LoadPolicyWise("2006");
+
+            //getPolicyWise(value1994, value2002, value2006);
+
+            ////FUEL WISE
+            //LoadFuelWise("GAS");
+            //LoadFuelWise("RFO");
+            //LoadFuelWise("HSD");
+            //LoadFuelWise("RLNG");
+
+            //getFuelWise();
+
+            /////////////////////////////////////////////////
+            //getLinesChart();
+        }); //END OF DOC READY
+
+                //function getLinesChart() {
+                //    new Morris.Line({
+                //        // ID of the element in which to draw the chart.
+                //        element: 'morris_line_chart_Outage',
+                //        // Chart data records -- each entry in this array corresponds to a point on
+                //        // the chart.
+                //        data: [{
+                //            d: '2012-10-01',
+                //            visits: 802
+                //        }, {
+                //            d: '2012-10-02',
+                //            visits: 783
+                //        }, {
+                //            d: '2012-10-03',
+                //            visits: 820
+                //        }, {
+                //            d: '2012-10-04',
+                //            visits: 839
+                //        }, {
+                //            d: '2012-10-05',
+                //            visits: 792
+                //        }, {
+                //            d: '2012-10-06',
+                //            visits: 859
+                //        }, {
+                //            d: '2012-10-07',
+                //            visits: 790
+                //        }, {
+                //            d: '2012-10-08',
+                //            visits: 1680
+                //        }, {
+                //            d: '2012-10-09',
+                //            visits: 1592
+                //        }, {
+                //            d: '2012-10-10',
+                //            visits: 1420
+                //        }, {
+                //            d: '2012-10-11',
+                //            visits: 882
+                //        }, {
+                //            d: '2012-10-12',
+                //            visits: 889
+                //        }, {
+                //            d: '2012-10-13',
+                //            visits: 819
+                //        }, {
+                //            d: '2012-10-14',
+                //            visits: 849
+                //        }, {
+                //            d: '2012-10-15',
+                //            visits: 870
+                //        }, {
+                //            d: '2012-10-16',
+                //            visits: 1063
+                //        }, {
+                //            d: '2012-10-17',
+                //            visits: 1192
+                //        }, {
+                //            d: '2012-10-18',
+                //            visits: 1224
+                //        }, {
+                //            d: '2012-10-19',
+                //            visits: 1329
+                //        }, {
+                //            d: '2012-10-20',
+                //            visits: 1329
+                //        }, {
+                //            d: '2012-10-21',
+                //            visits: 1239
+                //        }, {
+                //            d: '2012-10-22',
+                //            visits: 1190
+                //        }, {
+                //            d: '2012-10-23',
+                //            visits: 1312
+                //        }, {
+                //            d: '2012-10-24',
+                //            visits: 1293
+                //        }, {
+                //            d: '2012-10-25',
+                //            visits: 1283
+                //        }, {
+                //            d: '2012-10-26',
+                //            visits: 1248
+                //        }, {
+                //            d: '2012-10-27',
+                //            visits: 1323
+                //        }, {
+                //            d: '2012-10-28',
+                //            visits: 1390
+                //        }, {
+                //            d: '2012-10-29',
+                //            visits: 1420
+                //        }, {
+                //            d: '2012-10-30',
+                //            visits: 1529
+                //        }, {
+                //            d: '2012-10-31',
+                //            visits: 1892
+                //        },],
+                //        // The name of the data record attribute that contains x-visitss.
+                //        xkey: 'd',
+                //        // A list of names of data record attributes that contain y-visitss.
+                //        ykeys: ['visits'],
+                //        // Labels for the ykeys -- will be displayed when you hover over the
+                //        // chart.
+                //        labels: ['Visits'],
+                //        // Disables line smoothing
+                //        pointSize: 1,
+                //        pointStrokeColors: ['#4dad44'],
+                //        behaveLikeLine: true,
+                //        grid: false,
+                //        gridTextColor: '#878787',
+                //        lineWidth: 2,
+                //        smooth: true,
+                //        hideHover: 'auto',
+                //        lineColors: ['#4dad44'],
+                //        resize: true,
+                //        gridTextFamily: "Roboto"
+                //    });
+                //}
+
+                //function getFuelWise() {
+
+                //    new Morris.Donut({
+                //        element: 'morris_donut_chart_fuelWise',
+                //        data: [{
+                //            label: "GAS",
+                //            value: 788.0000
+                //        }, {
+                //            label: "RFO",
+                //            value: 1863.0000
+                //        }, {
+                //            label: "HSD",
+                //            value: 3500.0000
+                //        }, {
+                //            label: "RLNG",
+                //            value: 2500.0000
+                //        }],
+                //        colors: ['#243f6b', '#4dad44', '#cdf421', '#fd6421'],
+                //        resize: true,
+                //        labelColor: '#878787',
+                //    });
+                //}
+
+                //function getPolicyWise(a, b, c) {
+
+                //    if (a == undefined) {
+                //        a = 0;
+                //    }
+                //    if (b == undefined) {
+                //        b = 0;
+                //    }
+                //    if (c == undefined) {
+                //        c = 0;
+                //    }
+
+                //    console.log('A ' + a + '\nB ' + b + '\nC ' + c);
+                //    new Morris.Donut({
+                //        element: 'morris_donut_chart',
+                //        data: [{
+                //            label: "1994",
+                //            value: 788.0000
+                //        }, {
+                //            label: "2002",
+                //            value: 1863.0000
+                //        }, {
+                //            label: "2006",
+                //            value: 3500.0000
+                //        }],
+                //        colors: ['#243f6b', '#4dad44', '#fd6421'],
+                //        resize: true,
+                //        labelColor: '#878787',
+                //    });
+                //}
+
+                //function LoadFuelWise(fuelType) {
+                //    var elementVal;
+
+                //    var fromdata = new FormData();
+                //    fromdata.append("vls", '27½' + fuelType);
+                //    var choice = {};
+                //    choice.url = '/NPCC/AjaxCallNext' + $(location).attr('search');
+                //    choice.type = "POST";
+                //    choice.data = fromdata;
+                //    choice.contentType = false;
+                //    choice.processData = false;
+                //    choice.success = function (response) {
+                //        elementVal = JSON.stringify(response);
+                //        console.log(elementVal);
+                //        return elementVal;
+                //    };
+                //    choice.error = function (err) {
+                //        console.log(err.statusText);
+                //    };
+                //    $.ajax(choice);
+                //}
+
+                //function LoadPolicyWise(powerpolicy) {
+                //    var elementVal;
+
+                //    var fromdata = new FormData();
+                //    fromdata.append("vls", '26½' + powerpolicy);
+                //    var choice = {};
+                //    choice.url = '/NPCC/AjaxCallNext' + $(location).attr('search');
+                //    choice.type = "POST";
+                //    choice.data = fromdata;
+                //    choice.contentType = false;
+                //    choice.processData = false;
+                //    choice.success = function (response) {
+                //        elementVal = JSON.stringify(response);
+                //        console.log(elementVal);
+                //        return elementVal;
+                //    };
+                //    choice.error = function (err) {
+                //        console.log(err.statusText);
+                //    };
+                //    $.ajax(choice);
+                //}
+
+
+
+
+
+
+
+
+
+    </script>
+</div>
+

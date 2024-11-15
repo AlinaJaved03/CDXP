@@ -1,0 +1,803 @@
+﻿
+
+@{
+    ViewBag.Title = "MeterReadingProforma";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="pcontent">
+
+    <style type="text/css">
+        .center {
+            text-align: center;
+            padding-top: 9px;
+        }
+
+        .vedit {
+            font-size: 18px;
+            cursor: pointer !important;
+        }
+
+        .vdelete {
+            display: none;
+        }
+    </style>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff"></i>
+                        <h6 class="panel-title txt-light">Meter Reading Proforma</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+
+
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                        @*<a class="pull-left inline-block close-panel" href="#" data-effect="fadeOut">
+                                <i class="zmdi zmdi-close"></i>
+                            </a>*@
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                        @*======================*@
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;CDP Selection</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <table class="tblFrm">
+
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">DISCO NAME</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" value="" class="form-control" readonly>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="invoiceType">CDP Number<span style="color:rgb(0, 149, 235);">*</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control frm" id="ddlCDPNumber">
+                                            @Html.Raw(@ViewBag.ddlCDPNumber)
+                                        </select>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="submitDate">
+                                            Feeder Name/Line:
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input id="FEEDER_NAME_CODE" type="text" value="" class="form-control" readonly />
+                                    </td>
+
+                                    <td>
+                                        <label for="submitDate">
+                                            Grid Station Name
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input id="GRID_STATION_NAME" type="text" value="" class="form-control" readonly />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="Disconame">Energy From</label>
+                                    </td>
+                                    <td>
+                                        <input id="ENGY_IMP_EXP_FROM_CODE" type="text" class="form-control" value="" readonly />
+                                    </td>
+                                    <td>
+                                        <label for="submitDate">
+                                            Energy To
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input id="ENGY_IMP_EXP_TO_CODE" type="text" class="form-control" value="" readonly />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="Disconame">Location Code</label>
+                                    </td>
+                                    <td>
+                                        <input id="LOCATION_CODE" type="text" class="form-control" value="" readonly />
+                                    </td>
+                                    <td>
+                                        <label style="margin-left:20px;" for="totalClaim">Location Name:</label>
+                                    </td>
+                                    <td>
+                                        <input id="LOCATION_NAME" type="text" class="form-control" value="" readonly />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="Disconame">Primary Meter No.</label>
+                                    </td>
+                                    <td>
+                                        <input id="PRIMARY_METER_NO" type="text" class="form-control" value="" readonly />
+                                    </td>
+                                    <td>
+                                        <label for="submitDate">Back-up Meter No.</label>
+                                    </td>
+                                    <td>
+                                        <input id="BACKUP_METER_NO" type="text" class="form-control" value="" readonly />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="BillingMeter">
+                                            Billing Meter
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="billingmeter" value="Y" checked> Primary
+                                        <input type="radio" name="billingmeter" value="N"> Backup
+                                    </td>
+                                    <td>
+                                        <label for="submitDate">
+                                            Data Entry Status
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input type="text" value="DRAFT" class="form-control" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="PresentReadingDate/Time">
+                                            Present Reading Date/Time<span style="color:rgb(0, 149, 235);">*</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <div class='input-group date dtDateTime' id='datetimepicker1'>
+                                            <input id="txtReadingDateTime" type='text' class="form-control frm" />
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <label for="submitDate">
+                                            Previous Reading Date / Time
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input id="PREVIOUS_READING_DATE_TIME" type="text" class="form-control" value="" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="producerSite">Month of Meter Reading</label>
+                                    </td>
+                                    <td>
+                                        <select class="form-control frm" id="ddlMonths" disabled></select>
+                                    </td>
+
+                                    <td>
+                                        <label for="submitDate">
+                                            Submit Date
+                                        </label>
+                                    </td>
+                                    <td>
+                                        @*<input type="text" class="form-control" value=@ViewBag.dtToday readonly>*@
+                                        <input type="text" class="form-control" value="" readonly>
+                                    </td>
+
+                                </tr>
+                            </table>
+                        </div>@*END OF tab0*@
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Meter Readings</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <style type="text/css">
+                                .MeterReading {
+                                    font-weight: normal;
+                                    color: black;
+                                    text-align: right;
+                                }
+
+                                    .MeterReading .thstyl {
+                                        border: 1px solid gray;
+                                        text-align: center !important;
+                                        font-size: 15px !important;
+                                        font-weight: normal;
+                                        background: #eeeeee;
+                                    }
+
+                                    .MeterReading tbody tr td:first-child {
+                                        font-size: 15px !important;
+                                        font-weight: normal;
+                                        background: #eeeeee;
+                                    }
+
+                                    .MeterReading tbody tr td {
+                                        border: 1px solid gray;
+                                    }
+
+                                        .MeterReading tbody tr td input {
+                                            text-align: right;
+                                        }
+                            </style>
+                            <table class="MeterReading" data-tablesaw-mode="swipe" id="tblMeterData">
+                                <thead>
+                                    <tr>
+                                        <th style="width:200px; text-align:center;"></th>
+                                        <th class="thstyl" style="width:200px;text-align:center;" colspan="4">PRIMARY METER</th>
+                                        <th class="thstyl" style="width:200px;text-align:center;" colspan="4">BACK-UP METER</th>
+                                    </tr>
+                                    <tr>
+                                        <th style="width:200px;text-align:center;"></th>
+                                        <th class="thstyl" style="width:200px;text-align:center;" colspan="2">Import</th>
+                                        <th class="thstyl" style="width:200px;text-align:center;" colspan="2">Export</th>
+                                        <th class="thstyl" style="width:200px;text-align:center;" colspan="2">Import</th>
+                                        <th class="thstyl" style="width:200px;text-align:center;" colspan="2">Export</th>
+                                    </tr>
+                                    <tr>
+                                        <th style="width:200px;"></th>
+                                        <th class="thstyl" style="width:200px;">Active</th>
+                                        <th class="thstyl" style="width:200px;">Reactive</th>
+                                        <th class="thstyl" style="width:200px;">Active</th>
+                                        <th class="thstyl" style="width:200px;">Reactive</th>
+                                        <th class="thstyl" style="width:200px;">Active</th>
+                                        <th class="thstyl" style="width:200px;">Reactive</th>
+                                        <th class="thstyl" style="width:200px;">Active</th>
+                                        <th class="thstyl" style="width:200px;">Reactive</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="width:200px; text-align:left;">
+                                            Previous Reading
+                                        </td>
+                                        <td id="previous_PIAR"></td>
+                                        <td id="previous_PIRR"></td>
+                                        <td id="previous_PEAR"></td>
+                                        <td id="previous_PERR"></td>
+                                        <td id="previous_BIAR"></td>
+                                        <td id="previous_BIRR"></td>
+                                        <td id="previous_BEAR"></td>
+                                        <td id="previous_BERR"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:200px; text-align:left;">
+                                            Present Reading
+                                        </td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control pReading frm" c="1" id="PIAR"></td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control pReading frm" c="2" id="PIRR"></td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control pReading frm" c="3" id="PEAR"></td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control pReading frm" c="4" id="PERR"></td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control pReading frm" c="5" id="BIAR"></td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control pReading frm" c="6" id="BIRR"></td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control pReading frm" c="7" id="BEAR"></td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control pReading frm" c="8" id="BERR"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:200px; text-align:left;">
+                                            Difference
+                                        </td>
+                                        <td id="PIA_DIFF"></td>
+                                        <td id="PIR_DIFF"></td>
+                                        <td id="PEA_DIFF"></td>
+                                        <td id="PER_DIFF"></td>
+                                        <td id="BIA_DIFF"></td>
+                                        <td id="BIR_DIFF"></td>
+                                        <td id="BEA_DIFF"></td>
+                                        <td id="BER_DIFF"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:200px; text-align:left;">
+                                            Multiplying Factor
+                                        </td>
+                                        <td class="PmfENERGY" id="PIA_MF_E"></td>
+                                        <td class="PmfENERGY" id="PIR_MF_E"></td>
+                                        <td class="PmfENERGY" id="PEA_MF_E"></td>
+                                        <td class="PmfENERGY" id="PER_MF_E"></td>
+                                        <td class="BmfENERGY" id="BIA_MF_E"></td>
+                                        <td class="BmfENERGY" id="BIR_MF_E"></td>
+                                        <td class="BmfENERGY" id="BEA_MF_E"></td>
+                                        <td class="BmfENERGY" id="BER_MF_E"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:200px; text-align:left;">
+                                            Adjustments
+                                        </td>
+                                        <td><input value="0" style="background-color:rgb(251, 255, 193);" type="text" class="form-control ADJ frm" c="1" id="PIA_ADJ"></td>
+                                        <td><input value="0" style="background-color:rgb(251, 255, 193);" type="text" class="form-control ADJ frm" c="2" id="PIR_ADJ"></td>
+                                        <td><input value="0" style="background-color:rgb(251, 255, 193);" type="text" class="form-control ADJ frm" c="3" id="PEA_ADJ"></td>
+                                        <td><input value="0" style="background-color:rgb(251, 255, 193);" type="text" class="form-control ADJ frm" c="4" id="PER_ADJ"></td>
+                                        <td><input value="0" style="background-color:rgb(251, 255, 193);" type="text" class="form-control ADJ frm" c="5" id="BIA_ADJ"></td>
+                                        <td><input value="0" style="background-color:rgb(251, 255, 193);" type="text" class="form-control ADJ frm" c="6" id="BIR_ADJ"></td>
+                                        <td><input value="0" style="background-color:rgb(251, 255, 193);" type="text" class="form-control ADJ frm" c="7" id="BEA_ADJ"></td>
+                                        <td><input value="0" style="background-color:rgb(251, 255, 193);" type="text" class="form-control ADJ frm" c="8" id="BER_ADJ"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:200px; text-align:left;">
+                                            Total Units (kWh)
+                                        </td>
+                                        <td id="PIA_TTL">0</td>
+                                        <td id="PIR_TTL">0</td>
+                                        <td id="PEA_TTL">0</td>
+                                        <td id="PER_TTL">0</td>
+                                        <td id="BIA_TTL">0</td>
+                                        <td id="BIR_TTL">0</td>
+                                        <td id="BEA_TTL">0</td>
+                                        <td id="BER_TTL">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:200px; text-align:left;">
+                                            MDI
+                                        </td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control MDI frm" c="1" id="PIAMDI"></td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control MDI frm" c="2" id="PIRMDI"></td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control MDI frm" c="3" id="PEAMDI"></td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control MDI frm" c="4" id="PERMDI"></td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control MDI frm" c="5" id="BIAMDI"></td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control MDI frm" c="6" id="BIRMDI"></td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control MDI frm" c="7" id="BEAMDI"></td>
+                                        <td><input style="background-color:rgb(251, 255, 193);" type="text" class="form-control MDI frm" c="8" id="BERMDI"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:200px; text-align:left;">
+                                            Multiplying Factor
+                                        </td>
+                                        <td class="PmfMDI" id="PIA_MF_MDI"></td>
+                                        <td class="PmfMDI" id="PIR_MF_MDI"></td>
+                                        <td class="PmfMDI" id="PEA_MF_MDI"></td>
+                                        <td class="PmfMDI" id="PER_MF_MDI"></td>
+                                        <td class="BmfMDI" id="BIA_MF_MDI"></td>
+                                        <td class="BmfMDI" id="BIR_MF_MDI"></td>
+                                        <td class="BmfMDI" id="BEA_MF_MDI"></td>
+                                        <td class="BmfMDI" id="BER_MF_MDI"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:200px; text-align:left;">
+                                            MDI (KW)
+                                        </td>
+                                        <td id="PIA_MDI"></td>
+                                        <td id="PIR_MDI"></td>
+                                        <td id="PEA_MDI"></td>
+                                        <td id="PER_MDI"></td>
+                                        <td id="BIA_MDI"></td>
+                                        <td id="BIR_MDI"></td>
+                                        <td id="BEA_MDI"></td>
+                                        <td id="BER_MDI"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>@*END OF tab0*@
+
+
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1" style="float: left">&nbsp;Attachments</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <button type="button" id="btnAddFiles" class="btn btn-primary" style="float:right;">
+                                Upload Scanned copy of Metere Reading Proforma
+                            </button>
+                            <div>
+                                <table class="table table-bordered" dellist="" data-tablesaw-mode="swipe" id="tbl_attach">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                                                Title
+                                            </th>
+                                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                                                Description
+                                            </th>
+                                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                                                Details
+                                            </th>
+                                            <th class="clstdEdit" style="width:36px;" scope="col" data-tablesaw-sortable-col="" data-tablesaw-sortable-default-col="" data-tablesaw-priority="3"></th>
+                                            <!--id="btnFileDel"-->
+                                            <th class="clstdDelete" style="width:36px;" scope="col" data-tablesaw-sortable-col="" data-tablesaw-sortable-default-col="" data-tablesaw-priority="3"></th>
+                                            <th class="clstdDownload" scope="col" style="width:36px;" data-tablesaw-sortable-col="" data-tablesaw-sortable-default-col="" data-tablesaw-priority="3"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>@*END OF tab0*@
+
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1" style="float: left">&nbsp;Remarks</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <textarea cols="70" rows="6" maxlength="2000" id="prevTxtAreaRemarks" style="width: 100%;"></textarea>
+                        </div>@*END OF tab0*@
+
+
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button id="btnCancel" class="btn btn-default" type="button">
+                                        Cancel
+                                    </button>
+                                    <button id="btnSave" class="btn btn-info" value="0" type="button">
+                                        <i class="fa fa-save"></i>
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        @*+++++++++++++++++++++++++*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('body').on('focus', ".dtDateTime", function () {
+                $(this).datetimepicker({
+                    format: 'DD-MMM-YYYY HH:mm'
+                });
+            });
+            //$('#datetimepicker1').datetimepicker();
+
+            function fnCDPLoad() {
+                var $id = $('#ddlCDPNumber').val();
+                if ($id == "0") {
+                    $('#ddlMonths').val("0");
+                    $('#ddlMonths').prop('disabled', true);
+                    return false;
+                }
+                var thisData = '0½' + $id;
+                var fromdata = new FormData();
+                fromdata.append("vls", thisData);
+                var choice = {};
+                choice.url = '/Home/Meter_Reading_Proforma' + $(location).attr('search');
+                choice.type = "POST";
+                choice.data = fromdata;
+                choice.contentType = false;
+                choice.processData = false;
+                choice.success = function (result) {
+                    var $thisdata = $.parseJSON(result);
+                    $('#GRID_STATION_NAME').val($thisdata[0].GRID_STATION_NAME);
+                    $('#FEEDER_NAME_CODE').val($thisdata[0].FEEDER_NAME_CODE);
+                    $('#ENGY_IMP_EXP_FROM_CODE').val($thisdata[0].ENGY_IMP_EXP_FROM_CODE);
+                    $('#ENGY_IMP_EXP_TO_CODE').val($thisdata[0].ENGY_IMP_EXP_TO_CODE);
+                    $('#LOCATION_CODE').val($thisdata[0].LOCATION_CODE);
+                    $('#LOCATION_NAME').val($thisdata[0].LOCATION_NAME);
+                    $('#PRIMARY_METER_NO').val($thisdata[0].PRIMARY_METER_NO);
+                    $('#BACKUP_METER_NO').val($thisdata[0].BACKUP_METER_NO);
+                    $('#PRIMARY_METER_NO').attr('dtl', $thisdata[0].PIMARY_DTL);
+                    $('#BACKUP_METER_NO').attr('dtl', $thisdata[0].BACKUP_DTL);
+                    $('.PmfENERGY').html($thisdata[0].PIMARY_DTL.split('½')[1]);
+                    $('.BmfENERGY').html($thisdata[0].BACKUP_DTL.split('½')[1]);
+                    $('.PmfMDI').html($thisdata[0].PIMARY_DTL.split('½')[2]);
+                    $('.BmfMDI').html($thisdata[0].BACKUP_DTL.split('½')[2]);
+                    //var AccountingMonth = $.parseJSON($thisdata[0].AccountingMonth);
+                    //$('#ddlMonths').html('<option value="0">Select Month</option><option value="' + AccountingMonth[0].ACCOUNTING_MONTH_ID + '">' + AccountingMonth[0].DISPLAY + '</option>');
+                    //$('#ddlMonths').prop('disabled', false);
+                };
+                choice.error = function (err) {
+                    console.log(err.statusText);
+                };
+                $.ajax(choice);
+            }//end of fnCDPLoad
+
+            function fnMonthDataLoad() {
+                var fromdata = new FormData();
+                fromdata.append("vls", '1½' + $('#ddlCDPNumber').val() + '½' + $('#ddlMonths').val());
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/Meter_Reading_Proforma" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        var $thisdata = $.parseJSON(response);
+                        $('#btnSave').attr('previous_id', $thisdata[0].WP_DISCO_CDP_MONTHLY_DATA_ID);
+                        $('#PREVIOUS_READING_DATE_TIME').val($thisdata[0].READING_DATE_TIME);
+                        $('#previous_PIAR').html($thisdata[0].PRIMARY_IMPORT_ACTIVE_READING);
+                        $('#previous_PIRR').html($thisdata[0].PRIMARY_IMPORT_REACTIVE_READING);
+                        $('#previous_PEAR').html($thisdata[0].PRIMARY_EXPORT_ACTIVE_READING);
+                        $('#previous_PERR').html($thisdata[0].PRIMARY_EXPORT_REACTIVE_READING);
+                        $('#previous_BIAR').html($thisdata[0].BACKUP_IMPORT_ACTIVE_READING);
+                        $('#previous_BIRR').html($thisdata[0].BACKUP_IMPORT_REACTIVE_READING);
+                        $('#previous_BEAR').html($thisdata[0].BACKUP_EXPORT_ACTIVE_READING);
+                        $('#previous_BERR').html($thisdata[0].BACKUP_EXPORT_REACTIVE_READING);
+                        fnUpdateLoad($thisdata[0].ThisData);
+                    }
+                });
+            }
+            function fnUpdateLoad(thisData) {
+                if (thisData != null) {
+                    var $data = $.parseJSON(thisData);
+                    $('#btnSave').val($data[0].WP_DISCO_CDP_MONTHLY_DATA_ID);
+                    $('#PIAR').val($data[0].PRIMARY_IMPORT_ACTIVE_READING);
+                    $('#PIRR').val($data[0].PRIMARY_IMPORT_REACTIVE_READING);
+                    $('#PEAR').val($data[0].PRIMARY_EXPORT_ACTIVE_READING);
+                    $('#PERR').val($data[0].PRIMARY_EXPORT_REACTIVE_READING);
+                    $('#BIAR').val($data[0].BACKUP_IMPORT_ACTIVE_READING);
+                    $('#BIRR').val($data[0].BACKUP_IMPORT_REACTIVE_READING);
+                    $('#BEAR').val($data[0].BACKUP_EXPORT_ACTIVE_READING);
+                    $('#BERR').val($data[0].BACKUP_EXPORT_REACTIVE_READING);
+
+                    $('#PIA_ADJ').val($data[0].PRIMARY_IMPORT_ACTIVE_AJD);
+                    $('#PIR_ADJ').val($data[0].PRIMARY_IMPORT_REACTIVE_ADJ);
+                    $('#PEA_ADJ').val($data[0].PRIMARY_EXPORT_ACTIVE_AJD);
+                    $('#PER_ADJ').val($data[0].PRIMARY_EXPORT_REACTIVE_ADJ);
+                    $('#BIA_ADJ').val($data[0].BACKUP_IMPORT_ACTIVE_AJD);
+                    $('#BIR_ADJ').val($data[0].BACKUP_IMPORT_REACTIVE_ADJ);
+                    $('#BEA_ADJ').val($data[0].BACKUP_EXPORT_ACTIVE_AJD);
+                    $('#BER_ADJ').val($data[0].BACKUP_EXPORT_REACTIVE_ADJ);
+
+                    $('#PIAMDI').val($data[0].PRIMARY_IMPORT_ACTIVE_MDI);
+                    $('#PIRMDI').val($data[0].PRIMARY_IMPORT_REACTIVE_MDI);
+                    $('#PEAMDI').val($data[0].PRIMARY_EXPORT_ACTIVE_MDI);
+                    $('#PERMDI').val($data[0].PRIMARY_EXPORT_REACTIVE_MDI);
+                    $('#BIAMDI').val($data[0].BACKUP_IMPORT_ACTIVE_MDI);
+                    $('#BIRMDI').val($data[0].BACKUP_IMPORT_REACTIVE_MDI);
+                    $('#BEAMDI').val($data[0].BACKUP_EXPORT_ACTIVE_MDI);
+                    $('#BERMDI').val($data[0].BACKUP_EXPORT_REACTIVE_MDI);
+
+                    $('input[type="radio"]').removeAttr('checked');
+                    $('input[type="radio"][value="' + $data[0].IS_PRIMARY_METER + '"]').prop('checked', true);
+                    $('#txtReadingDateTime').val($data[0].READING_DATE_TIME);
+                    $('#prevTxtAreaRemarks').val($data[0].REMARKS);
+
+                    $('#tblMeterData tbody .frm').each(function (index, element) {
+                        $(this).change();
+                    });
+                }
+            }
+            $(function () {
+                var dta = $('body').attr('disco');
+                if (dta != null || dta != undefined) {
+                    $('#ddlCDPNumber').val(dta.split("½")[1]);
+                    $('#ddlCDPNumber').prop('disabled', true);
+                    $('#ddlMonths').html('<option value="' + dta.split("½")[2] + '">' + dta.split("½")[3] + '</option>');
+                    fnCDPLoad();
+                    fnMonthDataLoad();
+                }
+            })
+
+
+            $('body').off('change', '#ddlCDPNumber');
+            $('body').on('change', '#ddlCDPNumber', function () {
+                var $id = $(this).val();
+                if ($id == "0") {
+                    $('#ddlMonths').val("0");
+                    $('#ddlMonths').prop('disabled', true);
+                    return false;
+                }
+                var thisData = '0½' + $id;
+                var fromdata = new FormData();
+                fromdata.append("vls", thisData);
+                var choice = {};
+                choice.url = '/Home/Meter_Reading_Proforma' + $(location).attr('search');
+                choice.type = "POST";
+                choice.data = fromdata;
+                choice.contentType = false;
+                choice.processData = false;
+                choice.success = function (result) {
+                    var $thisdata = $.parseJSON(result);
+                    $('#GRID_STATION_NAME').val($thisdata[0].GRID_STATION_NAME);
+                    $('#FEEDER_NAME_CODE').val($thisdata[0].FEEDER_NAME_CODE);
+                    $('#ENGY_IMP_EXP_FROM_CODE').val($thisdata[0].ENGY_IMP_EXP_FROM_CODE);
+                    $('#ENGY_IMP_EXP_TO_CODE').val($thisdata[0].ENGY_IMP_EXP_TO_CODE);
+                    $('#LOCATION_CODE').val($thisdata[0].LOCATION_CODE);
+                    $('#LOCATION_NAME').val($thisdata[0].LOCATION_NAME);
+                    $('#PRIMARY_METER_NO').val($thisdata[0].PRIMARY_METER_NO);
+                    $('#BACKUP_METER_NO').val($thisdata[0].BACKUP_METER_NO);
+                    $('#PRIMARY_METER_NO').attr('dtl', $thisdata[0].PIMARY_DTL);
+                    $('#BACKUP_METER_NO').attr('dtl', $thisdata[0].BACKUP_DTL);
+                    $('.PmfENERGY').html($thisdata[0].PIMARY_DTL.split('½')[1]);
+                    $('.BmfENERGY').html($thisdata[0].BACKUP_DTL.split('½')[1]);
+                    $('.PmfMDI').html($thisdata[0].PIMARY_DTL.split('½')[2]);
+                    $('.BmfMDI').html($thisdata[0].BACKUP_DTL.split('½')[2]);
+                    var AccountingMonth = $.parseJSON($thisdata[0].AccountingMonth);
+                    $('#ddlMonths').html('<option value="0">Select Month</option><option value="' + AccountingMonth[0].ACCOUNTING_MONTH_ID + '">' + AccountingMonth[0].DISPLAY + '</option>');
+                    $('#ddlMonths').prop('disabled', false);
+                };
+                choice.error = function (err) {
+                    console.log(err.statusText);
+                };
+                $.ajax(choice);
+            });//end of ddl cdp number
+
+            $('body').off('change', '#ddlMonths');
+            $('body').on('change', '#ddlMonths', function () {
+
+                if ($(this).val() == "0") {
+                    $('#ddlCDPNumber').prop('disabled', false);
+                    $('#btnSave').attr('previous_id', '0');
+                    $('#PREVIOUS_READING_DATE_TIME').val('');
+                    $('#previous_PIAR').html('0');
+                    $('#previous_PIRR').html('0');
+                    $('#previous_PEAR').html('0');
+                    $('#previous_PERR').html('0');
+                    $('#previous_BIAR').html('0');
+                    $('#previous_BIRR').html('0');
+                    $('#previous_BEAR').html('0');
+                    $('#previous_BERR').html('0');
+
+                    $('.pReading, .MDI').val('');
+                    $('.ADJ').val('0');
+                    $('td[id$="_DIFF"]').html('');
+                    $('td[id$="_TTL"]').html('');
+                    $('#PIA_MDI, #PIR_MDI, #PEA_MDI, #PER_MDI, #BIA_MDI, #BIR_MDI, #BEA_MDI, #BER_MDI').html('');
+
+                    //$('td[id$="_MDI"]').html('');
+
+                }
+                else {
+                    $('#ddlCDPNumber').prop('disabled', true);
+                    var fromdata = new FormData();
+                    fromdata.append("vls", '1½' + $('#ddlCDPNumber').val() + '½' + $('#ddlMonths').val());
+                    $.ajax({
+                        type: "POST",
+                        url: "/Home/Meter_Reading_Proforma" + $(location).attr("search"),
+                        data: fromdata,
+                        contentType: false,
+                        processData: false,
+                        success: function (response) {
+                            var $thisdata = $.parseJSON(response);
+                            $('#btnSave').attr('previous_id', $thisdata[0].WP_DISCO_CDP_MONTHLY_DATA_ID);
+                            $('#PREVIOUS_READING_DATE_TIME').val($thisdata[0].READING_DATE_TIME);
+                            $('#previous_PIAR').html($thisdata[0].PRIMARY_IMPORT_ACTIVE_READING);
+                            $('#previous_PIRR').html($thisdata[0].PRIMARY_IMPORT_REACTIVE_READING);
+                            $('#previous_PEAR').html($thisdata[0].PRIMARY_EXPORT_ACTIVE_READING);
+                            $('#previous_PERR').html($thisdata[0].PRIMARY_EXPORT_REACTIVE_READING);
+                            $('#previous_BIAR').html($thisdata[0].BACKUP_IMPORT_ACTIVE_READING);
+                            $('#previous_BIRR').html($thisdata[0].BACKUP_IMPORT_REACTIVE_READING);
+                            $('#previous_BEAR').html($thisdata[0].BACKUP_EXPORT_ACTIVE_READING);
+                            $('#previous_BERR').html($thisdata[0].BACKUP_EXPORT_REACTIVE_READING);
+                        }
+                    });
+                }
+
+
+            });//End of
+            $('body').off('change', '.pReading');
+            $('body').on('change', '.pReading', function () {
+                var $c = $(this).attr('c');
+                var $valNext = $($($($('#tblMeterData > tbody > tr')[4]).find('td')[$c]).find('input[type="text"]')[0]).val();
+                $($($('#tblMeterData > tbody > tr')[2]).find('td')[$c]).html(parseFloat($(this).val()) - parseFloat($($($('#tblMeterData > tbody > tr')[0]).find('td')[$c]).html()));
+                $($($('#tblMeterData > tbody > tr')[5]).find('td')[$c]).html((parseFloat($($($('#tblMeterData > tbody > tr')[2]).find('td')[$c]).html()) * parseFloat($($($('#tblMeterData > tbody > tr')[3]).find('td')[$c]).html())) - parseFloat($valNext));
+            });//end of
+            $('body').off('change', '.ADJ');
+            $('body').on('change', '.ADJ', function () {
+                var $c = $(this).attr('c');
+                $($($('#tblMeterData > tbody > tr')[5]).find('td')[$c]).html((parseFloat($($($('#tblMeterData > tbody > tr')[2]).find('td')[$c]).html()) * parseFloat($($($('#tblMeterData > tbody > tr')[3]).find('td')[$c]).html())) - parseFloat($(this).val()));
+            });//end of
+            $('body').off('change', '.MDI');
+            $('body').on('change', '.MDI', function () {
+                var $c = $(this).attr('c');
+                $($($('#tblMeterData > tbody > tr')[8]).find('td')[$c]).html(parseFloat($(this).val()) * parseFloat($($($('#tblMeterData > tbody > tr')[7]).find('td')[$c]).html()));
+            });//end of
+
+            $('body').off('click', '#btnSave');
+            $('body').on('click', '#btnSave', function (e) {
+                e.preventDefault();
+                var $strflg = true;
+                $('#tblMeterData').find('.frm').each(function (index, element) {
+
+                    var $thisElement = $(this);
+                    if ($(this).val() == "") {
+
+                        $strflg = false;
+
+                        swal({
+                            title: "Error",
+                            text: "Please enter valid value!",
+                            type: "warning",
+                            showCancelButton: false,
+                            confirmButtonClass: "btn btn-danger",
+                            confirmButtonText: "OK",
+                            onAfterClose: () => {
+                                setTimeout(() => $thisElement.focus(), 100)
+                            }
+                        });
+                        return false;
+
+                    }//end of for loop
+
+                });
+                if (!$strflg) {
+                    return false;
+                }
+
+                var $input = "";
+                $('.frm').each(function (index, element) {
+                    $input += $(this).val() + "½";
+                });
+                $input += $("input[name='billingmeter']:checked").val() + "½" + $("#PRIMARY_METER_NO").attr("dtl").split("½")[0] + "½" + $("#PRIMARY_METER_NO").attr("dtl").split("½")[0] + "½" + $("#prevTxtAreaRemarks").val() + "½" + $("#btnSave").attr("previous_id");
+
+                if ($("input[name='billingmeter']:checked").val() == "Y") {
+                    $input += '½' + $('#PIA_TTL').html() + '½' + $('#PEA_TTL').html() + '½' + $('#PIA_MDI').html() + '½' + $('#PEA_MDI').html() + "½" + $("#btnSave").val();
+                }
+                else {
+                    $input += '½' + $('#BIA_TTL').html() + '½' + $('#BEA_TTL').html() + '½' + $('#BIA_MDI').html() + '½' + $('#BEA_MDI').html() + "½" + $("#btnSave").val();
+                }
+                var fromdata = new FormData();
+                fromdata.append("vls", '2½' + $input);
+                console.log('2½' + $input);
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/Meter_Reading_Proforma" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        var options = {};
+                        $("#pageContainer").hide('slide', options, 300);
+                        $.ajax({
+                            url: "/Home/DISCO_Monthly_Data" + $(location).attr('search'),
+                            success: function (result) {
+                                var options = {};
+                                $('#pageContainer').html($(result).find('#pcontent').html());
+                                $("#pageContainer").show('slide', options, 500);
+                            }
+                        });
+                    }
+                });
+            });//end of save
+
+
+
+            $('body').off('click', '#btnCancel');
+            $('body').on('click', '#btnCancel', function (e) {
+                e.preventDefault();
+
+
+                //swal({
+                //    title: "Error",
+                //    text: "Please enter valid value!",
+                //    type: "warning",
+                //    showCancelButton: false,
+                //    confirmButtonClass: "btn btn-danger",
+                //    confirmButtonText: "OK"
+                //    //,onAfterClose: () => {
+                //    //    setTimeout(() => $thisElement.focus(), 100)
+                //    //}
+                //});
+
+
+                var options = {};
+                $("#pageContainer").hide('slide', options, 300);
+                $.ajax({
+                    url: "/Home/DISCO_Monthly_Data" + $(location).attr('search'),
+                    success: function (result) {
+                        var options = {};
+                        $('#pageContainer').html($(result).find('#pcontent').html());
+                        $("#pageContainer").show('slide', options, 500);
+                    }
+                });
+
+            });//end of cancel
+
+        });
+    </script>
+
+
+
+
+</div>

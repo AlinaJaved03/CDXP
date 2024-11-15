@@ -1,0 +1,692 @@
+﻿<div id="pcontent">
+    <style type="text/css">
+        .center {
+            text-align: center;
+            padding-top: 9px;
+        }
+
+        .vedit {
+            font-size: 18px;
+            cursor: pointer !important;
+        }
+
+
+        #tblJ1 > tbody > tr > td:nth-child(12), #tblJ1 > tbody > tr > td:nth-child(13), #tblJ1 > tbody > tr > td:nth-child(14), #tblJ1 > tbody > tr > td:nth-child(15) {
+            text-align: right;
+            font-weight: bold;
+        }
+    </style>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff;"></i>
+                        <h6 class="panel-title txt-light">DISCO Monthly Data</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+
+
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                        @*<a class="pull-left inline-block close-panel" href="#" data-effect="fadeOut">
+                                <i class="zmdi zmdi-close"></i>
+                            </a>*@
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body">
+
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;CDP Data Submission</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+
+                            <table class="tblFrm">
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">DISCO </label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control frm" id="ddlDISCOs">@Html.Raw(@ViewBag.ddlDISCOs)</select>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Month</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control frm" id="ddlMonths"> @Html.Raw(@ViewBag.ddlMonths)</select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="Disconame">Status</label>
+                                    </td>
+                                    <td>
+                                        <select class="form-control frm" id="ddlType"><option>Draft</option><option>Submitted</option></select>
+                                    </td>
+                                    <td> </td>
+                                    <td></td>
+                                </tr>
+                            </table>
+
+
+
+                        </div>@*END OF tab0*@
+
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;CDPs</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+
+                            <div>
+                                <table class="table table-striped table-bordered table-hover dynamicTable dataTable" data-tablesaw-mode="swipe" id="tblMeterData" style="display:none;">
+                                    <thead>
+                                        <tr>
+
+                                            <th style="width:200px;text-align:Right;">CDP #</th>
+                                            <th style="width:200px;text-align:Right;">NAME OF G/S</th>
+                                            <th style="width:200px;text-align:Right;">Voltage</th>
+                                            <th style="width:200px;text-align:Right;">TF/TL</th>
+                                            <th style="width:200px;text-align:Right;">Area</th>
+                                            <th colspan="2">Energy Import/Export</th>
+
+                                            <th style="width:200px;text-align:Right;">Primary Meter No</th>
+                                            <th style="width:200px;text-align:Right;">Backup Meter No</th>
+                                            <th style="width:200px;text-align:Right;">Billing Meter</th>
+                                            <th colspan="2">Energy (KWh)</th>
+                                            <th colspan="2">MDI(KW)</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <td style="width:300px; text-align:right;">
+                                                1
+                                            </td>
+                                            <td>Burhan</td>
+                                            <td>132</td>
+                                            <td>T-2</td>
+                                            <td>NTDC</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>41504913</td>
+                                            <td>41504913</td>
+                                            <td>Primary</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td style="width:300px; text-align:right;">
+                                                2
+                                            </td>
+                                            <td>Islamabad Peshawar road</td>
+                                            <td>132</td>
+                                            <td>T-2</td>
+                                            <td>NTDC</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>41504913</td>
+                                            <td>41504913</td>
+                                            <td>Primary</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+
+                                        </tr>
+                                        <tr>
+                                            <td style="width:300px; text-align:right;">
+                                                3
+                                            </td>
+                                            <td>Rewat</td>
+                                            <td>132</td>
+                                            <td>T-2</td>
+                                            <td>NTDC</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>41504913</td>
+                                            <td>41504913</td>
+                                            <td>Primary</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td style="width:300px; text-align:right;">
+                                                4
+                                            </td>
+                                            <td>Mangla</td>
+                                            <td>132</td>
+                                            <td>T-2</td>
+                                            <td>WH</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>41504913</td>
+                                            <td>41504913</td>
+                                            <td>Primary</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+
+                                        </tr>
+                                        <tr>
+                                            <td style="width:300px; text-align:right;">
+                                                5
+                                            </td>
+                                            <td>Mangla</td>
+                                            <td>132</td>
+                                            <td>T-2</td>
+                                            <td>WH</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>41504913</td>
+                                            <td>41504913</td>
+                                            <td>Primary</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+
+
+
+
+
+                                </table>
+                                <div id="tblContainer"></div>
+                            </div>
+                        </div>@*END OF tab0*@
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Notes</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <textarea cols="70" rows="6" maxlength="2000" id="prevTxtAreaRemarks" style="width: 100%;"></textarea>
+
+                        </div>@*END OF tab0*@
+
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button id="btnCancel" class="btn btn-default" type="button">
+                                        Cancel
+                                    </button>
+                                    <button id="btnSubmit" class="btn btn-info" value="0" type="button">
+                                        Receive
+                                    </button>
+                                    <button id="btnSave" class="btn btn-info" value="0" type="button">
+                                        Return
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        @*===============================================*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            $(function () {
+                var dta = $('body').attr('cppagdisco');
+                if (dta != null || dta != undefined) {
+                    if (dta.split("½")[0] != "0") {
+                        $('#ddlDISCOs').val(dta.split("½")[0]);
+                    }
+                    if (dta.split("½")[2] != "0") {
+                        $('#ddlMonths').val(dta.split("½")[2]);
+                    }
+                    LoadGrid();
+                    $('body').removeAttr('cppagdisco');
+                }
+            });
+            function LoadGrid() {
+                $("#tblContainer").html('<div style="text-align:center;padding:20px;"><img alt="" src="../Content/img/DataLoader.gif" /></div>');
+
+                var fromdata = new FormData();
+                fromdata.append("vls", '8½' + $('#ddlDISCOs').val() + '½' + $('#ddlMonths').val());
+                var choice = {};
+                choice.url = '/Home/Meter_Reading_Proforma' + $(location).attr('search');
+                choice.type = "POST";
+                choice.data = fromdata;
+                choice.contentType = false;
+                choice.processData = false;
+                choice.success = function (response) {
+
+                    if ($('#tblJ1').hasClass('dataTable')) {
+                        $('#tblJ1').dataTable().fnDestroy();
+                    }
+                    $('#tblContainer').html(response);
+                    $($('#tblJ1 thead tr th')[0]).css('width', '35px');
+                    $($('#tblJ1 thead tr th')[16]).css('display', 'none');
+
+                    $('#tblJ1 tbody tr').each(function (index, element) {
+                        $($(this).find('td')[0]).html(parseInt(index) + 1);
+                        $($(this).find('td')[16]).css({ 'display': 'none' });
+                    });
+
+                    //        $('#tblJ1 thead tr').append('<th></th><th></th>');
+                    //        $('#tblJ1 tbody tr').append('<td style="width: 35px;"><div class="controls center">\
+                    //                                                                    <i class="vedit fa fa-search-plus" title="View Details"></i>\
+                    //                                                                </div></td>\
+                    //            <td><div class="checkbox checkbox-success">\
+                    //            <input type="checkbox" class="clschk" >\
+                    //            <label for="checkbox3">&nbsp;</label>\
+                    //</div ></td>');
+
+                    $('#tblJ1 thead tr').append('<th></th><th style="width:35px;" ><input type="checkbox" id="select_all"></th>');
+                    $('#tblJ1 tbody tr').append('<td style="width: 35px;"><div class="controls center">\
+                                                                    <i class="vedit fa fa-search-plus" title="View Details"></i>\
+                                                                </div></td>\
+                                <td><div>\
+                                <input class="chkbx" type="checkbox">\
+                                <label for ="checkbox1"></label>\ </div ></td>');
+
+
+                    $('#select_all').change(function () {
+
+                        var maincheckbox = $('#select_all').prop('checked');
+
+
+                        $('#tblJ1 tbody tr').each(function (index, element) {
+                            var $tr = $(this);
+
+                            var status = $($(this).find('td')[15]).html();
+
+
+                            if (status == "Submitted") {
+                                $($tr.find('.chkbx')[0]).prop('checked', maincheckbox);
+                            }
+
+
+                        });
+
+
+                    });
+
+                    $(".chkbx").change(function () {
+
+                        if ($(this).prop("checked") == false) {
+                            $('#select_all').prop("checked", false);
+                        }
+                        if ($(".chkbx:checked").length == $(".chkbx").length) {
+                            $('#select_all').prop("checked", true);
+                        }
+
+
+                    });
+
+
+
+
+
+
+                    $('#tblJ1').append('<tfoot></tfoot>');
+                    //$('#tblJ1 tfoot').html($('#tblJ1 thead').html());
+                    //$('#tblJ1 tfoot tr').attr("style", "border-bottom: 1px solid #c4c4c4;border-right: 1px solid #c4c4c4;");
+                    $('#tblJ1').addClass('dynamicTable');
+                    //$('#tblJ1 tfoot th').each(function () {
+                    //    var title = $(this).text();
+                    //    if ($.trim(title) != "") {
+                    //        $(this).html('<input type="text" class="form-control" style="width:90%;" placeholder="' + title + '" />');
+                    //    }
+
+                    //});
+
+                    $('#tblJ1 tbody tr').each(function (index, element) {
+
+                        var status = $($(this).find('td')[15]).html();
+                        var chkvalue = $(this).find('.clschk')[0];
+
+                        if (status == "Submitted") {
+                            $($(this).css({ 'color': 'black' }));
+                        }
+                        else if (status == "Draft") {
+                            $($(this).css({ 'color': 'black' }));
+                        }
+                        else if (status == "Verified") {
+                            $($(this).css({ 'color': 'green' }));
+                            //$($(this).find('.clschk')[0]).prop('checked', true);
+                            $($(this).find('.chkbx')[0]).prop('disabled', true);
+
+
+                        }
+                        else if (status == "Returned") {
+                            $($(this).css({ 'color': 'red' }));
+                            $($(this).find('.chkbx')[0]).prop('disabled', true);
+                        }
+                    });
+
+                    //var table = $('#tblJ1').DataTable({
+                    //    "aLengthMenu": [[10, 25, 50, 100, 150, 250, 500, -1], [10, 25, 50, 100, 150, 250, 500, "All"]],
+                    //    "iDisplayLength": -1,
+                    //    //"bSort": false,
+                    //    "sPaginationType": "full_numbers",
+                    //    "bJQueryUI": false,
+                    //    "bAutoWidth": false,
+                    //    "bLengthChange": true,
+                    //    "fnInitComplete": function (oSettings, json) {
+                    //        $('.dataTables_filter>label>input').attr('id', 'search');
+                    //    }
+                    //});
+                    //table.columns().every(function () {
+                    //    var that = this;
+
+                    //    $('input', this.footer()).on('keyup change', function () {
+                    //        if (that.search() !== this.value) {
+                    //            that
+                    //                .search(this.value)
+                    //                .draw();
+                    //        }
+                    //    });
+                    //});
+
+                    //$('#tblJ1_length').append('<input type="image" name="btnExcel" id="btnExcel" title="Export to Excel" class="Grd" src="../Content/img/xcel.png" style="margin-left: 30px;margin-top:5px;border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnWord" id="btnWord" title="Export to Word" class="Grd" src="../Content/img/wrd.png" style="border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnPNG" id="btnPNG" title="Export to PNG" class="Grd" src="../Content/img/png.png" style="width: 17px;border-width:0px;">');
+
+                };
+                choice.error = function (err) {
+                    console.log(err.statusText);
+                };
+                $.ajax(choice);
+            }//End of Load Grid
+
+
+            $('body').off('change', '#ddlMonths');
+            $('body').on('change', '#ddlMonths', function (e) {
+                e.preventDefault();
+                if ($(this).val() == "0") {
+                    $('#tblContainer').html('');
+                    return false;
+                }
+                else {
+                    LoadGrid();
+                }
+            });
+
+            $('body').off('click', '#btnExcel');
+            $('body').on('click', '#btnExcel', function (e) {
+
+                e.preventDefault();
+                $('#tblJ1').tableExport({ type: 'excel', escape: 'false' });
+                e.preventDefault();
+            });
+            $('body').off('click', '#btnWord');
+            $('body').on('click', '#btnWord', function (e) {
+                e.preventDefault();
+                $('#tblJ1').tableExport({ type: 'doc', escape: 'false' });
+                e.preventDefault();
+            });
+            $('body').off('click', '#btnPNG');
+            $('body').on('click', '#btnPNG', function (e) {
+                e.preventDefault();
+                $('#tblJ1').tableExport({ type: 'png', escape: 'false' });
+                e.preventDefault();
+            });
+
+            $('body').off('click', '.vedit');
+            $('body').on('click', '.vedit', function (e) {
+                e.preventDefault();
+
+                var currentrow = $(this).closest('tr');
+                var $cdpno = currentrow.find('td:eq(1)').text();
+
+                var $passvals = $('#ddlDISCOs').val() + '½' + $cdpno + '½' + $('#ddlMonths').val() + '½' + $('#ddlMonths option:selected').text() + '½' + currentrow.find('td:eq(15)').text() + '½' + currentrow.attr('tag');
+                $('body').attr('cppagdisco', $passvals);
+                var options = {};
+                $("#pageContainer").hide('slide', options, 300);
+                $.ajax({
+                    url: "/Home/MeterReadingProformaDisplayOnly" + $(location).attr('search'),
+                    success: function (result) {
+                        var options = {};
+                        $('#pageContainer').html($(result).find('#pcontent').html());
+                        $("#pageContainer").show('slide', options, 500);
+                    }
+                });
+            });//End of edit click
+
+            $('body').off('click', '#btnSubmit');
+            $('body').on('click', '#btnSubmit', function (e) {
+                e.preventDefault();
+
+
+                var id = "";
+
+                $('#tblJ1 tbody tr').each(function (index, element) {
+
+
+                    if ($($(this).find('.chkbx')[0]).prop('checked') == true) {
+                        id += $(this).attr('tag') + ", ";
+                    }
+
+
+                });
+
+                var $ok = false;
+
+                if (id == "") {
+                    swal({
+                        title: "Error!",
+                        text: "Please select CDPs before Receive.",
+                        type: "warning",
+                        showCancelButton: false,
+                        showConfirmButton: true
+                    });
+
+                    return false;
+                }
+                else {
+
+                    swal({
+                        title: "Are you sure?",
+                        text: "Do you really want to Receive selected CDPs Record(s)?",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "Yes, Receive it!",
+                        closeOnConfirm: false
+                    },
+                        function () {
+
+                            var fromdata = new FormData();
+                            fromdata.append("vls", '7½' + id.substring(0, id.length - 2) + '½2');
+                            $('.sa-button-container').hide();
+                            $.ajax({
+                                type: "POST",
+                                url: "/Home/Meter_Reading_Proforma" + $(location).attr("search"),
+                                data: fromdata,
+                                contentType: false,
+                                processData: false,
+                                success: function (response) {
+                                    var $thisdata = $.parseJSON(response);
+
+                                    if ($thisdata == "1") {
+
+                                        $('.sa-button-container').show();
+                                        swal("Success!", "Recrods have been Received Successfully.", "success");
+
+                                        LoadGrid();
+                                        //var options = {};
+                                        //$("#pageContainer").hide('slide', options, 300);
+                                        //$.ajax({
+                                        //    url: "/Home/Energy_Delivered" + $(location).attr('search'),
+                                        //    success: function (result) {
+                                        //        var options = {};
+                                        //        $('#pageContainer').html($(result).find('#pcontent').html());
+                                        //        $("#pageContainer").show('slide', options, 500);
+                                        //        swal.close();
+                                        //    }
+                                        //});
+
+
+
+                                    }
+                                    else {
+                                        swal({
+                                            title: "Error!",
+                                            text: $thisdata,
+                                            type: "warning",
+                                            showCancelButton: false,
+                                            showConfirmButton: true
+                                        });
+
+                                        return false;
+                                    }
+                                }
+                            });
+
+
+
+                            return true;
+                        });
+
+
+
+
+                }
+
+            });//End of Submit click
+
+            $('body').off('click', '#btnSave');
+            $('body').on('click', '#btnSave', function (e) {
+                e.preventDefault();
+
+
+                var id = "";
+
+                $('#tblJ1 tbody tr').each(function (index, element) {
+
+
+                    if ($($(this).find('.chkbx')[0]).prop('checked') == true) {
+                        id += $(this).attr('tag') + ", ";
+                    }
+
+
+                });
+
+                var $ok = false;
+
+                if (id == "") {
+                    swal({
+                        title: "Error!",
+                        text: "Please select CDPs before Return.",
+                        type: "warning",
+                        showCancelButton: false,
+                        showConfirmButton: true
+                    });
+
+                    return false;
+                }
+                else {
+
+                    swal({
+                        title: "Are you sure?",
+                        text: "Do you really want to Return selected CDPs Record(s)?",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "Yes, Return it!",
+                        closeOnConfirm: false
+                    },
+                        function () {
+
+                            var fromdata = new FormData();
+                            fromdata.append("vls", '7½' + id.substring(0, id.length - 2) + '½' + '3');
+                            $('.sa-button-container').hide();
+                            $.ajax({
+                                type: "POST",
+                                url: "/Home/Meter_Reading_Proforma" + $(location).attr("search"),
+                                data: fromdata,
+                                contentType: false,
+                                processData: false,
+                                success: function (response) {
+                                    var $thisdata = $.parseJSON(response);
+
+                                    if ($thisdata == "1") {
+
+                                        $('.sa-button-container').show();
+                                        swal("Success!", "Recrods have been Returned Successfully.", "success");
+
+                                        LoadGrid();
+                                        //var options = {};
+                                        //$("#pageContainer").hide('slide', options, 300);
+                                        //$.ajax({
+                                        //    url: "/Home/Energy_Delivered" + $(location).attr('search'),
+                                        //    success: function (result) {
+                                        //        var options = {};
+                                        //        $('#pageContainer').html($(result).find('#pcontent').html());
+                                        //        $("#pageContainer").show('slide', options, 500);
+                                        //        swal.close();
+                                        //    }
+                                        //});
+
+
+
+                                    }
+                                    else {
+                                        swal({
+                                            title: "Error!",
+                                            text: $thisdata,
+                                            type: "warning",
+                                            showCancelButton: false,
+                                            showConfirmButton: true
+                                        });
+
+                                        return false;
+                                    }
+                                }
+                            });
+
+
+
+                            return true;
+                        });
+
+
+
+
+                }
+
+            });//End of Return Button
+
+        });//END OF DOC READY
+    </script>
+
+
+</div>

@@ -1,0 +1,997 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="pcontent">
+    <style type="text/css">
+        /*div.dataTables_wrapper {
+                width: 800px;
+                margin: 0 auto;
+            }*/
+        /*.dataTables_scroll
+            {
+                overflow:auto;
+            }*/
+        table.dataTable thead .sorting::after, table.dataTable thead .sorting_asc::after, table.dataTable thead .sorting_desc::after {
+            display: block;
+            font-family: FontAwesome;
+            position: absolute;
+            right: 10px;
+            top: 0px;
+            font-size: 14px;
+        }
+
+        div.dataTables_scrollBody thead th,
+        div.dataTables_scrollBody thead td {
+            line-height: 0;
+            opacity: 0.0;
+            width: 0px;
+            height: 0px;
+        }
+
+        .buttons-excel {
+            width: 98px;
+            /* height: 30px; */
+            background-color: #1d4a6d !important;
+            border-color: #1d4a6d !important;
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+    </style>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px; margin-right: 5px; color: #fff;"></i>
+                        <h6 class="panel-title txt-light">@ViewBag.Title</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+
+
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                        @*<a class="pull-left inline-block close-panel" href="#" data-effect="fadeOut">
+                                <i class="zmdi zmdi-close"></i>
+                            </a>*@
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body" style="min-height: 300px;">
+                        @*====Body Start===*@
+                        <div class="tab0">
+                            &nbsp;
+                            <div class="tab1">&nbsp;Invoices</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="background-color: white;">
+                            <table class="table-bordered table-hover table borderWidth" data-tablesaw-mode="swipe" id="tbl_results">
+                                <thead>
+                                    <tr>
+                                        <th class="filterhead">Site </th>
+                                        <th class="filterhead">Power Generator Invoice No </th>
+                                        <th class="filterhead">Transaction No </th>
+                                        <th class="filterhead">Submission Date </th>
+                                        <th class="filterhead">Invoice Type </th>
+                                        <th class="filterhead" style="width: 80px;">Invoice From </th>
+                                        <th class="filterhead" style="width: 80px;">Invoice To </th>
+                                        <th class="filterhead">Claimed Amount</th>
+                                        <th class="filterhead" style="width: 125px;">Total Verified Amount </th>
+                                        <th class="filterhead" style="width: 125px;">Total Disallowed Amount </th>
+                                        <th class="filterhead" style="width: 125px;">Paid Amount </th>
+                                        <th class="filterhead" style="width: 125px;">Outstanding Amount </th>
+                                        <th class="filterhead" style="width: 125px;">Verified Due Date </th>
+                                        <th class="filterhead" style="width: 125px;">Diary No </th>
+                                        <th class="filterhead" style="width: 125px;">ERP Invoice No </th>
+                                        <th class="filterhead">Final Status </th>
+                                        <th class="filterhead">Form Type </th>
+                                        <th class="filterhead" style="width: 125px;">Received Date </th>
+                                        <th class="filterhead" style="width: 125px;">HC Submission Date </th>
+                                        <th class="notExport"></th>
+                                        <th class="notExport"></th>
+                                        <th class="notExport"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                        @*====Body End=====*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/plugins/moment/min/moment.min.js"></script>
+    <script src="~/Content/vendors/bower_components/moment/min/datetime-moment.js"></script>
+    <script type="text/javascript">
+        (function (){
+            $('#tooltip').remove();
+            var _swal = window.swal;
+
+            window.swal = function(){
+
+                var previousWindowKeyDown = window.onkeydown;
+
+                _swal.apply(this, Array.prototype.slice.call(arguments, 0));
+
+                window.onkeydown = previousWindowKeyDown;
+
+            };
+
+        })();
+        function goToHome() {
+            var options = {};
+            var $id = "0½0";
+            var fromdata = new FormData();
+            fromdata.append('vls', $id);
+            $("#pageContainer").hide('slide', options, 300);
+            $.ajax({
+                type: "POST",
+                data: fromdata,
+                contentType: false,
+                processData: false,
+                url: "/Invoice/IppDashboard" + $(location).attr('search'),
+
+                success: function (result) {
+                    var options = {};
+                    $('#pageContainer').html($(result).find('#pcontent').html());
+                    $("#pageContainer").show('slide', options, 500);
+                }
+            });
+        }
+        
+        var Token = "";
+        var table;
+        const monthFullNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+
+        function formatdate(date) {
+            try {
+                
+                var d = new Date(date);
+                var dd = d.getDate() < 10 ? "0" + d.getDate() : d.getDate();
+                return dd + "-" + monthNames[d.getMonth()] + "-" + d.getFullYear();
+            } catch (err) {
+                return "";
+            }
+
+        }
+
+        $(document).ready(function() {
+
+            
+            $('body').off('click', '#tblpopiExport');
+            $('body').on('click', '#tblpopiExport', function (e) {
+                e.preventDefault();
+                $('#tbl_results').tableExport({fileName: 'Search Results', type: 'excel', escape: 'false' });
+                e.preventDefault();
+            });
+            /*(function() {
+
+               var customDateDDMMMYYYYToOrd = function(date) {
+                 var dateTime = date.split(' '),
+                   dateObj = new Date(dateTime[0].replace(/-/g, ' ')),
+                   time = "00:00",
+                   type = "AM";
+                 if (dateTime.length > 1) { // if time part and am/pm part is available
+                   time = dateTime[1],
+                     type = dateTime[2];
+                 }
+
+                 var splitTime = time.split(":"),
+                   hours = type == "PM" ? Number(splitTime[0]) + 12 : Number(splitTime[0]),
+                   minutes = Number(splitTime[1]),
+                   seconds = 0,
+                   milliseconds = 0;
+                 return new Date(dateObj.getFullYear(), dateObj.getMonth(), dateObj.getDate(), hours, minutes, seconds, milliseconds);
+               };
+
+               // This will help DataTables magic detect the "dd-MMM-yyyy" format; Unshift
+               // so that it's the first data type (so it takes priority over existing)
+               jQuery.fn.dataTableExt.aTypes.unshift(
+                 function(sData) {
+                   "use strict"; //let's avoid tom-foolery in this function
+                   if (/^([0-2]?\d|3[0-1])-(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)-\d{4}/i.test(sData)) {
+                     return 'date-dd-mmm-yyyy';
+                   }
+                   return null;
+                 }
+               );
+
+               // define the sorts
+               jQuery.fn.dataTableExt.oSort['date-dd-mmm-yyyy-asc'] = function(a, b) {
+                 "use strict"; //let's avoid tom-foolery in this function
+                 var ordA = customDateDDMMMYYYYToOrd(a),
+                   ordB = customDateDDMMMYYYYToOrd(b);
+                 return (ordA < ordB) ? -1 : ((ordA > ordB) ? 1 : 0);
+               };
+
+               jQuery.fn.dataTableExt.oSort['date-dd-mmm-yyyy-desc'] = function(a, b) {
+                 "use strict"; //let's avoid tom-foolery in this function
+                 var ordA = customDateDDMMMYYYYToOrd(a),
+                   ordB = customDateDDMMMYYYYToOrd(b);
+                 return (ordA < ordB) ? 1 : ((ordA > ordB) ? -1 : 0);
+               };
+
+             })();*/
+
+
+            //$('#createMH').attr('href', _spPageContextInfo.webAbsoluteUrl + "/Pages/InvoiceForm.aspx");
+            //$('#createDiff').attr('href', _spPageContextInfo.webAbsoluteUrl + "/Pages/DifferentialInvoice.aspx");
+            //$('#createInt').attr('href', _spPageContextInfo.webAbsoluteUrl + "/Pages/InterestInvoice.aspx");
+
+            $('#createMH').attr('href', "/Invoice/MonthlyInvoice");
+            $('#createDiff').attr('href', "/Invoice/DifferentialInvoice");
+            $('#createInt').attr('href', "/Invoice/InterestInvoice");
+
+            $('#subdate, #invoicefromdate, #invoicetodate').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'dd-M-yy'
+            });
+
+            $("#btnSearch").click(function() {
+                var dairyno = $("#diarynumber").val();
+                var subdate = $("#subdate").val();
+                var powerProducer = $("#powerProducer").val();
+                var curr_status = $("#curr_status").val();
+                var invoiceType = $("#invoiceType").val();
+                var invoiceLetterNumber = $("#invoiceLetterNumber").val();
+                var totalClaim = $("#totalClaim").val();
+
+            });
+
+
+            //////var accountEmail = _spPageContextInfo.userLoginName; //_spPageContextInfo.userLoginName; //
+            var headerAPI = "https://cppa2.azurewebsites.net/v1/Header/Email/";
+
+            //alert(accountEmail);
+
+
+            //ajax function to call Api
+
+            //start calling tokenApi ap_ipp@cppag.onmicrosoft.com test
+            /*var tokenAPI  = "https://cppa2.azurewebsites.net/get/token/";
+            $.ajax({
+            type: "POST",
+            url: tokenAPI,
+            dataType: 'json',
+            headers: {
+                "Authorization": "Basic " + btoa(accountEmail + ":" + 'test')
+            },
+            success: function (data, textStatus, request) {*/
+
+            Token = ""; //sessionStorage.getItem('apiToken');//request.getResponseHeader('Token');
+            var SubmittedInvoicesApi = 'https://cppa2.azurewebsites.net/v1/D_H_Interface/GetAllDiariesbyUser';
+            /*$.ajax
+        ({
+
+            type: "POST",
+            url: tokenAPI,
+            dataType: 'json',
+            headers: {
+                "Authorization": "Basic " + btoa(accountEmail + ":" + 'test')
+            },
+             beforeSend: function() {
+                 $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+            },
+             complete: function() {
+                //$.unblockUI();
+            },
+            success: function (data, textStatus, request) {
+
+                //$.unblockUI();
+                Token = request.getResponseHeader('Token');*/
+            $("#tokenkey").val(Token);
+            //Token = $("#tokenkey").val();
+            /*$.ajax
+                ({
+                    type: "GET",
+                    url: headerAPI + accountEmail,
+                    dataType: 'json',
+                    headers: {
+                        "Token": Token
+                    },
+                    success: function (data) {*/
+            //var data = JSON.parse(sessionStorage.getItem('invHeader'));
+            //debugger;
+            var data = @Html.Raw(@ViewBag.invHeader);
+            data.header_id_pk = $.parseJSON(data.header_id_pk);
+            data.UserDTL = $.parseJSON(data.UserDTL)[0];
+            
+
+            $.each(data.header_id_pk,
+                function(i, category) {
+
+                    vendorID = category.VENDOR_ID;
+                    $('#vendorID').val(vendorID);
+                    vendorName = category.VENDOR_NAME;
+                    verndorSiteID = category.VENDOR_SITE_ID;
+                    producerSite = category.ADDRESS_LINE1;
+                    headerID = category.HEADER_ID_PK;
+                    $("#headerID").val(headerID);
+                    $("#powerProducer").val(vendorName);
+                    $("#producerSite").val(producerSite);
+
+                });
+            ////////////////////////////////$.each(data.invoice_id_pk, function (i, clue) {
+            ////////////////////////////////    $("#invoiceType").append('<option value="' + clue.APP_INVOICES_ID_PK + '">' + clue.INVOICE_TYPES + '</option>');
+            ////////////////////////////////});
+            /*},
+            error: function (request, textStatus, errorThrown) {
+                // alert(request.getResponseHeader('some_header'));
+            }
+        });
+        },
+            error: function (request, textStatus, errorThrown) {
+                // alert(request.getResponseHeader('some_header'));
+            }
+        });*/
+            var fromdata = new FormData();
+            fromdata.append("vls", '13½');
+            $.ajax
+                ({
+                    //type: "GET",
+                    //url: SubmittedInvoicesApi,
+                    //dataType: 'json',
+                    //headers: {
+                    //    "Token": Token
+                    //},
+                    beforeSend: function () {
+                        $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+                    },
+                    complete: function () {
+                        $.unblockUI();
+                    },
+                    type: "POST",
+                    url: "/Invoice/AjaxCall" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        debugger;
+
+                        $('#tbl_results>tbody').html('');
+                        data = $.parseJSON(data);
+                        var transNo = '';
+                        $.each(data,
+                            function (index, value) {
+                                var site = value.ORGANIZATION;
+                                var letterNo = value.VEN_INV_LETTER_NO;
+                                //var submissionDate = value.SUBMIT_DATEX;
+                                var submissionDate = value.SUBMIT_DATE || "";
+                                //submissionDate = (submissionDate.getMonth() + 1) + '/' + submissionDate.getDate() + '/' +  submissionDate.getFullYear();
+                                //var subTime = new Date(value.LAST_UPDATE_DATE);
+                                //subTime = "  " + ("0" + subTime.getHours()).slice(-2) + ":" + ("0" + subTime.getMinutes()).slice(-2);
+                                //submissionDate += subTime;
+                                var InvoiceType = value.INVOICE_TYPE;
+                                //var BillingMonth=value.INVOICE_PERIOD_FROM;
+                                var Amount = value.TOTAL_CLAIM;
+                                var invoiceFrom = value.INVOICE_PERIOD_FROM || "";
+                                var invoiceTo = value.INVOICE_PERIOD_TO || "";
+                                var hardcopyDate = value.HARD_COPY_SUBMISSION_DATETIME || "";
+
+                                Amount = Amount.toString().replace(/\D-/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                                Amount += ".0000";
+                                var Status = value.STATUS;
+                                var receivedDate = '', formType = '';
+                                if (Status == "Received" || value.btnFlg == "0")
+                                    receivedDate = value.LAST_UPDATE_DATE || "";
+                                var verifiedDueDate = value.VERIFIED_DUE_DATE || "";
+
+                                var url = '', vUrl = '';
+                                var _spPageContextInfo = "";
+                                var webAbsoluteUrl = '';
+                                /*if(value.IS_DIFFERENTIAL == "Yes"){
+                                    url = "/Pages/DifferentialInvoice.aspx?typ=E&diarynumber=" + value.DIARY_HEADER_ID;
+                                    vUrl = "/Pages/DifferentialInvoice.aspx?typ=V&diarynumber=" + value.DIARY_HEADER_ID;
+                                    formType = 'Differential';
+                                }
+                                else if(value.IS_DIFFERENTIAL == "No"){
+                                    vUrl = "/Pages/MonthlyForm.aspx?typ=V&diarynumber=" + value.DIARY_HEADER_ID;
+                                    url = "/Pages/MonthlyForm.aspx?typ=E&diarynumber=" + value.DIARY_HEADER_ID;
+                                    formType = 'Monthly/Hourly';
+                                }
+                                else if(value.IS_DIFFERENTIAL == "I"){
+                                    url = "/Pages/InterestInvoice.aspx?typ=E&diarynumber=" + value.DIARY_HEADER_ID;
+                                    vUrl = "/Pages/InterestInvoice.aspx?typ=V&diarynumber=" + value.DIARY_HEADER_ID;
+                                    formType = 'Late Payment Interest Invoice';
+                                }*/
+
+                                url = "/Pages/" + value.FORM_NAME + "?typ=E&diarynumber=" + value.DIARY_HEADER_ID + "&vendorSiteId=" + value.ORGANIZATION_ID;
+                                vUrl = "/Pages/" + value.FORM_NAME + "?typ=V&diarynumber=" + value.DIARY_HEADER_ID + "&vendorSiteId=" + value.ORGANIZATION_ID;
+
+
+                                transNo = value.TransactionNumber;
+                                if (transNo <= 0)
+                                    transNo = '';
+
+                                if (Status != "Deleted") {
+                                    var color = '';
+                                    if (Status == "Received")
+                                        color = 'green';
+                                    else if (Status == "Submitted")
+                                        color = 'Orange';
+                                    else if (Status == "Withdraw")
+                                        color = 'gray';
+                                    else if (Status == "Draft")
+                                        color = 'black';
+                                    else if (Status == "Returned")
+                                        color = 'red';
+                                    else
+                                        color = '#0095eb';
+
+                                    if (value.btnFlg == "1") {
+                                        if (Status == "Draft") {
+                                            $('#tbl_results>tbody').append('<tr><td><span class="txt-dark weight-500">' +
+                                                site +
+                                                '</span></td><td><span class="txt-dark weight-500">' +
+                                                letterNo +
+                                                '</span></td><td><span class="txt-dark weight-500"></span></td> <td><span class="txt-dark weight-500"></span></td> <td><span class="txt-dark weight-500">' +
+                                                InvoiceType +
+                                                '</span></td><td><span class="txt-dark weight-500">' +
+                                                invoiceFrom +
+                                                '</span></td><td><span class="txt-dark weight-500">' +
+                                                invoiceTo +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                Amount +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.PAID_AMOUNT +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.TOTAL_VERIFIED_AMOUNT +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.TOTAL_DISALLOWED_AMOUNT +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.OUTSTANDING_AMOUNT +
+                                                '</span></td><td><span class="txt-dark weight-500"> ' +
+                                                verifiedDueDate +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.DIARY_NO +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.INVOICE_NO +
+                                                '</span></td><td><span style="color: ' +
+                                                color +
+                                                ';">' +
+                                                Status +
+                                                '</span></td><td><span class="txt-dark weight-500">' +
+                                                formType +
+                                                '</span></td><td><span style="color: red;"></span></td><td></td><td><center><a href="#" hrf="' +
+                                                _spPageContextInfo +
+                                                webAbsoluteUrl +
+                                                url +
+                                                '"><span title="Edit" class="zmdi zmdi-edit" style="color: #0095eb;"> </span></a></center></td><td><center><span id="' +
+                                                value.DIARY_HEADER_ID +
+                                                '" class="zmdi zmdi-delete" title="Delete" style="color: red;cursor: pointer;" onclick="deleteInvoiceSearch(this.id)"></span></center></td><td><center><a href="#" hrf="' +
+                                                _spPageContextInfo +
+                                                webAbsoluteUrl +
+                                                vUrl +
+                                                '"><span title="View" class="zmdi zmdi-file" style="color: #0095eb;"></span></a></center></td></tr>'); // 8-4-2018 add edit/update link by Ahmad
+                                        } else if (Status == "Returned") {
+                                            $('#tbl_results>tbody').append('<tr><td><span class="txt-dark weight-500">' +
+                                                site +
+                                                '</span></td><td><span class="txt-dark weight-500">' +
+                                                letterNo +
+                                                '</span></td><td style="text-align: center;"><span class="txt-dark weight-500 pull-right">' +
+                                                transNo +
+                                                '</span></td> <td><span data-sort="dd-MMM-yyyy HH:MM" class="txt-dark weight-500">' +
+                                                submissionDate +
+                                                '</span></td> <td><span class="txt-dark weight-500">' +
+                                                InvoiceType +
+                                                '</span></td><td><span class="txt-dark weight-500">' +
+                                                invoiceFrom +
+                                                '</span></td><td><span class="txt-dark weight-500">' +
+                                                invoiceTo +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                Amount +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.TOTAL_VERIFIED_AMOUNT +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.TOTAL_DISALLOWED_AMOUNT +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.PAID_AMOUNT +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.OUTSTANDING_AMOUNT +
+                                                '</span></td><td><span class="txt-dark weight-500"> ' +
+                                                verifiedDueDate +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.DIARY_NO +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.INVOICE_NO +
+                                                '</span></td><td><span style="color: ' +
+                                                color +
+                                                ';">' +
+                                                Status +
+                                                '</span></td><td><span class="txt-dark weight-500">' +
+                                                formType +
+                                                '</span></td><td><span style="color: red;"></span></td><td></td><td><center><a href="#" hrf="' +
+                                                _spPageContextInfo +
+                                                webAbsoluteUrl +
+                                                url +
+                                                '"><span title="Edit" class="zmdi zmdi-edit" style="color: #0095eb;"> </span></a></center></td><td><center><span id="' +
+                                                value.DIARY_HEADER_ID +
+                                                '" class="zmdi zmdi-delete" title="Delete" style="color: red;" onclick="deleteInvoiceSearch(this.id)"></span></center></td><td><center><a href="#" hrf="' +
+                                                _spPageContextInfo +
+                                                webAbsoluteUrl +
+                                                vUrl +
+                                                '"><span title="View" class="zmdi zmdi-file" style="color: #0095eb;"></span></a></center></td></tr>'); // 8-4-2018 add edit/update link by Ahmad
+                                        } else {
+                                            $('#tbl_results>tbody').append('<tr><td><span class="txt-dark weight-500">' +
+                                                site +
+                                                '</span></td><td><span class="txt-dark weight-500">' +
+                                                letterNo +
+                                                '</span></td><td style="text-align: center;"><span class="txt-dark weight-500 pull-right">' +
+                                                transNo +
+                                                '</span></td> <td><span data-sort="dd-MMM-yyyy HH:MM" class="txt-dark weight-500">' +
+                                                submissionDate +
+                                                '</span></td> <td><span class="txt-dark weight-500">' +
+                                                InvoiceType +
+                                                '</span></td><td><span class="txt-dark weight-500">' +
+                                                invoiceFrom +
+                                                '</span></td><td><span class="txt-dark weight-500">' +
+                                                invoiceTo +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                Amount +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.TOTAL_VERIFIED_AMOUNT +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.TOTAL_DISALLOWED_AMOUNT +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.PAID_AMOUNT +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.OUTSTANDING_AMOUNT +
+                                                '</span></td><td><span class="txt-dark weight-500"> ' +
+                                                verifiedDueDate +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.DIARY_NO +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.INVOICE_NO +
+                                                '</span></td><td><span style="color: ' +
+                                                color +
+                                                ';">' +
+                                                Status +
+                                                '</span></td><td><span class="txt-dark weight-500">' +
+                                                formType +
+                                                '</span></td><td><span style="color: green;">' +
+                                                receivedDate +
+                                                '</span></td><td><span class="txt-dark weight-500">' +
+                                                hardcopyDate +
+                                                '</span></td><td class="unselectable"><center><span class="zmdi zmdi-edit"> </span></center></td><td class="unselectable"><center><span class="zmdi zmdi-delete"></span></center></td><td><center><a href="#" hrf="' +
+                                                _spPageContextInfo +
+                                                webAbsoluteUrl +
+                                                vUrl +
+                                                '"><span title="View" class="zmdi zmdi-file" style="color: #0095eb;"></span></a></center></td></tr>'); // 8-4-2018 add edit/update link by Ahmad
+                                        }
+                                    } else {
+                                        var actionBtns = '<td></td>';
+                                        if (transNo != "0" && transNo != "" || transNo != 0) {
+                                            actionBtns =
+                                                '<td><center><a href="#" hrf="' +
+                                                _spPageContextInfo +
+                                                webAbsoluteUrl +
+                                                vUrl +
+                                                '"><span title="View" class="zmdi zmdi-file" style="color: #0095eb;"></span></a></center></td>'
+                                        }
+                                        if (Status == "Draft") {
+                                            $('#tbl_results>tbody').append('<tr><td><span class="txt-dark weight-500">' +
+                                                site +
+                                                '</span></td><td><span class="txt-dark weight-500">' +
+                                                letterNo +
+                                                '</span></td><td><span class="txt-dark weight-500"></span></td> <td><span class="txt-dark weight-500"></span></td> <td><span class="txt-dark weight-500">' +
+                                                InvoiceType +
+                                                '</span></td><td><span class="txt-dark weight-500">' +
+                                                invoiceFrom +
+                                                '</span></td><td><span class="txt-dark weight-500">' +
+                                                invoiceTo +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                Amount +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.PAID_AMOUNT +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.TOTAL_VERIFIED_AMOUNT +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.TOTAL_DISALLOWED_AMOUNT +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.OUTSTANDING_AMOUNT +
+                                                '</span></td><td><span class="txt-dark weight-500"> ' +
+                                                verifiedDueDate +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.DIARY_NO +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.INVOICE_NO +
+                                                '</span></td><td><span style="color: ' +
+                                                color +
+                                                ';">' +
+                                                Status +
+                                                '</span></td><td><span class="txt-dark weight-500">' +
+                                                formType +
+                                                '</span></td><td><span style="color: red;"></span></td><td></td><td></td><td></td><td></td></tr>');
+                                        } else if (Status == "Returned") {
+                                            $('#tbl_results>tbody').append('<tr><td><span class="txt-dark weight-500">' +
+                                                site +
+                                                '</span></td><td><span class="txt-dark weight-500">' +
+                                                letterNo +
+                                                '</span></td><td style="text-align: center;"><span class="txt-dark weight-500 pull-right">' +
+                                                transNo +
+                                                '</span></td> <td><span data-sort="dd-MMM-yyyy HH:MM" class="txt-dark weight-500">' +
+                                                submissionDate +
+                                                '</span></td> <td><span class="txt-dark weight-500">' +
+                                                InvoiceType +
+                                                '</span></td><td><span class="txt-dark weight-500">' +
+                                                invoiceFrom +
+                                                '</span></td><td><span class="txt-dark weight-500">' +
+                                                invoiceTo +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                Amount +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.TOTAL_VERIFIED_AMOUNT +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.TOTAL_DISALLOWED_AMOUNT +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.PAID_AMOUNT +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.OUTSTANDING_AMOUNT +
+                                                '</span></td><td><span class="txt-dark weight-500"> ' +
+                                                verifiedDueDate +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.DIARY_NO +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.INVOICE_NO +
+                                                '</span></td><td><span style="color: ' +
+                                                color +
+                                                ';">' +
+                                                Status +
+                                                '</span></td><td><span class="txt-dark weight-500">' +
+                                                formType +
+                                                '</span></td><td><span style="color: red;"></span></td><td></td><td></td><td></td><td></td></tr>');
+                                        } else {
+                                            $('#tbl_results>tbody').append('<tr><td><span class="txt-dark weight-500">' +
+                                                site +
+                                                '</span></td><td><span class="txt-dark weight-500">' +
+                                                letterNo +
+                                                '</span></td><td style="text-align: center;"><span class="txt-dark weight-500 pull-right">' +
+                                                transNo +
+                                                '</span></td> <td><span data-sort="dd-MMM-yyyy HH:MM" class="txt-dark weight-500">' +
+                                                submissionDate +
+                                                '</span></td> <td><span class="txt-dark weight-500">' +
+                                                InvoiceType +
+                                                '</span></td><td><span class="txt-dark weight-500">' +
+                                                invoiceFrom +
+                                                '</span></td><td><span class="txt-dark weight-500">' +
+                                                invoiceTo +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                Amount +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.TOTAL_VERIFIED_AMOUNT +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.TOTAL_DISALLOWED_AMOUNT +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.PAID_AMOUNT +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.OUTSTANDING_AMOUNT +
+                                                '</span></td><td><span class="txt-dark weight-500"> ' +
+                                                verifiedDueDate +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.DIARY_NO +
+                                                '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                                value.INVOICE_NO +
+                                                '</span></td><td><span style="color: ' +
+                                                color +
+                                                ';">' +
+                                                Status +
+                                                '</span></td><td><span class="txt-dark weight-500">' +
+                                                formType +
+                                                '</span></td><td><span style="color: green;">' +
+                                                receivedDate +
+                                                '</span></td><td><span class="txt-dark weight-500">' +
+                                                hardcopyDate +
+                                                '</span></td><td></td><td></td>' +
+                                                actionBtns +
+                                                '</tr>'); // 8-4-2018 add edit/update link by Ahmad
+                                        }
+                                    }
+                                }
+                            }); //end of each loop
+
+                        ///////////
+
+                        //$('#tbl_results').append('<tfoot></tfoot>');
+                        //$('#tbl_results tfoot').html($('#tbl_results thead').html());
+
+
+                        $('#tbl_results thead').append($('#tbl_results thead').html());
+                        $('#tbl_results thead tr:eq(1)').attr("style",
+                            "border-bottom: 1px solid #c4c4c4;border-right: 1px solid #c4c4c4;");
+                        $('#tbl_results').addClass('dynamicTable');
+                        $('#tbl_results thead tr:eq(1) th').each(function () {
+                            var title = this.innerText;
+                            if ($.trim(title) != "" &&
+                                $.trim(title) != "Edit" &&
+                                $.trim(title) != "Delete" &&
+                                $.trim(title) != "View") {
+                                $(this).html('<input type="text" class="column_search" placeholder="Search ' +
+                                    title +
+                                    '" />');
+                            }
+
+                        });
+
+                        $.fn.dataTable.moment('DD-MMM-YYYY HH:mm');
+                        $.fn.dataTable.moment('DD-MMM-YYYY');
+                        $.fn.dataTable.moment('DD-MMM-YY HH:mm');
+                        $.fn.dataTable.moment('DD-MMM-YY');
+                        $('.dynamicTable').first().children().children().first().children().last().html('View');
+                        $('.dynamicTable').first().children().children().first().children().last().prev().html('Delete');
+                        $('.dynamicTable').first().children().children().first().children().last().prev().prev()
+                            .html('Edit');
+                        table = $('#tbl_results').DataTable({
+                            "sScrollX": "100%",
+                            "dom": 'lBfrtip',
+                            columnDefs: [
+                                { type: 'datetime-moment', target: [3, 5, 6, 12, 17, 18] },
+                                { orderable: false, targets: [-1, -2, -3] }
+                            ],
+                            "order": [[3, 'desc']],
+                            //"sScrollXInner": "100%","columnDefs": [{ "type": "date-dd-mmm-yyyy HH:mm", "targets": 3 }],
+                            "aLengthMenu": [[10, 25, 50, 100, 150, 250, 500, -1], [10, 25, 50, 100, 150, 250, 500, "All"]],
+                            "iDisplayLength": 10,
+                            "bSortCellsTop": true,
+                            "sPaginationType": "full_numbers",
+                            "bJQueryUI": false,
+                            "bAutoWidth": false,
+                            "bLengthChange": true,
+                            "fnInitComplete": function (oSettings, json) {
+                                $('.dataTables_filter>label>input').attr('id', 'search');
+                                $('.dataTables_filter>label>input').attr('placeholder', 'Search All');
+                            }
+                            //,
+                            //buttons: [
+                            //    {
+                            //        extend: 'excel',
+                            //        text: 'Export to Excel',
+                            //        exportOptions: {
+                            //            modifier: {
+                            //                page: 'current'
+                            //            },
+                            //            columns: ':not(.notExport)'
+                            //        }
+                            //    }
+                            //]
+                        }); //.fnAdjustColumnSizing( true );
+
+                        $('#tbl_results_length').append(
+                            '<div class="dt-buttons" style="margin-left: 15px;"><a id="tblpopiExport" class="dt-button buttons-excel buttons-html5 form-control" tabindex="0" aria-controls="tblpopi" href="#" style="min-height: 88%;line-height: 40px;background-color: #1d4a6d;"><span>Export to Excel</span></a></div>');
+                        $('#tbl_results_length').attr('style', 'width: 400px;display: inline-flex;');
+                        $(table.table().container()).on('keyup',
+                            ".column_search",
+                            function () {
+
+                                table
+                                    .column($(this).parent().index())
+                                    .search(this.value)
+                                    .draw();
+                            });
+                        var dWidth = screen.width - 180;
+                        dWidth += "px";
+                        $('div.dataTables_wrapper').css({ 'width': dWidth, "margin": "0 auto" });
+                        //$('#tbl_results thead').remove();
+                        //table.columns.adjust().draw();
+                        /*
+                        $('#tbl_results_length').append('<input type="image" name="btnExcel" id="btnExcel" title="Export to Excel" class="Grd" src="/_catalogs/masterpage/cppag/wp_HTML/images/xcel.png" style="margin-left: 30px;margin-top:0px;border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnWord" id="btnWord" title="Export to Word" class="Grd" src="/_catalogs/masterpage/cppag/wp_HTML/images/wrd.png" style="border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnPNG" id="btnPNG" title="Export to PNG" class="Grd" src="/_catalogs/masterpage/cppag/wp_HTML/images/png.png" style="width: 17px;border-width:0px;">');
+                        */
+                        ///////////
+                        $('#tbl_results_wrapper').css('width', '99%');
+                    }, //end of success
+                    error: function (request, textStatus, errorThrown) {
+                        // alert(request.getResponseHeader('some_header'));
+                    }
+                });
+            /*},
+                error: function (request, textStatus, errorThrown) {
+                    // alert(request.getResponseHeader('some_header'));
+                }
+            });*/
+
+        });
+
+        $('body').off('click', '#btnExcel');
+        $('body').on('click',
+            '#btnExcel',
+            function(e) {
+
+                e.preventDefault();
+                $('#tbl_results').tableExport({ type: 'excel', escape: 'false' });
+                e.preventDefault();
+            });
+        $('body').off('click', '#btnWord');
+        $('body').on('click',
+            '#btnWord',
+            function(e) {
+                e.preventDefault();
+                $('#tbl_results').tableExport({ type: 'doc', escape: 'false' });
+                e.preventDefault();
+            });
+        $('body').off('click', '#btnPNG');
+        $('body').on('click',
+            '#btnPNG',
+            function(e) {
+                e.preventDefault();
+                $('#tbl_results').tableExport({ type: 'png', escape: 'false' });
+                e.preventDefault();
+            });
+
+        function formatdatemmyyy(date) {
+            try {
+
+                var d = new Date(date);
+
+                return GetMonth(date) + "-" + d.getFullYear();
+            } catch (err) {
+                return "";
+            }
+
+        }
+
+        $('body').off('click', 'a[hrf]');
+        $('body').on('click',
+            'a[hrf]',
+            function(e) {
+                e.preventDefault();
+                //////////////var $lnk = $(this).attr('hrf');
+                //////////////var parms = $lnk.split('?')[1];
+                //////////////var arr = [];
+                //////////////if (parms.length > 0) {
+                //////////////    var p = parms.split('&');
+                //////////////    for (var i = 0; i < p.length; i++) {
+                //////////////        var sval = { name: p[i].split('=')[0], vl: p[i].split('=')[1] };
+                //////////////        arr.push(sval);
+                //////////////    }
+                //////////////} // end of if
+                //////////////for (var i = 0; i < arr.length; i++) {
+                //////////////    sessionStorage.setItem(arr[i].name, arr[i].vl);
+                //////////////}
+                //////////////location.href = $lnk.split('?')[0];
+                var $lnk = $(this).attr('hrf');
+                var TargetView = "";
+                if ($lnk.split('?')[0].toLowerCase().indexOf("monthlyform.aspx") >= 0) {
+                    TargetView = "MonthlyInvoice";
+                }
+                if ($lnk.split('?')[0].toLowerCase().indexOf("differentialinvoice.aspx") >= 0) {
+                    TargetView = "DifferentialInvoice";
+                }
+                if ($lnk.split('?')[0].toLowerCase().indexOf("interestinvoice.aspx") >= 0) {
+                    TargetView = "InterestInvoice";
+                }
+                var parms = $lnk.split('?')[1];
+                var arr = []; 
+                if(parms.length > 0){
+                    var p = parms.split('&');
+                    for(var i = 0; i < p.length; i++){
+                        var sval = {name:p[i].split('=')[0],vl:p[i].split('=')[1]};
+                        arr.push(sval);
+                    } 
+                }// end of if
+		
+                for(var i = 0; i < arr.length; i++){
+                    sessionStorage.setItem(arr[i].name,arr[i].vl);
+                }
+                
+
+                var options = {};
+                var $id = "0½0";
+                var fromdata = new FormData();
+                fromdata.append('vls', $id);
+                $("#pageContainer").hide('slide', options, 300);
+                $.ajax({
+                    type: "POST",
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    url: "/Invoice/" + TargetView + $(location).attr('search'),
+
+                    success: function (result) {
+                        var options = {};
+                        $('#pageContainer').html($(result).find('#pcontent').html());
+                        $("#pageContainer").show('slide', options, 500);
+                    }
+                });
+
+            });
+
+
+        function deleteInvoiceSearch(id) {
+            var $tr = $('span[id="' + id + '"]').parent().parent().parent();
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this invoice!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes, delete",
+                cancelButtonText: "No, cancel"
+            },function(){
+                
+                    //var data1 = { "DIARY_HEADER_ID": thisObj.id, "APPROVED_STATUS": "Deleted" };
+                    //var url = "https://cppa2.azurewebsites.net/v1/D_H_Interface/UpdateStatus";
+                    var fromdata = new FormData();
+                    fromdata.append("vls", '14½' + id);
+                    $.ajax({
+                        type: "POST",
+                        url: "/Invoice/AjaxCall" + $(location).attr("search"),
+                        data: fromdata,
+                        contentType: false,
+                        processData: false,
+                        beforeSend: function() {
+                            $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+                        },
+                        complete: function () {
+                            $.unblockUI();
+                        },
+                        success: function(response) {
+                            $.unblockUI();
+                            
+                            
+                            if (response > 0) {
+                                table
+                                    .row($('span[id="' + id + '"]').parent().parent().parent())
+                                    .remove()
+                                    .draw();
+                                 setTimeout(() => swal("Deleted!", "Invoice has been deleted.", "success"), 100);
+
+                            }
+
+                                return false;
+
+                        },
+                        error: function(jqXHR, status) {
+                            $.unblockUI();
+                        }
+                    });
+                    //swal("Deleted!", "Invoice has been deleted.", "success");
+                    //return false;
+            }); //.then((result) => );
+        }
+
+        function formatdatemmddyyy(date) {
+            try {
+
+                var d = new Date(date);
+
+                return d.getDate() + "-" + GetMonth(date) + "-" + d.getFullYear();
+            } catch (err) {
+                return "";
+            }
+
+        }
+
+        const monthNames = [
+            "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        ];
+
+        function GetMonth(date) {
+            try {
+
+                var d = new Date(date);
+
+                return monthNames[d.getMonth()];
+            } catch (err) {
+                return "";
+            }
+
+        }
+    </script>
+</div>
+

@@ -1,0 +1,597 @@
+﻿
+@{
+    ViewBag.Title = "Despatch Instruction";
+}
+<div id="pcontent">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff;"></i>
+                        <h6 class="panel-title txt-light">@ViewBag.Title</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Search</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <table class="tblFrm">
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="ddlIPP_Cat">Category<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control frm requiredFieldBGC Ipp" id="ddlIPP_Cat" required>
+                                            @Html.Raw(@ViewBag.IPP)
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Generation Company</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select id="ddlIPP" class="form-control srch"></select>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="ddlSite">Site </label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control srch" id="ddlSite"></select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="ddlBlock">Unit / Complex</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select id="ddlBlock" class="form-control srch"></select>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="txtFuel">Fuel</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" class="form-control frm" readonly="readonly" id="txtFuel">
+                                        @*<select id="txtFuel" class="form-control srch">
+                    <option value="%">All</option>
+                    <option value="Draft">Draft</option>
+                    <option value="Submitted">Submitted</option>
+                    <option value="Acknowledged">Acknowledged</option>
+                </select>*@
+                                        @*<input id="txtFuel" type="text" readonly value="GAS" class="form-control" />*@
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="ddlDemandType">Demand Type</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select id="ddlDemandType" class="form-control srch">
+                                            <option value="%">All</option>
+                                            <option value="Sync">Sync</option>
+                                            <option value="Desync">Desync</option>
+                                            <option value="Increase Load">Increase Load</option>
+                                            <option value="Reduce Load">Reduce Load</option>
+                                            <option value="Emergency">Emergency</option>
+                                        </select>
+                                    </td>
+                                    @*<td style="width: 25%;">
+                <label for="ddlEventType">Event Type </label>
+            </td>
+            <td style="width: 25%;">
+                <select class="form-control srch" id="ddlEventType">
+                    <option value="%">All</option>
+                </select>
+            </td>*@
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="txtFromDate">From Date </label>
+                                    </td>
+                                    <td><input id="txtFromDate" type="text" class="form-control srch dtDate" /></td>
+                                    <td><label for="txtToDate">To Date </label></td>
+                                    <td><input id="txtToDate" type="text" class="form-control srch dtDate" /></td>
+                                </tr>
+                            </table>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-12" style="text-align: right;">
+                                        <button id="btnSearch" class="btn btn-info" type="button">
+                                            Search
+                                        </button>
+                                        <button id="btnCreate" class="btn btn-success" type="button">
+                                            Create
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Detail</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom:20px;">
+
+                            <div id="tblContainer"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var usertype = 0;
+            function CheckUser()
+            {
+                @if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 10)
+                    {
+                         @: usertype = 10;
+                    }
+                console.log(usertype);
+
+                if (usertype == 10)
+                {
+                    $("#btnCreate").hide();
+                }
+            }
+            //loading list of ftadl
+            $(function () {
+                CheckUser();
+                LoadVendors();
+                LoadGrid();
+            });
+            $('body').off('change', '#ddlIPP_Cat');
+            $('body').on('change', '#ddlIPP_Cat', function (e) {
+                LoadVendors();
+            });
+
+            $('body').off('change', '#ddlIPP');
+            $('body').on('change', '#ddlIPP', function (e) {
+                LoadVendorSites();
+            });// End of change
+
+            $('body').off('change', '#ddlSite');
+            $('body').on('change', '#ddlSite', function (e) {
+                LoaddllBlockFuel();
+            });// End of change
+
+            $('body').off('change', '#ddlBlock');
+            $('body').on('change', '#ddlBlock', function (e) {
+
+                if ($('#ddlBlock').val() == null || $('#ddlBlock').val() == undefined || $('#ddlBlock').val() == "") {
+                    $('#txtFuel, #txtCapacity, #txtDependableCapacity, #txtPowerPolicy').val('');
+                    $("#tblEventsContainer").html('');
+                }
+                else {
+                    $('#txtFuel').val($('#ddlBlock').val().split('½')[1]);
+                    $('#txtCapacity , #txtDependableCapacity').val($('#ddlBlock').val().split('½')[2]);
+                    $('#txtPowerPolicy').val($('#ddlBlock').val().split('½')[3]);
+                    $('#Technical_limits').html($('#ddlBlock').val().split('½')[4]);
+
+                    //loadtblEvents();
+                    //loadtblDespatch();
+                    //Fn_checkPowerPolicy();
+
+                }
+            });// End of
+
+
+            function LoadVendorSites() {
+                // debugger;
+                var fromdata = new FormData();
+                fromdata.append('vls', '0½' + $('#ddlIPP').val());
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        $('#ddlSite').html(response);
+                        if ($('#ddlSite').val() == null || $('#ddlSite').val() == undefined || $('#ddlSite').val() == "") {
+
+                            $('#ddlBlock,#ddl_Unit').html('');
+                            $('#txtFuel, #txtCapacity, #txtDependableCapacity, #txtPowerPolicy').val('');
+                        }
+                        else {
+                            LoaddllBlockFuel();
+                        }
+                    }
+                });
+            }//END OF LOAD
+            function LoadVendors() {
+                var fromdata = new FormData();
+                fromdata.append('vls', '104½' + $('#ddlIPP_Cat').val());
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+
+                        //var fd = $.parseJSON(response);
+                        //$('#ddlIPP').val(fd[0].vendors);
+                        $('#ddlIPP').html(response);
+
+                        if ($('#ddlIPP').val() == null || $('#ddlIPP').val() == undefined || $('#ddlIPP').val() == "") {
+                            $('#ddlBlock').html('');
+                            //$('#txtFuel, #txtCapacity, #txtDependableCapacity, #txtPowerPolicy').val('');
+                        }
+                        else {
+                            LoadVendorSites();
+                        }
+                    }
+                });
+
+            }
+
+
+            function LoaddllBlockFuel() {
+                //debugger;
+                var fromdata = new FormData();
+                fromdata.append('vls', '1½' + $('#ddlIPP').val() + "½" + $('#ddlSite').val());
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                       // $('#ddlBlock,#ddl_Unit').html(response);
+                        $('#ddlBlock,#ddl_Unit').html('<option value="%½All½%½%½%">All</option>');
+                       $('#ddlBlock,#ddl_Unit').append(response);
+                        if ($('#ddlBlock').val() == null || $('#ddlBlock').val() == undefined || $('#ddlBlock').val() == "") {
+                            $('#txtFuel, #txtPowerPolicy, #txtCapacity , #txtDependableCapacity , #txtTargetDate, #txtINTIMATION_DATE_TIME').val('');
+                            $("#tblEventsContainer").html('');
+                        }
+                        else {
+                            //$('#txtFuel').val($('#ddlBlock').val().split('½')[2]);
+                            //$('#txtCapacity , #txtDependableCapacity').val($('#ddlBlock').val().split('½')[2]);
+                            //$('#txtPowerPolicy').val($('#ddlBlock').val().split('½')[3]);
+                            //$('#Technical_limits');
+                            //$('#Technical_limits').html($('#ddlBlock').val().split('½')[4]);
+                            //loadtblEvents();
+                            //loadtblDespatch();
+                            //loadCurrentAvailability();
+                            //CURRENT AVAILBLITY CALLS
+                            //Fn_checkPowerPolicy();
+                        }
+                    }
+                });
+            }
+           
+
+            $('body').off('click', '#btnSearch');
+            $('body').on('click', '#btnSearch', function(e) {
+                e.preventDefault();
+                $("#tblContainer").html('<div style="text-align:center;padding:20px;"><img alt="" src="../Content/img/DataLoader.gif" /></div>');
+                var fromdata = new FormData();
+                var vls = [];
+                $('.srch').each(function (index, element) {
+                    vls.push($(this).val());
+                });
+                var params = vls.join('½');
+                fromdata.append("vls", '19½'  + params);
+                var choice = {};
+                choice.url = '/NPCC/AjaxCall' + $(location).attr('search');
+                choice.type = "POST";
+                choice.data = fromdata;
+                choice.contentType = false;
+                choice.processData = false;
+                choice.success = function (response) {
+                    if ($('#tblJ1').hasClass('dataTable')) {
+                        $('#tblJ1').dataTable().fnDestroy();
+                    }
+                    $('#tblContainer').html(response);
+                    $($('#tblJ1 thead tr th')[0]).css('width', '35px');
+                    $('#tblJ1 tbody tr').each(function (index, element) {
+                        $($(this).find('td')[0]).html(parseInt(index) + 1);
+                    });
+
+                    var $editoption = '<i class="vedit fa fa-folder-open" title = "Open" customtooltip = "Open" style = "font-size:20px;"></i>';
+
+                    $('#tblJ1 thead tr').append('<th style="width:35px;"></th>');
+
+                    $('#tblJ1 tbody tr').append('<td style="width: 35px;"><div class="controls center" style="text-align:center">\
+                                                                   '+ $editoption + '\
+                                                              </div ></td>');
+                    if (usertype == 10) {
+                        $('#tblJ1 thead tr').append('<th style="width:35px;"><div class="controls center" style="text-align:center"><i id="btnloadList" title="Refresh" class="fa fa-refresh" style="font-size:30px;color:green"></i></div ></th>');
+                        $('#tblJ1 tbody tr').append('<td style="width: 35px;"><div class="controls center" style="text-align:center"><i id="btnAckIPPList" title="Acknowledge" class="fa fa-check-square" title="Acknowledge"  style="font-size:20px;"></i></td>');
+
+                    }
+                    //<th style="width:35px;"></th>
+                    //<td><div class="controls center" style="text-align:center"><i class="vview fa fa-file" style="font-size:20px;" title="View"></i></div></td>
+
+                    $('#tblJ1').append('<tfoot></tfoot>');
+                    $('#tblJ1 tfoot').html($('#tblJ1 thead').html());
+                    $('#tblJ1 tfoot tr').attr("style", "border-bottom: 1px solid #c4c4c4;border-right: 1px solid #c4c4c4;");
+                    $('#tblJ1').addClass('dynamicTable');
+
+                    $('#tblJ1 tbody tr').each(function () {
+                        console.log('done');
+                        if ($($(this).find('td')[13]).html() == "Acknowledged") {
+                            $($(this).find('td')[15]).html('');
+                        }
+                        if ($($(this).find('td')[13]).html() == "Achieved") {
+                            $($(this).find('td')[15]).html('');
+                        }
+                        if ($($(this).find('td')[13]).html() == "Submitted" && usertype != 10) {
+                            $($(this).find('td')[15]).html('');
+                        }
+                        if ($($(this).find('td')[13]).html() == "Acknowledged" && usertype != 10) {
+                            $($(this).find('td')[15]).html('');
+                        }
+                    });
+
+                    $('#tblJ1 tfoot th').each(function () {
+                        var title = $(this).text();
+                        if ($.trim(title) != "") {
+                            $(this).html('<input type="text" class="form-control" style="width:90%;" placeholder="' + title + '" />');
+                        }
+
+                    });
+
+                    var table = $('#tblJ1').DataTable({
+                        "aLengthMenu": [[10, 25, 50, 100, 150, 250, 500, -1], [10, 25, 50, 100, 150, 250, 500, "All"]],
+                        "iDisplayLength": -1,
+                        "order": [[1, "desc"]],
+                        //"bSort": false,
+                        "sPaginationType": "full_numbers",
+                        "bJQueryUI": false,
+                        "bAutoWidth": false,
+                        "bLengthChange": true,
+                        "fnInitComplete": function (oSettings, json) {
+                            $('.dataTables_filter>label>input').attr('id', 'search');
+                        }
+                    });
+                    table.columns().every(function () {
+                        var that = this;
+
+                        $('input', this.footer()).on('keyup change', function () {
+                            if (that.search() !== this.value) {
+                                that
+                                    .search(this.value)
+                                    .draw();
+                            }
+                        });
+                    });
+
+                    $('#tblJ1_length').append('<input type="image" name="btnExcel" id="btnExcel" title="Export to Excel" class="Grd" src="../Content/img/xcel.png" style="margin-left: 30px;margin-top:5px;border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnWord" id="btnWord" title="Export to Word" class="Grd" src="../Content/img/wrd.png" style="border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnPNG" id="btnPNG" title="Export to PNG" class="Grd" src="../Content/img/png.png" style="width: 17px;border-width:0px;">');
+
+                };
+                choice.error = function (err) {
+                    console.log(err.statusText);
+                };
+                $.ajax(choice);
+            });
+
+            $('body').off('click', '#btnloadList');
+            $('body').on('click', '#btnloadList', function (e) {
+                LoadGrid();
+            });
+
+            $('body').off('click', '#btnAckIPPList');
+            $('body').on('click', '#btnAckIPPList', function (e) {
+
+                var $id = $(this).parent().parent().parent().attr('tag');  
+                        var $Status = '117½' + $id + '½' + "Acknowledged" + '½' + "@ViewBag.name" + '½' + "@ViewBag.designation" + '½' + "";
+                        console.log($Status);
+
+                        var formdata = new FormData();
+                        formdata.append("vls", $Status);
+                        $.ajax({
+                            type: "POST",
+                            url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                            data: formdata,
+                            contentType: false,
+                            processData: false,
+                            success: function (response) {
+
+                                swal({
+                                    title: "Despatch Instruction!",
+                                    text: "Despatch Instruction no " + response + " has been Acknowledged successfully.",
+                                    type: "success",
+                                    showCancelButton: false,
+                                    confirmButtonClass: "btn btn-danger",
+                                    confirmButtonText: "OK"
+
+
+                                });
+                        LoadGrid();
+
+                    }
+                });
+            });//End of btnCreatePEC click
+
+
+
+            function LoadGrid() {
+                $("#tblContainer").html('<div style="text-align:center;padding:20px;"><img alt="" src="../Content/img/DataLoader.gif" /></div>');
+                var fromdata = new FormData();
+                fromdata.append("vls", '4½');
+                var choice = {};
+                choice.url = '/NPCC/AjaxCallNext' + $(location).attr('search');
+                choice.type = "POST";
+                choice.data = fromdata;
+                choice.contentType = false;
+                choice.processData = false;
+                choice.success = function (response) {
+                    if ($('#tblJ1').hasClass('dataTable')) {
+                        $('#tblJ1').dataTable().fnDestroy();
+                    }
+                    $('#tblContainer').html(response);
+                    $($('#tblJ1 thead tr th')[0]).css('width', '35px');
+                    $('#tblJ1 tbody tr').each(function (index, element) {
+                        $($(this).find('td')[0]).html(parseInt(index) + 1);
+                    });
+
+                    var $editoption = '<i class="vedit fa fa-folder-open" title = "Open" customtooltip = "Open" style = "font-size:20px;"></i>';
+
+                    $('#tblJ1 thead tr').append('<th style="width:35px;"></th>');
+
+                    $('#tblJ1 tbody tr').append('<td style="width: 35px;"><div class="controls center" style="text-align:center">\
+                                                                   '+ $editoption + '\
+                                                              </div ></td>');
+                    if (usertype == 10) {
+                        $('#tblJ1 thead tr').append('<th style="width:35px;"><div class="controls center" style="text-align:center"><i id="btnloadList" title="Refresh" class="fa fa-refresh" style="font-size:30px;color:green"></i></div ></th>');
+                        $('#tblJ1 tbody tr').append('<td style="width: 35px;"><div class="controls center" style="text-align:center"><i id="btnAckIPPList" title="Acknowledge" class="fa fa-check-square" title="Acknowledge"  style="font-size:20px;"></i></td>');
+
+                    }
+
+                    $('#tblJ1').append('<tfoot></tfoot>');
+                    $('#tblJ1 tfoot').html($('#tblJ1 thead').html());
+                    $('#tblJ1 tfoot tr').attr("style", "border-bottom: 1px solid #c4c4c4;border-right: 1px solid #c4c4c4;");
+                    $('#tblJ1').addClass('dynamicTable');
+
+                    $('#tblJ1 tbody tr').each(function () {
+                        console.log('done');
+                        if ($($(this).find('td')[13]).html() != "Submitted") {
+                            $($(this).find('td')[16]).html('');
+                        }
+                        
+                        if ($($(this).find('td')[13]).html() == "Submitted" && usertype != 10) {
+                            $($(this).find('td')[16]).html('');
+                        }
+                        if ($($(this).find('td')[13]).html() == "Acknowledged" && usertype != 10) {
+                            $($(this).find('td')[16]).html('');
+                        }
+                    });
+
+                    $('#tblJ1 tfoot th').each(function () {
+                        var title = $(this).text();
+                        if ($.trim(title) != "") {
+                            $(this).html('<input type="text" class="form-control" style="width:90%;" placeholder="' + title + '" />');
+                        }
+
+                    });
+
+                    var table = $('#tblJ1').DataTable({
+                        "aLengthMenu": [[10, 25, 50, 100, 150, 250, 500, -1], [10, 25, 50, 100, 150, 250, 500, "All"]],
+                        "iDisplayLength": -1,
+                        "order": [[1, "desc"]],
+                        //"bSort": false,
+                        "sPaginationType": "full_numbers",
+                        "bJQueryUI": false,
+                        "bAutoWidth": false,
+                        "bLengthChange": true,
+                        "fnInitComplete": function (oSettings, json) {
+                            $('.dataTables_filter>label>input').attr('id', 'search');
+                        }
+                    });
+                    table.columns().every(function () {
+                        var that = this;
+
+                        $('input', this.footer()).on('keyup change', function () {
+                            if (that.search() !== this.value) {
+                                that
+                                    .search(this.value)
+                                    .draw();
+                            }
+                        });
+                    });
+
+                    $('#tblJ1_length').append('<input type="image" name="btnExcel" id="btnExcel" title="Export to Excel" class="Grd" src="../Content/img/xcel.png" style="margin-left: 30px;margin-top:5px;border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnWord" id="btnWord" title="Export to Word" class="Grd" src="../Content/img/wrd.png" style="border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnPNG" id="btnPNG" title="Export to PNG" class="Grd" src="../Content/img/png.png" style="width: 17px;border-width:0px;">');
+
+                };
+                choice.error = function (err) {
+                    console.log(err.statusText);
+                };
+                $.ajax(choice);
+            }//End of Load Grid
+
+            $('body').off('click', '#btnCreate');
+            $('body').on('click', '#btnCreate', function (e) {
+                e.preventDefault();
+                var options = {};
+                $("#pageContainer").hide('slide', options, 300);
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/DICreate" + $(location).attr('search'),
+                    success: function (result) {
+                        var options = {};
+                        $('#pageContainer').html($(result).find('#pcontent').html());
+                        $("#pageContainer").show('slide', options, 500);
+                    }
+                });
+            });//End of create click
+
+            // Start of Edit Click
+            $('body').off('click', '.vedit,.vview');
+            $('body').on('click', '.vedit,.vview', function (e) {
+                console.log("Edit Option hit !!");
+                e.preventDefault();
+                var $id = $(this).parent().parent().parent().attr('tag');
+                if ($(this).hasClass("vedit")) {
+                    $id += "½e";
+                }
+                else {
+                    $id += "½v";
+                }
+
+                var options = {};
+                var fromdata = new FormData();
+                fromdata.append('vls', $id);
+                $("#pageContainer").hide('slide', options, 300);
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/DICreate" + $(location).attr('search'),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (result) {
+                        var options = {};
+                        $('#pageContainer').html($(result).find('#pcontent').html());
+                        $("#pageContainer").show('slide', options, 500);
+                    }
+                });
+            });
+
+            function numberWithCommas(x) {
+                // return x.toString().replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                x = x.toString();
+                if (x % 1 == 0) {
+                    if (x.indexOf(".") < 0) {
+                        x = x.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                        x += ".0000";
+                    } else {
+                        x = x.replace('.0000', '').replace('.000', '').replace('.00', '').replace('.0', '');
+                        x = x.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                        x += ".0000";
+
+                    }
+                } else {
+                    var index = x.indexOf(".");
+                    var p1 = x.substring(0, index);
+                    p1 = p1.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                    var p2 = x.substring(index);
+                    p2 = p2 + "0000";
+                    p2 = p2.substring(0, 5);
+                    x = p1 + p2;
+                }
+                return x;
+            }
+        });//End of ready function
+    </script>
+</div>
+

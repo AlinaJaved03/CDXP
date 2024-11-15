@@ -1,0 +1,1689 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WP_CPPAG_PrototypeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="WP_CPPAG_PrototypeEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="CrossTab">
+      <Parameter Name="Select" Mode="In" Type="String" />
+      <Parameter Name="PivotCol" Mode="In" Type="String" />
+      <Parameter Name="Summaries" Mode="In" Type="String" />
+      <Parameter Name="GroupBy" Mode="In" Type="String" />
+      <Parameter Name="OtherCols" Mode="In" Type="String" />
+      <Parameter Name="Extra" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_CPPA_CDP_HEADER_DETAIL_BY_CDP_ID" ReturnType="Collection(WP_CPPAG_PrototypeModel.SP_CPPA_CDP_HEADER_DETAIL_BY_CDP_ID_Result)">
+      <Parameter Name="CDP_ID" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="SP_ddlCDPNumber" ReturnType="Collection(WP_CPPAG_PrototypeModel.SP_ddlCDPNumber_Result)">
+      <Parameter Name="USER_NAME" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_ddlDISCOs" ReturnType="Collection(WP_CPPAG_PrototypeModel.SP_ddlDISCOs_Result)">
+      <Parameter Name="USER_NAME" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_ddlMonths" ReturnType="Collection(WP_CPPAG_PrototypeModel.SP_ddlMonths_Result)" />
+    <FunctionImport Name="SP_DEL_DRAFT_DAC_OLD" />
+    <FunctionImport Name="SP_DISCO_MONTHLY_REPORT" ReturnType="Collection(WP_CPPAG_PrototypeModel.SP_DISCO_MONTHLY_REPORT_Result)">
+      <Parameter Name="CUSTOMER_ID" Mode="In" Type="Decimal" />
+      <Parameter Name="ACCOUNTING_MONTH_ID" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="SP_DISCO_MONTHLY_REPORT_CPPA_VERIFICATION" ReturnType="Collection(WP_CPPAG_PrototypeModel.SP_DISCO_MONTHLY_REPORT_CPPA_VERIFICATION_Result)">
+      <Parameter Name="CUSTOMER_ID" Mode="In" Type="Decimal" />
+      <Parameter Name="ACCOUNTING_MONTH_ID" Mode="In" Type="Decimal" />
+      <Parameter Name="SelectionType" Mode="In" Type="Int32" />
+      <Parameter Name="SortSelection" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_IMPORT_EMO_FORECAST" ReturnType="Collection(String)">
+      <Parameter Name="FORECAST_HEADER_ID" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="SP_IMPORT_LAST_DAC" ReturnType="Collection(WP_CPPAG_PrototypeModel.SP_IMPORT_LAST_DAC_Result)">
+      <Parameter Name="PLT_BLK_FUEL_ID" Mode="In" Type="Decimal" />
+      <Parameter Name="HOURLY_DATA_TYPE" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_LAST_METER_Reading_By_CDP_DTL_ID" ReturnType="Collection(WP_CPPAG_PrototypeModel.SP_LAST_METER_Reading_By_CDP_DTL_ID_Result)">
+      <Parameter Name="CDP_DTL_ID" Mode="In" Type="Decimal" />
+      <Parameter Name="IS_PRIMARY_METER" Mode="In" Type="String" />
+      <Parameter Name="CUSTOMER_ID" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="SP_LOAD_FUEL_RATES_BY_FORECAST_HEADER_ID" ReturnType="Collection(WP_CPPAG_PrototypeModel.SP_LOAD_FUEL_RATES_BY_FORECAST_HEADER_ID_Result)">
+      <Parameter Name="FORECAST_HEADER_ID" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="SP_MENU_BY_USER_ID" ReturnType="Collection(WP_CPPAG_PrototypeModel.SP_MENU_BY_USER_ID_Result)">
+      <Parameter Name="USER_NAME" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_METER_READING_PERFORMA_PREVIOUS_DATA">
+      <Parameter Name="CDP_ID" Mode="In" Type="Decimal" />
+      <Parameter Name="ACCOUNTING_MONTH_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_METER_READING_PERFORMA_PREVIOUS_DATA_Coppy">
+      <Parameter Name="CDP_ID" Mode="In" Type="Decimal" />
+      <Parameter Name="ACCOUNTING_MONTH_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_MRP_EDIT_DATA_BY_WP_DISCO_CDP_MONTHLY_DATA_ID" ReturnType="Collection(WP_CPPAG_PrototypeModel.SP_MRP_EDIT_DATA_BY_WP_DISCO_CDP_MONTHLY_DATA_ID_Result)">
+      <Parameter Name="WP_DISCO_CDP_MONTHLY_DATA_ID" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="sp_NPCC_Declaration_Avalable_Capacity_Load" ReturnType="Collection(WP_CPPAG_PrototypeModel.sp_NPCC_Declaration_Avalable_Capacity_Load_Result)">
+      <Parameter Name="WP_GC_HOURLY_DATA_HEADER_ID_PK" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="sp_NPCC_Declaration_Avalable_Capacity_Load_DAD" ReturnType="Collection(WP_CPPAG_PrototypeModel.sp_NPCC_Declaration_Avalable_Capacity_Load_DAD_Result)">
+      <Parameter Name="WP_GC_HOURLY_DATA_HEADER_ID_PK" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="sp_NPCC_Declaration_Avalable_Capacity_LoadRDAC_ADAC_View" ReturnType="Collection(WP_CPPAG_PrototypeModel.sp_NPCC_Declaration_Avalable_Capacity_LoadRDAC_ADAC_View_Result)">
+      <Parameter Name="WP_GC_HOURLY_DATA_HEADER_ID_PK" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="sp_NPCC_NEW_ADAC_RDAC" ReturnType="Collection(WP_CPPAG_PrototypeModel.sp_NPCC_NEW_ADAC_RDAC_Result)">
+      <Parameter Name="WP_GC_HOURLY_DATA_HEADER_ID_PK" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <EntitySet Name="ACCOUNTING_MONTH" EntityType="WP_CPPAG_PrototypeModel.ACCOUNTING_MONTH" />
+    <EntitySet Name="AP_SUPPLIER_SITE_ALL" EntityType="WP_CPPAG_PrototypeModel.AP_SUPPLIER_SITE_ALL" />
+    <EntitySet Name="AP_SUPPLIERS" EntityType="WP_CPPAG_PrototypeModel.AP_SUPPLIERS" />
+    <EntitySet Name="CPPA_CDP_DETAIL" EntityType="WP_CPPAG_PrototypeModel.CPPA_CDP_DETAIL" />
+    <EntitySet Name="CPPA_CDP_DETAILYYYYYYYYYXXXXX" EntityType="WP_CPPAG_PrototypeModel.CPPA_CDP_DETAILYYYYYYYYYXXXXX" />
+    <EntitySet Name="CPPA_CDP_HEADERS" EntityType="WP_CPPAG_PrototypeModel.CPPA_CDP_HEADERS" />
+    <EntitySet Name="CPPA_CDP_HEADERSYYYYYYYYYXXXX" EntityType="WP_CPPAG_PrototypeModel.CPPA_CDP_HEADERSYYYYYYYYYXXXX" />
+    <EntitySet Name="CPPA_EMO_FC_OPN_STK_LINES" EntityType="WP_CPPAG_PrototypeModel.CPPA_EMO_FC_OPN_STK_LINES" />
+    <EntitySet Name="CPPA_EMO_FORECAST_LINES" EntityType="WP_CPPAG_PrototypeModel.CPPA_EMO_FORECAST_LINES" />
+    <EntitySet Name="CPPA_EMO_FUEL_RATE_LINES" EntityType="WP_CPPAG_PrototypeModel.CPPA_EMO_FUEL_RATE_LINES" />
+    <EntitySet Name="CPPA_EMO_FUEL_TEMP_HEADER" EntityType="WP_CPPAG_PrototypeModel.CPPA_EMO_FUEL_TEMP_HEADER" />
+    <EntitySet Name="CPPA_EMO_FUEL_TEMP_LINES" EntityType="WP_CPPAG_PrototypeModel.CPPA_EMO_FUEL_TEMP_LINES" />
+    <EntitySet Name="CPPA_EMO_PERIODS" EntityType="WP_CPPAG_PrototypeModel.CPPA_EMO_PERIODS" />
+    <EntitySet Name="CPPA_PPA_PLT_EMO" EntityType="WP_CPPAG_PrototypeModel.CPPA_PPA_PLT_EMO" />
+    <EntitySet Name="CPPA_PPA_PLT_EMOXXXX" EntityType="WP_CPPAG_PrototypeModel.CPPA_PPA_PLT_EMOXXXX" />
+    <EntitySet Name="FND_LOOKUP_VALUES" EntityType="WP_CPPAG_PrototypeModel.FND_LOOKUP_VALUES" />
+    <EntitySet Name="PPA_APPLICABLE_INVOICES" EntityType="WP_CPPAG_PrototypeModel.PPA_APPLICABLE_INVOICES" />
+    <EntitySet Name="PPA_BLOCKS_FUELS" EntityType="WP_CPPAG_PrototypeModel.PPA_BLOCKS_FUELS" />
+    <EntitySet Name="PPA_COMP_DEFS" EntityType="WP_CPPAG_PrototypeModel.PPA_COMP_DEFS" />
+    <EntitySet Name="PPA_HEADER" EntityType="WP_CPPAG_PrototypeModel.PPA_HEADER" />
+    <EntitySet Name="tblFiles" EntityType="WP_CPPAG_PrototypeModel.tblFile" />
+    <EntitySet Name="Testings" EntityType="WP_CPPAG_PrototypeModel.Testing" />
+    <EntitySet Name="WP_DISCO_CDP_MONTHLY_DATA" EntityType="WP_CPPAG_PrototypeModel.WP_DISCO_CDP_MONTHLY_DATA" />
+    <EntitySet Name="WP_FILES" EntityType="WP_CPPAG_PrototypeModel.WP_FILES" />
+    <EntitySet Name="WP_GC_HOURLY_DATA_DETAIL" EntityType="WP_CPPAG_PrototypeModel.WP_GC_HOURLY_DATA_DETAIL" />
+    <EntitySet Name="WP_GC_HOURLY_DATA_HEADER" EntityType="WP_CPPAG_PrototypeModel.WP_GC_HOURLY_DATA_HEADER" />
+    <EntitySet Name="WP_GC_USER_ACCESS" EntityType="WP_CPPAG_PrototypeModel.WP_GC_USER_ACCESS" />
+    <EntitySet Name="WP_NPCC_DESPATCH_HEADER" EntityType="WP_CPPAG_PrototypeModel.WP_NPCC_DESPATCH_HEADER" />
+    <EntitySet Name="WP_NPCC_HOURLY_DATA_SMRY_DETAIL" EntityType="WP_CPPAG_PrototypeModel.WP_NPCC_HOURLY_DATA_SMRY_DETAIL" />
+    <EntitySet Name="WP_NPCC_HOURLY_DATA_SMRY_HEADER" EntityType="WP_CPPAG_PrototypeModel.WP_NPCC_HOURLY_DATA_SMRY_HEADER" />
+    <EntitySet Name="WP_NPCC_LOAD_CURTAILMENT" EntityType="WP_CPPAG_PrototypeModel.WP_NPCC_LOAD_CURTAILMENT" />
+    <EntitySet Name="WP_NPCC_PLANT_EVENTS" EntityType="WP_CPPAG_PrototypeModel.WP_NPCC_PLANT_EVENTS" />
+    <EntitySet Name="WP_PORTAL_USERS" EntityType="WP_CPPAG_PrototypeModel.WP_PORTAL_USERS" />
+    <EntitySet Name="WP_SETUP_DISCO" EntityType="WP_CPPAG_PrototypeModel.WP_SETUP_DISCO" />
+    <EntitySet Name="WP_SETUP_MENU" EntityType="WP_CPPAG_PrototypeModel.WP_SETUP_MENU" />
+    <EntitySet Name="WP_SETUP_MENU_USER_TYPE" EntityType="WP_CPPAG_PrototypeModel.WP_SETUP_MENU_USER_TYPE" />
+    <EntitySet Name="WP_SETUP_USER_TYPES" EntityType="WP_CPPAG_PrototypeModel.WP_SETUP_USER_TYPES" />
+    <EntitySet Name="WP_NPCC_DESPATCH_DETAIL" EntityType="WP_CPPAG_PrototypeModel.WP_NPCC_DESPATCH_DETAIL" />
+    <EntitySet Name="CPPA_PPA_PLT_BLK_FUEL" EntityType="WP_CPPAG_PrototypeModel.CPPA_PPA_PLT_BLK_FUEL" />
+    <EntitySet Name="CPPA_PPA_PLT_BLK_FUEL04032019" EntityType="WP_CPPAG_PrototypeModel.CPPA_PPA_PLT_BLK_FUEL04032019" />
+    <EntitySet Name="WP_NPCC_FAILURE_NOTIFICATION" EntityType="WP_CPPAG_PrototypeModel.WP_NPCC_FAILURE_NOTIFICATION" />
+    <EntitySet Name="CPPA_CDP_HEADER" EntityType="WP_CPPAG_PrototypeModel.CPPA_CDP_HEADER" />
+    <EntitySet Name="PlantBlocks" EntityType="WP_CPPAG_PrototypeModel.PlantBlock" />
+    <EntitySet Name="database_firewall_rules" EntityType="WP_CPPAG_PrototypeModel.database_firewall_rules" />
+    <FunctionImport Name="SP_ddlMonthsEnergyDelivered" ReturnType="Collection(WP_CPPAG_PrototypeModel.SP_ddlMonthsEnergyDelivered_Result)" />
+    <FunctionImport Name="SP_ddlMonths_DISCO_MONTHLY_DATA" ReturnType="Collection(WP_CPPAG_PrototypeModel.SP_ddlMonths_DISCO_MONTHLY_DATA_Result)" />
+    <EntitySet Name="CPPA_EMO_FORECAST_HEADER" EntityType="WP_CPPAG_PrototypeModel.CPPA_EMO_FORECAST_HEADER" />
+    <EntitySet Name="MDINEO_HEADER" EntityType="WP_CPPAG_PrototypeModel.MDINEO_HEADER" />
+    <EntitySet Name="MDINEO_LINE" EntityType="WP_CPPAG_PrototypeModel.MDINEO_LINE" />
+    <EntitySet Name="WP_NPCC_METERING" EntityType="WP_CPPAG_PrototypeModel.WP_NPCC_METERING" />
+    <FunctionImport Name="SP_ddlMonths_TotalEnergy_Delivered" ReturnType="Collection(WP_CPPAG_PrototypeModel.SP_ddlMonths_TotalEnergy_Delivered_Result)" />
+  </EntityContainer>
+  <ComplexType Name="SP_CPPA_CDP_HEADER_DETAIL_BY_CDP_ID_Result">
+    <Property Type="String" Name="CDP_NUMBER" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="GRID_STATION_NAME" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="FEEDER_NAME_CODE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ENGY_IMP_EXP_FROM_CODE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ENGY_IMP_EXP_TO_CODE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LOCATION_CODE" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="LOCATION_NAME" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="PRIMARY_METER_NO" Nullable="true" MaxLength="201" />
+    <Property Type="String" Name="BACKUP_METER_NO" Nullable="true" MaxLength="201" />
+    <Property Type="String" Name="PIMARY_DTL" Nullable="true" MaxLength="254" />
+    <Property Type="String" Name="BACKUP_DTL" Nullable="true" MaxLength="254" />
+  </ComplexType>
+  <ComplexType Name="SP_ddlCDPNumber_Result">
+    <Property Type="Decimal" Name="CDP_ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="GRID_STATION_NAME" Nullable="true" MaxLength="353" />
+    <Property Type="Int32" Name="ORD" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_ddlDISCOs_Result">
+    <Property Type="Decimal" Name="CUSTOMER_ID" Nullable="true" Precision="38" Scale="0" />
+    <Property Type="String" Name="ABBREVIATION" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="SP_ddlMonths_Result">
+    <Property Type="Int32" Name="ACCOUNTING_MONTH_ID" Nullable="false" />
+    <Property Type="String" Name="DISPLAY" Nullable="true" MaxLength="37" />
+    <Property Type="Int32" Name="ord" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_DISCO_MONTHLY_REPORT_Result">
+    <Property Type="String" Name="CDP_ID" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Sr__" Nullable="false" MaxLength="1" />
+    <Property Type="Decimal" Name="CDP__" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="NAME_OF_G_S" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Voltage" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TF_TL" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Area" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Eng_Import_From" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Eng_Export_To" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Primary_Meter_No" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Backup_Meter_No" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Eng_Import" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Eng_Export" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="MDI_Import" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="MDI_EXPORT" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Status" Nullable="false" MaxLength="9" />
+    <Property Type="String" Name="Verified" Nullable="false" MaxLength="73" />
+    <Property Type="String" Name="creat" Nullable="false" MaxLength="111" />
+    <Property Type="String" Name="nxt" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_DISCO_MONTHLY_REPORT_CPPA_VERIFICATION_Result">
+    <Property Type="String" Name="CDP_ID" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Sr__" Nullable="false" MaxLength="1" />
+    <Property Type="Decimal" Name="CDP__" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="NAME_OF_G_S" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Voltage" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TF_TL" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Area" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Eng_Import_From" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Eng_Export_To" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Primary_Meter_No" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Backup_Meter_No" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Eng_Import" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Eng_Export" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="MDI_Import" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="MDI_EXPORT" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Status" Nullable="false" MaxLength="9" />
+    <Property Type="String" Name="Verified" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="nxt" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_IMPORT_LAST_DAC_Result">
+    <Property Type="Decimal" Name="CURRENT_AVAILABILITY" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="REVISED_AVAILABILITY" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="String" Name="TARGET_HOUR" Nullable="true" MaxLength="200" />
+    <Property Type="Decimal" Name="AMBIENT_TEMPERATURE" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="AMBIENT_AVAILABILITY" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="AVAILABILITY" Nullable="true" Precision="18" Scale="4" />
+  </ComplexType>
+  <ComplexType Name="SP_LAST_METER_Reading_By_CDP_DTL_ID_Result">
+    <Property Type="Int32" Name="WP_DISCO_CDP_MONTHLY_DATA_ID" Nullable="false" />
+    <Property Type="String" Name="READING_DATE_TIME" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="PRIMARY_IMPORT_ACTIVE_READING" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="PRIMARY_IMPORT_REACTIVE_READING" Nullable="false" />
+    <Property Type="String" Name="PRIMARY_EXPORT_ACTIVE_READING" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="PRIMARY_EXPORT_REACTIVE_READING" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_LOAD_FUEL_RATES_BY_FORECAST_HEADER_ID_Result">
+    <Property Type="Decimal" Name="FORECAST_HEADER_ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="String" Name="FORECAST_NO" Nullable="true" MaxLength="10" />
+    <Property Type="Decimal" Name="VENDOR_ID" Nullable="true" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="VENDOR_SITE_ID" Nullable="true" Precision="38" Scale="0" />
+    <Property Type="String" Name="txtIPPTitle" Nullable="true" MaxLength="366" />
+    <Property Type="String" Name="ddlVendors" Nullable="true" MaxLength="467" />
+    <Property Type="Decimal" Name="PPA_PLANT_EMO_ID" Nullable="true" Precision="38" Scale="0" />
+    <Property Type="String" Name="BLOCK_TITLE" Nullable="true" MaxLength="200" />
+    <Property Type="Decimal" Name="PPA_PLT_BLK_FUEL_ID" Nullable="true" Precision="38" Scale="0" />
+    <Property Type="String" Name="FUEL_NAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="UNIT" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="DEPENDABLE_CAPACITY" Nullable="true" Precision="38" Scale="4" />
+    <Property Type="String" Name="INV_METHOD_CODE" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="ESTIMATED_CONSUMPTION" Nullable="true" Precision="38" Scale="4" />
+    <Property Type="Decimal" Name="EMO_PERIOD_ID" Nullable="true" Precision="15" Scale="0" />
+    <Property Type="DateTime" Name="FORECAST_FROM_DATE" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="FORECAST_TO_DATE" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="PORTAL_SUBMISSION_DATE" Nullable="true" Precision="23" />
+    <Property Type="String" Name="APPROVAL_STATUS" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="REMARKS" Nullable="true" MaxLength="2000" />
+    <Property Type="DateTime" Name="CREATION_DATE" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="CREATED_BY" Nullable="true" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="LAST_UPDATE_DATE" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="LAST_UPDATED_BY" Nullable="true" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="LAST_UPDATE_LOGIN" Nullable="true" Precision="38" Scale="0" />
+    <Property Type="Int32" Name="ORGANIZATION_ID" Nullable="true" />
+    <Property Type="Decimal" Name="REVISED_BY" Nullable="true" Precision="38" Scale="0" />
+    <Property Type="DateTime" Name="REVISED_DATE_TIME" Nullable="true" Precision="23" />
+    <Property Type="String" Name="REVISED_REASON" Nullable="true" MaxLength="2000" />
+    <Property Type="Decimal" Name="OLD_FORECAST_HEADER_ID" Nullable="true" Precision="38" Scale="0" />
+    <Property Type="String" Name="SUBMIT_DATE" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="BB" Nullable="true" />
+    <Property Type="String" Name="CC" Nullable="true" />
+    <Property Type="String" Name="DD" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_MENU_BY_USER_ID_Result">
+    <Property Type="Int32" Name="WP_SETUP_MENU_ID" Nullable="false" />
+    <Property Type="String" Name="MENU_NAME" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Herf_LINK" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="CLASS_NAME" Nullable="false" MaxLength="255" />
+    <Property Type="Int32" Name="ORDER_BY" Nullable="true" />
+    <Property Type="String" Name="DESCRIPTION" Nullable="true" MaxLength="158" />
+    <Property Type="Int32" Name="WP_SETUP_USER_TYPES_ID" Nullable="false" />
+    <Property Type="String" Name="USER_TYPE_NAME" Nullable="false" MaxLength="150" />
+    <Property Type="Int32" Name="WP_PORTAL_USERS_ID" Nullable="false" />
+    <Property Type="String" Name="USER_NAME" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="DISPLAY_NAME" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DISPLAY_DESIGNATION" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="S_MENU" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SP_MRP_EDIT_DATA_BY_WP_DISCO_CDP_MONTHLY_DATA_ID_Result">
+    <Property Type="Decimal" Name="WP_DISCO_CDP_MONTHLY_DATA_ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="CUSTOMER_ID" Nullable="false" Precision="38" Scale="0" />
+    <Property Type="Int32" Name="ACCOUNTING_MONTH_ID" Nullable="true" />
+    <Property Type="String" Name="IS_PRIMARY_METER" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="FROM_DATE" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="TO_DATE" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="ddlMonths" Nullable="true" MaxLength="162" />
+    <Property Type="String" Name="TRANSACTION_TYPE" Nullable="true" MaxLength="250" />
+    <Property Type="Decimal" Name="PREVIOUS_WP_DISCO_CDP_MONTHLY_DATA_ID" Nullable="true" Precision="38" Scale="0" />
+    <Property Type="Decimal" Name="PRIMARY_IMPORT_ACTIVE_READING" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="PRIMARY_IMPORT_REACTIVE_READING" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="PRIMARY_IMPORT_ACTIVE_MDI" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="PRIMARY_IMPORT_REACTIVE_MDI" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="PRIMARY_EXPORT_ACTIVE_READING" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="PRIMARY_EXPORT_REACTIVE_READING" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="PRIMARY_EXPORT_ACTIVE_MDI" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="PRIMARY_EXPORT_REACTIVE_MDI" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="PRIMARY_IMPORT_ACTIVE_AJD" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="PRIMARY_IMPORT_REACTIVE_ADJ" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="PRIMARY_EXPORT_ACTIVE_AJD" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="PRIMARY_EXPORT_REACTIVE_ADJ" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="BACKUP_IMPORT_ACTIVE_READING" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="BACKUP_IMPORT_REACTIVE_READING" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="BACKUP_IMPORT_ACTIVE_MDI" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="BACKUP_IMPORT_REACTIVE_MDI" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="BACKUP_EXPORT_ACTIVE_READING" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="BACKUP_EXPORT_REACTIVE_READING" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="BACKUP_EXPORT_ACTIVE_MDI" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="BACKUP_EXPORT_REACTIVE_MDI" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="BACKUP_IMPORT_ACTIVE_AJD" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="BACKUP_IMPORT_REACTIVE_ADJ" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="BACKUP_EXPORT_ACTIVE_AJD" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="BACKUP_EXPORT_REACTIVE_ADJ" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="P_ENG_ACTIVE_IMPORT" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="P_ENG_ACTIVE_EXPORT" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="P_MDI_ACTIVE_IMPORT" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="P_MDI_ACTIVE_EXPORT" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="B_ENG_ACTIVE_IMPORT" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="String" Name="B_ENG_ACTIVE_EXPORT" Nullable="true" MaxLength="10" />
+    <Property Type="Decimal" Name="B_MDI_ACTIVE_IMPORT" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="B_MDI_ACTIVE_EXPORT" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="String" Name="REMARKS" Nullable="true" MaxLength="2000" />
+    <Property Type="DateTime" Name="CREATION_DATE" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="CREATED_BY_WP_PORTAL_USERS_ID" Nullable="true" />
+    <Property Type="DateTime" Name="LAST_UPDATE_DATE" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="LAST_UPDATE_BY_WP_PORTAL_USERS_ID" Nullable="true" />
+    <Property Type="String" Name="Status" Nullable="false" MaxLength="9" />
+    <Property Type="String" Name="SUBMITT_DATE_TIME" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="ddlDISCOs" Nullable="true" MaxLength="176" />
+    <Property Type="String" Name="ddlCDPNumber" Nullable="true" MaxLength="479" />
+    <Property Type="String" Name="FEEDER_NAME_CODE" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="GRID_STATION_NAME" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="ENGY_IMP_EXP_FROM_CODE" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ENGY_IMP_EXP_TO_CODE" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="LOCATION_CODE" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="LOCATION_NAME" Nullable="false" MaxLength="300" />
+    <Property Type="String" Name="PRIMARY_METER_NO" Nullable="true" MaxLength="226" />
+    <Property Type="String" Name="PRIMARY_METER_NO_DTL" Nullable="true" MaxLength="254" />
+    <Property Type="String" Name="BACKUP_METER_NO" Nullable="true" MaxLength="226" />
+    <Property Type="String" Name="BACKUP_METER_NO_DTL" Nullable="true" MaxLength="254" />
+    <Property Type="String" Name="PM_PREVIOUS_READING_DATE_TIME" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="BM_PREVIOUS_READING_DATE_TIME" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="PM_READING_DATE_TIME" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="BM_READING_DATE_TIME" Nullable="true" MaxLength="4000" />
+    <Property Type="Decimal" Name="PR1" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="PR2" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="PR3" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="PR4" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="PR5" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="PR6" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="PR7" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="PR8" Nullable="true" Precision="18" Scale="4" />
+  </ComplexType>
+  <ComplexType Name="sp_NPCC_Declaration_Avalable_Capacity_Load_Result">
+    <Property Type="String" Name="HOURLY_DATA_TYPE" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="STATUS" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="ddlIPP" Nullable="true" MaxLength="536" />
+    <Property Type="String" Name="ddlSite" Nullable="true" MaxLength="1039" />
+    <Property Type="String" Name="ddlBlock" Nullable="true" MaxLength="626" />
+    <Property Type="String" Name="fuel" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="capacity" Nullable="true" />
+    <Property Type="String" Name="policiy" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="TARGET_DATE" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="SUBMIT_DATE_TIME" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="INTIMATION_DATE_TIME" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="SENDER_NAME" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="SENDER_DESIGNATION" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="SENDER_REMARKS" Nullable="true" MaxLength="2000" />
+    <Property Type="String" Name="RECEIVER_NAME" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="RECEIVER_DESIGNATION" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="REVISION_TYPE" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="RECEIVER_REMARKS" Nullable="true" MaxLength="2000" />
+    <Property Type="Decimal" Name="CURRENT_AVAILABILITY" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="REVISED_AVAILABILITY" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="String" Name="DTL" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_NPCC_Declaration_Avalable_Capacity_Load_DAD_Result">
+    <Property Type="String" Name="HOURLY_DATA_TYPE" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="STATUS" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="SUBMIT_DATE" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="ddlIPP" Nullable="true" MaxLength="536" />
+    <Property Type="String" Name="ddlSite" Nullable="true" MaxLength="1039" />
+    <Property Type="String" Name="ddlBlock" Nullable="true" MaxLength="626" />
+    <Property Type="String" Name="fuel" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="capacity" Nullable="true" />
+    <Property Type="String" Name="policiy" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="TARGET_DATE" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="INTIMATION_DATE_TIME" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="SENDER_NAME" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="SENDER_DESIGNATION" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="SENDER_REMARKS" Nullable="true" MaxLength="2000" />
+    <Property Type="String" Name="RECEIVER_NAME" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="RECEIVER_DESIGNATION" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="RECEIVER_REMARKS" Nullable="true" MaxLength="2000" />
+    <Property Type="Decimal" Name="CURRENT_AVAILABILITY" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="REVISED_AVAILABILITY" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="String" Name="DTL" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_NPCC_Declaration_Avalable_Capacity_LoadRDAC_ADAC_View_Result">
+    <Property Type="String" Name="HOURLY_DATA_TYPE" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="STATUS" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="ddlIPP" Nullable="true" MaxLength="536" />
+    <Property Type="String" Name="ddlSite" Nullable="true" MaxLength="1039" />
+    <Property Type="String" Name="ddlBlock" Nullable="true" MaxLength="626" />
+    <Property Type="String" Name="fuel" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="capacity" Nullable="true" />
+    <Property Type="String" Name="policiy" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="TARGET_DATE" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="SUBMIT_DATE_TIME" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="INTIMATION_DATE_TIME" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="SENDER_NAME" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="SENDER_DESIGNATION" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="SENDER_REMARKS" Nullable="true" MaxLength="2000" />
+    <Property Type="String" Name="RECEIVER_NAME" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="RECEIVER_DESIGNATION" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="REVISION_TYPE" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="RECEIVER_REMARKS" Nullable="true" MaxLength="2000" />
+    <Property Type="Decimal" Name="CURRENT_AVAILABILITY" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="Decimal" Name="REVISED_AVAILABILITY" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="String" Name="DTL" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_NPCC_NEW_ADAC_RDAC_Result">
+    <Property Type="String" Name="HOURLY_DATA_TYPE" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="STATUS" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="ddlIPP" Nullable="true" MaxLength="536" />
+    <Property Type="String" Name="ddlSite" Nullable="true" MaxLength="1039" />
+    <Property Type="String" Name="ddlBlock" Nullable="true" MaxLength="626" />
+    <Property Type="String" Name="fuel" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="capacity" Nullable="true" />
+    <Property Type="String" Name="policiy" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="TARGET_DATE" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="INTIMATION_DATE_TIME" Nullable="true" MaxLength="4000" />
+    <Property Type="String" Name="SENDER_NAME" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="SENDER_DESIGNATION" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="SENDER_REMARKS" Nullable="true" MaxLength="2000" />
+    <Property Type="String" Name="RECEIVER_NAME" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="RECEIVER_DESIGNATION" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="RECEIVER_REMARKS" Nullable="true" MaxLength="2000" />
+    <Property Type="String" Name="DTL" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="ACCOUNTING_MONTH">
+    <Key>
+      <PropertyRef Name="ACCOUNTING_MONTH_ID" />
+    </Key>
+    <Property Name="ACCOUNTING_MONTH_ID" Type="Int32" Nullable="false" />
+    <Property Name="MONTH_NUMBER" Type="Int32" />
+    <Property Name="YEAR_NUMBER" Type="Int32" />
+    <Property Name="IS_ACTIVE" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="AP_SUPPLIER_SITE_ALL">
+    <Key>
+      <PropertyRef Name="VENDOR_SITE_ID" />
+    </Key>
+    <Property Name="VENDOR_SITE_ID" Type="Int32" Nullable="false" />
+    <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="VENDOR_ID" Type="Int32" />
+    <Property Name="VENDOR_SITE_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ADDRESS_LINE1" Type="String" MaxLength="240" FixedLength="false" Unicode="false" />
+    <Property Name="ORG_ID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="AP_SUPPLIERS">
+    <Key>
+      <PropertyRef Name="VENDOR_ID" />
+    </Key>
+    <Property Name="VENDOR_ID" Type="Int32" Nullable="false" />
+    <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="VENDOR_NAME" Type="String" MaxLength="240" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="CPPA_CDP_DETAIL">
+    <Key>
+      <PropertyRef Name="CDP_DTL_ID" />
+    </Key>
+    <Property Name="CDP_DTL_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CDP_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="METER_MAKE_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="METER_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IS_PRIMARY_METER" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="MLT_FCT_ENERGY" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="MLT_FCT_MDI" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="MAX_RANGE" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="CORRECTION_FACTOR" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="INITIAL_IMPORT_READING" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="INITIAL_EXPORT_READING" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="METER_UNIT_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EFFECTIVE_FROM" Type="DateTime" Precision="3" />
+    <Property Name="EFFECTIVE_TO" Type="DateTime" Precision="3" />
+    <Property Name="REMARKS" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE3" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE4" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE5" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE6" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE7" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE8" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE9" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE10" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="GROUP_COMP" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ORGANIZATION_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="CREATION_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="LAST_UPDATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_LOGIN" Type="Decimal" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="CPPA_CDP_DETAILYYYYYYYYYXXXXX">
+    <Key>
+      <PropertyRef Name="CDP_DTL_ID" />
+    </Key>
+    <Property Name="CDP_DTL_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="CDP_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="METER_MAKE_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="METER_NO" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="IS_PRIMARY_METER" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="MLT_FCT_ENERGY" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="MLT_FCT_MDI" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="MAX_RANGE" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="CORRECTION_FACTOR" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="INITIAL_IMPORT_READING" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="INITIAL_EXPORT_READING" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="METER_UNIT_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EFFECTIVE_FROM" Type="DateTime" Precision="0" />
+    <Property Name="EFFECTIVE_TO" Type="DateTime" Precision="0" />
+    <Property Name="REMARKS" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE3" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE4" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE5" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE6" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE7" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE8" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE9" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE10" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="GROUP_COMP" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ORGANIZATION_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="CREATION_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="LAST_UPDATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_LOGIN" Type="Decimal" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="CPPA_CDP_HEADERS">
+    <Key>
+      <PropertyRef Name="CDP_ID" />
+    </Key>
+    <Property Name="CDP_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TO_CUSTOMER_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="FROM_CUSTOMER_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="CDP_NUMBER" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="GRID_STATION_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="GRID_STATION_NAME" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="LINE_NAME_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CONTROLLED_BY_CODE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DISCO_AREA_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LOCATION_CODE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="LOCATION_NAME" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="ENGY_IMP_EXP_FROM_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ENGY_IMP_EXP_TO_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="GRID_VOLTAGE_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TF_LINE_VOLTAGE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TF_TL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CDP_UNIT_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FEEDER_NAME_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EFFECTIVE_FROM" Type="DateTime" Precision="3" />
+    <Property Name="EFFECTIVE_TO" Type="DateTime" Precision="3" />
+    <Property Name="CDP_STATUS_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="REMARKS" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE3" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE4" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE5" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE6" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE7" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE8" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE9" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE10" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="GROUP_COMP" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ORGANIZATION_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="CREATION_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="LAST_UPDATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_LOGIN" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="SR_NO_TMP" Type="Decimal" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="CPPA_CDP_HEADERSYYYYYYYYYXXXX">
+    <Key>
+      <PropertyRef Name="CDP_ID" />
+    </Key>
+    <Property Name="CDP_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="TO_CUSTOMER_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="FROM_CUSTOMER_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="CDP_NUMBER" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="GRID_STATION_CODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="GRID_STATION_NAME" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="LINE_NAME_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CONTROLLED_BY_CODE" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="DISCO_AREA_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LOCATION_CODE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="LOCATION_NAME" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="ENGY_IMP_EXP_FROM_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ENGY_IMP_EXP_TO_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="GRID_VOLTAGE_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TF_LINE_VOLTAGE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TF_TL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CDP_UNIT_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FEEDER_NAME_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EFFECTIVE_FROM" Type="DateTime" Precision="0" />
+    <Property Name="EFFECTIVE_TO" Type="DateTime" Precision="0" />
+    <Property Name="CDP_STATUS_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="REMARKS" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE3" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE4" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE5" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE6" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE7" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE8" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE9" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE10" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="GROUP_COMP" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ORGANIZATION_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="CREATION_DATE" Type="DateTime" Precision="0" />
+    <Property Name="CREATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="0" />
+    <Property Name="LAST_UPDATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_LOGIN" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="SR_NO_TMP" Type="Decimal" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="CPPA_EMO_FC_OPN_STK_LINES">
+    <Key>
+      <PropertyRef Name="OPN_STOCK_LINE_ID" />
+    </Key>
+    <Property Name="OPN_STOCK_LINE_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FORECAST_HEADER_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="STOCK_DESCRIPTION" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="QUANTITY" Type="Decimal" Precision="38" Scale="4" />
+    <Property Name="UNIT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RATE" Type="Decimal" Precision="38" Scale="4" />
+    <Property Name="AMOUNT" Type="Decimal" Precision="38" Scale="4" />
+    <Property Name="REMARKS" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="CREATION_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="LAST_UPDATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_LOGIN" Type="Decimal" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="CPPA_EMO_FORECAST_LINES">
+    <Key>
+      <PropertyRef Name="FORECAST_LINE_ID" />
+    </Key>
+    <Property Name="FORECAST_LINE_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FORECAST_HEADER_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="FUEL_TEMPLATE_LINE_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="CLAIMED_VALUE" Type="Decimal" Precision="38" Scale="4" />
+    <Property Name="VERIFIED_VALUE" Type="Decimal" Precision="38" Scale="4" />
+    <Property Name="CHANGE_REASON" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="CREATION_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="LAST_UPDATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_LOGIN" Type="Decimal" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="CPPA_EMO_FUEL_RATE_LINES">
+    <Key>
+      <PropertyRef Name="FUEL_RATE_LINE_ID" />
+    </Key>
+    <Property Name="FUEL_RATE_LINE_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FORECAST_HEADER_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="FUEL_SUPPLIER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="PRODUCT_COST" Type="Decimal" Precision="38" Scale="4" />
+    <Property Name="OTHER_CHARGES" Type="Decimal" Precision="38" Scale="4" />
+    <Property Name="RATE" Type="Decimal" Precision="38" Scale="4" />
+    <Property Name="REMARKS" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="CREATION_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="LAST_UPDATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_LOGIN" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="POWER_POLICY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="QUANTITY" Type="Decimal" Precision="38" Scale="4" />
+    <Property Name="FINANCE_VERIFIED" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="CPPA_EMO_FUEL_TEMP_HEADER">
+    <Key>
+      <PropertyRef Name="FUEL_TEMPLATE_ID" />
+    </Key>
+    <Property Name="FUEL_TEMPLATE_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="FUEL_TEMPLATE_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="FUEL_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="POWER_POLICY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="SHOW_OPENING_STOCK" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="STOCK_MEASURING_UNIT" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="REMARKS" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="ORGANIZATION_ID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="CREATION_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="LAST_UPDATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_LOGIN" Type="Decimal" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="CPPA_EMO_FUEL_TEMP_LINES">
+    <Key>
+      <PropertyRef Name="FUEL_TEMPLATE_LINE_ID" />
+    </Key>
+    <Property Name="FUEL_TEMPLATE_LINE_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="FUEL_TEMPLATE_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="COMP_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="COMP_TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="COMP_VALUE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="FORMULA" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="UNIT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SHOW_ON_PORTAL" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="EFFECTIVE_START_DATE" Type="DateTime" Precision="3" />
+    <Property Name="EFFECTIVE_END_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATION_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="LAST_UPDATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_LOGIN" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="COMP_SEQUENCE" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="COM_REF_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SHOW_ON_ERP" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="CPPA_EMO_PERIODS">
+    <Key>
+      <PropertyRef Name="EMO_PERIOD_ID" />
+    </Key>
+    <Property Name="EMO_PERIOD_ID" Type="Decimal" Nullable="false" Precision="15" Scale="0" />
+    <Property Name="PERIOD_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="START_DATE" Type="DateTime" Precision="3" />
+    <Property Name="END_DATE" Type="DateTime" Precision="3" />
+    <Property Name="PERIOD_TYPE" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="PERIOD_YEAR" Type="Decimal" Precision="15" Scale="0" />
+    <Property Name="PERIOD_NUM" Type="Decimal" Precision="15" Scale="0" />
+    <Property Name="QUARTER_NUM" Type="Decimal" Precision="15" Scale="0" />
+    <Property Name="REMARKS" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CREATION_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="0" />
+    <Property Name="LAST_UPDATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_LOGIN" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="ORGANIZATION_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="OPEN_BY_CPPA" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="CPPA_PPA_PLT_EMO">
+    <Key>
+      <PropertyRef Name="PLT_EMO_ID" />
+    </Key>
+    <Property Name="PLT_EMO_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="HEADER_ID_FK" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="PLT_BLK_FUEL_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="BLK_TITLE_FOR_EMO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DEPENDABLE_CAPACITY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="INV_METHOD_CODE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="EFFECTIVE_FROM" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="EFFECTIVE_TO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="REMARKS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ATTRIBUTE1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ATTRIBUTE2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ATTRIBUTE3" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ATTRIBUTE4" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ATTRIBUTE5" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ATTRIBUTE6" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ATTRIBUTE7" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ATTRIBUTE8" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ATTRIBUTE9" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ATTRIBUTE10" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ORGANIZATION_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="CREATION_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY" Type="Double" />
+    <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="LAST_UPDATED_BY" Type="Double" />
+    <Property Name="LAST_UPDATE_LOGIN" Type="Double" />
+    <Property Name="FUEL_TEMPLATE_ID" Type="Double" />
+  </EntityType>
+  <EntityType Name="CPPA_PPA_PLT_EMOXXXX">
+    <Key>
+      <PropertyRef Name="PLT_EMO_ID" />
+    </Key>
+    <Property Name="PLT_EMO_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="HEADER_ID_FK" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="PLT_BLK_FUEL_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="BLK_TITLE_FOR_EMO" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="DEPENDABLE_CAPACITY" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="INV_METHOD_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="EFFECTIVE_FROM" Type="DateTime" Precision="3" />
+    <Property Name="EFFECTIVE_TO" Type="DateTime" Precision="3" />
+    <Property Name="REMARKS" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE3" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE4" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE5" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE6" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE7" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE8" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE9" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE10" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ORGANIZATION_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="CREATION_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="LAST_UPDATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_LOGIN" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="FUEL_TEMPLATE_ID" Type="Decimal" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="FND_LOOKUP_VALUES">
+    <Key>
+      <PropertyRef Name="FND_LOOKUP_VALUES_ID_PK" />
+    </Key>
+    <Property Name="FND_LOOKUP_VALUES_ID_PK" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LOOKUP_TYPE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="LANGUAGE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="LOOKUP_CODE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="MEANING" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="240" FixedLength="false" Unicode="false" />
+    <Property Name="ENABLED_FLAG" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="START_DATE_ACTIVE" Type="DateTime" Precision="3" />
+    <Property Name="END_DATE_ACTIVE" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY" Type="Int32" />
+    <Property Name="CREATION_DATE" Type="DateTime" Precision="3" />
+    <Property Name="LAST_UPDATED_BY" Type="Int32" />
+    <Property Name="LAST_UPDATE_LOGIN" Type="Int32" />
+    <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="SOURCE_LANG" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="SECURITY_GROUP_ID" Type="Int32" />
+    <Property Name="VIEW_APPLICATION_ID" Type="Int32" />
+    <Property Name="TERRITORY_CODE" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE_CATEGORY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE1" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE2" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE3" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE4" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE5" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE6" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE7" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE8" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE9" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE10" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE11" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE12" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE13" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE14" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE15" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="TAG" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="LEAF_NODE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="ZD_EDITION_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="PPA_APPLICABLE_INVOICES">
+    <Key>
+      <PropertyRef Name="APP_INVOICES_ID_PK" />
+    </Key>
+    <Property Name="APP_INVOICES_ID_PK" Type="Decimal" Nullable="false" Precision="23" Scale="0" />
+    <Property Name="HEADER_ID_FK" Type="Double" />
+    <Property Name="INVOICE_TYPES" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="IS_HOURLY" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="ORGANIZATION_ID" Type="Double" />
+    <Property Name="CREATION_DATE" Type="DateTime" Precision="7" />
+    <Property Name="CREATED_BY" Type="Double" />
+    <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="7" />
+    <Property Name="LAST_UPDATED_BY" Type="Double" />
+    <Property Name="LAST_UPDATE_LOGIN" Type="Double" />
+    <Property Name="ADVANCE_PAYMENT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="ADJUSTMENTS" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="PPA_BLOCKS_FUELS">
+    <Key>
+      <PropertyRef Name="BLK_FUEL_ID_PK" />
+    </Key>
+    <Property Name="BLK_FUEL_ID_PK" Type="Decimal" Nullable="false" Precision="23" Scale="0" />
+    <Property Name="HEADER_ID_FK" Type="Double" />
+    <Property Name="APP_INVOICES_ID_FK" Type="Double" />
+    <Property Name="BLOCK_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="FUEL_TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ORGANIZATION_ID" Type="Double" />
+    <Property Name="CREATION_DATE" Type="DateTime" Precision="7" />
+    <Property Name="CREATED_BY" Type="Double" />
+    <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="7" />
+    <Property Name="LAST_UPDATED_BY" Type="Double" />
+    <Property Name="LAST_UPDATE_LOGIN" Type="Double" />
+    <Property Name="GROUP_COMP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="PPA_COMP_DEFS">
+    <Key>
+      <PropertyRef Name="COMP_DEF_ID_PK" />
+    </Key>
+    <Property Name="COMP_DEF_ID_PK" Type="Decimal" Nullable="false" Precision="23" Scale="0" />
+    <Property Name="HEADER_ID_FK" Type="Double" />
+    <Property Name="APP_INVOICES_ID_FK" Type="Double" />
+    <Property Name="BLK_FUEL_ID_FK" Type="Double" />
+    <Property Name="COMP_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="COMP_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="COMP_ZONE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="COMP_VALUE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SHOW_ON_INV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="INC_IN_TOT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="FORMULA" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="UNIT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="COMPARE_WITH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EXEMPT_DATE_FROM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EXEMPT_DATE_TO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="REMARKS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ORGANIZATION_ID" Type="Double" />
+    <Property Name="CREATION_DATE" Type="DateTime" Precision="7" />
+    <Property Name="CREATED_BY" Type="Double" />
+    <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="7" />
+    <Property Name="LAST_UPDATED_BY" Type="Double" />
+    <Property Name="LAST_UPDATE_LOGIN" Type="Double" />
+    <Property Name="IS_DISABLE_COMP_VALUE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="IS_DISABLE_COMP_ZONE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="SHOW_ON_DIARY" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="SHOW_TOT_ON_HRSINV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="PART_OF" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="INCLUD_IN_CLAIM_PORTAL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="INC_IN_DIARY_TOT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="COMP_DEF_ORDER" Type="Double" />
+  </EntityType>
+  <EntityType Name="PPA_HEADER">
+    <Key>
+      <PropertyRef Name="HEADER_ID_PK" />
+    </Key>
+    <Property Name="HEADER_ID_PK" Type="Decimal" Nullable="false" Precision="23" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DOCUMENT_NO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="DOCUMENT_DATE" Type="DateTime" Precision="7" />
+    <Property Name="POWER_POLICY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="VENDOR_ID_FK" Type="Double" />
+    <Property Name="VENDOR_SITE_ID_FK" Type="Double" />
+    <Property Name="CONTRACTED_CAPACITY" Type="Double" />
+    <Property Name="AGREEMENT_DATE" Type="DateTime" Precision="7" />
+    <Property Name="FINANCIAL_CLOSE_DATE" Type="DateTime" Precision="7" />
+    <Property Name="REQUIRED_COD" Type="DateTime" Precision="7" />
+    <Property Name="ACTUAL_COD" Type="DateTime" Precision="7" />
+    <Property Name="FORCE_MAJEURE" Type="Double" />
+    <Property Name="ACHIEVED_COD" Type="DateTime" Precision="7" />
+    <Property Name="EFFECTIVE_FROM" Type="DateTime" Precision="7" />
+    <Property Name="EFFECTIVE_TO" Type="DateTime" Precision="7" />
+    <Property Name="DUE_DATE_TOLERANCE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="APPLY_SLAB" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="APPROVAL_STATUS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="REMARKS" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CREATION_DATE" Type="DateTime" Precision="7" />
+    <Property Name="CREATED_BY" Type="Double" />
+    <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="7" />
+    <Property Name="LAST_UPDATED_BY" Type="Double" />
+    <Property Name="LAST_UPDATE_LOGIN" Type="Double" />
+    <Property Name="ORGANIZATION_ID" Type="Double" />
+    <Property Name="INVENTORY_COSTING_METHOD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="BENCHMARK_PER" Type="Double" />
+    <Property Name="PARENT_DOCUMENT" Type="Double" />
+  </EntityType>
+  <EntityType Name="tblFile">
+    <Key>
+      <PropertyRef Name="tblFilesID" />
+    </Key>
+    <Property Name="tblFilesID" Type="Decimal" Nullable="false" Precision="38" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="strFileName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="strSPUrl" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="strDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="bisERPTransfered" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Testing">
+    <Key>
+      <PropertyRef Name="TestingID" />
+    </Key>
+    <Property Name="TestingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CheckVAL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="dtDatetime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="WP_DISCO_CDP_MONTHLY_DATA">
+    <Key>
+      <PropertyRef Name="WP_DISCO_CDP_MONTHLY_DATA_ID" />
+    </Key>
+    <Property Name="WP_DISCO_CDP_MONTHLY_DATA_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CDP_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="ACCOUNTING_MONTH_ID" Type="Int32" />
+    <Property Name="PM_READING_DATE_TIME" Type="DateTime" Precision="3" />
+    <Property Name="IS_PRIMARY_METER" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="PRIMARY_CDP_DTL_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="BACKUP_CDP_DTL_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="PREVIOUS_WP_DISCO_CDP_MONTHLY_DATA_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="PRIMARY_IMPORT_ACTIVE_READING" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="PRIMARY_IMPORT_REACTIVE_READING" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="PRIMARY_IMPORT_ACTIVE_MDI" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="PRIMARY_IMPORT_REACTIVE_MDI" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="PRIMARY_EXPORT_ACTIVE_READING" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="PRIMARY_EXPORT_REACTIVE_READING" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="PRIMARY_EXPORT_ACTIVE_MDI" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="PRIMARY_EXPORT_REACTIVE_MDI" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="PRIMARY_IMPORT_ACTIVE_AJD" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="PRIMARY_IMPORT_REACTIVE_ADJ" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="PRIMARY_EXPORT_ACTIVE_AJD" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="PRIMARY_EXPORT_REACTIVE_ADJ" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="BACKUP_IMPORT_ACTIVE_READING" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="BACKUP_IMPORT_REACTIVE_READING" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="BACKUP_IMPORT_ACTIVE_MDI" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="BACKUP_IMPORT_REACTIVE_MDI" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="BACKUP_EXPORT_ACTIVE_READING" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="BACKUP_EXPORT_REACTIVE_READING" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="BACKUP_EXPORT_ACTIVE_MDI" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="BACKUP_EXPORT_REACTIVE_MDI" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="BACKUP_IMPORT_ACTIVE_AJD" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="BACKUP_IMPORT_REACTIVE_ADJ" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="BACKUP_EXPORT_ACTIVE_AJD" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="BACKUP_EXPORT_REACTIVE_ADJ" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="P_ENG_ACTIVE_IMPORT" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="P_ENG_ACTIVE_EXPORT" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="P_MDI_ACTIVE_IMPORT" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="P_MDI_ACTIVE_EXPORT" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="REMARKS" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="CREATION_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY_WP_PORTAL_USERS_ID" Type="Int32" />
+    <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="LAST_UPDATE_BY_WP_PORTAL_USERS_ID" Type="Int32" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="CUSTOMER_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="BM_READING_DATE_TIME" Type="DateTime" Precision="3" />
+    <Property Name="FROM_DATE" Type="DateTime" Precision="3" />
+    <Property Name="TO_DATE" Type="DateTime" Precision="3" />
+    <Property Name="TRANSACTION_TYPE" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="B_ENG_ACTIVE_IMPORT" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="B_ENG_ACTIVE_EXPORT" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="B_MDI_ACTIVE_IMPORT" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="B_MDI_ACTIVE_EXPORT" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="PM_PREVIOUS_READING_DATE_TIME" Type="DateTime" Precision="3" />
+    <Property Name="BM_PREVIOUS_READING_DATE_TIME" Type="DateTime" Precision="3" />
+    <Property Name="PREVIOUS_READING_PRIM_IMP_ACT" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="PREVIOUS_READING_PRIM_IMP_REACT" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="PREVIOUS_READING_PRIM_EXP_ACT" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="PREVIOUS_READING_PRIM_EXP_REACT" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="PREVIOUS_READING_BACK_IMP_ACT" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="PREVIOUS_READING_BACK_IMP_REACT" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="PREVIOUS_READING_BACK_EXP_ACT" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="PREVIOUS_READING_BACK_EXP_REACT" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="SUBMITT_DATE_TIME" Type="DateTime" Precision="3" />
+    <Property Name="CPPA_SELECTED" Type="Boolean" />
+    <Property Name="PM_ROUND_COMPLETED_IA" Type="Boolean" />
+    <Property Name="BM_ROUND_COMPLETED_IA" Type="Boolean" />
+    <Property Name="PM_ROUND_COMPLETED_IR" Type="Boolean" />
+    <Property Name="BM_ROUND_COMPLETED_IR" Type="Boolean" />
+    <Property Name="PM_ROUND_COMPLETED_EA" Type="Boolean" />
+    <Property Name="BM_ROUND_COMPLETED_EA" Type="Boolean" />
+    <Property Name="PM_ROUND_COMPLETED_ER" Type="Boolean" />
+    <Property Name="BM_ROUND_COMPLETED_ER" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="WP_FILES">
+    <Key>
+      <PropertyRef Name="WP_FILE_ID" />
+    </Key>
+    <Property Name="WP_FILE_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UPLOAD_DATE_TIME" Type="DateTime" Precision="3" />
+    <Property Name="FILE_URL" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+    <Property Name="PARENT_ID" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="UPLOADED_FOR" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="FILE_TITLE" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="FILE_DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ERP_TRANSFER" Type="Boolean" />
+    <Property Name="SHAREPOINT_FILE_ID" Type="String" MaxLength="550" FixedLength="false" Unicode="false" />
+    <Property Name="SHAREPOINT_FILE_GUID" Type="String" MaxLength="550" FixedLength="false" Unicode="false" />
+    <Property Name="IS_DELETED" Type="Boolean" />
+    <Property Name="FILES_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="FILE_EXT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="FILE_TYPE" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ONLINE_URL" Type="String" MaxLength="850" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="WP_GC_HOURLY_DATA_DETAIL">
+    <Key>
+      <PropertyRef Name="WP_GC_HOURLY_DATA_DETAIL_ID_PK" />
+    </Key>
+    <Property Name="WP_GC_HOURLY_DATA_DETAIL_ID_PK" Type="Decimal" Nullable="false" Precision="23" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WP_GC_HOURLY_DATA_HEADER_ID_FK" Type="Decimal" Precision="23" Scale="0" />
+    <Property Name="BLOCK_OR_FUEL_ID_FK" Type="Decimal" Precision="23" Scale="0" />
+    <Property Name="TARGET_HOUR" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="AMBIENT_TEMPERATURE" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="AMBIENT_AVAILABILITY" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="AVAILABILITY" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="REMARKS" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="AVAILABILITY_AS_PER_SCH_10" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="DACLARED_AVAILABILITY" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="ATTRIBUTE1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE2" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE3" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE4" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE_5" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="WP_GC_HOURLY_DATA_HEADER">
+    <Key>
+      <PropertyRef Name="WP_GC_HOURLY_DATA_HEADER_ID_PK" />
+    </Key>
+    <Property Name="WP_GC_HOURLY_DATA_HEADER_ID_PK" Type="Decimal" Nullable="false" Precision="23" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VENDOR_SITE_ID_FK" Type="Decimal" Precision="23" Scale="0" />
+    <Property Name="HOURLY_DATA_TYPE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="GENERATION_COMPANY" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="COMPLEX_WISE" Type="Boolean" />
+    <Property Name="SITE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="BLOCK" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="FUEL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="INTIMATION_DATE_TIME" Type="DateTime" Precision="3" />
+    <Property Name="TARGET_DATE" Type="DateTime" Precision="3" />
+    <Property Name="INTIMATION_SOURCE_TELEPHONE" Type="Boolean" />
+    <Property Name="INTIMATION_SOURCE_TELEPHONE_DATE_TIME" Type="DateTime" Precision="3" />
+    <Property Name="INTIMATION_SOURCE_FAX" Type="Boolean" />
+    <Property Name="INTIMATION_SOURCE_FAX_DATE_TIME" Type="DateTime" Precision="3" />
+    <Property Name="INTIMATION_SOURCE_PORTAL" Type="Boolean" />
+    <Property Name="STATUS" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ACK_TIME" Type="DateTime" Precision="3" />
+    <Property Name="SENDER_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SENDER_DESIGNATION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SENDER_REMARKS" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="RECEIVER_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="RECEIVER_DESIGNATION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="RECEIVER_REMARKS" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE2" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE3" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE4" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE5" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="POWER_POLICIY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PLT_BLK_FUEL_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="IS_REVISED" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="PARENT_ID" Type="Decimal" Precision="23" Scale="0" />
+    <Property Name="CURRENT_AVAILABILITY" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="REVISED_AVAILABILITY" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="CREATION_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="LAST_UPDATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="SUBMIT_DATE" Type="DateTime" Precision="3" />
+    <Property Name="REVISION_TYPE" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="FLAG" Type="Decimal" Precision="1" Scale="0" />
+  </EntityType>
+  <EntityType Name="WP_GC_USER_ACCESS">
+    <Key>
+      <PropertyRef Name="WP_GC_USER_ACCESS_ID" />
+    </Key>
+    <Property Name="WP_GC_USER_ACCESS_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WP_PORTAL_USERS_ID" Type="Int32" Nullable="false" />
+    <Property Name="ENTITY_WP_SETUP_USER_TYPES" Type="Int32" />
+    <Property Name="ENTITY_ID" Type="Int32" Nullable="false" />
+    <Property Name="ENTITY_SITE_ID" Type="Int32" />
+    <Property Name="ENTITY_TABLE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EFFECTIVE_DATE_FROM" Type="DateTime" Precision="3" />
+    <Property Name="EFFECTIVE_DATE_TO" Type="DateTime" Precision="3" />
+    <Property Name="INQUIRY_RIGHTS" Type="Boolean" />
+    <Property Name="CREATE_RIGHTS" Type="Boolean" />
+    <Property Name="EDIT_RIGHTS" Type="Boolean" />
+    <Property Name="DELETE_RIGHTS" Type="Boolean" />
+    <Property Name="HISTORICAL_DATA_VIEW_RIGHTS" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WP_NPCC_DESPATCH_HEADER">
+    <Key>
+      <PropertyRef Name="WP_NPCC_DESPATCH_HEADER_ID" />
+    </Key>
+    <Property Name="WP_NPCC_DESPATCH_HEADER_ID" Type="Decimal" Nullable="false" Precision="23" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SETUP_SITE_ID_FK" Type="Decimal" Precision="23" Scale="0" />
+    <Property Name="GENERATION_COMPANY" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="VENDOR_SITE_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="VENDOR_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="SITE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="BLOCK_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="BLOCK" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="FUEL_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="FUEL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="INTIMATION_TIME" Type="DateTime" Precision="3" />
+    <Property Name="INTIMATION_SOURCE_TELEPHONE" Type="Boolean" />
+    <Property Name="INTIMATION_SOURCE_TELEPHONE_DATE_TIME" Type="DateTime" Precision="3" />
+    <Property Name="INTIMATION_SOURCE_FAX" Type="Boolean" />
+    <Property Name="INTIMATION_SOURCE_FAX_DATE_TIME" Type="DateTime" Precision="3" />
+    <Property Name="INTIMATION_SOURCE_PORTAL" Type="Boolean" />
+    <Property Name="SENDER_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SENDER_DESIGNATION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="GC_ACK_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="GC_ACK_TIME" Type="DateTime" Precision="3" />
+    <Property Name="GC_ACK_DESIGNATION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="GC_ACK_REMARKS" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_ON" Type="DateTime" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="GC_COMP_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_ON" Type="DateTime" Precision="3" />
+    <Property Name="GC_COMP_DESIGNATION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="GC_COMP_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="GC_COMP_ACHIEVE_DATE_TIME" Type="DateTime" Precision="3" />
+    <Property Name="GC_COMP_REMARKS" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="GC_COMP_TARGET_ACHIEVED" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="STATUS" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="NPCC_REMARKS" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="DEMAND_TYPE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SYNC_DESYNC_DATE_TIME" Type="DateTime" Precision="3" />
+    <Property Name="EMERGENCY_TYPE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="TARGET_DATE_TIME" Type="DateTime" Precision="3" />
+    <Property Name="TARGET_DEMAND" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="TARGET_DATE_TIME_2" Type="DateTime" Precision="3" />
+    <Property Name="TARGET_DEMAND_2" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="DEMAND_NO" Type="Decimal" Precision="20" Scale="0" />
+    <Property Name="FLAG" Type="Decimal" Precision="1" Scale="0" />
+  </EntityType>
+  <EntityType Name="WP_NPCC_HOURLY_DATA_SMRY_DETAIL">
+    <Key>
+      <PropertyRef Name="HOURLY_DATA_SUMMARY_DETAIL_ID_PK" />
+    </Key>
+    <Property Name="HOURLY_DATA_SUMMARY_DETAIL_ID_PK" Type="Decimal" Nullable="false" Precision="23" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HOURLY_DATA_SUMMARY_HEADER_ID_FK" Type="Decimal" Precision="23" Scale="0" />
+    <Property Name="RECORD_SEQUENCE" Type="Int32" />
+    <Property Name="DATA_DATE" Type="DateTime" Precision="0" />
+    <Property Name="DATA_HOUR" Type="Time" Precision="7" />
+    <Property Name="BOD_DAC_AVAILABILITY" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="BOD_DAC_TEMP" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="BOD_DAC_INTIMATION_TIME" Type="DateTime" Precision="3" />
+    <Property Name="BOD_RDAC_P12TO4_AVAILABILITY" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="BOD_RDAC_P12TO4_TEMP" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="BOD_RDAC_P12TO4_INTIMATION_TIME" Type="DateTime" Precision="3" />
+    <Property Name="BOD_RDAC_P4TO0_AVAILABILITY" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="BOD_RDAC_P4TO0_TEMP" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="BOD_RDAC_P4TO0_INTIMATION_TIME" Type="DateTime" Precision="3" />
+    <Property Name="BOD_FINALDAC" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="OD_UPWARDREVISION_4HOURS_AVAILABILITY" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="OD_UPWARDREVISION_4HOURS_INTIMATION_TIME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="OD_REVISION_1HOUR_AVAILABILITY" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="OD_REVISION_1HOUR_INTIMATION_TIME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="OD_ADAC_45MINUTES_AVAILABILITY" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="OD_ADAC_45MINUTES_TEMP" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="OD_ADAC_45MINUTES_INTIMATION_TIME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="OD_FINAL_DAC" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="NPCC_DESPATCH_INSTRUCTION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="NPCC_DESPATCH_AS_PER_PPA" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="NPCC_DESPATCH_WITH_EXCESS_LIMIT" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="NEO_DELIVERED" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="NEO_DELIVERED_FUEL1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="NEO_DELIVERED_FUEL2" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="NEO_DELIVERED_FUEL3" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="NEO_DELIVERED_FUEL4" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ADMISSIBLE_NEO" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ADMISSIBLE_NEO_FUEL1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ADMISSIBLE_NEO_FUEL2" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ADMISSIBLE_NEO_FUEL3" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ADMISSIBLE_NEO_FUEL4" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SCHEDULED_OUTAGE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="FORCED_OUTAGE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="APPLICABLE_WIND_FACTOR" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ADMISSIBLE_CAPACITY" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="REMARKS" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="WP_NPCC_HOURLY_DATA_SMRY_HEADER">
+    <Key>
+      <PropertyRef Name="HOURLY_DATA_SUMMARY_HEADER_ID_PK" />
+    </Key>
+    <Property Name="HOURLY_DATA_SUMMARY_HEADER_ID_PK" Type="Decimal" Nullable="false" Precision="23" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SETUP_SITE_ID_FK" Type="Decimal" Precision="23" Scale="0" />
+    <Property Name="GENERATION_COMPANY" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="COMPLEX_WISE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SITE_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="BLOCK" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="FUEL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_ON" Type="DateTime" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_ON" Type="DateTime" Precision="3" />
+    <Property Name="FLAG" Type="Decimal" Precision="1" Scale="0" />
+  </EntityType>
+  <EntityType Name="WP_NPCC_LOAD_CURTAILMENT">
+    <Key>
+      <PropertyRef Name="WP_NPCC_LOAD_CURTAILMENT_ID_PK" />
+    </Key>
+    <Property Name="WP_NPCC_LOAD_CURTAILMENT_ID_PK" Type="Decimal" Nullable="false" Precision="23" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GENERATION_COMPANY_ID_FK" Type="Decimal" Precision="23" Scale="0" />
+    <Property Name="GENERATION_COMPANY" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="TOTAL_WTG" Type="Double" />
+    <Property Name="AVAILABLE_WTG" Type="Double" />
+    <Property Name="UNAVAILABLE_DUE_TO_FO" Type="Double" />
+    <Property Name="UNAVAILABLE_DUE_TO_SO" Type="Double" />
+    <Property Name="INSTRUCTION_TYPE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="WTG_CURTAILMENT" Type="Boolean" />
+    <Property Name="LOAD_CURTAILMENT" Type="Boolean" />
+    <Property Name="CURTAILMENT_DETAIL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="NOTIFICATION_TIME" Type="DateTime" Precision="3" />
+    <Property Name="SYNC_DYSYNC_TIME" Type="DateTime" Precision="3" />
+    <Property Name="ACTUAL_ACHIEVEMENT_TIME" Type="DateTime" Precision="3" />
+    <Property Name="PRIOR_TO_CURTAILMENT" Type="Double" />
+    <Property Name="AFTER_CURTAILMENT" Type="Double" />
+    <Property Name="WTG_PRIOR_TO_CURTAILMENT" Type="Double" />
+    <Property Name="WTG_AFTER_CURTAILMENT" Type="Double" />
+    <Property Name="SENDER_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SENDER_DESIGNATION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="NPCC_REMARKS" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="RECEIVER_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="RECEIVER_DESIGNATION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="GC_REMARKS" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_ON" Type="DateTime" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_ON" Type="DateTime" Precision="3" />
+    <Property Name="SITE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="STATUS" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ACH_REMARKS" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="FLAG" Type="Decimal" Precision="1" Scale="0" />
+  </EntityType>
+  <EntityType Name="WP_NPCC_PLANT_EVENTS">
+    <Key>
+      <PropertyRef Name="WP_NPCC_PLANT_EVENTS_ID_PK" />
+    </Key>
+    <Property Name="WP_NPCC_PLANT_EVENTS_ID_PK" Type="Decimal" Nullable="false" Precision="23" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="STATUS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SETUP_SITE_ID_FK" Type="Decimal" Precision="23" Scale="0" />
+    <Property Name="VENDOR_ID" Type="Decimal" Precision="23" Scale="0" />
+    <Property Name="GENERATION_COMPANY" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SITE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="BLOCK" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PLT_BLK_FUEL_ID" Type="Decimal" Precision="23" Scale="0" />
+    <Property Name="FUEL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="EVENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TYPE_OF_OUTAGE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="REASON" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="EVENT_TIME" Type="DateTime" Precision="3" />
+    <Property Name="INTIMATION_TIME" Type="DateTime" Precision="3" />
+    <Property Name="INTIMATION_SOURCE_TELEPHONE" Type="Boolean" />
+    <Property Name="INTIMATION_SOURCE_FAX" Type="Boolean" />
+    <Property Name="INTIMATION_SOURCE_PORTAL" Type="Boolean" />
+    <Property Name="SENDER_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SENDER_DESIGNATION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="AVAILABILITY" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="REMARKS" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="NPCC_ACK" Type="Boolean" />
+    <Property Name="NPCC_ACK_DATE_TIME" Type="DateTime" Precision="3" />
+    <Property Name="NPCC_RECEIVER_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="NPCC_RECEIVER_DESIGNATION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="NPCC_REMARKS" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="NPCC_REMARKS_ONLY_NPCC" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="NPCC_TYPE_OF_OUTAGE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="NPCC_REASON" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="EVENT_VERIFIED" Type="Boolean" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_ON" Type="DateTime" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_ON" Type="DateTime" Precision="3" />
+    <Property Name="STATUS_OF_MACHINE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FLAG" Type="Decimal" Precision="1" Scale="0" />
+  </EntityType>
+  <EntityType Name="WP_PORTAL_USERS">
+    <Key>
+      <PropertyRef Name="WP_PORTAL_USERS_ID" />
+    </Key>
+    <Property Name="WP_PORTAL_USERS_ID" Type="Int32" Nullable="false" />
+    <Property Name="USER_NAME" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="PASSWORD" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DISPLAY_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PPA_HEADER_ID_FK" Type="Double" />
+    <Property Name="WP_SETUP_USER_TYPES_ID" Type="Int32" />
+    <Property Name="EMAIL_ADDRESSES" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL_SUBSCRIPTION" Type="Boolean" />
+    <Property Name="DISPLAY_DESIGNATION" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="USER_NAME_OLD" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="WP_SETUP_DISCO">
+    <Key>
+      <PropertyRef Name="WP_SETUP_DISCO_ID" />
+    </Key>
+    <Property Name="WP_SETUP_DISCO_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CUSTOMER_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="CUSTOMER_NAME" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+    <Property Name="CUSTOMER_NUMBER" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="ABBREVIATION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="WP_SETUP_MENU">
+    <Key>
+      <PropertyRef Name="WP_SETUP_MENU_ID" />
+    </Key>
+    <Property Name="WP_SETUP_MENU_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MENU_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Herf_LINK" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="CLASS_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PARENT_ID" Type="Int32" />
+    <Property Name="ORDER_BY" Type="Int32" />
+    <Property Name="CONTROLLER" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="CONTROLLER_VIEW" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="IS_VIEW_PARTIAL" Type="Boolean" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="WP_SETUP_MENU_USER_TYPE">
+    <Key>
+      <PropertyRef Name="WP_SETUP_MENU_USER_TYPE_ID" />
+    </Key>
+    <Property Name="WP_SETUP_MENU_USER_TYPE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WP_SETUP_MENU_ID" Type="Int32" Nullable="false" />
+    <Property Name="WP_SETUP_USER_TYPES_ID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WP_SETUP_USER_TYPES">
+    <Key>
+      <PropertyRef Name="WP_SETUP_USER_TYPES_ID" />
+    </Key>
+    <Property Name="WP_SETUP_USER_TYPES_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="USER_TYPE_NAME" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="DASHBOARD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="WP_NPCC_DESPATCH_DETAIL">
+    <Key>
+      <PropertyRef Name="WP_NPCC_DESPATCH_DETAIL_ID" />
+    </Key>
+    <Property Name="WP_NPCC_DESPATCH_DETAIL_ID" Type="Decimal" Nullable="false" Precision="23" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WP_NPCC_DESPATCH_HEADER_ID" Type="Decimal" Nullable="false" Precision="23" Scale="0" />
+    <Property Name="BLOCK_ID" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="BLOCK_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SYNC_DESYNC_TIME" Type="DateTime" Precision="3" />
+    <Property Name="REMARKS" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="CPPA_PPA_PLT_BLK_FUEL">
+    <Key>
+      <PropertyRef Name="PLT_BLK_FUEL_ID" />
+    </Key>
+    <Property Name="PLT_BLK_FUEL_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="HEADER_ID_FK" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="BLOCK_LOOKUP_CODE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UNIT_LOOKUP_CODE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="BLOCK_UNIT_TITLE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="FUEL_LOOKUP_CODE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CAPACITY" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="REMARKS" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE3" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE4" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE5" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE6" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE7" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE8" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE9" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE10" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="GROUP_COMP" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ORGANIZATION_ID" Type="Int32" />
+    <Property Name="CREATION_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="LAST_UPDATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_LOGIN" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="EFFECTIVE_FROM" Type="DateTime" Precision="3" />
+    <Property Name="EFFECTIVE_TO" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="CPPA_PPA_PLT_BLK_FUEL04032019">
+    <Key>
+      <PropertyRef Name="PLT_BLK_FUEL_ID" />
+    </Key>
+    <Property Name="PLT_BLK_FUEL_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HEADER_ID_FK" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="BLOCK_LOOKUP_CODE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UNIT_LOOKUP_CODE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="BLOCK_UNIT_TITLE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="FUEL_LOOKUP_CODE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CAPACITY" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="REMARKS" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE3" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE4" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE5" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE6" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE7" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE8" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE9" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE10" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="GROUP_COMP" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ORGANIZATION_ID" Type="Int32" />
+    <Property Name="CREATION_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="LAST_UPDATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_LOGIN" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="EFFECTIVE_FROM" Type="DateTime" Precision="3" />
+    <Property Name="EFFECTIVE_TO" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="WP_NPCC_FAILURE_NOTIFICATION">
+    <Key>
+      <PropertyRef Name="WP_NPCC_FAILURE_NOTIFICATION_ID_PK" />
+    </Key>
+    <Property Name="WP_NPCC_FAILURE_NOTIFICATION_ID_PK" Type="Decimal" Nullable="false" Precision="23" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SETUP_SITE_ID_FK" Type="Decimal" Precision="23" Scale="0" />
+    <Property Name="GENERATION_COMPANY" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SITE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="BLOCK" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="FUEL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="WP_NPCC_DESPATCH_HEADER_ID_FK" Type="Decimal" Precision="23" Scale="0" />
+    <Property Name="NOTIFICATION_COUNT" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="INTIMATION_TIME" Type="DateTime" Precision="3" />
+    <Property Name="INTIMATION_SOURCE_TELEPHONE" Type="Boolean" />
+    <Property Name="INTIMATION_SOURCE_TELEPHONE_TIME" Type="DateTime" Precision="3" />
+    <Property Name="INTIMATION_SOURCE_FAX" Type="Boolean" />
+    <Property Name="INTIMATION_SOURCE_FAX_TIME" Type="DateTime" Precision="3" />
+    <Property Name="INTIMATION_SOURCE_PORTAL" Type="Boolean" />
+    <Property Name="SENDER_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="GC_ACK" Type="Boolean" />
+    <Property Name="GC_ACKNOWLEDGEMENT_TIME" Type="DateTime" Precision="3" />
+    <Property Name="GC_AckBy" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="GC_DESIGNATION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="GC_REMARKS" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="COMPLAINCEMET" Type="Boolean" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_ON" Type="DateTime" Precision="3" />
+    <Property Name="MODIFIED_BY" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="MODIFIED_ON" Type="DateTime" Precision="3" />
+    <Property Name="DEMAND_NO" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="TARGET_DEMAND" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="SUPPLY" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="INSTALLED_CAPACITY" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="NPCC_REMARKS" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="STATUS" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="SENDER_DESIGNATION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="FLAG" Type="Decimal" Precision="1" Scale="0" />
+  </EntityType>
+  <EntityType Name="CPPA_CDP_HEADER">
+    <Key>
+      <PropertyRef Name="CDP_ID" />
+      <PropertyRef Name="CDP_NUMBER" />
+      <PropertyRef Name="GRID_STATION_CODE" />
+    </Key>
+    <Property Name="CDP_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="CUSTOMER_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="CDP_NUMBER" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="GRID_STATION_CODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="GRID_STATION_NAME" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="LINE_NAME_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CONTROLLED_BY_CODE" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="DISCO_AREA_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LOCATION_CODE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="LOCATION_NAME" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="ENGY_IMP_EXP_FROM_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ENGY_IMP_EXP_TO_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="GRID_VOLTAGE_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TF_LINE_VOLTAGE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TF_TL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CDP_UNIT_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FEEDER_NAME_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EFFECTIVE_FROM" Type="DateTime" Precision="0" />
+    <Property Name="EFFECTIVE_TO" Type="DateTime" Precision="0" />
+    <Property Name="CDP_STATUS_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="REMARKS" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE3" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE4" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE5" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE6" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE7" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE8" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE9" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE10" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="GROUP_COMP" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ORGANIZATION_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="CREATION_DATE" Type="DateTime" Precision="0" />
+    <Property Name="CREATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="0" />
+    <Property Name="LAST_UPDATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_LOGIN" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="SR_NO_TMP" Type="Decimal" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="PlantBlock">
+    <Key>
+      <PropertyRef Name="PLT_BLK_FUEL_ID" />
+      <PropertyRef Name="VENDOR_SITE_ID" />
+      <PropertyRef Name="VENDOR_ID" />
+    </Key>
+    <Property Name="PLT_BLK_FUEL_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="HEADER_ID_FK" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="BLOCK_UNIT_TITLE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CAPACITY" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="GROUP_COMP" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="VENDOR_NAME" Type="String" MaxLength="240" FixedLength="false" Unicode="false" />
+    <Property Name="VENDOR_SITE_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="POWER_POLICY" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="VENDOR_SITE_ID" Type="Int32" Nullable="false" />
+    <Property Name="VENDOR_ID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="database_firewall_rules">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="start_ip_address" />
+      <PropertyRef Name="end_ip_address" />
+      <PropertyRef Name="create_date" />
+      <PropertyRef Name="modify_date" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="start_ip_address" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="end_ip_address" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <ComplexType Name="SP_ddlMonthsEnergyDelivered_Result">
+    <Property Type="String" Name="ACCOUNTING_MONTH_ID" Nullable="true" MaxLength="201" />
+    <Property Type="String" Name="DISPLAY" Nullable="true" MaxLength="37" />
+    <Property Type="Int32" Name="ord" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_ddlMonths_DISCO_MONTHLY_DATA_Result">
+    <Property Type="Int32" Name="ACCOUNTING_MONTH_ID" Nullable="false" />
+    <Property Type="String" Name="DISPLAY" Nullable="true" MaxLength="12" />
+    <Property Type="Int32" Name="ord" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="CPPA_EMO_FORECAST_HEADER">
+    <Key>
+      <PropertyRef Name="FORECAST_HEADER_ID" />
+    </Key>
+    <Property Name="FORECAST_HEADER_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FORECAST_NO" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="VENDOR_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="VENDOR_SITE_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="PPA_PLANT_EMO_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="BLOCK_TITLE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PPA_PLT_BLK_FUEL_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="FUEL_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UNIT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DEPENDABLE_CAPACITY" Type="Decimal" Precision="38" Scale="4" />
+    <Property Name="INV_METHOD_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ESTIMATED_CONSUMPTION" Type="Decimal" Precision="38" Scale="4" />
+    <Property Name="EMO_PERIOD_ID" Type="Decimal" Precision="15" Scale="0" />
+    <Property Name="FORECAST_FROM_DATE" Type="DateTime" Precision="3" />
+    <Property Name="FORECAST_TO_DATE" Type="DateTime" Precision="3" />
+    <Property Name="PORTAL_SUBMISSION_DATE" Type="DateTime" Precision="3" />
+    <Property Name="APPROVAL_STATUS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="REMARKS" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="CREATION_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="LAST_UPDATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_LOGIN" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="ORGANIZATION_ID" Type="Int32" />
+    <Property Name="REVISED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="REVISED_DATE_TIME" Type="DateTime" Precision="3" />
+    <Property Name="REVISED_REASON" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="OLD_FORECAST_HEADER_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="SUBMIT_DATE" Type="DateTime" Precision="3" />
+    <Property Name="ERP_TRANSFER" Type="Int32" />
+  </EntityType>
+  <EntityType Name="MDINEO_HEADER">
+    <Key>
+      <PropertyRef Name="HEADER_ID_PK" />
+    </Key>
+    <Property Name="HEADER_ID_PK" Type="Decimal" Nullable="false" Precision="38" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DOCUMENT_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DOCUMENT_DATE" Type="DateTime" Precision="3" />
+    <Property Name="APPROVAL_STATUS" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE1" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE2" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE3" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE4" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE5" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE6" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE7" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE8" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE9" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE10" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ORGANIZATION_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="CREATION_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="LAST_UPDATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_LOGIN" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="DOC_MONTH" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DOC_DATE" Type="DateTime" Precision="3" />
+    <Property Name="MDI_TOTAL" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="NEO_TOTAL" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="FLAG" Type="Int32" />
+  </EntityType>
+  <EntityType Name="MDINEO_LINE">
+    <Key>
+      <PropertyRef Name="MDINEO_LINE_PK" />
+    </Key>
+    <Property Name="MDINEO_LINE_PK" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HEADER_ID_FK" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="DISCO_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MDI_KW" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="NEO_KW" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="TOTAL" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="ATTRIBUTE1" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE2" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE3" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE4" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE5" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE6" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE7" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE8" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE9" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ATTRIBUTE10" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="CREATION_DATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="3" />
+    <Property Name="LAST_UPDATED_BY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LAST_UPDATE_LOGIN" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="DISCO_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="MDI_TOTAL" Type="Decimal" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="WP_NPCC_METERING">
+    <Key>
+      <PropertyRef Name="WP_NPCC_METERING_ID" />
+    </Key>
+    <Property Name="WP_NPCC_METERING_ID" Type="Decimal" Nullable="false" Precision="23" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PLT_MTR_FROM_TIME" Type="DateTime" Precision="3" />
+    <Property Name="PLT_MTR_TO_TIME" Type="DateTime" Precision="3" />
+    <Property Name="NEO_DELIVERED" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="FLAG" Type="Decimal" Precision="1" Scale="0" />
+  </EntityType>
+  <ComplexType Name="SP_ddlMonths_TotalEnergy_Delivered_Result">
+    <Property Type="String" Name="ACCOUNTING_MONTH_ID" Nullable="true" MaxLength="504" />
+    <Property Type="String" Name="Column1" Nullable="true" MaxLength="12" />
+    <Property Type="Int32" Name="ord" Nullable="false" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,1094 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="pcontent">
+    <style type="text/css">
+        table.dataTable thead .sorting::after, table.dataTable thead .sorting_asc::after, table.dataTable thead .sorting_desc::after {
+            display: block;
+            font-family: FontAwesome;
+            position: absolute;
+            right: 10px;
+            top: 0px;
+            font-size: 14px;
+        }
+
+        div.dataTables_scrollBody thead th,
+        div.dataTables_scrollBody thead td {
+            line-height: 0;
+            opacity: 0.0;
+            width: 0px;
+            height: 0px;
+        }
+
+        .buttons-excel {
+            width: 98px;
+            /* height: 30px; */
+            background-color: #1d4a6d !important;
+            border-color: #1d4a6d !important;
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+
+        .drpDwn, .drpDwn option {
+            width: 270px;
+            height: 23px;
+        }
+
+
+        input[type=text]#fromDate,
+        input[type=text]#toDate {
+            background-color: rgb(251, 255, 193);
+        }
+        /*
+            input[type=text]#fromDate,
+            input[type=text]#toDate,
+            input[type=text]#txtTrans,
+            select.drpDwn
+            {
+
+
+              margin: 8px 0;
+              box-sizing: border-box;
+              border: none;
+              border-bottom: 2px solid #1D4A6D;
+            }
+
+            input[type=text]#fromDate:focus,
+            input[type=text]#toDate:focus,
+            input[type=text]#txtTrans:focus,
+            select.drpDwn:focus
+            {
+
+
+              margin: 8px 0;
+              box-sizing: border-box;
+              border: none;
+              border-bottom: 2px solid #2a8dd4 ;
+            }
+            input[type=text]#fromDate:focus,
+            input[type=text]#toDate:focus,
+            input[type=text]#txtTrans:focus,
+            select.drpDwn:focus
+            {
+
+
+              margin: 8px 0;
+              box-sizing: border-box;
+              border: none;
+              border-bottom: 2px solid #2a8dd4 ;
+              box-shadow: 0 4px 6px -6px #a8dd4 ;
+            }
+            */
+        #tbl_Search td {
+            padding-right: 21px;
+        }
+    </style>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px; margin-right: 5px; color: #fff;"></i>
+                        <h6 class="panel-title txt-light">@ViewBag.Title</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+
+
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                        @*<a class="pull-left inline-block close-panel" href="#" data-effect="fadeOut">
+                                <i class="zmdi zmdi-close"></i>
+                            </a>*@
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body" style="min-height: 300px;">
+                        @*====Body Start===*@
+                        <div style="display: none;">
+                            <div class="ippdash row">
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="panel panel-default card-view pa-0">
+                                        <div class="panel-wrapper collapse in">
+                                            <div class="panel-body pa-0">
+                                                <div class="sm-data-box">
+                                                    <div class="container-fluid">
+                                                        <div class="row">
+                                                            <div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
+                                                                <span class="txt-dark block counter">
+                                                                    <span class="counter-anim">0 </span>
+                                                                </span>
+                                                                <span class="capitalize-font block">
+                                                                    Payables By CPPA
+                                                                </span>
+                                                            </div>
+                                                            <div class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right">
+                                                                <i class="icon-globe data-right-rep-icon txt-danger">
+                                                                </i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="progress-anim">
+                                                            <div class="progress">
+                                                                <div class="progress-bar progress-bar-info wow animated progress-animated" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="panel panel-default card-view pa-0">
+                                        <div class="panel-wrapper collapse in">
+                                            <div class="panel-body pa-0">
+                                                <div class="sm-data-box">
+                                                    <div class="container-fluid">
+                                                        <div class="row">
+                                                            <div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
+                                                                <span class="txt-dark block counter">
+                                                                    <span class="counter-anim">0 </span>
+                                                                </span>
+                                                                <span class="capitalize-font block">
+                                                                    E E Payables
+                                                                </span>
+                                                            </div>
+                                                            <div class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right">
+                                                                <i class="icon-eye  data-right-rep-icon txt-danger">
+                                                                </i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="progress-anim">
+                                                            <div class="progress">
+                                                                <div class="progress-bar progress-bar-warning wow animated progress-animated" role="progressbar" aria-valuenow="46" aria-valuemin="0" aria-valuemax="100" style="width: 46%;">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="panel panel-default card-view pa-0">
+                                        <div class="panel-wrapper collapse in">
+                                            <div class="panel-body pa-0">
+                                                <div class="sm-data-box">
+                                                    <div class="container-fluid">
+                                                        <div class="row">
+                                                            <div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
+                                                                <span class="txt-dark block counter">
+                                                                    <span class="counter-anim">0 </span>
+                                                                </span>
+                                                                <span class="capitalize-font block">
+                                                                    LD Payables
+                                                                </span>
+                                                            </div>
+                                                            <div class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right">
+                                                                <i class="icon-shuffle data-right-rep-icon txt-danger">
+                                                                </i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="progress-anim">
+                                                            <div class="progress">
+                                                                <div class="progress-bar progress-bar-danger wow animated progress-animated" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="panel panel-default card-view pa-0">
+                                        <div class="panel-wrapper collapse in">
+                                            <div class="panel-body pa-0">
+                                                <div class="sm-data-box">
+                                                    <div class="container-fluid">
+                                                        <div class="row">
+                                                            <div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
+                                                                <span class="txt-dark block counter">
+                                                                    <span class="counter-anim">0 </span>
+                                                                </span>
+                                                                <span class="capitalize-font block">
+                                                                    Total Energy Sold
+                                                                </span>
+                                                            </div>
+                                                            <div class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right">
+                                                                <i class="icon-direction  data-right-rep-icon txt-danger">
+                                                                </i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="progress-anim">
+                                                            <div class="progress">
+                                                                <div class="progress-bar progress-bar-primary wow animated progress-animated" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Row -->
+                        <div class="ippdash row" style="display: none;">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">-->
+                                <div class="panel panel-default card-view panel-refresh">
+                                    <div class="refresh-container">
+                                        <div class="la-anim-1">
+                                        </div>
+                                    </div>
+                                    @*<span class="txt-dark" style="color:black; font-weight:bold;">
+                                            Purchase of Power Invoices
+                                        </span>
+                                        <hr style="border-width:1px; margin-bottom:10px;">*@
+                                    <div class="tab0">
+                                        &nbsp;<div class="tab1">&nbsp;Purchase of Power Invoices</div>
+                                        <div class="tab2">&nbsp;</div>
+                                    </div>
+                                    <div style="background-color: white;">
+
+                                        <div style="overflow-x: scroll; padding:5px;">
+                                            <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" id="tblpopi">
+                                                <thead>
+                                                    <tr style="width:100%;">
+                                                        <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                                                            Transaction No
+                                                        </th>
+                                                        <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                                                            Invoice No
+                                                        </th>
+                                                        <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                                                            Submission Date
+                                                        </th>
+                                                        <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                                                            Form Type
+                                                        </th>
+                                                        <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-sortable-default-col="" data-tablesaw-priority="">
+                                                            Invoice Type
+                                                        </th>
+                                                        <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                            Invoice From
+                                                        </th>
+                                                        <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                            Invoice To
+                                                        </th>
+                                                        <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                            Amount
+                                                        </th>
+
+                                                        @*<th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                                Claimed Amount
+                                                            </th>
+                                                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                                Total Verified Amount
+                                                            </th>
+                                                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                                Total Disallowed Amount
+                                                            </th>
+                                                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                                Paid Amount
+                                                            </th>
+                                                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                                Outstanding Amount
+                                                            </th>
+                                                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                                Verified Due Date
+                                                            </th>
+                                                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                                Diary No
+                                                            </th>
+                                                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                                ERP Invoice No
+                                                            </th>*@
+                                                        <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                            Final Status
+                                                        </th>
+                                                        <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                            HC Submission Date
+                                                        </th>
+                                                        <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                            Edit
+                                                        </th>
+                                                        <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                            Delete
+                                                        </th>
+                                                        <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                            View
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tr>
+                                                    <td><span class="txt-dark weight-500"></span></td>
+                                                    <td></td>
+                                                    <td><span class="txt-success"></span></td>
+                                                    <td><span class="txt-dark weight-500"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="txt-success"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-dark weight-500"></span></td>
+                                                    <td></td>
+                                                    <td><span class="txt-success"></span></td>
+                                                    <td><span class="txt-dark weight-500"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="txt-success"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-dark weight-500"></span></td>
+                                                    <td></td>
+                                                    <td><span class="txt-success"></span></td>
+                                                    <td><span class="txt-dark weight-500"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="label label-warning"></span></td>
+                                                    <td><span class="txt-success"></span></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div id="cppdash" class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                @*<span class="panel-title txt-dark" style="color:black; font-weight:bold;">Search </span>
+                                    <hr style="border-width:1px; margin-bottom:10px;">
+                                    <br>*@
+
+                                <div class="tab0">
+                                    &nbsp;<div class="tab1">&nbsp;Search</div>
+                                    <div class="tab2">&nbsp;</div>
+                                </div>
+                                <div style="background-color: white;">
+
+
+                                    <div>
+                                        <table class="table" id="tbl_Search" style="width:75%;border-collapse:separate; border-spacing:0 15px; margin: auto;">
+                                            <thead>
+
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <label style="float:right;">Invoice Submitted From <span style="color:red">*</span></label>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" maxlength="11" id="fromDate" style="width: 270px" readonly="true">
+                                                    </td>
+                                                    <td>
+                                                        <label style="float:right;">Invoice Submitted  To <span style="color:red">*</span></label>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" maxlength="11" id="toDate" style="width: 270px" readonly="true">
+                                                    </td>
+
+                                                    <!--<td>
+                                                    <input type="checkbox" name="isHistoricData" id='isHistoricData'><label>Historic Data</label>
+                                                    </td>		-->
+                                                </tr>
+
+                                                <tr>
+                                                    <td>
+                                                        <label style="float:right;">Power Producer</label>
+                                                    </td>
+                                                    <td>
+                                                        <select class="drpDwn" id="ippDrp"><option value="0" selected="">Select IPP</option>@Html.Raw(@ViewBag.ippDrp)</select>
+                                                    </td>
+                                                    <td>
+                                                        <label style="float:right;"> Invoice No</label>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="txtInvoiceNo" style="width: 270px" onkeypress="">
+
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>
+                                                        <label style="float:right;">Transaction No</label>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="txtTrans" style="width: 270px" onkeypress="return isNumberKey(event)">
+
+                                                    </td>
+
+                                                    <td>
+                                                        <label style="float:right;">Invoice Type</label>
+                                                    </td>
+                                                    <td>
+                                                        <select class="drpDwn" id="invTypDrp"><option value="0" selected="">Select Invoice Type</option>@Html.Raw(@ViewBag.invTypDrp)</select>
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+
+                                                    <td>
+
+                                                        <label style="float:right;">Status</label>
+                                                    </td>
+
+                                                    <td>
+                                                        <select class="drpDwn" id="statusDrp"><option value="0" selected="">Select Status</option>@Html.Raw(@ViewBag.statusDrp)</select>
+
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="5" style="text-align:right;">
+                                                        <button id="btnSearch" class="btn btn-success" style="margin-top: 3px; margin-right:27px;">Search</button>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+                                @*<span class="panel-title txt-dark" style="color:black; font-weight:bold;">Submitted Invoices </span>
+                                    <a href="invoiceForm.html" style="margin-left: 5px;"></a><a href="">
+                                        <span class="pull-right text-success" style="display:none;">Search</span>
+                                    </a>
+                                    <hr style="border-width:1px; margin-bottom:10px;">*@
+                                <div class="tab0">
+                                    &nbsp;<div class="tab1">&nbsp;Submitted Invoices</div>
+                                    <div class="tab2">&nbsp;</div>
+                                </div>
+                                <div style="background-color: white;">
+
+                                    <table class="tablesaw table-bordered table-hover table borderWidth" data-tablesaw-mode="swipe" id="tbl_tech_fin">
+                                        <thead>
+                                            <tr>
+                                                <th id="org" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist" style="display:none;">
+                                                    Power Producer
+                                                </th>
+                                                <th id="org" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+
+                                                    Site
+                                                </th>
+                                                <th id="org" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                                                    Invoice No
+                                                </th>
+                                                <th class="filterhead" id="org" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                                                    Transaction No
+                                                </th>
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                                                    Submission Date
+                                                </th>
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-sortable-default-col="" data-tablesaw-priority="3">
+                                                    Invoice Type
+                                                </th>
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="2">
+                                                    Invoice From
+                                                </th>
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="2">
+                                                    Invoice To
+                                                </th>
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="1">
+                                                    Claimed Amount
+                                                </th>
+
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                    Total Verified Amount
+                                                </th>
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                    Total Disallowed Amount
+                                                </th>
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                    Paid Amount
+                                                </th>
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                    Outstanding Amount
+                                                </th>
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                    Verified Due Date
+                                                </th>
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                    Diary No
+                                                </th>
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="">
+                                                    ERP Invoice No
+                                                </th>
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                                                    HC Submission Date
+                                                </th>
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="4">
+                                                    Final Status
+                                                </th>
+                                                <th id="otherStatus" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="4">
+                                                </th>
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="4" class="notExport">
+                                                </th>
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="4" class="notExport">
+                                                </th>
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody id="submittedinvo"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="historyModal" title="History" style="display:none;">
+                            <table class="table-bordered table-hover table borderWidth" data-tablesaw-mode="swipe" id="tbl_history">
+                                <thead>
+                                    <tr>
+                                        <th id="org" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                                            User Name
+                                        </th>
+                                        <th id="org" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                                            Designation
+                                        </th>
+                                        <th id="org" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                                            Permission Level
+                                        </th>
+                                        <th id="org" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                                            Date/Time
+                                        </th>
+                                        <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                                            Action
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                            <div style="text-align:right;">
+                                <button type="button" id="btnCloseDialog2" class="btn btn-default">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                        @*====Body End=====*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/plugins/moment/min/moment.min.js"></script>
+    <script src="~/Content/vendors/bower_components/moment/min/datetime-moment.js"></script>
+    <script type="text/javascript">
+        var userTypeIdM = @ViewBag.UserType;
+        var Token = "";
+        var currentDate = "";
+        var fromDate = "";
+        var toDate = "", tHead;
+        var isHistoric = 0;
+        var txtTrans = 0;
+        var invTypID = 0;
+        var statusDrop = "";
+        var ippSelected = "";
+        var txtInvNo = "";
+
+        function isNumberKey(evt)
+        {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+
+
+            return true;
+        }
+        //-->
+        $('#txtTrans').on('paste', function (event) {
+            if (event.originalEvent.clipboardData.getData('Text').match(/[^\d]/)) {
+                return false;
+            }
+        });
+
+        $(document).ready(function () {
+
+            $('body').off('click', '#tblpopiExport');
+            $('body').on('click', '#tblpopiExport', function (e) {
+                e.preventDefault();
+                $('#tbl_tech_fin').tableExport({fileName: 'Search Results', type: 'excel', escape: 'false' });
+                e.preventDefault();
+            });
+            	if (!String.prototype.includes) {
+  String.prototype.includes = function(search, start) {
+    'use strict';
+    if (typeof start !== 'number') {
+      start = 0;
+    }
+
+
+    if (start + search.length > this.length) {
+      return false;
+    } else {
+      return this.indexOf(search, start) !== -1;
+    }
+  };
+}
+
+    $('#ppiSearchLink').attr('href',  "/Pages/SearchForm.aspx");
+
+
+   if(@ViewBag.UserType == 2 || @ViewBag.UserType == 3 ){
+
+   var date = new Date();
+   var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+
+   const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+   var firstDate = firstDay.getDate() + "-" + monthNames[date.getMonth()] + "-" + date.getFullYear();
+
+	currentDate = date.getDate() + "-" + monthNames[date.getMonth()] + "-" + date.getFullYear();
+	tHead = $('#tbl_tech_fin thead').html();
+
+	$('#toDate').datepicker({
+        				changeMonth: true,
+        				changeYear: true,
+        				yearRange: "1900:",
+        				dateFormat: 'dd-M-yy'
+
+    				}).datepicker('setDate', 'today');
+    				//$('#toDate').datepicker();
+
+
+
+
+					$('#fromDate').datepicker({
+        				changeMonth: true,
+        				changeYear: true,
+        				yearRange: "1900:",
+        				dateFormat: 'dd-M-yy'
+
+        			}).datepicker('setDate', firstDate);
+
+
+	//getSpecificInvoices(firstDate, currentDate,null, 0, 0, false);
+
+	}
+
+
+
+					//SEARCH BUTTON FOR DATE
+					$('body').off('click', '#btnSearch');
+    				$('body').on('click', '#btnSearch', function (e) {
+       				e.preventDefault();
+
+       				fromDate = $('#fromDate').val();
+					toDate = $('#toDate').val();
+					txtTrans = $('#txtTrans').val();
+					txtInvNo = $('#txtInvoiceNo').val().trim();
+
+					$.each($("#invTypDrp option:selected"), function(){
+    		            invTypID = $(this).val();
+    		           });
+
+    		           $.each($("#statusDrp option:selected"), function(){
+    		            statusDrop = $(this).val();
+    		           });
+
+    		            $.each($("#ippDrp option:selected"), function(){
+    		            ippSelected = $(this).val();
+    		           });
+
+
+
+                //  condition where user selected nothing, making the type int
+                	if(statusDrop == 0){
+                		statusDrop = 0;
+                	}
+                	if (txtTrans == ""){
+                	 txtTrans = 0;
+                	}
+
+					if(invTypID == 0){
+					 invTypID = 0;
+
+					}
+
+					if(ippSelected == 0){
+                		ippSelected = 0;
+                	}
+
+					if (txtInvNo == ""){
+                	 txtInvNo = 0;
+                	}
+
+       				getSpecificInvoices(fromDate , toDate , statusDrop, invTypID, txtTrans, txtInvNo, ippSelected, true); ////////////////////////
+
+
+
+    				  });
+            $('#historyModal').dialog({
+                autoOpen: false,
+                height: 455,
+                width: 650,
+                modal: true,
+                show: {
+                    effect: "clip",
+                    duration: 500
+                },
+                hide: {
+                    effect: "clip",
+                    duration: 500
+                }
+            });
+            $('body').off("click", '#btnCloseDialog2');
+            $('body').on("click", '#btnCloseDialog2', function (e) {
+                e.preventDefault();
+                $('#historyModal').dialog('close');
+                $('#attachmentTitle').val('');
+                $('#attachmentDesc').val('');
+                $('#attachmentFile').val('');
+                try {
+                    if ($.browser.msie) {
+                        $('#attachmentFile').replaceWith($('#attachmentFile').clone());
+                    }
+                    else {
+                        $('#attachmentFile').val('');
+                    }
+                    $('#attachmentFile').html('');
+                } catch (e) {
+                    return false;
+                }
+            });
+
+            $('body').off('click', '.history');
+            $('body').on('click', '.history', function(e){
+                e.preventDefault();
+                var fromdata = new FormData();
+                fromdata.append("vls", '16½' + $(this).attr('itemid'));
+                $.ajax
+                ({
+                    //type: "GET",
+                    //url: "https://cppa2.azurewebsites.net/v1/invoice/GetInvoiceHistory/" + $(this).attr('itemid'),
+                    //dataType: 'json',
+                    //headers: {
+                    //    "Token": Token
+                    //},
+                    type: "POST",
+                    url: "/Invoice/AjaxCall" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function () {
+                        $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+                    },
+                    complete: function () {
+                        $.unblockUI();
+                    },
+                    success: function (data) {
+                        debugger;
+                        var historyData = JSON.parse(data);
+                        $('#tbl_history>tbody').html('');
+                        $.each(historyData, function (index, value) {
+                            if(value.Action != "VIEWED")
+                                $('#tbl_history>tbody').append('<tr><td><span  class="txt-dark weight-500">' + value.Name + '</span></td><td><span  class="txt-dark weight-500">' + value.Designation + '</span></td><td><span  class="txt-dark weight-500">' + value['User Type'] + '</span></td><td><span  class="txt-dark weight-500">' + value['Date Time'] + '</span></td><td><span  class="txt-dark weight-500">' + value.Action + '</span></td></tr>');
+                        });
+                        $('#historyModal').dialog('open');
+                    },//end of success
+                    error: function (request, textStatus, errorThrown) {
+                        console.log(request);
+                        $.unblockUI();
+                    }
+                });// end of ajax call
+            });
+
+                function numberWithCommas(x) {
+                    x = x.toString();
+                    if (x % 1 == 0) {
+                        if (x.indexOf(".") < 0) {
+                            x = x.replace(/\D-/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                            x += ".0000";
+                        } else {
+                            x = x.replace('.0000', '');
+                            x = x.replace(/\D-/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                            x += ".0000";
+
+                        }
+                    } else {
+                        var index = x.indexOf(".");
+                        var p1 = x.substring(0, index);
+                        p1 = p1.replace(/\D-/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                        var p2 = x.substring(index);
+                        p2 = p2 + "0000";
+                        p2 = p2.substring(0, 5);
+                        x = p1 + p2;
+                    }
+                    return x;
+                }
+
+            function getSpecificInvoices(lastDayWithSlashes, newDate,invoiceStat, invoiceTID, transNum, invNo, ippSel, isBtn)
+            {
+                //var SubmittedInvoicesApi="https://cppa2.azurewebsites.net/v1/D_H_Interface/diarybycriteria?fromDate=" + lastDayWithSlashes + "&toDate=" + newDate +"&invoiceStatus=" + invoiceStat + "&invoiceTypeId=" + invoiceTID + "&transactionNo=" + transNum + "&venInvoiceId=" + invNo + "&vendorId=" + ippSel;
+                var fromdata = new FormData();
+                //db.GetDHIbyCriteria(UserID, fromDate, toDate, invoiceStatus, invoiceTypeId, transactionNo, venInvoiceId, vendorId)
+                fromdata.append("vls", '17½' + lastDayWithSlashes +'½'+ newDate+'½'+invoiceStat+'½'+invoiceTID+'½'+transNum+'½'+invNo+'½'+ippSel+'½'+isBtn);
+                $.ajax
+                    ({
+                    type: "POST",
+                    url: "/Invoice/AjaxCall" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    //type: "GET",
+                    //url: SubmittedInvoicesApi,
+                    //dataType: 'json',
+                    //headers: {
+                    //    "Token": UserToken
+                    //},
+                    beforeSend: function () {
+                        $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+                    },
+                    complete: function () {
+                        $.unblockUI();
+                    },
+                    success: function (data) {
+                        data = $.parseJSON(data);
+                        console.log(data);
+
+                        debugger;
+                        if(data.length > 0){
+                            if(isBtn){
+                                $('#tbl_tech_fin').DataTable().clear().destroy();
+                                $('#tbl_tech_fin thead').html('');
+                                $('#tbl_tech_fin thead').html(tHead);
+                            }
+
+                            $.each(data, function (index, value) {
+                                var L_Form_Name = value.Form_Name;
+                                var site = value.ADDRESS_LINE1;
+                                var letterNo = value.VEN_INV_LETTER_NO;
+                                var submissionDate = value.SUBMIT_DATE;
+                                var InvoiceType = value.INVOICE_TYPE;
+                                var Amount = value.TOTAL_CLAIM || 0;
+                                Amount = numberWithCommas(Amount);
+                                var invoiceFrom = value.INVOICE_PERIOD_FROM;
+                                var invoiceTo = value.INVOICE_PERIOD_TO;
+                                var verifiedDueDate = value.VERIFIED_DUE_DATE || "";
+                                
+                                var totalverifiedamount = value.TOTAL_VERIFIED_AMOUNT;
+                                var paidamount = value.PAID_AMOUNT;
+                                var totaldisallowedamount = value.TOTAL_DISALLOWED_AMOUNT;
+                                var outstandingamount = value.OUTSTANDING_AMOUNT;
+
+                                var diaryno = value.DIARY_NO;
+                                var invoiceno = value.INVOICE_NO;
+                                var Status = value.STATUS;
+                                var HCDate = value.HARD_COPY_SUBMISSION_DATETIME;
+
+
+                                if(HCDate == null){
+                                    HCDate = '';
+                                }
+                                var stl;
+                                var otherStatus = '';
+                                debugger;
+                                if (userTypeIdM == 2){
+                                    $('#otherStatus').html('Portal Status (Finance)');
+                                    if ((value.IS_APPROVED_BY_FINANCE === null && value.STATUS !== 'Returned') || (value.IS_APPROVED_BY_FINANCE === "" && value.STATUS !== 'Returned'))
+                                        otherStatus = '<td><span style="color:black;">In Process</span></td>';
+                                    else if(value.IS_APPROVED_BY_FINANCE == "0")
+                                        otherStatus = '<td><span style="color:red;">Returned</span></td>';
+                                    else if(value.IS_APPROVED_BY_FINANCE == "1")
+                                        otherStatus = '<td><span style="color:green;">Received</span></td>';
+                                    else if (value.STATUS == 'Returned') {
+                                        otherStatus = '<td><span style="color:red;">Returned</span></td>';
+                                    }
+                                }
+                                else if (userTypeIdM == 3){
+                                    $('#otherStatus').html('Portal Status(Technical)');
+                                    if ((value.IS_APPROVED_BY_TECHNICAL === null && value.STATUS !== 'Returned') || (value.IS_APPROVED_BY_TECHNICAL === "" && value.STATUS !== 'Returned'))
+                                        otherStatus = '<td><span style="color:black;">In Process</span></td>';
+                                    else if (value.IS_APPROVED_BY_TECHNICAL == "0")
+                                        otherStatus = '<td><span style="color:red;">Returned</span></td>';
+                                    else if (value.IS_APPROVED_BY_TECHNICAL == "1")
+                                        otherStatus = '<td><span style="color:green;">Received</span></td>';
+                                    else if (value.STATUS == 'Returned') {
+                                        otherStatus = '<td><span style="color:red;">Returned</span></td>';
+                                    }
+
+                                }
+                                if (userTypeIdM == 2 || userTypeIdM == 3) {
+                                    stl = "";
+                                    $('#org').attr('style', '');
+                                }
+                                else {
+                                    stl = "style='display:none;";
+                                    $('#org').attr('style', 'display:none;');
+                                }
+                                var vUrl = '';
+                                vUrl = "/Pages/" + L_Form_Name + "?typ=V&diarynumber=" + value.DIARY_HEADER_ID + "&vendorSiteId=" + value.ORGANIZATION_ID;
+
+
+                                var color = '';
+                                if (Status == "Received")
+                                    color = 'green';
+                                else if (Status == "Submitted")
+                                    color = 'Orange';
+                                else if (Status == "Withdraw")
+                                    color = 'gray';
+                                else if (Status.includes("Forwarded to Finance") || Status.includes("Received by"))
+                                    color = '#0095eb';
+                                else if (Status.includes("Returned by"))
+                                    color = '#c103ef';
+                                else if (Status == "Returned")
+                                    color = 'red';
+
+
+                                if (value.TransactionNumber ==0){
+
+
+
+                                    $("#submittedinvo").append('<tr><td ' + stl + '><span  class="txt-dark weight-500">' + value.ORGANIZATION + '</span></td><td><span class="txt-dark weight-500">' + site + '</span></td><td><span class="txt-dark weight-500">' + letterNo + '</span></td><td style="text-align: center;"><span class="txt-dark weight-500">' + '' + '</span></td><td><span class="txt-dark weight-500">' + submissionDate + '</span></td><td><span class="txt-dark weight-500">' + InvoiceType + '</span></td><td><span class="txt-dark weight-500">' + invoiceFrom + '</span></td><td><span class="txt-dark weight-500">' + invoiceTo + '</span></td><td><span class="txt-dark weight-500 pull-right">' + Amount + '</span></td><td><span class="txt-dark weight-500 pull-right">' + totalverifiedamount + '</span></td><td><span class="txt-dark weight-500 pull-right">' + totaldisallowedamount + '</span></td><td><span class="txt-dark weight-500 pull-right">' + paidamount + '</span></td><td><span class="txt-dark weight-500 pull-right">' + outstandingamount + '</span></td><td><span class="txt-dark weight-500 pull-right">' + verifiedDueDate + '</span></td><td><span class="txt-dark weight-500 pull-right">' + diaryno + '</span></td><td><span class="txt-dark weight-500 pull-right">' + invoiceno + '</span></td><td><span class="txt-dark weight-500 pull-right">' + HCDate + '</span></td><td><span style="color: ' + color + ';">' + Status + '</span></td>' + otherStatus + '<td></td><td><center><span title="Record History" class="zmdi zmdi-time-restore zmdi-hc-lg history" itemid="' + value.DIARY_HEADER_ID + '" style="color: #926f2f;cursor:pointer;"></span></center></td></tr>'); //Change by Ahmad 7/30/2018 //Change by Ahmad 7/30/2018
+
+                                }
+                                else{
+                                    $("#submittedinvo").append('<tr><td ' + stl + '><span  class="txt-dark weight-500">' + value.ORGANIZATION + '</span></td><td><span class="txt-dark weight-500">' + site + '</span></td><td><span class="txt-dark weight-500">' + letterNo + '</span></td><td style="text-align: center;"><span class="txt-dark weight-500">' + value.TransactionNumber + '</span></td><td><span class="txt-dark weight-500">' + submissionDate + '</span></td><td><span class="txt-dark weight-500">' + InvoiceType + '</span></td><td><span class="txt-dark weight-500">' + invoiceFrom + '</span></td><td><span class="txt-dark weight-500">' + invoiceTo + '</span></td><td><span class="txt-dark weight-500 pull-right">' + Amount + '</span></td><td><span class="txt-dark weight-500 pull-right">' + totalverifiedamount + '</span></td><td><span class="txt-dark weight-500 pull-right">' + totaldisallowedamount + '</span></td><td><span class="txt-dark weight-500 pull-right">' + paidamount + '</span></td><td><span class="txt-dark weight-500 pull-right">' + outstandingamount + '</span></td><td><span class="txt-dark weight-500 pull-right">' + verifiedDueDate + '</span></td><td><span class="txt-dark weight-500 pull-right">' + diaryno + '</span></td><td><span class="txt-dark weight-500 pull-right">' + invoiceno + '</span></td><td><span class="txt-dark weight-500 pull-right">' + HCDate + '</span></td><td><span style="color: ' + color + ';">' + Status + '</span></td>' + otherStatus + '<td><center><a class="txt-dark weight-500" href="#" hrf="' + vUrl + '"><span title="View" class="zmdi zmdi-file" style="color: #0095eb;"></span></a></center></td><td><center><span title="Record History" class="zmdi zmdi-time-restore zmdi-hc-lg history" itemid="' + value.DIARY_HEADER_ID + '" style="color: #926f2f;cursor:pointer;"></span></center></td></tr>');  //Change by Ahmad 7/30/2018
+
+
+                                }
+
+                            });
+
+                            $('#tbl_tech_fin thead').append($('#tbl_tech_fin thead').html());
+                            $('#tbl_tech_fin thead tr:eq(1)').attr("style", "border-bottom: 1px solid #c4c4c4;border-right: 1px solid #c4c4c4;");
+                            $('#tbl_tech_fin').addClass('dynamicTable');
+                            $('#tbl_tech_fin thead tr:eq(1) th').each(function () {
+                                var title = this.innerText;
+                                if ($.trim(title) != "" &&
+                                    $.trim(title) != "View" &&
+                                    $.trim(title) != "History") {
+                                    $(this).html('<input type="text" class="column_search" placeholder="Search ' + title + '" />'); //  for live
+                                }
+
+                            });
+                            $.fn.dataTable.moment( 'DD-MMM-YYYY' );
+                            //$('.dynamicTable').first().children().children().first().children().last().html('History');
+                            //$('.dynamicTable').first().children().children().first().children().last().prev().html('View');
+                            $('#tbl_tech_fin thead tr:eq(0)').find('.notExport').last().html('History');
+                            $('#tbl_tech_fin thead tr:eq(0)').find('.notExport').first().html('View');
+
+                            var table = $('#tbl_tech_fin').DataTable({
+                                "sScrollX": "100%", // for live
+                                "dom": 'lBfrtip',
+                                "aLengthMenu": [[10, 25, 50, 100, 150, 250, 500, -1], [10, 25, 50, 100, 150, 250, 500, "All"]],
+                                "iDisplayLength": 10,
+                                "bSortCellsTop": true,
+                                "sPaginationType": "full_numbers",
+                                "bJQueryUI": false,
+                                "bAutoWidth": false,
+                                "fnInitComplete": function (oSettings, json) {
+                                    $('.dataTables_filter>label>input').attr('id', 'search');
+                                    $('.dataTables_filter>label>input').attr('placeholder', 'Search All');
+                                },
+                                columnDefs: [
+                                    { orderable: false, targets: [-1, -2]
+                                    }
+                                ]
+                                //,
+                                //buttons: [
+                                //    {
+                                //        extend: 'excel',
+                                //        text: 'Export to Excel',
+                                //        exportOptions: {
+                                //            modifier: {
+                                //                page: 'current'
+                                //            },
+                                //            columns: ':not(.notExport)'
+                                //        }
+                                //    }
+                                //]
+                            });
+
+                            $('#tbl_tech_fin_length').append(
+                                '<div class="dt-buttons" style="margin-left: 15px;"><a id="tblpopiExport" class="dt-button buttons-excel buttons-html5 form-control" tabindex="0" aria-controls="tblpopi" href="#" style="min-height: 88%;line-height: 49px;background-color: #1d4a6d;padding: 0px;margin: 0px;width: 118px;text-align: center;"><span>Export to Excel</span></a></div>');
+                            $('#tbl_tech_fin_length').attr('style', 'width: 400px;display: inline-flex;');
+
+                            $(table.table().container()).on( 'keyup', ".column_search",function () {
+
+                                table
+                                    .column( $(this).parent().index() )
+                                    .search( this.value )
+                                    .draw();
+                            } ); // for live
+
+                        }
+                        else{
+                            $('#tbl_tech_fin').dataTable().fnClearTable();
+
+                        }
+                        var dWidth = screen.width - 180;
+                        dWidth += "px";
+                        $('div.dataTables_wrapper').css({ 'width': dWidth, "margin": "0 auto" });
+                        $('#tbl_tech_fin_wrapper').css('width', '99%');
+                    },
+                    error: function (request, textStatus, errorThrown) {
+                        console.log(request);
+                    }
+                });
+
+
+            }
+        }); //End of Doc Ready
+    </script>
+</div>
+

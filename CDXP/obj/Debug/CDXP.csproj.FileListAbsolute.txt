@@ -1,0 +1,221 @@
+D:\cppa\MIGRATION\CDXP\CDXP\CDXP\bin\Debug\CDXP.dll.config
+D:\cppa\MIGRATION\CDXP\CDXP\CDXP\bin\Debug\CDXP.pdb
+D:\cppa\MIGRATION\CDXP\CDXP\CDXP\obj\Debug\CDXP.dll
+D:\cppa\MIGRATION\CDXP\CDXP\CDXP\obj\Debug\CDXP.pdb
+D:\cppa\MIGRATION\CDXP\CDXP\CDXP\obj\Debug\CDXP.csprojAssemblyReference.cache
+F:\cppa\MIGRATION\CDXP\CDXP\CDXP\bin\Debug\CDXP.dll.config
+F:\cppa\MIGRATION\CDXP\CDXP\CDXP\bin\Debug\CDXP.pdb
+F:\cppa\MIGRATION\CDXP\CDXP\CDXP\obj\Debug\CDXP.dll
+F:\cppa\MIGRATION\CDXP\CDXP\CDXP\obj\Debug\CDXP.pdb
+F:\cppa\MIGRATION\CDXP\CDXP\CDXP\obj\Debug\CDXP.csproj.CoreCompileInputs.cache
+F:\cppa\MIGRATION\CDXP\CDXP\CDXP\obj\Debug\CDXP.csprojAssemblyReference.cache
+E:\latest\CDXP\CDXP\bin\Debug\CDXP.dll.config
+E:\latest\CDXP\CDXP\bin\Debug\CDXP.pdb
+E:\latest\CDXP\CDXP\obj\Debug\CDXP.csproj.CoreCompileInputs.cache
+E:\latest\CDXP\CDXP\obj\Debug\CDXP.dll
+E:\latest\CDXP\CDXP\obj\Debug\CDXP.pdb
+E:\latest\CDXP\CDXP\obj\Debug\CDXP.csprojAssemblyReference.cache
+E:\latest_live\CDXP\CDXP\bin\Debug\CDXP.dll.config
+E:\latest_live\CDXP\CDXP\bin\Debug\CDXP.pdb
+E:\latest_live\CDXP\CDXP\obj\Debug\CDXP.csproj.CoreCompileInputs.cache
+E:\latest_live\CDXP\CDXP\obj\Debug\CDXP.dll
+E:\latest_live\CDXP\CDXP\obj\Debug\CDXP.pdb
+E:\latest_live\CDXP\CDXP\obj\Debug\CDXP.csprojAssemblyReference.cache
+F:\DISCO\CDXP 03-12-2020\CDXP 24-11-2020\CDXP\bin\Debug\CDXP.dll.config
+F:\DISCO\CDXP 03-12-2020\CDXP 24-11-2020\CDXP\bin\Debug\CDXP.pdb
+F:\DISCO\CDXP 03-12-2020\CDXP 24-11-2020\CDXP\obj\Debug\CDXP.csprojAssemblyReference.cache
+F:\DISCO\CDXP 03-12-2020\CDXP 24-11-2020\CDXP\obj\Debug\CDXP.csproj.CoreCompileInputs.cache
+F:\DISCO\CDXP 03-12-2020\CDXP 24-11-2020\CDXP\obj\Debug\CDXP.dll
+F:\DISCO\CDXP 03-12-2020\CDXP 24-11-2020\CDXP\obj\Debug\CDXP.pdb
+F:\CPPA Confidential (From AUG 10, 2020)\CDXP 09-12-2020\CDXP\bin\Debug\CDXP.dll.config
+F:\CPPA Confidential (From AUG 10, 2020)\CDXP 09-12-2020\CDXP\bin\Debug\CDXP.pdb
+F:\CPPA Confidential (From AUG 10, 2020)\CDXP 09-12-2020\CDXP\obj\Debug\CDXP.csproj.CoreCompileInputs.cache
+F:\CPPA Confidential (From AUG 10, 2020)\CDXP 09-12-2020\CDXP\obj\Debug\CDXP.dll
+F:\CPPA Confidential (From AUG 10, 2020)\CDXP 09-12-2020\CDXP\obj\Debug\CDXP.pdb
+F:\CPPA Confidential (From AUG 10, 2020)\CDXP\CDXP\bin\Debug\CDXP.dll.config
+F:\CPPA Confidential (From AUG 10, 2020)\CDXP\CDXP\bin\Debug\CDXP.pdb
+F:\CPPA Confidential (From AUG 10, 2020)\CDXP\CDXP\obj\Debug\CDXP.csproj.CoreCompileInputs.cache
+F:\CPPA Confidential (From AUG 10, 2020)\CDXP\CDXP\obj\Debug\CDXP.dll
+F:\CPPA Confidential (From AUG 10, 2020)\CDXP\CDXP\obj\Debug\CDXP.pdb
+F:\DISCO\LIVE\CDXP 17-12-2020\CDXP\CDXP\bin\Debug\CDXP.dll.config
+F:\DISCO\LIVE\CDXP 17-12-2020\CDXP\CDXP\bin\Debug\CDXP.pdb
+F:\DISCO\LIVE\CDXP 17-12-2020\CDXP\CDXP\obj\Debug\CDXP.csproj.CoreCompileInputs.cache
+F:\DISCO\LIVE\CDXP 17-12-2020\CDXP\CDXP\obj\Debug\CDXP.dll
+F:\DISCO\LIVE\CDXP 17-12-2020\CDXP\CDXP\obj\Debug\CDXP.pdb
+F:\DISCO\LIVE\CDXP 11-01-2021\CDXP 17-12-2020\CDXP\CDXP\bin\Debug\CDXP.dll.config
+F:\DISCO\LIVE\CDXP 11-01-2021\CDXP 17-12-2020\CDXP\CDXP\bin\Debug\CDXP.pdb
+F:\DISCO\LIVE\CDXP 11-01-2021\CDXP 17-12-2020\CDXP\CDXP\obj\Debug\CDXP.csproj.CoreCompileInputs.cache
+F:\DISCO\LIVE\CDXP 11-01-2021\CDXP 17-12-2020\CDXP\CDXP\obj\Debug\CDXP.dll
+F:\DISCO\LIVE\CDXP 11-01-2021\CDXP 17-12-2020\CDXP\CDXP\obj\Debug\CDXP.pdb
+F:\DISCO\LIVE\CDXP 11-01-2021\CDXP 19-01-2021\CDXP\CDXP\bin\Debug\CDXP.dll.config
+F:\DISCO\LIVE\CDXP 11-01-2021\CDXP 19-01-2021\CDXP\CDXP\bin\Debug\CDXP.pdb
+F:\DISCO\LIVE\CDXP 11-01-2021\CDXP 19-01-2021\CDXP\CDXP\obj\Debug\CDXP.csprojAssemblyReference.cache
+F:\DISCO\LIVE\CDXP 11-01-2021\CDXP 19-01-2021\CDXP\CDXP\obj\Debug\CDXP.csproj.CoreCompileInputs.cache
+F:\DISCO\LIVE\CDXP 11-01-2021\CDXP 19-01-2021\CDXP\CDXP\obj\Debug\CDXP.dll
+F:\DISCO\LIVE\CDXP 11-01-2021\CDXP 19-01-2021\CDXP\CDXP\obj\Debug\CDXP.pdb
+F:\DISCO\LIVE\CDXP 19-01-2021\CDXP\CDXP\bin\Debug\CDXP.dll.config
+F:\DISCO\LIVE\CDXP 19-01-2021\CDXP\CDXP\bin\Debug\CDXP.pdb
+F:\DISCO\LIVE\CDXP 19-01-2021\CDXP\CDXP\obj\Debug\CDXP.csproj.CoreCompileInputs.cache
+F:\DISCO\LIVE\CDXP 19-01-2021\CDXP\CDXP\obj\Debug\CDXP.dll
+F:\DISCO\LIVE\CDXP 19-01-2021\CDXP\CDXP\obj\Debug\CDXP.pdb
+F:\DISCO\LIVE\CDXP 19-01-2021\CDXP\CDXP\obj\Debug\CDXP.csprojAssemblyReference.cache
+F:\DISCO\LIVE\CDXP 22-01-2021\CDXP\CDXP\bin\Debug\CDXP.dll.config
+F:\DISCO\LIVE\CDXP 22-01-2021\CDXP\CDXP\bin\Debug\CDXP.pdb
+F:\DISCO\LIVE\CDXP 22-01-2021\CDXP\CDXP\obj\Debug\CDXP.csproj.CoreCompileInputs.cache
+F:\DISCO\LIVE\CDXP 22-01-2021\CDXP\CDXP\obj\Debug\CDXP.dll
+F:\DISCO\LIVE\CDXP 22-01-2021\CDXP\CDXP\obj\Debug\CDXP.pdb
+F:\DISCO\LIVE\CDXP 26-01-2021\CDXP\CDXP\bin\Debug\CDXP.dll.config
+F:\DISCO\LIVE\CDXP 26-01-2021\CDXP\CDXP\bin\Debug\CDXP.pdb
+F:\DISCO\LIVE\CDXP 26-01-2021\CDXP\CDXP\obj\Debug\CDXP.csproj.CoreCompileInputs.cache
+F:\DISCO\LIVE\CDXP 26-01-2021\CDXP\CDXP\obj\Debug\CDXP.dll
+F:\DISCO\LIVE\CDXP 26-01-2021\CDXP\CDXP\obj\Debug\CDXP.pdb
+F:\DISCO\LIVE\CDXP 27-01-2021\CDXP\CDXP\bin\Debug\CDXP.dll.config
+F:\DISCO\LIVE\CDXP 27-01-2021\CDXP\CDXP\bin\Debug\CDXP.pdb
+F:\DISCO\LIVE\CDXP 27-01-2021\CDXP\CDXP\obj\Debug\CDXP.csprojAssemblyReference.cache
+F:\DISCO\LIVE\CDXP 27-01-2021\CDXP\CDXP\obj\Debug\CDXP.csproj.CoreCompileInputs.cache
+F:\DISCO\LIVE\CDXP 27-01-2021\CDXP\CDXP\obj\Debug\CDXP.dll
+F:\DISCO\LIVE\CDXP 27-01-2021\CDXP\CDXP\obj\Debug\CDXP.pdb
+F:\DISCO\LIVE\CDXP 28-01-2021\CDXP 27-01-2021\CDXP\CDXP\bin\Debug\CDXP.dll.config
+F:\DISCO\LIVE\CDXP 28-01-2021\CDXP 27-01-2021\CDXP\CDXP\bin\Debug\CDXP.pdb
+F:\DISCO\LIVE\CDXP 28-01-2021\CDXP 27-01-2021\CDXP\CDXP\obj\Debug\CDXP.csproj.CoreCompileInputs.cache
+F:\DISCO\LIVE\CDXP 28-01-2021\CDXP 27-01-2021\CDXP\CDXP\obj\Debug\CDXP.dll
+F:\DISCO\LIVE\CDXP 28-01-2021\CDXP 27-01-2021\CDXP\CDXP\obj\Debug\CDXP.pdb
+F:\DISCO\LIVE\CDXP 28-01-2021\CDXP 11-02-2021\CDXP\CDXP\bin\Debug\CDXP.dll.config
+F:\DISCO\LIVE\CDXP 28-01-2021\CDXP 11-02-2021\CDXP\CDXP\bin\Debug\CDXP.pdb
+F:\DISCO\LIVE\CDXP 28-01-2021\CDXP 11-02-2021\CDXP\CDXP\obj\Debug\CDXP.csprojAssemblyReference.cache
+F:\DISCO\LIVE\CDXP 28-01-2021\CDXP 11-02-2021\CDXP\CDXP\obj\Debug\CDXP.csproj.CoreCompileInputs.cache
+F:\DISCO\LIVE\CDXP 28-01-2021\CDXP 11-02-2021\CDXP\CDXP\obj\Debug\CDXP.dll
+F:\DISCO\LIVE\CDXP 28-01-2021\CDXP 11-02-2021\CDXP\CDXP\obj\Debug\CDXP.pdb
+F:\DISCO\LIVE\CDXP 11-02-2021\CDXP 11-02-2021\CDXP\CDXP\bin\Debug\CDXP.dll.config
+F:\DISCO\LIVE\CDXP 11-02-2021\CDXP 11-02-2021\CDXP\CDXP\bin\Debug\CDXP.pdb
+F:\DISCO\LIVE\CDXP 11-02-2021\CDXP 11-02-2021\CDXP\CDXP\obj\Debug\CDXP.csprojAssemblyReference.cache
+F:\DISCO\LIVE\CDXP 11-02-2021\CDXP 11-02-2021\CDXP\CDXP\obj\Debug\CDXP.csproj.CoreCompileInputs.cache
+F:\DISCO\LIVE\CDXP 11-02-2021\CDXP 11-02-2021\CDXP\CDXP\obj\Debug\CDXP.dll
+F:\DISCO\LIVE\CDXP 11-02-2021\CDXP 11-02-2021\CDXP\CDXP\obj\Debug\CDXP.pdb
+F:\ERP Invoice Submission\CDXP live 19-Dec-2023\CDXP\bin\Debug\CDXP.dll.config
+F:\ERP Invoice Submission\CDXP live 19-Dec-2023\CDXP\bin\Debug\CDXP.pdb
+F:\ERP Invoice Submission\CDXP live 19-Dec-2023\CDXP\bin\Debug\ExcelDataReader.DataSet.dll
+F:\ERP Invoice Submission\CDXP live 19-Dec-2023\CDXP\bin\Debug\ExcelDataReader.dll
+F:\ERP Invoice Submission\CDXP live 19-Dec-2023\CDXP\bin\Debug\ExcelDataReader.pdb
+F:\ERP Invoice Submission\CDXP live 19-Dec-2023\CDXP\bin\Debug\ExcelDataReader.xml
+F:\ERP Invoice Submission\CDXP live 19-Dec-2023\CDXP\bin\Debug\ExcelDataReader.DataSet.pdb
+F:\ERP Invoice Submission\CDXP live 19-Dec-2023\CDXP\bin\Debug\ExcelDataReader.DataSet.xml
+F:\ERP Invoice Submission\CDXP live 19-Dec-2023\CDXP\obj\Debug\CDXP.csproj.AssemblyReference.cache
+F:\ERP Invoice Submission\CDXP live 19-Dec-2023\CDXP\obj\Debug\CDXP.csproj.CoreCompileInputs.cache
+F:\ERP Invoice Submission\CDXP live 19-Dec-2023\CDXP\obj\Debug\CDXP.csproj.CopyComplete
+F:\ERP Invoice Submission\CDXP live 19-Dec-2023\CDXP\obj\Debug\CDXP.dll
+F:\ERP Invoice Submission\CDXP live 19-Dec-2023\CDXP\obj\Debug\CDXP.pdb
+F:\ERP Invoice Submission\CDXP live 22-Dec-2023\CDXP\bin\Debug\CDXP.dll.config
+F:\ERP Invoice Submission\CDXP live 22-Dec-2023\CDXP\bin\Debug\CDXP.pdb
+F:\ERP Invoice Submission\CDXP live 22-Dec-2023\CDXP\bin\Debug\ExcelDataReader.DataSet.dll
+F:\ERP Invoice Submission\CDXP live 22-Dec-2023\CDXP\bin\Debug\ExcelDataReader.dll
+F:\ERP Invoice Submission\CDXP live 22-Dec-2023\CDXP\bin\Debug\ExcelDataReader.pdb
+F:\ERP Invoice Submission\CDXP live 22-Dec-2023\CDXP\bin\Debug\ExcelDataReader.xml
+F:\ERP Invoice Submission\CDXP live 22-Dec-2023\CDXP\bin\Debug\ExcelDataReader.DataSet.pdb
+F:\ERP Invoice Submission\CDXP live 22-Dec-2023\CDXP\bin\Debug\ExcelDataReader.DataSet.xml
+F:\ERP Invoice Submission\CDXP live 22-Dec-2023\CDXP\obj\Debug\CDXP.csproj.CoreCompileInputs.cache
+F:\ERP Invoice Submission\CDXP live 22-Dec-2023\CDXP\obj\Debug\CDXP.csproj.CopyComplete
+F:\ERP Invoice Submission\CDXP live 22-Dec-2023\CDXP\obj\Debug\CDXP.dll
+F:\ERP Invoice Submission\CDXP live 22-Dec-2023\CDXP\obj\Debug\CDXP.pdb
+F:\ERP Invoice Submission\03-Jan-2024\CDXP\bin\Debug\CDXP.dll.config
+F:\ERP Invoice Submission\03-Jan-2024\CDXP\bin\Debug\CDXP.pdb
+F:\ERP Invoice Submission\03-Jan-2024\CDXP\bin\Debug\ExcelDataReader.DataSet.dll
+F:\ERP Invoice Submission\03-Jan-2024\CDXP\bin\Debug\ExcelDataReader.dll
+F:\ERP Invoice Submission\03-Jan-2024\CDXP\bin\Debug\ExcelDataReader.pdb
+F:\ERP Invoice Submission\03-Jan-2024\CDXP\bin\Debug\ExcelDataReader.xml
+F:\ERP Invoice Submission\03-Jan-2024\CDXP\bin\Debug\ExcelDataReader.DataSet.pdb
+F:\ERP Invoice Submission\03-Jan-2024\CDXP\bin\Debug\ExcelDataReader.DataSet.xml
+F:\ERP Invoice Submission\03-Jan-2024\CDXP\obj\Debug\CDXP.csproj.CoreCompileInputs.cache
+F:\ERP Invoice Submission\03-Jan-2024\CDXP\obj\Debug\CDXP.csproj.CopyComplete
+F:\ERP Invoice Submission\03-Jan-2024\CDXP\obj\Debug\CDXP.dll
+F:\ERP Invoice Submission\03-Jan-2024\CDXP\obj\Debug\CDXP.pdb
+F:\ERP Invoice Submission\03-Jan-2024\CDXP\obj\Debug\CDXP.csproj.AssemblyReference.cache
+F:\ERP Invoice Submission\12-Jan-2024\CDXP\bin\Debug\CDXP.dll.config
+F:\ERP Invoice Submission\12-Jan-2024\CDXP\bin\Debug\CDXP.pdb
+F:\ERP Invoice Submission\12-Jan-2024\CDXP\bin\Debug\ExcelDataReader.DataSet.dll
+F:\ERP Invoice Submission\12-Jan-2024\CDXP\bin\Debug\ExcelDataReader.dll
+F:\ERP Invoice Submission\12-Jan-2024\CDXP\bin\Debug\ExcelDataReader.pdb
+F:\ERP Invoice Submission\12-Jan-2024\CDXP\bin\Debug\ExcelDataReader.xml
+F:\ERP Invoice Submission\12-Jan-2024\CDXP\bin\Debug\ExcelDataReader.DataSet.pdb
+F:\ERP Invoice Submission\12-Jan-2024\CDXP\bin\Debug\ExcelDataReader.DataSet.xml
+F:\ERP Invoice Submission\12-Jan-2024\CDXP\obj\Debug\CDXP.csproj.CoreCompileInputs.cache
+F:\ERP Invoice Submission\12-Jan-2024\CDXP\obj\Debug\CDXP.csproj.CopyComplete
+F:\ERP Invoice Submission\12-Jan-2024\CDXP\obj\Debug\CDXP.dll
+F:\ERP Invoice Submission\12-Jan-2024\CDXP\obj\Debug\CDXP.pdb
+F:\ERP Invoice Submission\29-Jan-2024\CDXP\bin\Debug\CDXP.dll.config
+F:\ERP Invoice Submission\29-Jan-2024\CDXP\bin\Debug\CDXP.pdb
+F:\ERP Invoice Submission\29-Jan-2024\CDXP\bin\Debug\ExcelDataReader.DataSet.dll
+F:\ERP Invoice Submission\29-Jan-2024\CDXP\bin\Debug\ExcelDataReader.dll
+F:\ERP Invoice Submission\29-Jan-2024\CDXP\bin\Debug\ExcelDataReader.pdb
+F:\ERP Invoice Submission\29-Jan-2024\CDXP\bin\Debug\ExcelDataReader.xml
+F:\ERP Invoice Submission\29-Jan-2024\CDXP\bin\Debug\ExcelDataReader.DataSet.pdb
+F:\ERP Invoice Submission\29-Jan-2024\CDXP\bin\Debug\ExcelDataReader.DataSet.xml
+F:\ERP Invoice Submission\29-Jan-2024\CDXP\obj\Debug\CDXP.csproj.CoreCompileInputs.cache
+F:\ERP Invoice Submission\29-Jan-2024\CDXP\obj\Debug\CDXP.csproj.CopyComplete
+F:\ERP Invoice Submission\29-Jan-2024\CDXP\obj\Debug\CDXP.dll
+F:\ERP Invoice Submission\29-Jan-2024\CDXP\obj\Debug\CDXP.pdb
+D:\MeritOrder-250424\27-Feb-2024\27-Feb-2024\CDXP\bin\Debug\CDXP.dll.config
+D:\MeritOrder-250424\27-Feb-2024\27-Feb-2024\CDXP\bin\Debug\CDXP.pdb
+D:\MeritOrder-250424\27-Feb-2024\27-Feb-2024\CDXP\bin\Debug\ExcelDataReader.DataSet.dll
+D:\MeritOrder-250424\27-Feb-2024\27-Feb-2024\CDXP\bin\Debug\ExcelDataReader.dll
+D:\MeritOrder-250424\27-Feb-2024\27-Feb-2024\CDXP\bin\Debug\ExcelDataReader.pdb
+D:\MeritOrder-250424\27-Feb-2024\27-Feb-2024\CDXP\bin\Debug\ExcelDataReader.xml
+D:\MeritOrder-250424\27-Feb-2024\27-Feb-2024\CDXP\bin\Debug\ExcelDataReader.DataSet.pdb
+D:\MeritOrder-250424\27-Feb-2024\27-Feb-2024\CDXP\bin\Debug\ExcelDataReader.DataSet.xml
+D:\MeritOrder-250424\27-Feb-2024\27-Feb-2024\CDXP\obj\Debug\CDXP.csproj.AssemblyReference.cache
+D:\MeritOrder-250424\27-Feb-2024\27-Feb-2024\CDXP\obj\Debug\CDXP.csproj.CoreCompileInputs.cache
+D:\MeritOrder-250424\27-Feb-2024\27-Feb-2024\CDXP\obj\Debug\CDXP.csproj.CopyComplete
+D:\MeritOrder-250424\27-Feb-2024\27-Feb-2024\CDXP\obj\Debug\CDXP.dll
+D:\MeritOrder-250424\27-Feb-2024\27-Feb-2024\CDXP\obj\Debug\CDXP.pdb
+F:\ERP Invoice Submission\25-Apr-2024\27-Feb-2024\CDXP\bin\Debug\CDXP.dll.config
+F:\ERP Invoice Submission\25-Apr-2024\27-Feb-2024\CDXP\bin\Debug\CDXP.pdb
+F:\ERP Invoice Submission\25-Apr-2024\27-Feb-2024\CDXP\bin\Debug\ExcelDataReader.DataSet.dll
+F:\ERP Invoice Submission\25-Apr-2024\27-Feb-2024\CDXP\bin\Debug\ExcelDataReader.dll
+F:\ERP Invoice Submission\25-Apr-2024\27-Feb-2024\CDXP\bin\Debug\ExcelDataReader.pdb
+F:\ERP Invoice Submission\25-Apr-2024\27-Feb-2024\CDXP\bin\Debug\ExcelDataReader.xml
+F:\ERP Invoice Submission\25-Apr-2024\27-Feb-2024\CDXP\bin\Debug\ExcelDataReader.DataSet.pdb
+F:\ERP Invoice Submission\25-Apr-2024\27-Feb-2024\CDXP\bin\Debug\ExcelDataReader.DataSet.xml
+F:\ERP Invoice Submission\25-Apr-2024\27-Feb-2024\CDXP\obj\Debug\CDXP.csproj.CoreCompileInputs.cache
+F:\ERP Invoice Submission\25-Apr-2024\27-Feb-2024\CDXP\obj\Debug\CDXP.csproj.CopyComplete
+F:\ERP Invoice Submission\25-Apr-2024\27-Feb-2024\CDXP\obj\Debug\CDXP.dll
+F:\ERP Invoice Submission\25-Apr-2024\27-Feb-2024\CDXP\obj\Debug\CDXP.pdb
+F:\ERP Invoice Submission\25-Apr-2024\27-Feb-2024\CDXP\obj\Debug\CDXP.csproj.AssemblyReference.cache
+F:\ERP Invoice Submission\11-jul-2024\27-Feb-2024\CDXP\bin\Debug\CDXP.dll.config
+F:\ERP Invoice Submission\11-jul-2024\27-Feb-2024\CDXP\bin\Debug\CDXP.pdb
+F:\ERP Invoice Submission\11-jul-2024\27-Feb-2024\CDXP\bin\Debug\ExcelDataReader.DataSet.dll
+F:\ERP Invoice Submission\11-jul-2024\27-Feb-2024\CDXP\bin\Debug\ExcelDataReader.dll
+F:\ERP Invoice Submission\11-jul-2024\27-Feb-2024\CDXP\bin\Debug\ExcelDataReader.pdb
+F:\ERP Invoice Submission\11-jul-2024\27-Feb-2024\CDXP\bin\Debug\ExcelDataReader.xml
+F:\ERP Invoice Submission\11-jul-2024\27-Feb-2024\CDXP\bin\Debug\ExcelDataReader.DataSet.pdb
+F:\ERP Invoice Submission\11-jul-2024\27-Feb-2024\CDXP\bin\Debug\ExcelDataReader.DataSet.xml
+F:\ERP Invoice Submission\11-jul-2024\27-Feb-2024\CDXP\obj\Debug\CDXP.csproj.AssemblyReference.cache
+F:\ERP Invoice Submission\11-jul-2024\27-Feb-2024\CDXP\obj\Debug\CDXP.csproj.CoreCompileInputs.cache
+F:\ERP Invoice Submission\11-jul-2024\27-Feb-2024\CDXP\obj\Debug\CDXP.csproj.Up2Date
+F:\ERP Invoice Submission\11-jul-2024\27-Feb-2024\CDXP\obj\Debug\CDXP.dll
+F:\ERP Invoice Submission\11-jul-2024\27-Feb-2024\CDXP\obj\Debug\CDXP.pdb
+F:\ERP Invoice Submission\07-oct-2024\27-Feb-2024\CDXP\bin\Debug\CDXP.dll.config
+F:\ERP Invoice Submission\07-oct-2024\27-Feb-2024\CDXP\bin\Debug\CDXP.pdb
+F:\ERP Invoice Submission\07-oct-2024\27-Feb-2024\CDXP\bin\Debug\ExcelDataReader.DataSet.dll
+F:\ERP Invoice Submission\07-oct-2024\27-Feb-2024\CDXP\bin\Debug\ExcelDataReader.dll
+F:\ERP Invoice Submission\07-oct-2024\27-Feb-2024\CDXP\bin\Debug\ExcelDataReader.pdb
+F:\ERP Invoice Submission\07-oct-2024\27-Feb-2024\CDXP\bin\Debug\ExcelDataReader.xml
+F:\ERP Invoice Submission\07-oct-2024\27-Feb-2024\CDXP\bin\Debug\ExcelDataReader.DataSet.pdb
+F:\ERP Invoice Submission\07-oct-2024\27-Feb-2024\CDXP\bin\Debug\ExcelDataReader.DataSet.xml
+F:\ERP Invoice Submission\07-oct-2024\27-Feb-2024\CDXP\obj\Debug\CDXP.csproj.AssemblyReference.cache
+F:\ERP Invoice Submission\07-oct-2024\27-Feb-2024\CDXP\obj\Debug\CDXP.csproj.CoreCompileInputs.cache
+F:\ERP Invoice Submission\07-oct-2024\27-Feb-2024\CDXP\obj\Debug\CDXP.dll
+F:\ERP Invoice Submission\07-oct-2024\27-Feb-2024\CDXP\obj\Debug\CDXP.pdb
+F:\ERP Invoice Submission\07-oct-2024\27-Feb-2024\CDXP\obj\Debug\CDXP.csproj.Up2Date
+F:\ERP Invoice Submission\12-NOV-2024\CDXP\bin\Debug\CDXP.dll.config
+F:\ERP Invoice Submission\12-NOV-2024\CDXP\bin\Debug\CDXP.pdb
+F:\ERP Invoice Submission\12-NOV-2024\CDXP\bin\Debug\ExcelDataReader.DataSet.dll
+F:\ERP Invoice Submission\12-NOV-2024\CDXP\bin\Debug\ExcelDataReader.dll
+F:\ERP Invoice Submission\12-NOV-2024\CDXP\bin\Debug\ExcelDataReader.pdb
+F:\ERP Invoice Submission\12-NOV-2024\CDXP\bin\Debug\ExcelDataReader.xml
+F:\ERP Invoice Submission\12-NOV-2024\CDXP\bin\Debug\ExcelDataReader.DataSet.pdb
+F:\ERP Invoice Submission\12-NOV-2024\CDXP\bin\Debug\ExcelDataReader.DataSet.xml
+F:\ERP Invoice Submission\12-NOV-2024\CDXP\obj\Debug\CDXP.csproj.AssemblyReference.cache
+F:\ERP Invoice Submission\12-NOV-2024\CDXP\obj\Debug\CDXP.csproj.CoreCompileInputs.cache
+F:\ERP Invoice Submission\12-NOV-2024\CDXP\obj\Debug\CDXP.csproj.Up2Date
+F:\ERP Invoice Submission\12-NOV-2024\CDXP\obj\Debug\CDXP.dll
+F:\ERP Invoice Submission\12-NOV-2024\CDXP\obj\Debug\CDXP.pdb

@@ -1,0 +1,1075 @@
+﻿
+@{
+    ViewBag.Title = "Previous Day Despatch";
+}
+<div id="pcontent">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff;"></i>
+                        <h6 class="panel-title txt-light" style="text-transform: none;">@ViewBag.Title</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Header</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <table class="tblFrm">
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="ddlIPP">Power Producer <span class="clsstar" style="color:rgb(0, 149, 235);font-size: 20px;">*</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select id="ddlIPP" class="form-control"> @Html.Raw(@ViewBag.IPP)</select>
+                                    </td>
+
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Status</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input id="txtStatus" type="text" value="Draft" readonly class="form-control">
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="ddlSite">Producer Site <span class="clsstar" style="color:rgb(0, 149, 235);font-size: 20px;">*</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select id="ddlSite" class="form-control"></select>
+                                    </td>
+                                    <td><label>Submit Date</label></td>
+                                    <td><input id="txtSubmitDate" type="text" disabled class="form-control" /></td>
+
+                                </tr>
+                                <tr>
+
+                                    <td style="width: 25%;">
+                                        <label for="ddlBlock">	Block / Complex <span class="clsstar" style="color:rgb(0, 149, 235);font-size: 20px;">*</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select id="ddlBlock" class="form-control"></select>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="txtTargetDate">Declaration for <span class="clsstar" style="color:rgb(0, 149, 235);font-size: 20px;">*</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input id="txtTargetDate" type="text" value="@(ViewBag.NextEDate ?? String.Empty)" class="form-control dtDateX" />
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="txtFuel">Fuel</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input id="txtFuel" type="text" readonly value="GAS" class="form-control" />
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="txtINTIMATION_DATE_TIME">Intimation Date & Time<span class="clsstar" style="color:rgb(0, 149, 235);font-size: 20px;">*</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input id="txtINTIMATION_DATE_TIME" value="@(ViewBag.DateTime ?? String.Empty)" type="text" class="form-control dtDateTimeA" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="txtCapacity">Installed Capacity</label>
+                                    </td>
+                                    <td style="width: 25%;">
+
+                                        <input id="txtCapacity" type="text" readonly value="" class="form-control">
+                                    </td>
+                                    <td style="width: 25%;"></td>
+                                    <td style="width: 25%;"></td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="txtDependableCapacity">Dependable Capacity</label>
+                                    </td>
+                                    <td style="width: 25%;">
+
+                                        <input id="txtDependableCapacity" readonly type="text" value="" class="form-control" />
+                                    </td>
+                                    <td style="width: 25%;"></td>
+                                    <td style="width: 25%;"></td>
+                                    <td></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td style="width: 25%;"><label for="txtPowerPolicy">Power Policy</label></td>
+                                    <td style="width: 25%;"><input id="txtPowerPolicy" readonly type="text" value="" class="form-control" /></td>
+                                    <td style="width: 25%;"></td>
+                                    <td style="width: 25%;"></td>
+                                    <td></td>
+                                </tr>
+
+                            </table>
+
+
+                        </div>@*End Of Table*@
+
+                        <div class="tab0 pp_1994">
+                            &nbsp;<div class="tab1">&nbsp;Detail</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+
+                        <div class="pp_1994" style="margin-bottom: 20px;">
+                            <style type="text/css">
+                                #tblHourlyData > tbody > tr > td:nth-child(2) > input, #tblHourlyData > tbody > tr > td:nth-child(3) > input, #tblHourlyData > tbody > tr > td:nth-child(4) > input {
+                                    background-color: rgb(251, 255, 193);
+                                    text-align: right;
+                                }
+                            </style>
+
+                            <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" id="tblHourlyData" style="width:800px; text-align:center;">
+
+                                <thead>
+                                    <tr>
+                                        <th style="width:200px;text-align:Center; font-size: 20px;" rowspan="2">Relevant Hour</th>
+                                        <th style="width:200px;text-align:center; font-size: 20px;" rowspan="2">Despatch (MW)</th>
+                                        <th style="width:200px;text-align:Center; font-size: 20px;" rowspan="2">Relevant Hour</th>
+                                        <th style="width:200px;text-align:center; font-size: 20px;" rowspan="2">Despatch (MW)</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align:right;font-size: 16px;">
+                                            <label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 00:00 </label>
+                                        </td>
+
+                                        <td><input id="txtZeroHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>
+
+                                        <td style="text-align:right;font-size: 16px;">
+                                            <label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 12:00 </label>
+                                        </td>
+                                        <td><input id="txtTwelveHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="text-align:right;font-size: 16px;">
+                                            <label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 01:00 </label>
+                                        </td>
+                                        <td><input id="txtOneHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>
+
+                                        <td style="text-align:right;font-size: 16px;">
+                                            <label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 13:00 </label>
+                                        </td>
+                                        <td><input id="txtThirteenHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td style="text-align:right;font-size: 16px;">
+                                            <label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 02:00 </label>
+                                        </td>
+                                        <td><input id="txtTwoHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>
+
+                                        <td style="text-align:right;font-size: 16px;">
+                                            <label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 14:00 </label>
+                                        </td>
+                                        <td><input id="txtFourteenHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:right;font-size: 16px;">
+                                            <label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 03:00 </label>
+                                        </td>
+                                        <td><input id="txtThreeHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>
+
+                                        <td style="text-align:right;font-size: 16px;">
+                                            <label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 15:00 </label>
+                                        </td>
+                                        <td><input id="txtFifteenHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>
+
+
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:right;font-size: 16px;">
+                                            <label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 04:00 </label>
+                                        </td>
+                                        <td><input id="txtFourHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>
+
+                                        <td style="text-align:right;font-size: 16px;">
+                                            <label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 16:00 </label>
+                                        </td>
+                                        <td><input id="txtSixteenHour" type="text" class="form-control abt" value="" /></td>
+
+
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:right;font-size: 16px;">
+                                            <label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 05:00 </label>
+                                        </td>
+                                        <td><input id="txtFiveHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>
+
+                                        <td style="text-align:right;font-size: 16px;">
+                                            <label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 17:00 </label>
+                                        </td>
+                                        <td><input id="txtSeventeenHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:right;font-size: 16px;">
+                                            <label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 06:00 </label>
+                                        </td>
+                                        <td><input id="txtSixHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>
+
+                                        <td style="text-align:right;font-size: 16px;">
+                                            <label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 18:00 </label>
+                                        </td>
+                                        <td><input id="txtEighteenHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>
+
+
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:right;font-size: 16px;">
+                                            <label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 07:00 </label>
+                                        </td>
+                                        <td><input id="txtSevenHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>
+
+                                        <td style="text-align:right;font-size: 16px;">
+                                            <label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 19:00 </label>
+                                            ">
+                                        </td>
+                                        <td><input id="txtNineteenHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>
+
+
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:right;font-size: 16px;">
+                                            <label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 08:00 </label>
+                                        </td>
+                                        <td><input id="txtEightHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>
+
+                                        <td style="text-align:right;font-size: 16px;">
+                                            <label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 20:00 </label>
+                                        </td>
+                                        <td><input id="txtTwentyHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:right;font-size: 16px;">
+                                            <label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 09:00 </label>
+                                        </td>
+                                        <td><input id="txtNineHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>
+
+                                        <td style="text-align:right;font-size: 16px;">
+                                            <label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 21:00 </label>
+                                        </td>
+                                        <td><input id="txtTwentyOneHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>
+
+
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:right;font-size: 16px;">
+                                            <label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 10:00 </label>
+                                        </td>
+                                        <td><input id="txtTenHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>
+
+                                        <td style="text-align:right;font-size: 16px;">
+                                            <label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 22:00 </label>
+                                        </td>
+                                        <td><input id="txtTwentyTwoHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>
+
+
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:right;font-size: 16px;">
+                                            <label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 11:00 </label>
+                                        </td>
+                                        <td><input id="txtElevenHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>
+
+                                        <td style="text-align:right;font-size: 16px;">
+                                            <label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 23:00 </label>
+                                        </td>
+                                        <td><input id="txtTwentyThreeHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>
+
+
+                                    </tr>
+
+                                </tbody>
+
+
+
+                            </table>
+                        </div>
+
+                        @if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 4 || ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 7)
+                        {
+                            <div class="tab0">
+                                &nbsp;<div class="tab1">&nbsp;Power Producer Remarks</div>
+                                <div class="tab2">&nbsp;</div>
+                            </div>
+
+                            <div style="margin-bottom: 20px;">
+                                <table class="tblFrm" style="width:100%;">
+                                    <tr>
+                                        <td style="width: 19%;">
+                                            <label for="Disconame">Sender Name</label>
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <input id="txtSENDER_NAME" type="text" disabled value="@Html.Raw(@ViewBag.userinfo.DISPLAY_NAME)" class="form-control frm">
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <label for="Disconame">Sender Designation</label>
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <input id="txtSENDER_DESIGNATION" type="text" disabled value="@Html.Raw(@ViewBag.userinfo.DISPLAY_DESIGNATION)" class="form-control frm">
+                                        </td>
+                                    </tr>
+
+                                </table>
+
+                                <div class="form-actions" id="uperClose">
+                                    <div class="row">
+                                        <div class="col-md-12" style="text-align:right;">
+
+                                            <button id="btnSubmit" tag="@(ViewBag.WP_GC_HOURLY_DATA_HEADER_ID_PK ?? String.Empty)" title="Submitt to NPCC" typ="Submitted" class="btn btn-info" type="button" style="margin-right:20px;">Submit</button>
+                                            <button id="btnSave" tag="@(ViewBag.WP_GC_HOURLY_DATA_HEADER_ID_PK ?? String.Empty)" typ="Draft" title="Save as draft" class="btn  btn-success" type="button" style="margin-right:20px; display:none;">Save</button>
+                                            <button class="btn btn-default btnClose" conn="@(ViewBag.conn ?? String.Empty)" tag="@(ViewBag.WP_GC_HOURLY_DATA_HEADER_ID_PK ?? String.Empty)" type="button" title="Close Form">Close</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        }
+
+                        @if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 7 || ViewBag.sts == "Acknowledged")
+                        {
+                            <div class="tab0">
+                                &nbsp;<div class="tab1">&nbsp;NPCC</div>
+                                <div class="tab2">&nbsp;</div>
+                            </div>
+
+                            <div style="margin-bottom: 20px;">
+
+                                <table class="tblFrm" style="width:100%;">
+                                    <tr>
+                                        <td style="width: 19%;">
+                                            <label for="Disconame">Receiver Name</label>
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <input id="txtRECEIVER_NAME" type="text" disabled value="@Html.Raw(@ViewBag.userinfo.DISPLAY_NAME)" class="form-control frm">
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <label for="Disconame">Receiver Designation</label>
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <input id="txtRECEIVER_DESIGNATION" type="text" disabled value="@Html.Raw(@ViewBag.userinfo.DISPLAY_DESIGNATION)" class="form-control frm">
+                                        </td>
+                                    </tr>
+
+                                </table>
+
+
+
+
+
+
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-12" style="text-align:right;">
+
+                                            <button id="btnAcknowledge" class="btn btn-success" type="button" style="margin-right:20px;">Acknowledge</button>
+                                            <button class="btn btn-default btnClose" type="button" tag=@ViewBag.DISPATCH_DETAIL_ID>Close</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('body').off('click', '.btnImprtPre');
+            $('body').on('click', '.btnImprtPre', function (e) {
+                e.preventDefault();
+                debugger;
+                if ($('#ddlBlock').val() == null || $('#ddlBlock').val() == undefined || $('#ddlBlock').val() == "") {
+                    swal({
+                        title: "Error",
+                        text: "Select valid Block / Complex..!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#ddlBlock').focus(), 100);
+                        }
+                    });
+                    return false;
+                }
+                var $data = '13½' +'DAC½'+ $('#ddlBlock').val();
+                var fromdata = new FormData();
+                fromdata.append("vls", $data);
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        //debugger;
+                        if (response =="[]") {
+                            swal({
+                                title: "Error",
+                                text: "No Last Declaration of Available Capacity Exists !",
+                                type: "warning",
+                                showCancelButton: false,
+                                confirmButtonClass: "btn btn-danger",
+                                confirmButtonText: "OK",
+                                onAfterClose: () => {
+                                    setTimeout(() => $('#invoiceDate').focus(), 100)
+                                }
+                            });
+                            return false;
+                        }
+                        response = $.parseJSON(response);
+                        try {
+                            var $bdy = "";
+
+                                $bdy += '\
+<tr>\
+<td style = "text-align:right;font-size: 16px;" > <input type="text" class="form-control abt" value="00:00" readonly="readonly" style="font-size: 16px;"></td>\
+<td><input id="txtZeroHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+<td style = "text-align:right;font-size: 16px;" > <input type="text" class="form-control abt" value="13:00" readonly="readonly" style="font-size: 16px;"></td>\
+<td><input id="txtTwelveHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+</tr>\
+<tr>\
+<td style="text-align:right;font-size: 16px;"><input type="text" class="form-control abt" value="01:00" readonly="readonly" style="font-size: 16px;"></td>\
+<td><input id="txtOneHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+<td style="text-align:right;font-size: 16px;"><input type="text" class="form-control abt" value="13:00"  style="font-size: 16px;"></td>\
+<td><input id="txtThirteenHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+</tr>\
+<tr>\
+<td style="text-align:right;font-size: 16px;"><input type="text" class="form-control abt" value="02:00" readonly="readonly" style="font-size: 16px;"></td>\
+<td><input id="txtTwoHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+<td style="text-align:right;font-size: 16px;"><input type="text" class="form-control abt" value="14:00"  style="font-size: 16px;"></td>\
+<td><input id="txtFourteenHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+</tr>\
+<tr>\
+<td style="text-align:right;font-size: 16px;"><input type="text" class="form-control abt" value="03:00" readonly="readonly" style="font-size: 16px;"></td>\
+<td><input id="txtThreeHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+<td style="text-align:right;font-size: 16px;"><input type="text" class="form-control abt" value="15:00"  style="font-size: 16px;"></td>\
+<td><input id="txtFifteenHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+</tr>\
+<tr>\
+<td style="text-align:right;font-size: 16px;"><input type="text" class="form-control abt" value="04:00" readonly="readonly" style="font-size: 16px;"></td>\
+<td><input id="txtFourHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+<td style="text-align:right;font-size: 16px;"><input type="text" class="form-control abt" value="16:00"  style="font-size: 16px;"></td>\
+<td><input id="txtSixteenHour" type="text" class="form-control abt" value="" /></td>\
+</tr>\
+<tr>\
+<td style="text-align:right;font-size: 16px;"><input type="text" class="form-control abt" value="05:00" readonly="readonly" style="font-size: 16px;"></td>\
+<td><input id="txtFiveHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+<td style="text-align:right;font-size: 16px;"><input type="text" class="form-control abt" value="17:00"  style="font-size: 16px;"></td>\
+<td><input id="txtSeventeenHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+</tr>\
+<tr>\
+<td style="text-align:right;font-size: 16px;"><input type="text" class="form-control abt" value="06:00" readonly="readonly" style="font-size: 16px;"></td>\
+<td><input id="txtSixHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+<td style="text-align:right;font-size: 16px;"><input type="text" class="form-control abt" value="18:00"  style="font-size: 16px;"></td>\
+<td><input id="txtEighteenHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+</tr>\
+<tr>\
+<td style="text-align:right;font-size: 16px;">\
+<input type="text" class="form-control abt" value="07:00" readonly="readonly" style="font-size: 16px;">\
+</td>\
+<td><input id="txtSevenHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+<td style="text-align:right;font-size: 16px;"><input type="text" class="form-control abt" value="19:00"  style="        font-size: 16px;"></td>\
+<td><input id="txtNineteenHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+</tr>\
+<tr>\
+<td style="text-align:right;font-size: 16px;"><input type="text" class="form-control abt" value="08:00" readonly="readonly" style="font-size: 16px;"></td>\
+<td><input id="txtEightHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+<td style="text-align:right;font-size: 16px;"><input type="text" class="form-control abt" value="20:00"  style="font-size: 16px;"></td>\
+<td><input id="txtTwentyHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+</tr>\
+<tr>\
+<td style="text-align:right;font-size: 16px;"><input type="text" class="form-control abt" value="09:00" readonly="readonly" style="font-size: 16px;"></td>\
+<td><input id="txtNineHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+<td style="text-align:right;font-size: 16px;"><input type="text" class="form-control abt" value="21:00"  style="font-size: 16px;"></td>\
+<td><input id="txtTwentyOneHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+</tr>\
+<tr>\
+<td style="text-align:right;font-size: 16px;"><input type="text" class="form-control abt" value="10:00" readonly="readonly" style="font-size: 16px;"></td>\
+<td><input id="txtTenHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+<td style="text-align:right;font-size: 16px;"><input type="text" class="form-control abt" value="22:00"  style="font-size: 16px;"></td>\
+<td><input id="txtTwentyTwoHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+</tr>\
+<tr>\
+<td style="text-align:right;font-size: 16px;"><input type="text" class="form-control abt" value="11:00" readonly="readonly" style="font-size: 16px;"></td>\
+<td><input id="txtElevenHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+<td style="text-align:right;font-size: 16px;"><input type="text" class="form-control abt" value="23:00"  style="font-size: 16px;"></td>\
+<td><input id="txtTwentyThreeHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+</tr>';
+
+                            $('#tblHourlyData > tbody').html($bdy);
+                        } catch (e) {
+                            swal({
+                                title: "Error",
+                                text: "No last Data Found..!",
+                                type: "warning",
+                                showCancelButton: false,
+                                confirmButtonClass: "btn btn-danger",
+                                confirmButtonText: "OK"
+                            });
+                            return false;
+                        }
+
+                    }
+                });
+            });
+
+            $('body').off('click', '#btnAcknowledge');
+            $('body').on('click', '#btnAcknowledge', function (e) {
+                e.preventDefault();
+                var $data = '12½' + $('.btnClose').attr('tag') + '½' + $('#txtRECEIVER_NAME').val() + '½' + $('#txtRECEIVER_DESIGNATION').val() + '½';
+                var fromdata = new FormData();
+                fromdata.append("vls", $data);
+                swal({
+                    title: "Are you sure?",
+                    text: "Do you really want to acknowledge record?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "Yes, Acknowledge it!",
+                    closeOnConfirm: false
+                },
+                    function () {
+                        $('.sa-button-container').hide();
+                        $.ajax({
+                            type: "POST",
+                            url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                            data: fromdata,
+                            contentType: false,
+                            processData: false,
+                            success: function (response) {
+                                $('.sa-button-container').show();
+                                swal("Success!", "Record has been Acknowledged Successfully.", "success");
+                                $($('.btnClose')[0]).click()
+                            }
+                        });
+                    }
+                );
+
+
+
+
+
+            });//END OF CLCICK
+
+
+
+            $('body').off('click', '#btnSave, #btnSubmit');
+                $('body').on('click', '#btnSave, #btnSubmit', function (e) {
+                    e.preventDefault();
+                    if ($('#ddlBlock').val() == null || $('#ddlBlock').val() == undefined)
+                    {
+                        swal({
+                            title: "Error",
+                            text: "Select valid Block / Complex !",
+                            type: "warning",
+                            showCancelButton: false,
+                            confirmButtonClass: "btn btn-danger",
+                            confirmButtonText: "OK",
+                            onAfterClose: () => {
+                                setTimeout(() => $('#invoiceDate').focus(), 100);
+                            }
+                        });
+                        return false;
+                    }
+
+                    var $data = '21½' + $(this).attr('tag') +'½' +$(this).attr('typ') +'½' +$('#ddlIPP').val() +'½' +$('#ddlSite').val() +'½' +$('#ddlBlock').val() +'½' +$('#txtTargetDate').val() +'½' +$('#txtZeroHour').val() +'½' +$('#txtOneHour').val()+'½' +$('#txtTwoHour').val()+'½' +$('#txtThreeHour').val()+'½' +$('#txtFourHour').val()+'½' +$('#txtFiveHour').val()+'½' +$('#txtSixHour').val()+'½' +$('#txtSevenHour').val()+'½' +$('#txtEightHour').val()+'½' +$('#txtNineHour').val()+'½' +$('#txtTenHour').val()+'½' +$('#txtElevenHour').val()+'½' +$('#txtTwelveHour').val()+'½' +$('#txtThirteenHour').val()+'½' +$('#txtFourteenHour').val()+'½' +$('#txtFifteenHour').val()+'½' +$('#txtSixteenHour').val()+'½' +$('#txtSeventeenHour').val()+'½' +$('#txtEighteenHour').val()+'½' +$('#txtNineteenHour').val()+'½' +$('#txtTwentyHour').val()+'½' +$('#txtTwentyOneHour').val()+'½' +$('#txtTwentyTwoHour').val() +'½' +$('#txtTwentyThreeHour').val() +'½' +$('#txtStatus').val() +'½';
+                    $('.frm').each(function (index, element) {
+                        $data += $(this).val() +'½';
+                    });
+                    var chkbxkHourlyEntry = $('#chkAmbiant').prop('checked') == true ? "1" : "0";
+                    $data += $('#ddlBlock').val().split('½')[0] + "½" + $('#txtCurrentAvailablity').val() + "½" + $('#txtRevisedAvailablity').val() + "½" + chkbxkHourlyEntry;
+                    var bIsAllInputs = true;
+                    var $DTL = "";
+                    if ($(this).attr('tag')=="0") {
+                        $('#tblHourlyData > tbody > tr').each(function (index, element) {
+                            $DTL += $($(this).find('td')[0]).html() + '½' + $($($(this).find('td')[1]).find('input')[0]).val() + '½' + $($($(this).find('td')[2]).find('input')[0]).val() + '½' + $($($(this).find('td')[3]).find('input')[0]).val() + '½' + $($($(this).find('td')[4]).find('input')[0]).val() + '│';
+                            if ($('#chkAmbiant').prop('checked')) {
+                                if (($($($(this).find('td')[1]).find('input')[0]).val() == "" && $('#chkAmbiant').prop('checked') ) || $($($(this).find('td')[2]).find('input')[0]).val() == "" || $($($(this).find('td')[3]).find('input')[0]).val() == "") {
+                                    bIsAllInputs = false;
+                                }
+                            }
+                            else {
+                                if ($($($(this).find('td')[2]).find('input')[0]).val() == "" || $($($(this).find('td')[3]).find('input')[0]).val() == "") {
+                                    bIsAllInputs = false;
+                                }
+                            }
+
+
+                        });
+                    }
+                    else {
+                        $('#tblHourlyData > tbody > tr').each(function (index, element) {
+                            $DTL += $(this).attr('tag') + '½' + $($($(this).find('td')[1]).find('input')[0]).val() + '½' + $($($(this).find('td')[2]).find('input')[0]).val() + '½' + $($($(this).find('td')[3]).find('input')[0]).val() + '½' + $($($(this).find('td')[4]).find('input')[0]).val() + '│';
+                            if (($($($(this).find('td')[1]).find('input')[0]).val() == "" && $('#chkAmbiant').prop('checked')) || $($($(this).find('td')[2]).find('input')[0]).val() == "" || $($($(this).find('td')[3]).find('input')[0]).val() == "") {
+                                bIsAllInputs = false;
+                            }
+                        });
+                    }
+
+                    if (bIsAllInputs==false) {
+                        swal({
+                            title: "Error",
+                            text: "Enter all required inputs...!",
+                            type: "warning",
+                            showCancelButton: false,
+                            confirmButtonClass: "btn btn-danger",
+                            confirmButtonText: "OK",
+                            onAfterClose: () => {
+                                setTimeout(() => $('#invoiceDate').focus(), 100)
+                            }
+                        });
+                        return false;
+                    }
+
+                    if ($DTL != "") {
+                        $DTL += '½';
+                        $DTL = $DTL.replace('│½', '');
+                    }
+
+                    var fromdata = new FormData();
+                    fromdata.append("vls", $data);
+                    fromdata.append("dtl", $DTL);
+
+                    swal({
+                        title: "Are you sure?",
+                        text: "Do you really want to Save Record?",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "Yes, Save it!",
+                        closeOnConfirm: false
+                    },
+                        function () {
+                            $('.sa-button-container').hide();
+                            $.ajax({
+                                type: "POST",
+                                url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                                data: fromdata,
+                                contentType: false,
+                                processData: false,
+                                success: function (response) {
+                                    $('.sa-button-container').show();
+                                    swal("Success!", "Record has been saved Successfully.", "success");
+                                    $($('.btnClose')[0]).click()
+                                }
+                            });
+
+
+                        }
+
+                    );
+
+
+
+
+
+                });//END OF CLICK
+
+
+
+            $(function () {
+
+
+                $("#txtTargetDate").datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    dateFormat: 'dd-M-yy',
+
+
+
+                });
+
+
+                $('#txtINTIMATION_DATE_TIME').datetimepicker({
+                        format: 'DD-MMM-YYYY HH:mm'
+                    });
+            });
+
+
+            //$('body').off('focus', '.dtDateTimeA');
+            //$('body').on('focus', '.dtDateTimeA', function () {
+            //        $(this).datetimepicker({
+            //            format: 'DD-MMM-YYYY HH:mm'
+            //        });
+            //    });
+
+                $('body').off('click', '.btnClose');
+                $('body').on('click', '.btnClose', function (e) {
+                    e.preventDefault();
+                    var options = {};
+                    $("#pageContainer").hide('slide', options, 300);
+                    $.ajax({
+                        url: "/NPCC/ViewAndEditDespatch" + $(location).attr('search'),
+                        success: function (result) {
+                            var options = {};
+                            $('#pageContainer').html($(result).find('#pcontent').html());
+                            $("#pageContainer").show('slide', options, 500);
+                        }
+                    });
+                });//End of edit click
+                $('body').off('change', '#ddlIPP');
+                $('body').on('change', '#ddlIPP', function(e) {
+                    LoadVendorSites();
+                });// End of change
+                $('body').off('change', '#ddlSite');
+                $('body').on('change', '#ddlSite', function (e) {
+                    LoaddllBlockFuel();
+                });// End of change
+
+                $('body').off('change', '#ddlBlock');
+                $('body').on('change', '#ddlBlock', function (e) {
+                    if ($('#ddlBlock').val() != null || $('#ddlBlock').val() != undefined) {
+                        $('#txtFuel').val($('#ddlBlock').val().split('½')[1]);
+                        $('#txtCapacity , #txtDependableCapacity').val($('#ddlBlock').val().split('½')[2]);
+                        $('#txtPowerPolicy').val($('#ddlBlock').val().split('½')[3]);
+                        Fn_checkPowerPolicy();
+                    }
+                    else {
+                        $('#txtFuel, #txtCapacity, #txtDependableCapacity, #txtPowerPolicy').val('');
+                    }
+                });// End of
+
+            $(function () {
+                debugger;
+                $('#tblHourlyData > tbody > tr').each(function (index, element) {
+                    $($($(this).find('td')[2]).find('input')[0]).val('0').css('background', '#eee').prop('disabled', true);
+                    $($($(this).find('td')[1]).find('input')[0]).val('0').addClass("abt");
+                });
+                $('#txtTargetDate').val($('#txtTargetDate').attr('value'));
+                $('#txtINTIMATION_DATE_TIME').val($('#txtINTIMATION_DATE_TIME').attr('value'));
+                $('#txtSENDER_NAME').val($('#txtSENDER_NAME').attr('value'));
+                $('#txtSENDER_DESIGNATION').val($('#txtSENDER_DESIGNATION').attr('value'));
+                $('#txtRECEIVER_NAME').val($('#txtRECEIVER_NAME').attr('value'));
+                $('#txtRECEIVER_DESIGNATION').val($('#txtRECEIVER_DESIGNATION').attr('value'));
+                if ($('#btnSubmit').attr('tag')=="0") {
+                    LoadVendorSites();
+                }
+                else {
+                    LoadVendorSitesAndDetails();
+                }
+                @if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 7) {
+                @: $($('.btnClose')[0]).parent().parent().parent().remove();
+                }
+                });//End
+                function LoadVendorSites() {
+                    var fromdata = new FormData();
+                    fromdata.append('vls', '0½' + $('#ddlIPP').val());
+                    $.ajax({
+                        type: "POST",
+                        url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                        data: fromdata,
+                        contentType: false,
+                        processData: false,
+                        success: function (response) {
+                            $('#ddlSite').html(response);
+                            if ($('#ddlSite').val() == null || $('#ddlSite').val()== undefined || $('#ddlSite').val()== "") {
+                                $('#ddlBlock').html('');
+                                $('#txtFuel, #txtCapacity, #txtDependableCapacity, #txtPowerPolicy').val('');
+                            }
+                            else {
+                                LoaddllBlockFuel();
+                            }
+                        }
+                    });
+                }//END OF LOAD
+            function Fn_checkPowerPolicy() {
+               debugger;
+                //if ($.trim($('#txtPowerPolicy').val()) == "2002" || $.trim($('#txtPowerPolicy').val()) == "2015") {
+
+                    $('#txtCurrentAvailablity').val('0');
+                    $('#txtRevisedAvailablity').val('0');
+                    $('.pol1994').hide();
+                    $('#tblHourlyData > tbody').html('\
+<tr>\
+<td style = "text-align:right;font-size: 16px;" > <label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 00:00 </label></td>\
+<td><input id="txtZeroHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+<td style = "text-align:right;font-size: 16px;" > <label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 12:00 </label></td>\
+<td><input id="txtTwelveHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+</tr>\
+<tr>\
+<td style="text-align:right;font-size: 16px;"><label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 01:00 </label></td>\
+<td><input id="txtOneHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+<td style="text-align:right;font-size: 16px;"><label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 13:00 </label></td>\
+<td><input id="txtThirteenHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+</tr>\
+<tr>\
+<td style="text-align:right;font-size: 16px;"><label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 02:00 </label></td>\
+<td><input id="txtTwoHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+<td style="text-align:right;font-size: 16px;"><label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 14:00 </label></td>\
+<td><input id="txtFourteenHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+</tr>\
+<tr>\
+<td style="text-align:right;font-size: 16px;"><label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 03:00 </label></td>\
+<td><input id="txtThreeHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+<td style="text-align:right;font-size: 16px;"><label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 15:00 </label></td>\
+<td><input id="txtFifteenHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+</tr>\
+<tr>\
+<td style="text-align:right;font-size: 16px;"><label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 04:00 </label></td>\
+<td><input id="txtFourHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+<td style="text-align:right;font-size: 16px;"><label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 16:00 </label></td>\
+<td><input id="txtSixteenHour" type="text" class="form-control abt" value="" /></td>\
+</tr>\
+<tr>\
+<td style="text-align:right;font-size: 16px;"><label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 05:00 </label></td>\
+<td><input id="txtFiveHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+<td style="text-align:right;font-size: 16px;"><label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 17:00 </label></td>\
+<td><input id="txtSeventeenHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+</tr>\
+<tr>\
+<td style="text-align:right;font-size: 16px;"><label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 06:00 </label></td>\
+<td><input id="txtSixHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+<td style="text-align:right;font-size: 16px;"><label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 18:00 </label></td>\
+<td><input id="txtEighteenHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+</tr>\
+<tr>\
+<td style="text-align:right;font-size: 16px;">\
+<label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 07:00 </label>\
+</td>\
+<td><input id="txtSevenHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+<td style="text-align:right;font-size: 16px;"><label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 19:00 </label></td>\
+<td><input id="txtNineteenHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+</tr>\
+<tr>\
+<td style="text-align:right;font-size: 16px;"><label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 08:00 </label></td>\
+<td><input id="txtEightHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+<td style="text-align:right;font-size: 16px;"><label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 20:00 </label></td>\
+<td><input id="txtTwentyHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+</tr>\
+<tr>\
+<td style="text-align:right;font-size: 16px;"><label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 09:00 </label></td>\
+<td><input id="txtNineHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+<td style="text-align:right;font-size: 16px;"><label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 21:00 </label></td>\
+<td><input id="txtTwentyOneHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+</tr>\
+<tr>\
+<td style="text-align:right;font-size: 16px;"><label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 10:00 </label></td>\
+<td><input id="txtTenHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+<td style="text-align:right;font-size: 16px;"><label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 22:00 </label></td>\
+<td><input id="txtTwentyTwoHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+</tr>\
+<tr>\
+<td style="text-align:right;font-size: 16px;"><label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 11:00 </label></td>\
+<td><input id="txtElevenHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+<td style="text-align:right;font-size: 16px;"><label style="text-align:right;font-size: 12px;margin: 17px 20px 0 0;"> 23:00 </label></td>\
+<td><input id="txtTwentyThreeHour" type="text" class="form-control abt" value="" style="font-size: 12px;" /></td>\
+</tr>');
+                    $('#tblHourlyData > tbody > tr').each(function (index, element) {
+                        $($($(this).find('td')[2]).find('input')[0]).val('0').css('background','#eee').prop('disabled', true);
+                    });
+                    $('.pp_1994').show();
+
+                //} else {
+                //    $('#txtCurrentAvailablity').val('');
+                //    $('#txtRevisedAvailablity').val('');
+                //    $('.pol1994').show();
+                //    $('.pp_1994').hide();
+                //    $('#tblHourlyData > tbody').html('');
+                //}
+                //$('#chkAmbiant').prop('checked', true);
+                //$('.abt').inputmask("decimal", { min: -180, max: 180, allowMinus: true });
+            }
+
+
+            //$('body').off('change', '#chkAmbiant');
+            //$('body').on('change', '#chkAmbiant', function () {
+            //    var flg = $(this).prop('checked');
+            //    if ($(this).prop('checked')) {
+            //        $('.abt').prop('disabled', false);
+            //        $('.abt').css('background', 'rgb(251, 255, 193)');
+            //    } else {
+            //        $('.abt').val('');
+            //        $('.abtt').val('0');
+            //        $('.abt').prop('disabled', true);
+            //        $('.abt').css('background', 'rgb(238, 238, 238');
+            //    }
+
+
+            //});
+
+
+            $('body').off('change', '.abt');
+            $('body').on('change', '.abt', function() {
+                var $control = $(this);
+                var $temprature = $control.val();
+                var fromdata = new FormData();
+                fromdata.append('vls', '38½' + $('#ddlIPP').val() + "½" + $('#ddlSite').val() + "½" + $('#ddlBlock').val().split('½')[0] + "½" + $temprature);
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        $($control.parent().next().find('.abtt')[0]).val(response);
+                        //$($control.parent().next().next().find('.abttt')[0]).val(response);
+                    }
+                });
+
+
+            });//END OF CHANGE
+            function LoadVendorSitesAndDetails() {
+
+                var fromdata = new FormData();
+                fromdata.append("vls", '4½' + $($('.btnClose')[0]).attr('tag'));
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        var $dta = $.parseJSON(response);
+                    //    $('#txtHOURLY_DATA_TYPE').val($dta[0].HOURLY_DATA_TYPE);
+                        $('#txtStatus').val($dta[0].STATUS);
+                        $('#ddlIPP').html($dta[0].ddlIPP);
+                        $('#ddlSite').html($dta[0].ddlSite);
+                        $('#ddlBlock').html($dta[0].ddlBlock);
+                        $('#txtFuel').val($dta[0].fuel);
+                        $('#txtCapacity , #txtDependableCapacity').val($dta[0].capacity);
+                        $('#txtPowerPolicy').val($dta[0].policiy);
+                        Fn_checkPowerPolicy();
+                    //    $('#txtCurrentAvailablity').val($dta[0].CURRENT_AVAILABILITY);
+                    //    $('#txtRevisedAvailablity').val($dta[0].REVISED_AVAILABILITY);
+                        $('#txtTargetDate').val($dta[0].TARGET_DATE);
+                        $('#txtINTIMATION_DATE_TIME').val($dta[0].INTIMATION_DATE_TIME);
+                        $('#txtSENDER_NAME').val($dta[0].SENDER_NAME);
+                        $('#txtSENDER_DESIGNATION').val($dta[0].SENDER_DESIGNATION);
+                       // $('#txtSENDER_REMARKS').val($dta[0].SENDER_REMARKS);
+                        $('#txtSubmitDate').val($dta[0].SUBMIT_DATE_TIME);
+                        //var isTrueSet = ($dta[0].WITH_AMBIENT_TEMPERATURE == 'true');
+                        //$('#chkAmbiant').prop('checked', isTrueSet);
+                        $('#tblHourlyData tbody').html('');
+
+                        if ($('#txtStatus').val() != "Draft" || $('.btnClose').attr('conn') == "V") {
+                            $('#chkAmbiant').prop('disabled', true);
+                            $('.btnImprtPre').remove();
+                            $('#btnSubmit').remove();
+                            $('#btnSave').remove();
+                            $('#ddlIPP').prop('disabled', true);
+                            $('#ddlSite').prop('disabled', true);
+                            $('#ddlBlock').prop('disabled', true);
+                            $('#txtTargetDate').prop('readonly', true);
+                            $('#txtCurrentAvailablity').prop('readonly', true);
+                            $('#txtRevisedAvailablity').prop('readonly', true);
+                            $('#txtINTIMATION_DATE_TIME').prop('readonly', true);
+                            $('#txtSENDER_NAME').prop('readonly', true);
+                            $('#txtSENDER_DESIGNATION').prop('readonly', true);
+                            $('#txtSENDER_REMARKS').prop('disabled', true);
+                            $('.clsstar').hide();
+
+                        }
+                        if ($('#txtStatus').val() == "Acknowledged") {
+                            $('#txtRECEIVER_NAME, #txtRECEIVER_DESIGNATION').prop('readonly', true);
+                            //$('#txtRECEIVER_REMARKS').prop('disabled', true);
+                            $('#btnAcknowledge, #uperClose').remove();
+                            $('#txtRECEIVER_NAME').val($dta[0].RECEIVER_NAME);
+                            $('#txtRECEIVER_DESIGNATION').val($dta[0].RECEIVER_DESIGNATION);
+                           // $('#txtRECEIVER_REMARKS').val($dta[0].RECEIVER_REMARKS);
+                            $('.clsstar').hide();
+                        }
+                        @if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 7) {
+                        @: else { $('#txtRECEIVER_NAME').val($('#txtRECEIVER_NAME').attr('value')); $('#txtRECEIVER_DESIGNATION').val($('#txtRECEIVER_DESIGNATION').attr('value')); }
+                        }
+
+                        //if ($dta[0].DTL != null || $dta[0].DTL!=undefined) {
+                        //    var $dtl = $.parseJSON($dta[0].DTL);
+                        //    if ($('#txtStatus').val() != "Draft" || $('.btnClose').attr('conn') == "V") {
+                        //        $.each($dtl, function (i, j) {
+                        //            $('#tblHourlyData tbody').append('<tr tag="' + j.WP_GC_HOURLY_DATA_DETAIL_ID_PK + '">\
+                        //        <td style="text-align:right;">'+ j.TARGET_HOUR + '</td>\
+                        //        <td style="text-align:right;">'+ j.AMBIENT_TEMPERATURE + '</td>\
+                        //            <td style="text-align:right;">'+ j.AMBIENT_AVAILABILITY + '</td>\
+                        //                <td>'+ j.AVAILABILITY + '</td>\
+                        //                    <td style="display:none;">'+ j.REMARKS + '</td>\
+                        //            </tr>');
+                        //        });//End of Each
+                        //    } else {
+                        //        $.each($dtl, function (i, j) {
+                        //            $('#tblHourlyData tbody').append('<tr tag="' + j.WP_GC_HOURLY_DATA_DETAIL_ID_PK + '">\
+                        //        <td style="text-align:right;">'+ j.TARGET_HOUR + '</td>\
+                        //        <td><input type="text" class="form-control clsFloat" value="'+ j.AMBIENT_TEMPERATURE + '"></td>\
+                        //            <td style="text-align:right;"><input type="text" class="form-control clsFloat" disabled style="background:#eee;" value="'+ j.AMBIENT_AVAILABILITY + '"></td>\
+                        //                <td><input type="text" class="form-control clsFloat" value="'+ j.AVAILABILITY + '"></td>\
+                        //                    <td style="display:none;"><input type="text" class="form-control" value="'+ j.REMARKS + '"></td>\
+                        //            </tr>');
+                        //        });//End of Each
+                        //    }
+                        //}
+
+
+                    }
+                });
+            }
+                function LoaddllBlockFuel() {
+                    var fromdata = new FormData();
+                    fromdata.append('vls', '1½'   + $('#ddlIPP').val()+ "½"+ $('#ddlSite').val());
+                    $.ajax({
+                        type: "POST",
+                        url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                        data: fromdata,
+                        contentType: false,
+                        processData: false,
+                        success: function (response) {
+                            $('#ddlBlock').html(response);
+                            if ($('#ddlBlock').val() != null || $('#ddlBlock').val() != undefined) {
+                                $('#txtFuel').val($('#ddlBlock').val().split('½')[1]);
+                                $('#txtCapacity , #txtDependableCapacity').val($('#ddlBlock').val().split('½')[2]);
+                                $('#txtPowerPolicy').val($('#ddlBlock').val().split('½')[3]);
+                                Fn_checkPowerPolicy();
+                            }
+                            else {
+                                $('#txtFuel, #txtPowerPolicy, #txtCapacity , #txtDependableCapacity ').val('');
+                            }
+                        }
+                    });
+                }
+            });
+    </script>
+</div>

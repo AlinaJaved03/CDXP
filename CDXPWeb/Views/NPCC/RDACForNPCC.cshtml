@@ -1,0 +1,1858 @@
+﻿
+@{
+    /**/
+
+    ViewBag.Title = "Revised / Adjusted Declaration of Available Capacity";
+}
+<div id="pcontent">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff;"></i>
+                        <h6 class="panel-title txt-light">@ViewBag.Title</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body">
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Header</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+
+
+
+                        <div style="margin-bottom: 20px;">
+                            <table class="tblFrm">
+                                <tr>
+
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Declaration Type</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select id="txtHOURLY_DATA_TYPE" class="form-control"><option value="ADAC">ADAC</option><option value="RDAC">RDAC</option></select>
+                                    </td>
+
+                                    <td style="width: 25%;">
+                                        <label for="txtStatus">Status</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input id="txtStatus" type="text" value="Draft" readonly class="form-control">
+                                    </td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td><label for="ddlRevisionType" class="forRDAC">Revision Type</label></td>
+                                    <td>
+                                        <select id="ddlRevisionType" class="form-control forRDAC ">
+                                            <option value="Downward Revision">Downward Revision</option>
+                                            <option value="Upward Revision">Upward Revision</option>
+                                        </select>
+                                    </td>
+                                    <td><label>Submit Date</label></td>
+                                    <td><input id="txtSubmitDate" type="text" disabled="" class="form-control"></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="ddlIPP">Power Producer <span class="clsstar" style="color:rgb(0, 149, 235);font-size: 20px;">*</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select id="ddlIPP" class="form-control">@Html.Raw(@ViewBag.IPP)</select>
+                                    </td>
+
+                                    <td style="width: 25%;">
+                                        <label for="txtTargetDate">Declaration for<span class="clsstar" style="color:rgb(0, 149, 235);font-size: 20px;">*</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input id="txtTargetDate" type="text" disabled class="form-control" style="background-color: rgb(251, 255, 193)" />
+                                    </td>
+                                    <td></td>
+                                </tr>
+
+
+
+
+
+
+                                <tr>
+
+                                    <td style="width: 25%;">
+                                        <label for="ddlSite">Address <span class="clsstar" style="color:rgb(0, 149, 235);font-size: 20px;">*</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select id="ddlSite" class="form-control"></select>
+                                    </td>
+
+                                    <td style="width: 25%;">
+                                        <label for="txtINTIMATION_DATE_TIME">Intimation Date & Time<span class="clsstar" style="color:rgb(0, 149, 235);font-size: 20px;">*</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input id="txtINTIMATION_DATE_TIME" type="text" value="@ViewBag.IntimationTime" class="form-control dtDateTime" style="background-color: rgb(251, 255, 193)" readonly />
+                                    </td>
+                                    <td></td>
+
+
+                                </tr>
+
+
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label style="display: none;" for="ddlBlock"> Block / Complex <span class="clsstar" style="color: rgb(0, 149, 235); font-size: 20px;">*</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select id="ddlBlock" class="form-control" style="display: none;">
+                                            <option>Select</option>
+                                        </select>
+                                    </td>
+
+                                    <td style="width: 25%;"><label for="txtCurrentAvailablity" class="pol1994" style="display: none;">Current Availability</label></td>
+                                    <td style="width: 25%;"><input id="txtCurrentAvailablity" type="text" value="0" class="form-control pol1994" style="display: none;background: #ffff0045;" /></td>
+                                    <td style="padding-left: 0px !important;"><span style="display: none;" class="pol1994">MW</span></td>
+
+
+
+
+                                </tr>
+                                <tr>
+
+                                    @*<td style="width: 25%;">
+                                            <label for="txtFuel">Fuel</label>
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <input id="txtFuel" type="text" readonly value="GAS" class="form-control" />
+                                        </td>*@
+                                    <td style="width: 25%;"><label for="txtRevisedAvailablity" class="pol1994" style="display: none;">Revised Availability</label></td>
+                                    <td style="width: 25%;"><input id="txtRevisedAvailablity" type="text" value="0" class="form-control pol1994" style="display: none;background: #ffff0045;" /></td>
+                                    <td style="padding-left: 0px !important;"><span style="display: none;" class="pol1994">MW</span></td>
+
+                                </tr>
+
+
+
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label style="display: none;" for="txtCapacity">Installed Capacity</label>
+                                    </td>
+                                    <td style="width: 25%;">
+
+                                        <input id="txtCapacity" type="text" readonly value="" class="form-control" style="display: none;">
+                                    </td>
+
+
+                                    <td style="width: 25%;"></td>
+                                    <td style="width: 25%;"></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label style="display: none;" for="txtDependableCapacity">Dependable Capacity</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input style="display: none;" id="txtDependableCapacity" readonly type="text" value="" class="form-control" />
+                                    </td>
+                                    <td style="width: 25%;"></td>
+                                    <td style="width: 25%;"></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label style="display: none;" for="txtPowerPolicy">Power Policy</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input style="display: none;" id="txtPowerPolicy" readonly type="text" value="" class="form-control" />
+                                    </td>
+
+                                    <td style="width: 25%;">
+                                        <label style="display: none;" for="txtIPPType">IPP Type</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input style="display: none;" id="txtIPPType" readonly type="text" value="" class="form-control" />
+                                    </td>
+                                </tr>
+
+                            </table>
+
+
+                        </div>@*End Of Table*@
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Detail</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <style type="text/css">
+
+                                #tblHourlyData > tbody > tr > td:nth-child(2) > input, #tblHourlyData > tbody > tr > td:nth-child(3) > input, #tblHourlyData > tbody > tr > td:nth-child(6) > input {
+                                    background-color: rgb(251, 255, 193);
+                                    text-align: right;
+                                }
+                            </style>
+                            <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" id="tblHourlyData">
+                                <thead>
+                                    @if (ViewBag.IPPType == 10)
+                                    {
+                                    <thead>
+                                        <tr>
+                                            <th style="width:50px;text-align:Center;" rowspan="2">Relevant Hour</th>
+                                            <th style="width:100px;text-align:Center;" rowspan="2">Head</th>
+                                            <th style="width:100px;text-align:center;" rowspan="2">Inflow</th>
+                                            <th style="width:100px;text-align:Center;" rowspan="2">DAC (MW)</th>
+                                            <th style="width:100px;text-align:center;" rowspan="2">Last Revision (MW)</th>
+                                            <th style="width:100px;text-align:center;" rowspan="2">Revised Head</th>
+                                            <th style="width:100px;text-align:center;" rowspan="2">
+                                                Revised Inflow(Available to units)
+                                            </th>
+                                            <th style="width:100px;text-align:center;" rowspan="2">Revised Declared Available Capacity (MW)</th>
+                                            <th style="width:100px;text-align:Center; " rowspan="2">Remarks</th>
+                                        </tr>
+                                    </thead>
+                                }
+                                else
+                                {
+                                    <thead>
+                                        <tr>
+                                            <th style="width:50px;text-align:Center;" rowspan="2">Relevant Hour</th>
+                                            <th style="width:100px;text-align:Center;" rowspan="2">Ambient Temperature (°C) </th>
+                                            <th style="width:100px;text-align:Center;" rowspan="2">Estimated Availability (MW)</th>
+                                            <th style="width:100px;text-align:Center;" rowspan="2">DAC (MW)</th>
+                                            <th style="width:100px;text-align:center;" rowspan="2">Last Revision (MW)</th>
+                                            <th style="width:100px;text-align:center; display:none;" rowspan="2" class="revTmp">Revised Temperature</th>
+                                            <th style="width:100px;text-align:Center;" rowspan="2">Revised Availablity(MW)</th>
+                                            <th style="width:100px;text-align:center;" rowspan="2">Fuel</th>
+                                            <th style="width:100px;text-align:Center;" rowspan="2">Remarks</th>
+                                        </tr>
+                                    </thead>
+                                }
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                            @if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 10 || ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 7 || ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 9)// 4)
+                            {
+                                <div class="tab0">
+                                    &nbsp;<div class="tab1">&nbsp;Power Producer Remarks</div>
+                                    <div class="tab2">&nbsp;</div>
+                                </div>
+
+                                <div style="margin-bottom: 20px;">
+                                    <table class="tblFrm" style="width:100%;">
+                                        <tr>
+                                            <td style="width: 19%;">
+                                                <label for="txtSENDER_NAME">Sender Name</label>
+                                            </td>
+                                            <td style="width: 25%;">
+                                                <input id="txtSENDER_NAME" disabled type="text" value="@ViewBag.userinfo.DISPLAY_NAME" class="form-control frm">
+                                            </td>
+                                            <td style="width: 25%;">
+                                                <label for="txtSENDER_DESIGNATION">Sender Designation</label>
+                                            </td>
+                                            <td style="width: 25%;">
+                                                <input id="txtSENDER_DESIGNATION" type="text" value="@ViewBag.userinfo.DISPLAY_DESIGNATION" class="form-control frm">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="vertical-align:top;">
+                                                Additional Note
+                                            </td>
+                                            <td colspan="3">
+                                                <textarea cols="70" rows="6" maxlength="2000" id="txtSENDER_REMARKS" class="frm" style="width: 100%;"></textarea>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+
+                                    @if ((ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 7 || ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 10) && ViewBag.sts != "Acknowledged")
+                                    {
+                                        <div class="form-actions">
+                                            <div class="row">
+                                                <div class="col-md-12" style="text-align:right;">
+
+                                                    <button id="btnSubmitRDAC" tag=@ViewBag.WP_GC_HOURLY_DATA_HEADER_ID_PK dacid="@ViewBag.dacid" typ="Submitted" class="btn btn-success" style="margin-right:20px;" type="button">Submit</button>
+                                                    <button id="btnSaveRDAC" tag=@ViewBag.WP_GC_HOURLY_DATA_HEADER_ID_PK dacid="@ViewBag.dacid" typ="Draft" class="btn btn-default" type="button" style="margin-right:20px;display:none;">Save</button>
+                                                    <button class="btn btn-default btnCloseRDAC" conn="@(ViewBag.conn ?? String.Empty)" tag="@(ViewBag.WP_GC_HOURLY_DATA_HEADER_ID_PK ?? String.Empty)" type="button">Close</button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            }
+
+                            @*@if ( ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 7 || ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 9 || ViewBag.sts == "Acknowledged")
+                                {
+                                    <div class="tab0">
+                                        &nbsp;<div class="tab1">&nbsp;NPCC Remarks</div>
+                                        <div class="tab2">&nbsp;</div>
+                                    </div>
+
+                                    <div style="margin-bottom: 20px;">
+
+                                        <table class="tblFrm" style="width:100%;">
+                                            <tr>
+                                                <td style="width: 19%;">
+                                                    <label for="Disconame">Receiver Name</label>
+                                                </td>
+                                                <td style="width: 25%;">
+                                                    <input id="txtRECEIVER_NAME" disabled type="text" value="@ViewBag.userinfo.DISPLAY_NAME" class="form-control frm">
+                                                </td>
+                                                <td style="width: 25%;">
+                                                    <label for="Disconame">Receiver Designation</label>
+                                                </td>
+                                                <td style="width: 25%;">
+                                                    <input id="txtRECEIVER_DESIGNATION" disabled type="text" value="@ViewBag.userinfo.DISPLAY_DESIGNATION" class="form-control frm">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="vertical-align:top;">
+                                                    Notes
+                                                </td>
+                                                <td colspan="3">
+                                                    <textarea id="txtRECEIVER_REMARKS" cols="70" rows="6" maxlength="2000" class="frm" style="width: 100%;"></textarea>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <div class="form-actions">
+                                            <div class="row">
+                                                <div class="col-md-12" style="text-align:right;">
+
+                                                    <button id="btnAcknowledgeRDAC" class="btn btn-success" type="button" value="Acknowledged" style="margin-right:20px;">Acknowledge</button>
+                                                    <button class="btn btn-default btnCloseRDAC" type="button" conn="@(ViewBag.conn ?? String.Empty)" tag="@(ViewBag.WP_GC_HOURLY_DATA_HEADER_ID_PK ?? String.Empty)">Close</button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+        $(document).ready(function () {
+            debugger;
+          //  var Dcap;
+            var serverTime = "@ViewBag.pkdatetime";
+            var ippType = '@ViewBag.IPPType';
+            var FuelTyp;
+            var fDrp;
+            var DateCompare;
+            var RDAC_Up_Min, RDAC_Down_Min, ADAC_Min, SubmitTime;
+            var bIsAllInputs = false;
+
+            $('body').off('click', '#btnAcknowledgeRDAC');
+            $('body').on('click', '#btnAcknowledgeRDAC', function (e) {
+                e.preventDefault();
+                debugger;
+                var $data = '12½' + $('.btnCloseRDAC').attr('tag') + '½' + $('#txtRECEIVER_NAME').val() + '½' + $('#txtRECEIVER_DESIGNATION').val() + '½' + $('#txtRECEIVER_REMARKS').val() + '½' + $(this).attr("value") + '½';
+                var fromdata = new FormData();
+                fromdata.append("vls", $data);
+
+
+                swal({
+                    title: "Are you sure?",
+                    text: "Do you really want to acknowledge record?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "Yes, Acknowledge it!",
+                    closeOnConfirm: false
+                },
+                    function () {
+                        $('.sa-button-container').hide();
+                        $.ajax({
+                            type: "POST",
+                            url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                            data: fromdata,
+                            contentType: false,
+                            processData: false,
+                            success: function (response) {
+                                $('.sa-button-container').show();
+                                swal("Success!", "Record has been Acknowledged Successfully.", "success");
+                                $($('.btnCloseRDAC')[0]).click()
+                            }
+                        });
+                    }
+
+                );
+
+            });//END OF CLICK
+
+            debugger;
+            checkRevisionType();
+
+            $('body').off('change', '#txtHOURLY_DATA_TYPE');
+            $('body').on('change', '#txtHOURLY_DATA_TYPE', function (e) {
+                e.preventDefault();
+                debugger;
+                if ($(this).val() == "ADAC") {
+                    var fromdata = new FormData();
+                    fromdata.append("vls", '7½' + parseInt(ADAC_Min));
+                    $.ajax({
+                        type: "POST",
+                        url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                        data: fromdata,
+                        contentType: false,
+                        processData: false,
+                        success: function (response) {
+                            LoadForNewByDAC();
+
+                            // var serverHour = response.split('½')[0];
+                            //var serverDate = response.split('½')[1];
+                            ///   if ($('#txtTargetDate').val() == Dtoday) //Temporary Check
+                            //   {
+                            // 15-10
+                            if (DateCompare == "EQUAL_TO") {
+                                //$('#tblHourlyData > tbody > tr').each(function (index, element) {
+                                //    var $tr = $(this);
+                                //    if (index <= parseInt(response)) {
+                                //        $($tr.find('td')[5]).html('');
+                                //        $($tr.find('td')[6]).html('');
+                                //        $($tr.find('td')[7]).html('');
+                                //        $($tr.find('td')[8]).html('');
+
+                                //    }
+                                //});
+                            }
+                        }
+                    });
+                    $('#ddlRevisionType').html('<option></option>');
+                    $('.forRDAC').hide();
+                }
+                else { //RDAC
+
+                    $('.forRDAC').show();
+
+                    $('#ddlRevisionType').html('<option value="Downward Revision">Downward Revision</option><option value="Upward Revision">Upward Revision</option>');
+                    LoadForNewByDAC();
+
+                }
+
+            });
+
+            $('body').off('click', '#btnSaveRDAC, #btnSubmitRDAC');
+            $('body').on('click', '#btnSaveRDAC, #btnSubmitRDAC', function (e) {
+                e.preventDefault();
+                debugger;
+                var thisCtrl;
+                var TimeCheck = true;
+                var RevHour, RevType;
+
+                if ($('#ddlBlock').val() == null || $('#ddlBlock').val() == undefined) {
+                    swal({
+                        title: "Error",
+                        text: "Please select valid block!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#invoiceDate').focus(), 100);
+                        }
+                    });
+                    return false;
+                }
+                var fromdata = new FormData();
+                fromdata.append("vls", '27');
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    async: false,
+                    success: function (response) {
+                        console.log(response);
+                       // var x = moment(response).add(1, 'minutes').format("HH:mm");
+                        SubmitTime = response;
+
+
+                    }
+                });
+
+                var $data = '34½' + $(this).attr('tag') + '½' + $(this).attr('typ') + '½' +
+                    $('#txtHOURLY_DATA_TYPE').val() +
+                    '½' +
+                    $('#ddlSite').val() +
+                    '½' +
+                    $('#txtPowerPolicy').val() +
+                    '½' +
+                    $('#txtTargetDate').val() +
+                    '½' +
+                    $('#txtINTIMATION_DATE_TIME').val() +
+                    '½';
+
+                $('.frm').each(function (index, element) {
+                    $data += $(this).val() + '½';
+                });
+                $data += $('#ddlBlock').val().split('½')[0] + '½' + $('#btnSubmitRDAC').attr('dacid') + "½" + $('#ddlRevisionType').val();
+                var $DTL = "";
+                if ($(this).attr('tag') == "0") {
+                    $('#tblHourlyData > tbody > tr').each(function (index, element) {
+                        var vFuel, SCH_10_ID;
+                        if ($('#txtHOURLY_DATA_TYPE').val() == "RDAC")
+                        {
+                            if (ippType == "10") {
+                                debugger;
+
+                                if ($.trim($($(this).find('td')[5]).find('input').val()) == "") {
+                                    bIsAllInputs = false;
+                                    thisCtrl = $($(this).find('td')[5]).find('input');
+                                }
+                                else if ($.trim($($(this).find('td')[6]).find('input').val()) == "") {
+                                    bIsAllInputs = false;
+                                    thisCtrl = $($(this).find('td')[6]).find('input');
+                                }
+                                else if ($.trim($($(this).find('td')[7]).find('input').val()) == "") {
+                                    bIsAllInputs = false;
+                                    thisCtrl = $($(this).find('td')[7]).find('input');
+                                }
+                                //else if ($.trim($($(this).find('td')[8]).find('input').val()) == "") {
+                                //    bIsAllInputs = false;
+                                //    thisCtrl = $($(this).find('td')[8]).find('input');
+                            //}
+                            else {
+                                    if ($('#ddlRevisionType').val() == "Upward Revision") {
+                                        if (index <= parseInt(moment(SubmitTime).add(RDAC_Up_Min, 'minutes').format("HH")) && moment($('#txtTargetDate').val()).isSame(moment(SubmitTime.split(' ')[0]))) {
+
+                                            RevType = "Upward Revision";
+                                            RevHour = index;
+                                            TimeCheck = false;
+                                            return false;
+                                        }
+                                    }
+
+
+                                    $DTL += $.trim($($(this).find('td')[0]).html()) + '½' + $($($(this).find('td')[5]).find('input')[0]).val() + '½' + $($($(this).find('td')[6]).find('input')[0]).val() + '½' + $($($(this).find('td')[7]).find('input')[0]).val();
+                                    if (ippType == '10'){
+                                        $DTL += '½' +  $($($(this).find('td')[8]).find('input')[0]).val();
+                                    }
+
+                                    $DTL +='│';
+
+                                }
+                            }
+                            else {
+
+
+                                debugger;
+
+                                if ($.trim($($(this).find('td')[5]).find('input').val()) == "")
+                                {
+                                    bIsAllInputs = false;
+                                    thisCtrl = $($(this).find('td')[5]).find('input');
+                                }
+                                else {
+                                    if ($.trim($($(this).find('td')[1]).html()) == "" && !(ippType == '20' && $('#txtPowerPolicy').val() == '1994')) {
+                                        vFuel = " ";
+                                    }
+                                    else {
+                                        vFuel = $(this).find("td:eq(6)").find("select#txtFuel").find("option:selected").text().trim();
+                                        SCH_10_ID = $(this).find("td:eq(6)").find("select#txtFuel").find("option:selected").val();
+
+                                    }
+
+                                    if ($('#ddlRevisionType').val() == "Downward Revision") {
+                                        if (index <= parseInt(moment(SubmitTime).add(RDAC_Down_Min, 'minutes').format("HH")) && moment($('#txtTargetDate').val()).isSame(moment(SubmitTime.split(' ')[0]))) {
+
+                                            RevType = "Downward Revision";
+                                            RevHour = index;
+                                            TimeCheck = true;
+ //                                           return false;
+                                        }
+
+                                    }
+                                    else if ($('#ddlRevisionType').val() == "Upward Revision") {
+                                        if (index <= parseInt(moment(SubmitTime).add(RDAC_Up_Min, 'minutes').format("HH")) && moment($('#txtTargetDate').val()).isSame(moment(SubmitTime.split(' ')[0]))) {
+
+                                            RevType = "Upward Revision";
+                                            RevHour = index;
+                                            TimeCheck = true;
+    //                                        return false;
+                                        }
+                                    }
+
+
+                                    $DTL += $.trim($($(this).find('td')[0]).html()) + '½' + $.trim($($(this).find('td')[1]).html()) + '½' + $.trim($($(this).find('td')[2]).html()) + '½' + $($($(this).find('td')[5]).find('input')[0]).val() + '½' + $($($(this).find('td')[7]).find('input')[0]).val() + '½' + vFuel + '½' + SCH_10_ID + '│';
+                                }
+
+                            }
+                        }
+
+                        else //ADAC
+                        {
+
+                            debugger;
+                            if ($($(this).find('td')[1]).find('input').length > 0)
+                            {
+                                if ($.trim($($(this).find('td')[5]).find('input').val()) == "")
+                                {
+                                    bIsAllInputs = false;
+                                    thisCtrl = $($(this).find('td')[5]).find('input');
+                                }
+                                else
+                                {
+                                    if ($.trim($($(this).find('td')[1]).html()) == "") {
+                                        vFuel = " ";
+                                    }
+                                    else {
+                                        vFuel = $(this).find("td:eq(7)").find("select#txtFuel").find("option:selected").text().trim();
+                                        SCH_10_ID = $(this).find("td:eq(7)").find("select#txtFuel").find("option:selected").val();
+
+                                    }
+                                    if (index <= parseInt(moment(SubmitTime).add(ADAC_Min, 'minutes').format("HH")) && moment($('#txtTargetDate').val()).isSame(moment(SubmitTime.split(' ')[0]))) {
+                                            TimeCheck = true;
+                                            RevType = "Adjustment";
+                                            RevHour = index;
+           //                                 return false;
+
+                                    }
+                                    $DTL += $.trim($($(this).find('td')[0]).html()) + '½' + $($($(this).find('td')[1]).find('input')[0]).val() + '½' + $($($(this).find('td')[2]).find('input')[0]).val() + '½' + $($($(this).find('td')[5]).find('input')[0]).val() + '½' + vFuel + '½' + $.trim($($(this).find('td')[6]).html()) + '½' + $($($(this).find('td')[8]).find('input')[0]).val() + '½' + SCH_10_ID + '│';
+                                }
+                            }
+                            else
+                            {
+                                if ($.trim($($(this).find('td')[5]).find('input').val()) == "")
+                                {
+                                    bIsAllInputs = false;
+                                    thisCtrl = $($(this).find('td')[5]).find('input');
+                                }
+                                else
+                                {
+                                    if ($.trim($($(this).find('td')[1]).html()) == "")
+                                    {
+                                        vFuel = " ";
+                                    }
+                                    else
+                                    {
+                                        vFuel = $(this).find("td:eq(7)").find("select#txtFuel").find("option:selected").text().trim();
+                                        SCH_10_ID = $(this).find("td:eq(7)").find("select#txtFuel").find("option:selected").val();
+
+                                    }
+
+
+                                    if (index <= parseInt(moment(SubmitTime).add(ADAC_Min, 'minutes').format("HH")) && moment($('#txtTargetDate').val()).isSame(moment(SubmitTime.split(' ')[0]))) {
+                                            TimeCheck = true;
+                                            RevType = "Adjustment";
+                                            RevHour = index;
+                          //                  return false;
+
+                                        }
+
+                                    $DTL += $.trim($($(this).find('td')[0]).html()) + '½' + $.trim($($(this).find('td')[1]).html()) + '½' + $.trim($($(this).find('td')[2]).html()) + '½' + $($($(this).find('td')[5]).find('input')[0]).val() + '½' + vFuel + '½' + $.trim($($(this).find('td')[6]).html()) + '½' + $($($(this).find('td')[8]).find('input')[0]).val() + '½' + SCH_10_ID + '│';
+                                }
+
+
+                            }
+                        }
+
+                    });
+                }
+                else {
+                    $('#tblHourlyData > tbody > tr').each(function (index, element) {
+                        var vFuel, SCH_10_ID;
+                        if ($('#txtHOURLY_DATA_TYPE').val() == "RDAC") {
+                            if ($.trim($($(this).find('td')[1]).html()) == "") {
+                                vFuel = " ";
+                            }
+                            else {
+                                vFuel = $(this).find("td:eq(6)").find("select#txtFuel").find("option:selected").text().trim();
+                                SCH_10_ID = $(this).find("td:eq(6)").find("select#txtFuel").find("option:selected").val();
+
+                               // vFuel = s.split('½')[1];
+
+                            }
+
+                            if ($.trim($($(this).find('td')[5]).find('input').val()) == "") {
+                                bIsAllInputs = false;
+                                thisCtrl = $($(this).find('td')[5]).find('input');
+                            }
+                            else {
+                                if ($('#ddlRevisionType').val() == "Downward Revision") {
+                                    if (index <= parseInt(moment(SubmitTime).add(RDAC_Down_Min, 'minutes').format("HH")) && moment($('#txtTargetDate').val()).isSame(moment(SubmitTime.split(' ')[0]))) {
+
+                                        RevType = "Downward Revision";
+                                        RevHour = index;
+                                        TimeCheck = true;
+                                //        return false;
+                                    }
+
+                                }
+                                else if ($('#ddlRevisionType').val() == "Upward Revision") {
+                                    if (index <= parseInt(moment(SubmitTime).add(RDAC_Up_Min, 'minutes').format("HH")) && moment($('#txtTargetDate').val()).isSame(moment(SubmitTime.split(' ')[0]))) {
+
+                                        RevType = "Upward Revision";
+                                        RevHour = index;
+                                        TimeCheck = true;
+                                 //       return false;
+                                    }
+                                }
+                                $DTL += $(this).attr('tag') + '½' + $($(this).find('td')[1]).html() + '½' + $($(this).find('td')[2]).html() + '½' + $($($(this).find('td')[5]).find('input')[0]).val() + '½' + $($($(this).find('td')[7]).find('input')[0]).val() + '½' + vFuel + '½' + SCH_10_ID +'│';
+                            }
+
+                        } else //ADAC
+                        {
+                            if ($.trim($($(this).find('td')[1]).html()) == "") {
+                                vFuel = " ";
+                            }
+                            else {
+                                vFuel = $(this).find("td:eq(7)").find("select#txtFuel").find("option:selected").text().trim();
+                                SCH_10_ID = $(this).find("td:eq(7)").find("select#txtFuel").find("option:selected").val();
+
+                               // vFuel = s.split('½')[1];
+
+                            }
+
+
+                            if ($($(this).find('td')[1]).find('input').length > 0) {
+                                if ($.trim($($(this).find('td')[5]).find('input').val()) == "") {
+                                    bIsAllInputs = false;
+                                    thisCtrl = $($(this).find('td')[5]).find('input');
+                                }
+                                else {
+                                    if (index <= parseInt(moment(SubmitTime).add(ADAC_Min, 'minutes').format("HH")) && moment($('#txtTargetDate').val()).isSame(moment(SubmitTime.split(' ')[0]))) {
+                                        TimeCheck = true;
+                                        RevType = "Adjustment";
+                                        RevHour = index;
+                                    //    return false;
+
+                                    }
+                                    $DTL += $(this).attr('tag') + '½' + $($($(this).find('td')[1]).find('input')[0]).val() + '½' + $($($(this).find('td')[2]).find('input')[0]).val() + '½' + $($($(this).find('td')[5]).find('input')[0]).val() + '½' + vFuel + '½' + $.trim($($(this).find('td')[6]).html()) + '½' + $($($(this).find('td')[8]).find('input')[0]).val() + '½' + SCH_10_ID + '│';
+                                }
+                            }
+                            else {
+                                if ($.trim($($(this).find('td')[5]).find('input').val()) == "") {
+                                    bIsAllInputs = false;
+                                    thisCtrl = $($(this).find('td')[5]).find('input');
+                                }
+                                else {
+                                    if (index <= parseInt(moment(SubmitTime).add(ADAC_Min, 'minutes').format("HH")) && moment($('#txtTargetDate').val()).isSame(moment(SubmitTime.split(' ')[0]))) {
+                                        TimeCheck = true;
+                                        RevType = "Adjustment";
+                                        RevHour = index;
+                                    //    return false;
+
+                                    }
+                                    $DTL += $(this).attr('tag') + '½' + $.trim($($(this).find('td')[1]).html()) + '½' + $.trim($($(this).find('td')[2]).html()) + '½' + $($($(this).find('td')[5]).find('input')[0]).val() + '½' + vFuel + '½' + $.trim($($(this).find('td')[6]).html()) + '½' + $($($(this).find('td')[8]).find('input')[0]).val() + '½' + SCH_10_ID + '│';
+                                }
+
+                            }
+
+
+                        }
+
+                    });
+                }
+                if (bIsAllInputs == false && $DTL == "") {
+                    swal({
+                        title: "Error",
+                        text: "Enter all required inputs...!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $(thisCtrl).focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+                if (TimeCheck == false) {
+                    swal({
+                        title: "Error",
+                        text: "Invalid Time for submitting the "+ RevType +" for " + RevHour + "th hour!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK"
+                    });
+                    return false;
+                }
+
+                $DTL += '½';
+                $DTL = $DTL.replace('│½', '');
+                var fromdata = new FormData();
+                fromdata.append("vls", $data);
+                fromdata.append("dtl", $DTL);
+                fromdata.append("IPPTYPE", ippType);
+
+
+                swal({
+                    title: "Are you sure?",
+                    text: "Do you really want to Submit Record?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "Yes, Submit it!",
+                    closeOnConfirm: false
+                },
+                    function () {
+                        $('.sa-button-container').hide();
+                        $.ajax({
+                            type: "POST",
+                            url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                            data: fromdata,
+                            contentType: false,
+                            processData: false,
+                            success: function (response) {
+                                //
+                                //swal("Success!", "Record has been submitted Successfully.", "success");
+                                //
+                                debugger;
+                                var resArr = response.split('¼')
+                                if (resArr[0] == "1") {
+                                    swal(
+                                        "Success!",
+                                        "Record has been submitted Successfully.",
+                                        "success"
+                                    );
+                                    $('.sa-button-container').show();
+                                    $($('.btnCloseRDAC')[0]).click();
+                                }
+                                else if (resArr[0] == "2") {
+                                    $('.sa-button-container').show();
+                                    swal({
+                                        title: "Error Inserting Record",
+                                        text: resArr[1],
+                                        type: "error"
+                                    });
+                                }
+                                else {
+                                    // Do Nothing
+                                }
+                            }
+                        });
+
+                    }
+                );
+            });
+
+            $('body').off('change', '#ddlRevisionType');
+            $('body').on('change', '#ddlRevisionType', function (e) {
+                e.preventDefault();
+                LoadForNewByDAC();
+
+            });// End
+
+
+            $('body').off('focus', '.dtDateTime');
+            $('body').on('focus', '.dtDateTime', function () {
+                $(this).datetimepicker({
+                    format: 'DD-MMM-YYYY HH:mm'
+                });
+            });
+
+            $('body').off('click', '.btnCloseRDAC');
+            $('body').on('click', '.btnCloseRDAC', function (e) {
+                e.preventDefault();
+                var options = {};
+                $("#pageContainer").hide('slide', options, 300);
+                $.ajax({
+                    url: "/NPCC/DeclarationOfAvailCapacityList" + $(location).attr('search'),
+                    success: function (result) {
+                        var options = {};
+                        $('#pageContainer').html($(result).find('#pcontent').html());
+                        $("#pageContainer").show('slide', options, 500);
+                    }
+                });
+            });//End of edit click
+            $('body').off('change', '#ddlIPP');
+            $('body').on('change', '#ddlIPP', function (e) {
+                LoadVendorSites();
+            });// End of change
+            $('body').off('change', '#ddlSite');
+            $('body').on('change', '#ddlSite', function (e) {
+                LoaddllBlockFuel();
+            });// End of change
+
+            $('body').off('change', '#ddlBlock');
+            $('body').on('change', '#ddlBlock', function (e) {
+                if ($('#ddlBlock').val() != null || $('#ddlBlock').val() != undefined) {
+                    FuelTyp = $('#ddlBlock').val().split('½')[1];
+                    $('#txtCapacity , #txtDependableCapacity').val($('#ddlBlock').val().split('½')[2]);
+                    $('#txtPowerPolicy').val($('#ddlBlock').val().split('½')[3]);
+                }
+                else {
+                    $('#txtFuel').val('');
+                }
+            });// End of
+
+            $(function () {
+                debugger;
+                if ($('.btnCloseRDAC').attr('tag') == "0") {
+                    LoadForNewByDAC();
+                }
+                else {
+                    LoadVendorSitesAndDetails();
+                }
+
+            });//End
+            function LoadVendorSites() {
+                var fromdata = new FormData();
+                fromdata.append('vls', '0½' + $('#ddlIPP').val());
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        $('#ddlSite').html(response);
+                        if ($('#ddlSite').val() != null || $('#ddlSite').val() != undefined) {
+                            LoaddllBlockFuel();
+                        }
+                        else {
+                            $('#ddlBlock').html('');
+                            // $('#txtFuel').val('');
+                            $('#txtPowerPolicy').val('');
+                        }
+                    }
+                });
+            }//END OF LOAD
+
+            //CREATE
+            function LoadForNewByDAC() {
+                debugger;
+                var fromdata = new FormData();
+
+                fromdata.append("vls", '5½' + $('#btnSaveRDAC').attr('dacid'));
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    async: false,
+                    processData: false,
+                    success: function (response) {
+                        debugger;
+                        var $dta = $.parseJSON(response);
+                        var arr3;
+                        var aval;
+
+                        $('#ddlIPP').html($dta[0].ddlIPP);
+                        $('#ddlSite').html($dta[0].ddlSite);
+                        $('#ddlBlock').html($dta[0].ddlBlock);
+                         FuelTyp = $dta[0].fuel;
+                        $('#txtCapacity , #txtDependableCapacity').val($dta[0].capacity);
+                        $('#txtPowerPolicy').val($dta[0].policiy);
+                        $('#txtIPPType').val($dta[0].LOOKUP_CODE);
+                        $('#txtTargetDate').val($dta[0].TARGET_DATE);
+                        DateTarget = ($dta[0].TARGET_DATE).split('-');
+                        RDAC_Up_Min = $dta[0].RDAC_Up_Min;
+                        RDAC_Down_Min = $dta[0].RDAC_Down_Min;
+                        ADAC_Min = $dta[0].ADAC_Min;
+                        if (ippType == "10") {
+                            $("#txtHOURLY_DATA_TYPE option[value='ADAC']").remove();
+                            //$("#ddlRevisionType option[value='Downward Revision']").remove();
+                        }
+                        //21-10-20
+                        var fromdata = new FormData();
+                        fromdata.append("vls", "26½" + $dta[0].TARGET_DATE);
+                        $.ajax({
+                            type: "POST",
+                            url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                            data: fromdata,
+                            contentType: false,
+                            async: false,
+                            processData: false,
+                            success: function (response) {
+                                DateCompare = response;
+
+                            }
+
+                        });
+                        debugger;
+                        var fromdata0 = new FormData();
+                        fromdata0.append('vls', '29½' + $('#ddlIPP').val());
+                        $.ajax({
+                            type: "POST",
+                            url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                            data: fromdata0,
+                            contentType: false,
+                            processData: false,
+                            async: false,
+                            success: function (response) {
+                                fDrp = response;
+                            }
+                        });
+                        var fromdata1 = new FormData();
+                        fromdata1.append('vls', '1½' + $('#ddlIPP').val() + "½" + $('#ddlSite').val());
+                        $.ajax({
+                            type: "POST",
+                            url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                            data: fromdata1,
+                            async: false,
+                            contentType: false,
+                            processData: false,
+                            success: function (response) {
+                                //fDrp = response;
+                                $('#ddlBlock').html(response);
+                                if ($('#ddlBlock').val() != null || $('#ddlBlock').val() != undefined) {
+                                }
+                                else {
+                                    $('#txtFuel, #txtPowerPolicy, #txtCapacity , #txtDependableCapacity ').val('');
+                                }
+                            }
+                        });
+                        var fromdata2 = new FormData();
+                        fromdata2.append('vls', '31½' + $('#ddlIPP').val());
+                        $.ajax({
+                            type: "POST",
+                            url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                            data: fromdata2,
+                            contentType: false,
+                            async: false,
+                            processData: false,
+                            success: function (response) {
+                                if (response == "0") {
+                                    $("#txtHOURLY_DATA_TYPE option[value='ADAC']").remove();
+                                }
+                            }
+                        });
+
+                        $('#tblHourlyData tbody').html('');
+                        var $dtl = $.parseJSON($dta[0].DTL)
+                        if ($dta[0].DAC != null) {
+                            var $dac = $.parseJSON($dta[0].DAC)
+                            arr3 = $dtl.map((item, i) => Object.assign({}, item, $dac[i]));
+                        }
+                        else {
+                            arr3 = $dtl;
+                        }
+
+                        if ($('#txtStatus').val() != "Draft") {
+                            $('#btnImprtPre').remove();
+                            $('#btnSubmitRDAC').remove();
+                            $('#btnSaveRDAC').remove();
+                            $('#ddlIPP').prop('disabled', true);
+                            $('#ddlSite').prop('disabled', true);
+                            $('#ddlBlock').prop('disabled', true);
+                            $('#txtTargetDate').prop('readonly', true);
+
+                            $.each(arr3, function (i, j) {
+                                if ($dta[0].DAC != null) {
+                                    aval = j.AVAILABILITY;
+                                }
+                                else {
+                                    aval = j.A2;
+                                }
+                                debugger;
+                                if (ippType == "10")
+                                {
+                                    $('#tblHourlyData tbody').append('<tr tag="' + j.WP_GC_HOURLY_DATA_DETAIL_ID_PK + '">\
+                                                            <td style="text-align:right;" tg="'+ j.TARGET_HOUR + '">' + j.TARGET_HOUR + '</td>\
+                                                            <td style="text-align:right;" tg="'+ j.HEAD + '">' + j.HEAD + '</td>\
+                                                            <td tg="'+ j.INFLOW + '">' + j.INFLOW + '</td>\
+                                                            <td>'+ aval + '</td>\
+                                                            <td>'+ j.LAST_REVISON + '</td>\
+                                                            <td>'+ j.REVISED_HEAD + '</td>\
+                                                            <td>'+ j.REVISED_INFLOW + '</td>\
+                                                            <td>'+ j.REVISED_AVAILABILITY + '</td>\
+                                                            <td tg="'+ j.REMARKS + '">' + j.REMARKS + '</td>\
+                                                            </tr>');
+                                }
+                                else
+                                {
+                                    $('#tblHourlyData tbody').append('<tr tag="' + j.WP_GC_HOURLY_DATA_DETAIL_ID_PK + '">\
+                                                            <td style="text-align:right;" tg="'+ j.TARGET_HOUR + '">' + j.TARGET_HOUR + '</td>\
+                                                            <td style="text-align:right;" tg="'+ j.AMBIENT_TEMPERATURE + '">' + Math.round(j.AMBIENT_TEMPERATURE) + '</td>\
+                                                            <td style="text-align:right;" tg="'+ j.AMBIENT_AVAILABILITY + '">' + j.AMBIENT_AVAILABILITY + '</td>\
+                                                            <td>'+ aval + '</td>\
+                                                            <td>'+ j.LAST_REVISON + '</td>\
+                                                            <td tg="'+ j.LAST_REVISON + '">' + j.LAST_REVISON + '</td>\
+                                                            <td><select class="form-control" id="txtFuel"><option selected disabled value="'+ j.SCH_10_ID + '">' + j.FUEL_TYPE + '</option>' + fDrp + '</td>\
+                                                            <td tg="'+ j.REMARKS + '">' + j.REMARKS + '</td>\
+                                                            </tr>');
+                                }
+
+                            });//End of Each
+                        } else {
+                            if (DateCompare == "EQUAL_TO" || DateCompare == "GREATER_THAN" || DateCompare == "LESS_THAN") {
+                                if ($('#txtPowerPolicy').val() == "1994" && $('#txtIPPType').val() == "20") {
+                                 //  $("#txtHOURLY_DATA_TYPE option[value='ADAC']").remove();
+
+                                    $('.forRDAC').show();
+                                    if ($('#ddlRevisionType').val()=="") {
+                                        $('#ddlRevisionType').html('<option value="Downward Revision">Downward Revision</option><option value="Upward Revision">Upward Revision</option>');}
+                                }
+                                if (ippType == "10") {
+                                    $("#txtHOURLY_DATA_TYPE option[value='ADAC']").remove();
+                                    //$("#ddlRevisionType option[value='Downward Revision']").remove();
+                                }
+                                $('#txtTargetDate').prop('readonly', true);
+                                $.each(arr3, function (i, j) {
+
+                                    if ($dta[0].DAC != null) {
+                                        aval = j.AVAILABILITY;
+                                    }
+                                    else {
+                                        aval = j.A2;
+                                    }
+                                    if ($('#txtHOURLY_DATA_TYPE').val() == "RDAC") { //at page load
+                                        $(".revTmp").hide();
+                                        if (ippType == "10") {
+                                            $('#tblHourlyData tbody').append('<tr tag = "' + j.WP_GC_HOURLY_DATA_DETAIL_ID_PK + '" >\                                        <td style="text-align:right;">' + j.TARGET_HOUR + '</td>\                                                            <td style="text-align:right;">' + j.HEAD + '</td>\
+                                                            <td style="text-align:right;">' + j.INFLOW + '</td>\
+                                                            <td style="text-align:right;">' + aval + '</td>\
+                                                 <td style="text-align:right;">'+ j.LAST_REVISON + '</td>\
+                                                <td style="text-align:right;"><input type="text" class="form-control clsFloat head" style="background-color: rgb(251, 255, 193)"></td>\
+                                                <td style="text-align:right;"><input type="text" class="form-control clsFloat inflow" style="background-color: rgb(251, 255, 193)" ></td>\
+                                                <td style="text-align:right;"><input type="text" class="form-control clsFloat abttt" style="background-color: rgb(251, 255, 193)"></td>\
+                                         <td ><input type="text" class="form-control" style="background-color: #fff" value="'+ j.REMARKS + '" ></td>\
+                                                         </tr>');
+                                        }
+                                        else {
+
+
+                                            if (j.AMBIENT_TEMPERATURE == null || j.AMBIENT_TEMPERATURE == "" && !(ippType == '20' && $('#txtPowerPolicy').val() == '1994')) {
+
+                                                $('#tblHourlyData tbody').append('<tr tag="' + j.WP_GC_HOURLY_DATA_DETAIL_ID_PK + '">\
+                                                                <td style="text-align:right;">'+ j.TARGET_HOUR + '</td>\
+                                                                <td style="text-align:right;" tg=""></td>\
+                                                                <td style="text-align:right;" tg="'+ j.AMBIENT_AVAILABILITY + '">' + j.AMBIENT_AVAILABILITY + '</td>\
+                                                                <td style="text-align:right;">'+ aval + '</td>\
+                                                                <td style="text-align:right;">'+ j.LAST_REVISON + '</td>\
+                                                                <td style="text-align:right;" tg=""><input type="text" class="form-control clsFloat abttt" value=""></td>\
+                                                                <td><select class="form-control" id="txtFuel" disabled style="background-color: rgb(238, 238, 238);"></td>\
+                                                                <td style="text-align:right;" tg=""><input type="text" class="form-control" value="'+ j.REMARKS + '"></td>\
+                                                                </tr>');
+                                            }
+                                            else {
+                                                var AMBIENT_TEMPERATURE = j.AMBIENT_TEMPERATURE == "" ? "" : Math.round(j.AMBIENT_TEMPERATURE);
+                                                $('#tblHourlyData tbody').append('<tr tag="' + j.WP_GC_HOURLY_DATA_DETAIL_ID_PK + '">\
+                                                                <td style="text-align:right;">'+ j.TARGET_HOUR + '</td>\
+                                                                <td style="text-align:right;" tg="'+ AMBIENT_TEMPERATURE + '">' + AMBIENT_TEMPERATURE + '</td>\
+                                                                <td style="text-align:right;" tg="'+ j.AMBIENT_AVAILABILITY + '">' + j.AMBIENT_AVAILABILITY + '</td>\
+                                                                <td style="text-align:right;">'+ aval + '</td>\
+                                                                <td style="text-align:right;">'+ j.LAST_REVISON + '</td>\
+                                                                <td style="text-align:right;" tg=""><input type="text" class="form-control clsFloat abttt" value=""></td>\
+                                                                 <td><select class="form-control" id="txtFuel"><option selected disabled value="'+ j.SCH_10_ID + '">' + j.FUEL_TYPE + '</option>' + fDrp + '</td>\
+                                                                <td style="text-align:right;" tg=""><input type="text" class="form-control" value="'+ j.REMARKS + '"></td>\
+                                                                </tr>');
+
+                                            }
+                                        }
+
+                                        if (DateCompare == "EQUAL_TO") {
+
+
+                                            if ($('#txtPowerPolicy').val() == "1994" && $('#txtIPPType').val() == "20") {
+                                              //  $("#txtHOURLY_DATA_TYPE option[value='ADAC']").remove();
+                                                //$('#ddlRevisionType').html('<option value="Downward Revision">Downward Revision</option><option value="Upward Revision">Upward Revision</option>');
+                                                $('.forRDAC').show();
+                                                if ($('#ddlRevisionType').val() == "") {
+                                                    $('#ddlRevisionType').html('<option value="Downward Revision">Downward Revision</option><option value="Upward Revision">Upward Revision</option>');
+                                                }
+                                            }
+                                            if (ippType == "10") {
+                                                $("#txtHOURLY_DATA_TYPE option[value='ADAC']").remove();
+                                               // $("#ddlRevisionType option[value='Downward Revision']").remove();
+                                            }
+
+                                            if ($('#ddlRevisionType').val() == "Upward Revision") {
+                                                var fromdata = new FormData();
+                                                fromdata.append("vls", '25½' + (parseInt(RDAC_Up_Min) / 60));
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                                                    data: fromdata,
+                                                    contentType: false,
+                                                    processData: false,
+                                                    success: function (response) {
+                                                        console.log(response);
+                                                        $('#tblHourlyData > tbody > tr').each(function (index, element) {
+                                                            var $tr = $(this);
+                                                            debugger;
+                                                            if (ippType == "10") {
+                                                                //if (index <= parseInt(response)) {
+                                                                //    $($tr.find('td')[1]).html('');
+                                                                //    $($tr.find('td')[2]).html('');
+                                                                //    $($tr.find('td')[3]).html('');
+                                                                //    $($tr.find('td')[4]).html('');
+                                                                //    $($tr.find('td')[5]).html('');
+                                                                //}
+                                                            }
+                                                            else {
+                                                                if (index <= parseInt(response)) {
+                                                                //    $($tr.find('td')[5]).html('');
+                                                                //    $($tr.find('td')[6]).html('');
+                                                                //    $($tr.find('td')[7]).html('');
+
+                                                               }
+                                                            }
+
+                                                        });
+                                                    }
+                                                });
+                                            }
+                                            else if ($('#ddlRevisionType').val() == "Downward Revision") {
+                                                var fromdata = new FormData();
+                                                fromdata.append("vls", '25½' + (parseInt(RDAC_Down_Min) / 60));
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                                                    data: fromdata,
+                                                    contentType: false,
+                                                    processData: false,
+                                                    success: function (response) {
+                                                        console.log(response);
+                                                        $('#tblHourlyData > tbody > tr').each(function (index, element) {
+                                                            var $tr = $(this);
+
+                                                                if (index <= parseInt(response))
+                                                                {
+                                                                    //$($tr.find('td')[5]).html('');
+                                                                    //$($tr.find('td')[6]).html('');
+                                                                    //$($tr.find('td')[7]).html('');
+                                                                }
+
+                                                        });
+
+                                                    }
+                                                });
+
+                                            }
+                                        }
+
+                                    }
+                                    else { //ADAC
+                                        debugger;
+                                        $(".revTmp").show();
+                                        if (j.AMBIENT_TEMPERATURE == null || j.AMBIENT_TEMPERATURE == "" && !(ippType == '20' && $('#txtPowerPolicy').val() == '1994')) {
+
+                                            $('#tblHourlyData tbody').append('<tr tag="' + j.WP_GC_HOURLY_DATA_DETAIL_ID_PK + '">\
+                                                                <td style="text-align:right;">'+ j.TARGET_HOUR + '</td>\
+                                                                <td style="text-align:right;" tg=""></td>\
+                                                                <td style="text-align:right;" tg="'+ j.AMBIENT_AVAILABILITY + '">' + j.AMBIENT_AVAILABILITY + '</td>\
+                                                                <td style="text-align:right;">'+ aval + '</td>\
+                                                                <td style="text-align:right;">'+ j.LAST_REVISON + '</td>\
+                                                                <td style="text-align:right;" tg="" ><input type="text" class="form-control clsNumberWithNegativeValues abt" value=""></td>\
+                                                                <td tg="'+ j.LAST_REVISON + '">' + j.LAST_REVISON + '</td>\
+                                                                <td><select class="form-control" id="txtFuel" disabled style="background-color: rgb(238, 238, 238);"></td>\
+                                                               <td style="text-align:right;" tg=""><input type="text" class="form-control" value="'+ j.REMARKS + '"></td>\
+                                                                </tr>');
+
+
+
+                                        }
+                                        else {
+                                            var AMBIENT_TEMPERATURE = j.AMBIENT_TEMPERATURE == "" ? "" : Math.round(j.AMBIENT_TEMPERATURE);
+                                            $('#tblHourlyData tbody').append('<tr tag="' + j.WP_GC_HOURLY_DATA_DETAIL_ID_PK + '">\
+                                                                <td style="text-align:right;">'+ j.TARGET_HOUR + '</td>\
+                                                                <td style="text-align:right;" tg="'+ AMBIENT_TEMPERATURE + '">' + AMBIENT_TEMPERATURE + '</td>\
+                                                                <td style="text-align:right;" tg="'+ j.AMBIENT_AVAILABILITY + '">' + j.AMBIENT_AVAILABILITY + '</td>\
+                                                                <td style="text-align:right;">'+ aval + '</td>\
+                                                                <td style="text-align:right;">'+ j.LAST_REVISON + '</td>\
+                                                                <td style="text-align:right;" tg="" ><input type="text" class="form-control clsNumberWithNegativeValues abt" value=""></td>\
+                                                                <td tg="'+ j.LAST_REVISON + '" class="clsFloat abtt">' + j.LAST_REVISON + '</td>\
+                                                                <td><select class="form-control" id="txtFuel"><option selected disabled value="'+ j.SCH_10_ID + '">' + j.FUEL_TYPE + '</option> </td >\
+                                                                <td style="text-align:right;" tg=""><input type="text" class="form-control" value="'+ j.REMARKS + '"></td>\
+                                                                </tr>');
+                                        }
+                                        if (parseFloat(aval) != parseFloat(j.LAST_REVISON))
+                                        {
+                                            $('#tblHourlyData tbody').find("tr[tag=" + j.WP_GC_HOURLY_DATA_DETAIL_ID_PK +"]").find("td:eq(6)").attr('contenteditable', true);
+                                        }
+                                        var fromdata = new FormData();
+                                        fromdata.append("vls", '7½' + parseInt(ADAC_Min));
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                                            data: fromdata,
+                                            contentType: false,
+                                            processData: false,
+                                            success: function (response) {
+                                                if (DateCompare == "EQUAL_TO") {
+                                                    //$('#tblHourlyData > tbody > tr').each(function (index, element) {
+                                                    //    var $tr = $(this);
+                                                    //    if (index <= parseInt(response)) {
+                                                    //        $($tr.find('td')[5]).html('');
+                                                    //        $($tr.find('td')[6]).html('');
+                                                    //        $($tr.find('td')[7]).html('');
+                                                    //        $($tr.find('td')[8]).html('');
+
+                                                    //    }
+
+                                                    //});
+
+                                                }
+                                            },
+                                            error: function (e) { console.log(e) }
+                                        });
+                                        $('#ddlRevisionType').html('<option></option>');
+                                        $('.forRDAC').hide();
+                                    }
+
+                                });//End of Each
+                            }
+                            else if (DateCompare == "LESS_THAN")//Today and target Date are different
+                            {
+                          //      $('#btnImprtPre').remove();
+                          //      $('#btnSubmitRDAC').remove();
+                          //      $('#btnSaveRDAC').remove();
+                          //      $('#ddlIPP').prop('disabled', true);
+                          //      $('#ddlSite').prop('disabled', true);
+                          //      $('#ddlBlock').prop('disabled', true);
+                          //      $('#txtTargetDate').prop('readonly', true);
+                          ////1273      $('#txtHOURLY_DATA_TYPE').prop('disabled', true);
+
+                          //      $.each(arr3, function (i, j) {
+
+                          //          if ($dta[0].DAC != null) {
+                          //              aval = j.AVAILABILITY;
+                          //          }
+                          //          else {
+                          //              aval = j.A2;
+                          //          }
+
+                          //          $('#tblHourlyData tbody').append('<tr tag="' + j.WP_GC_HOURLY_DATA_DETAIL_ID_PK + '">\
+                          //                                  <td style="text-align:right;" tg="'+ j.TARGET_HOUR + '">' + j.TARGET_HOUR + '</td>\
+                          //                                  <td style="text-align:right;" tg="'+ j.AMBIENT_TEMPERATURE + '">' + Math.round(j.AMBIENT_TEMPERATURE) + '</td>\
+                          //                                  <td style="text-align:right;" tg="'+ j.AMBIENT_AVAILABILITY + '">' + j.AMBIENT_AVAILABILITY + '</td>\
+                          //                                  <td>'+ aval + '</td>\
+                          //                                  <td>'+ j.LAST_REVISON + '</td>\
+                          //                                  <td tg="'+ j.LAST_REVISON + '">' + j.LAST_REVISON + '</td>\
+                          //                                   <td tg="'+ FuelTyp + '">' + FuelTyp + '</td>\
+                          //                                  <td tg="'+ j.REMARKS + '">' + j.REMARKS + '</td>\
+                          //                                  </tr>');
+                          //      });//End of Each
+////////////////////////////////////LESS THAN CONDITION CHANGED STARTS
+
+
+////////////////////////////////////LESS THAN CONDITION CHANGED ENDS
+
+
+                            }
+                        }
+
+                    }
+                });
+            }
+            $('body').off('focusout', '.abt');
+            $('body').on('focusout', '.abt', function (event) {
+
+                var thisCtrl = $(this);
+
+                if ($(this).val() > 56 || $(this).val() < -25) {
+                    swal({
+                        title: "Error",
+                        text: "Enter temperature between (-25) - 56!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK"
+                    },
+                        function () {
+                            thisCtrl.val('');
+                            // $(thisCtrl.parent().next().find('.abtt')[0]).html('');
+                            // $(thisCtrl.parent().next().next().find('.abttt')[0]).val('');
+                            setTimeout(() => $(thisCtrl).focus(), 100);
+                        });
+                    return false;
+                }
+
+            });
+            $('body').off('change', '.abt');
+            $('body').on('change', '.abt', function () {
+                debugger;
+                var $control = $(this);
+                if ($(this).val() > 56 || $(this).val() < -25) {
+                    swal({
+                        title: "Error",
+                        text: "Enter temperature between (-25) - 56!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK"
+                    },
+                        function () {
+                            thisCtrl.val('');
+                            setTimeout(() => ($control).focus(), 100);
+                        });
+                    return false;
+                }
+                var $temprature = $control.val();
+                var FuelID = $(this).parent().next().next().find('#txtFuel option:selected').val();
+
+                var fromdata = new FormData();
+                fromdata.append('vls', '45½' + FuelID + "½" + $temprature);
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    async: false,
+                    success: function (response) {
+                        if (response != "" || response != null) {
+                            response = parseFloat(response).toFixed(3); //coming value is in KiloWatt - showing it in MegaWatt
+                            $($control.parent().next()).html(response);
+                         }
+                    }
+                });
+
+
+            });
+            $('body').off('focusout', '.abtt');
+            $('body').on('focusout', '.abtt', function () {
+                debugger;
+                var th = this;
+
+                if (Math.abs(((parseFloat($(this).text()) - parseFloat($(this).parent().find("td:eq(4)").text())) / parseFloat($(this).parent().find("td:eq(4)").text())) * 100) > 10)
+                {
+                    swal({
+                        title: "Error",
+                        text: "The Adjustment value entered MUST be Less than 10% of the Last Revision!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK"
+                    }, function () { setTimeout(() => $(th).focus(), 100); });
+                    return false;
+                    $(this).text(0);
+                }
+
+
+            });
+
+            $('body').off('change', '#txtFuel');
+            $('body').on('change', '#txtFuel', function () {
+                if ((ippCat == 20 && $('#txtPowerPolicy').val() != '1994') || (ippCat == 20 && $('#txtPowerPolicy').val() == '1994' && parseInt($temprature) > 0)) {
+                debugger;
+                var $control = $(this);
+                var $temprature = $control.parent().parent().find("td:eq(1)").text();
+
+                var FuelID = $control.val();
+
+                var fromdata = new FormData();
+                fromdata.append('vls', '45½' + FuelID + "½" + $temprature);
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    async: false,
+                    success: function (response) {
+                        if (response != "" || response != null) {
+                            response = parseFloat(response).toFixed(3); //coming value is in KiloWatt - showing it in MegaWatt
+                            $($control.parent().parent().find("td:eq(2)")).text(response);
+                            $($control.parent().parent().find("td:eq(5)")).children().val(response);
+
+
+                        }
+                    }
+                });
+            }
+
+            });//END OF CHANGE
+
+            function LoadVendorSitesAndDetails() {
+                var fromdata = new FormData();
+                fromdata.append("vls", '14½' + $('.btnCloseRDAC').attr('tag'));
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        debugger;
+                        var $dta = $.parseJSON(response);
+
+                        $('#txtHOURLY_DATA_TYPE').val($dta[0].HOURLY_DATA_TYPE);
+                        $('#txtStatus').val($dta[0].STATUS);
+                        $('#txtSubmitDate').val($dta[0].SUBMIT_DATE_TIME);
+                        $('#ddlRevisionType').val($dta[0].REVISION_TYPE);
+                        $('#ddlIPP').html($dta[0].ddlIPP);
+                        $('#ddlSite').html($dta[0].ddlSite);
+                        $('#ddlBlock').html($dta[0].ddlBlock);
+                        FuelTyp = $dta[0].fuel;
+                        $('#txtCapacity , #txtDependableCapacity').val($dta[0].capacity);
+                        $('#txtPowerPolicy').val($dta[0].policiy);
+                        if ($('#txtPowerPolicy') == "1994") {
+                            $('.pol1994').show();
+                        }
+                        $('#txtTargetDate').val($dta[0].TARGET_DATE);
+                        $('#txtINTIMATION_DATE_TIME').val($dta[0].INTIMATION_DATE_TIME);
+                        $('#txtSENDER_NAME').val($dta[0].SENDER_NAME);
+                        $('#txtSENDER_DESIGNATION').val($dta[0].SENDER_DESIGNATION);
+                        $('#txtSENDER_REMARKS').val($dta[0].SENDER_REMARKS);
+
+
+                        if ($('#txtStatus').val() == "Acknowledged") {
+                            $('.clsstar').hide();
+                            $('#txtRECEIVER_NAME').prop('readonly', true);
+                            $('#txtRECEIVER_DESIGNATION').prop('readonly', true);
+                            $('#txtRECEIVER_REMARKS').prop('disabled', true);
+                            $('#txtRECEIVER_NAME').val($dta[0].RECEIVER_NAME);
+                            $('#txtRECEIVER_DESIGNATION').val($dta[0].RECEIVER_DESIGNATION);
+                            $('#txtRECEIVER_REMARKS').val($dta[0].RECEIVER_REMARKS);
+                            $('#btnAcknowledgeRDAC').remove();
+                        }
+                        else {
+                            if ($($('.btnCloseRDAC')[0]).attr('conn') == "V") {
+                                $('.clsstar').hide();
+                            }
+                            $('#txtRECEIVER_NAME').val($('#txtRECEIVER_NAME').attr('value'));
+                            $('#txtRECEIVER_DESIGNATION').val($('#txtRECEIVER_DESIGNATION').attr('value'));
+                            $('#txtRECEIVER_REMARKS').val('');
+                        }
+
+
+
+
+                        $('#tblHourlyData tbody').html('');
+                        var $dtl = $.parseJSON($dta[0].DTL);
+                        var $Last = $.parseJSON($dta[0].LAST_AYMEN);
+                        var arr3 = $dtl.map((item, i) => Object.assign({}, item, $Last[i]));
+                        var TextBold = "";
+                        if ($('#txtStatus').val() != "Draft") {
+
+                         //   $('#txtHOURLY_DATA_TYPE').prop('disabled', true);
+                            $('#ddlRevisionType').prop('disabled', true);
+                            $('#txtINTIMATION_DATE_TIME,#txtTargetDate').css('background', '#eee');
+                            $('#txtINTIMATION_DATE_TIME').prop('disabled', true);
+                            $('#btnImprtPre').remove();
+                            $('#btnSubmitRDAC').remove();
+                            $('#btnSaveRDAC').remove();
+                            $('#ddlIPP').prop('disabled', true);
+                            $('#ddlSite').prop('disabled', true);
+                            $('#ddlBlock').prop('disabled', true);
+                            $('#txtTargetDate').prop('readonly', true);
+                            $('#txtINTIMATION_DATE_TIME').prop('readonly', true);
+                            $('#txtSENDER_NAME').prop('readonly', true);
+                            $('#txtSENDER_DESIGNATION').prop('readonly', true);
+                            $('#txtSENDER_REMARKS').prop('disabled', true);
+
+                            if ($('#txtHOURLY_DATA_TYPE').val() == 'ADAC') {
+                                $(".forRDAC").hide();
+                                $(".revTmp").show();
+                                 $.each(arr3, function (i, j) {
+                                     if (j.AMBIENT_TEMPERATURE == null || j.AMBIENT_TEMPERATURE == "" && !(ippType == '20' && $('#txtPowerPolicy').val() == '1994')) {
+                                        $('#tblHourlyData tbody').append('<tr tag="' + j.WP_GC_HOURLY_DATA_DETAIL_ID_PK + '">\
+                                                            <td style="text-align:right;" tg="'+ j.TARGET_HOUR + '">' + j.TARGET_HOUR + '</td>\
+                                                            <td style="text-align:right;" tg=""></td>\
+                                                            <td style="text-align:right;" tg="'+ j.AMBIENT_AVAILABILITY + '">' + j.AMBIENT_AVAILABILITY + '</td>\
+                                                            <td>'+ j.DAC + '</td>\
+                                                            <td>'+ j.aLAST_REVISON + '</td>\
+                                                            <td>'+ Math.round(j.REVISED_TEMPERATURE) + '</td>\
+                                                            <td tg="'+ j.LAST_REVISON + '">' + j.LAST_REVISON + '</td>\
+                                                            <td style="text-align:right;" tg=""></td>\
+                                                            <td tg="'+ j.LAST_REVISON + '">' + j.REMARKS + '</td>\
+                                                            </tr>');
+                                    }
+                                    else {
+                                        if (parseFloat(Math.round(j.AMBIENT_TEMPERATURE)) != parseFloat(Math.round(j.REVISED_TEMPERATURE)) && j.REVISED_TEMPERATURE != 0 ) {
+                                            TextBold = "font-weight:bold;background-color:#fef0e2;";
+                                        }
+                                        var x = Math.round(j.REVISED_TEMPERATURE);
+                                        if (j.REVISED_TEMPERATURE == 0) {
+                                            x = "";
+                                        }
+                                        $('#tblHourlyData tbody').append('<tr tag="' + j.WP_GC_HOURLY_DATA_DETAIL_ID_PK + '" style=' + TextBold +'>\
+                                                            <td style="text-align:right;" tg="'+ j.TARGET_HOUR + '">' + j.TARGET_HOUR + '</td>\
+                                                            <td style="text-align:right;" tg="'+ j.AMBIENT_TEMPERATURE + '">' + Math.round(j.AMBIENT_TEMPERATURE) + '</td>\
+                                                            <td style="text-align:right;" tg="'+ j.AMBIENT_AVAILABILITY + '">' + j.AMBIENT_AVAILABILITY + '</td>\
+                                                            <td>'+ j.DAC + '</td>\
+                                                            <td>'+ j.aLAST_REVISON + '</td>\
+                                                             <td>'+ x + '</td>\
+                                                            <td tg="'+ j.LAST_REVISON + '">' + j.LAST_REVISON + '</td>\
+                                                            <td tg = "'+ j.FUEL_TYPE + '" > ' + j.FUEL_TYPE + '</td >\
+                                                            <td tg="'+ j.REMARKS + '">' + j.REMARKS + '</td>\
+                                                            </tr>');
+                                        TextBold = "";
+
+                                    }
+                                });//End of Each
+
+                            }
+                            else //RDAC
+                            {
+                                $(".revTmp").hide();
+                                 $.each(arr3, function (i, j) {
+                                    if (parseFloat(j.aLAST_REVISON) != parseFloat(j.LAST_REVISON)) {
+                                        TextBold = "font-weight:bold;background-color:#fef0e2;";
+                                    }
+                                    if (ippType == "10")
+                                    {
+                                        $('#tblHourlyData tbody').append('<tr tag="' + j.WP_GC_HOURLY_DATA_DETAIL_ID_PK + '" style=' + TextBold + '>\
+                                                            <td style="text-align:right;" tg="'+ j.TARGET_HOUR + '">' + j.TARGET_HOUR + '</td>\                                                                                          <td>' + j.aHEAD + '</td>\
+                                                            <td>'+ j.aINFLOW + '</td>\
+                                                            <td tg="'+ j.aLAST_REVISON + '">' + j.aLAST_REVISON + '</td>\
+                                                            <td tg="'+ j.aLAST_REVISON + '">' + j.aLAST_REVISON + '</td>\
+                                                            <td tg="'+ j.HEAD + '">' + j.HEAD + '</td>\
+                                                            <td tg="'+ j.INFLOW + '">' + j.INFLOW + '</td>\
+                                                            <td tg="'+ j.LAST_REVISON + '">' + j.LAST_REVISON + '</td>\
+                                                            <td tg="'+ j.REMARKS + '">' + j.REMARKS + '</td>\
+                                                            </tr>');
+                                    } else {
+
+                                        if ((j.AMBIENT_TEMPERATURE == null || j.AMBIENT_TEMPERATURE == "") && !(ippType == '20' && $('#txtPowerPolicy').val() == '1994')) {
+                                            $('#tblHourlyData tbody').append('<tr tag="' + j.WP_GC_HOURLY_DATA_DETAIL_ID_PK + '" style=' + TextBold + '>\
+                                                            <td style="text-align:right;" tg="'+ j.TARGET_HOUR + '">' + j.TARGET_HOUR + '</td>\
+                                                            <td style="text-align:right;" tg=""></td>\
+                                                            <td style="text-align:right;" tg="'+ j.AMBIENT_AVAILABILITY + '">' + j.AMBIENT_AVAILABILITY + '</td>\
+                                                            <td>'+ j.DAC + '</td>\
+                                                            <td>'+ j.aLAST_REVISON + '</td>\
+                                                            <td tg="'+ j.LAST_REVISON + '">' + j.LAST_REVISON + '</td>\
+                                                            <td style="text-align:right;" tg=""></td>\
+                                                            <td tg="'+ j.REMARKS + '">' + j.REMARKS + '</td>\
+                                                            </tr>');
+                                        }
+                                        else {
+                                            debugger;
+                                            var AMBIENT_TEMPERATURE = !(j.AMBIENT_TEMPERATURE) ? "" : Math.round                             (j.AMBIENT_TEMPERATURE);
+                                            var AMBIENT_AVAILABILITY = !(j.AMBIENT_AVAILABILITY) ? "" : j.AMBIENT_AVAILABILITY;
+                                            $('#tblHourlyData tbody').append('<tr tag="' + j.WP_GC_HOURLY_DATA_DETAIL_ID_PK + '" style=' + TextBold + '>\
+                                                            <td style="text-align:right;" tg="'+ j.TARGET_HOUR + '">' + j.TARGET_HOUR + '</td>\
+                                                            <td style="text-align:right;" tg="'+ AMBIENT_TEMPERATURE + '">' + AMBIENT_TEMPERATURE + '</td>\
+                                                            <td style="text-align:right;" tg="'+ AMBIENT_AVAILABILITY+ '">' + AMBIENT_AVAILABILITY + '</td>\
+                                                            <td>'+ j.DAC + '</td>\
+                                                            <td>'+ j.aLAST_REVISON + '</td>\
+                                                            <td tg="'+ j.LAST_REVISON + '">' + j.LAST_REVISON + '</td>\
+                                                            <td tg = "'+ j.FUEL_TYPE + '" > ' + j.FUEL_TYPE + '</td >\
+                                                            <td tg="'+ j.REMARKS + '">' + j.REMARKS + '</td>\
+                                                            </tr>');
+                                        }
+                                    }
+                                    TextBold = "";
+                                });//End of Each
+
+                            }
+
+
+
+                        }
+
+                    }
+                });
+            }
+            function LoaddllBlockFuel() {
+                debugger;
+                var fromdata1 = new FormData();
+                fromdata1.append('vls', '29½' + $('#ddlIPP').val());
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                    data: fromdata1,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        fDrp = response;
+                    }
+                });
+                var fromdata = new FormData();
+                fromdata.append('vls', '1½' + $('#ddlSite').val() + "½" + $('#ddlIPP').val());
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        debugger;
+                        $('#ddlBlock').html(response);
+                        if ($('#ddlBlock').val() != null || $('#ddlBlock').val() != undefined) {
+                            FuelTyp = $('#ddlBlock').val().split('½')[1];
+                            $('#txtCapacity , #txtDependableCapacity').val($('#ddlBlock').val().split('½')[2]);
+                            $('#txtPowerPolicy').val($('#ddlBlock').val().split('½')[3]);
+                        }
+                        else {
+                            $('#txtPowerPolicy').val('');
+                        }
+                    }
+                });
+                var fromdata2 = new FormData();
+                fromdata2.append('vls', '31½' + $('#ddlIPP').val());
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                    data: fromdata1,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        if (response == "0")
+                        {
+                            $("#txtHOURLY_DATA_TYPE option[value='ADAC']").remove();
+                        }
+                    }
+                });
+            }
+            $('body').off('focusout', '.abttt');
+            $('body').on('focusout', '.abttt', function (event) {
+                debugger;
+                var $tr = $(this).parent().parent();
+                var th = this;
+                if ($(this).val() != "") {
+                if ($('#txtHOURLY_DATA_TYPE').val() == "RDAC") {
+                    if ($('#ddlRevisionType').val() == "Upward Revision") {
+
+
+                        if ($(this).val() <= parseFloat($tr.find("td:eq(4)").text())) {
+                            swal({
+                                title: "Error",
+                                text: "The Revised value entered MUST be greater than the Last Revision of Avalability.",
+                                type: "warning",
+                                showCancelButton: false,
+                                confirmButtonClass: "btn btn-danger",
+                                confirmButtonText: "OK"
+                            }, function () { setTimeout(() => $(th).focus(), 100); });
+                            return false;
+                        }
+                        if (ippType == "20") {
+                            if (parseFloat($tr.find("td:eq(2)").text()) != 0) {
+                                if ($(this).val() > parseFloat($tr.find("td:eq(2)").text())) {
+                                    swal({
+                                        title: "Error",
+                                        text: "The Revised value entered MUST NOT be greater than the Estimated Avalability.",
+                                        type: "warning",
+                                        showCancelButton: false,
+                                        confirmButtonClass: "btn btn-danger",
+                                        confirmButtonText: "OK"
+                                    }, function () { setTimeout(() => $(th).focus(), 100); });
+                                    return false;
+                                }
+                            }
+                        }
+
+
+                    }
+                    else if ($('#ddlRevisionType').val() == "Downward Revision") {
+                        if ($(this).val() >= parseFloat($tr.find("td:eq(4)").text())) {
+                            swal({
+                                title: "Error",
+                                text: "The Revised value entered MUST be less than the Last Revision of Avalability.",
+                                type: "warning",
+                                showCancelButton: false,
+                                confirmButtonClass: "btn btn-danger",
+                                confirmButtonText: "OK"
+                            }, function () { setTimeout(() => $(th).focus(), 100); });
+                            return false;
+                        }
+                        if (ippType == "20") {
+                            if (parseFloat($tr.find("td:eq(2)").text()) != 0) {
+                                if ($(this).val() > parseFloat($tr.find("td:eq(2)").text())) {
+                                    swal({
+                                        title: "Error",
+                                        text: "The Revised value entered MUST NOT be greater than the Estimated Avalability.",
+                                        type: "warning",
+                                        showCancelButton: false,
+                                        confirmButtonClass: "btn btn-danger",
+                                        confirmButtonText: "OK"
+                                    }, function () { setTimeout(() => $(th).focus(), 100); });
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+
+
+                }
+                else if ($('#txtHOURLY_DATA_TYPE').val() == "ADAC") {
+                }
+            }
+            });
+
+            function checkRevisionType() {
+
+                // e.preventDefault();
+                debugger;
+
+                if ($('#txtHOURLY_DATA_TYPE').val() == "ADAC") {
+//                    if ($('#ddlRevisionType').val() == "ADAC") {
+                    var fromdata = new FormData();
+                    fromdata.append("vls", '7½' + parseInt(ADAC_Min));
+                    $.ajax({
+                        type: "POST",
+                        url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                        data: fromdata,
+                        contentType: false,
+                        processData: false,
+                        success: function (response) {
+
+                            $('#tblHourlyData > tbody > tr').each(function (index, element) {
+                                var $tr = $(this);
+                                if (index <= parseInt(response)) {
+                                    $($tr.find('td')[5]).html('');
+                                    $($tr.find('td')[6]).html('');
+                                    $($tr.find('td')[7]).html('');
+
+                                }
+
+                            });
+                            //}
+                        }
+                    });
+                    if (ippType != 10) {
+                        $('#ddlRevisionType').html('<option></option>');
+                        $('.forRDAC').hide();
+                    }
+                }
+                else {
+                    $('#tblHourlyData > tbody > tr').each(function (index, element) {
+                        var $tr = $(this);
+                        $($tr.find('td')[5]).html('<input type="text" class="form-control" value="">');
+                        $($tr.find('td')[6]).html('<input type="text" class="form-control" value="">');
+
+                        $($tr.find('td')[1]).html($($tr.find('td')[1]).attr('tg'));
+                        $($tr.find('td')[2]).html($($tr.find('td')[2]).attr('tg'));
+                    });
+                    $('#ddlRevisionType').html('<option value="Downward Revision">Downward Revision</option><option value="Upward Revision">Upward Revision</option>');
+                    $('.forRDAC').show();
+                }
+
+            }
+
+            function getDateFormat(date) {
+
+                var dt = new Date(date);
+                dd = dt.getDate();
+                if (dd < 10) {
+                    dd = '0' + dd;
+                }
+                mn = dt.getMonth();
+                var month = new Array();
+                month[0] = "Jan";
+                month[1] = "Feb";
+                month[2] = "Mar";
+                month[3] = "Apr";
+                month[4] = "May";
+                month[5] = "Jun";
+                month[6] = "Jul";
+                month[7] = "Aug";
+                month[8] = "Sep";
+                month[9] = "Oct";
+                month[10] = "Nov";
+                month[11] = "Dec";
+
+
+                var n = month[mn];
+                yy = dt.getFullYear();
+
+                return dd + "-" + n + "-" + yy;
+
+            }
+        });
+        </script>
+    </div>

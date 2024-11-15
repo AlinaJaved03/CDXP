@@ -1,0 +1,856 @@
+﻿
+@{
+    ViewBag.Title = "Despatch Instruction";
+}
+<div id="pcontent">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff;"></i>
+                        <h6 class="panel-title txt-light">@ViewBag.Title</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                        @*<a class="pull-left inline-block close-panel" href="#" data-effect="fadeOut">
+                                <i class="zmdi zmdi-close"></i>
+                            </a>*@
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body">
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Header</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <table class="tblFrm">
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Power Producer<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control frm requiredFieldBGC" id="ddlDIF_IPP" required>
+                                            <option selected="selected" value="-1">Select</option>
+                                            @Html.Raw(@ViewBag.IPP)
+                                        </select>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Producer Site<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+
+                                        <select class="form-control frm requiredFieldBGC" id="ddlDIF_Site" required>
+                                            <option selected="selected" value="-1">Select</option>
+                                        </select>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Complex / Block / Unit<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control frm requiredFieldBGC" id="ddlDIF_CBF">
+                                            <option selected="selected" value="-1">Select</option>
+                                        </select>
+                                    </td>
+
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Fuel Type</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" class="form-control frm" readonly id="txtDIF_Fuel">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    @*<td style="width: 25%;">
+                                            <label for="Disconame">Type</label>
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <select class="form-control frm">
+                                                <option>Complex Wise</option>
+                                                <option>Block Wise</option>
+                                            </select>
+                                        </td>*@
+
+
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Power Policy</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" id="ddlDIF_PowerPolicy" class="form-control frm" readonly>
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Present State</label>
+                                    </td>
+                                    <td style="width: 25%;" colspan="3">
+                                        <input type="radio" name="PresentState" value="Running" />&nbsp;Running&nbsp;
+                                        <input type="radio" name="PresentState" value="Hot" />&nbsp;Hot&nbsp;
+                                        <input type="radio" name="PresentState" value="Warm" />&nbsp;Warm&nbsp;
+                                        <input type="radio" name="PresentState" value="Cold" />&nbsp;Cold&nbsp;
+                                    </td>
+
+
+                                </tr>
+                                @* <tr>
+                                        <td style="width: 25%;">
+                                            <label for="Disconame">Demand Type</label>
+                                        </td>
+                                        <td style="width: 25%;" colspan="3">
+                                            <input type="radio" name="DemandType" />&nbsp;Synch / Desynch&nbsp;
+                                            <input type="radio" name="DemandType" />&nbsp;Ramp-up/Ramp-down&nbsp;
+                                            <input type="radio" name="DemandType" />&nbsp;Emergency&nbsp;
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 25%;">
+                                            <label for="Disconame">Type of Ramp-up/Ramp-down</label>
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <select class="form-control frm">
+                                                <option disabled selected>--Select--</option>
+                                                <option>Fast</option>
+                                                <option>Normal</option>
+
+                                            </select>
+                                        </td>
+
+
+
+                                    </tr>*@
+
+
+
+
+
+
+
+                            </table>
+
+                            <div class="tab0">
+                                &nbsp;<div class="tab1">&nbsp;Despatch Instruction</div>
+                                <div class="tab2">&nbsp;</div>
+                            </div>
+
+
+
+                            <div style="margin-bottom: 20px;">
+                                <table class="tblFrm">
+                                    <tr>
+                                        <td style="width: 25%;">
+                                            <label for="Disconame">Notification Date & Time<span class="startColor"> *</span></label>
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <input id="txtDIF_NotifyDateTime" value="@ViewBag.currentDate" type="text" class="form-control frm dtDateTime requiredFieldBGC">
+                                            @*<div class="input-group date dtDateTime">
+
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>*@
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+
+
+                                    </tr>
+
+                                    <tr>
+                                        <td style="width: 25%;">
+                                            <label for="Disconame">Current Availability</label>
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <input type="text" id="txtDIF_currentAvailability" class="form-control frm" readonly>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 25%;">
+                                            <label>Demand Type<span class="startColor"> *</span></label>
+                                        </td>
+                                        <td colspan="2" style="width: 25%;">
+                                            <input class="rdCtrl" type="radio" name="rdDIF_DemandType" value="Sync" required /><span class="rdText"> Sync </span>
+                                            <input class="rdCtrl" type="radio" name="rdDIF_DemandType" value="Desync" /><span class="rdText"> Desync </span>
+                                            <input class="rdCtrl" type="radio" name="rdDIF_DemandType" value="Ramp Up/ Ramp Down" /><span class="rdText"> Ramp Up/ Ramp Down </span>
+                                            <input class="rdCtrl" type="radio" name="rdDIF_DemandType" value="Emergency" /><span class="rdText"> Emergency </span>
+                                        </td>
+                                    </tr>
+                                    <tr id="trDIF_SDDateTime" style="display:none;">
+                                        <td style="width: 25%;">
+                                            <label>Sync / Desync Date & Time<span class="startColor">*</span></label>
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <input id="txtDIF_SDDateTime" type="text" class="form-control frm dtDateTime requiredFieldBGC">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 25%;">
+                                            <label>Target Demand<span class="startColor"> *</span></label>
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <input type="text" id="txtDIF_targetDemand" style="display:inline-block;width:90%" class="form-control frm requiredFieldBGC clsAddComa">
+                                            <label style="display:inline-block;">MW</label>
+                                        </td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td style="width: 25%;">
+                                            <label>Target Date & Time<span class="startColor"> *</span></label>
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <input id="txtDIF_targetDateTime" type="text" class="form-control frm dtDateTime requiredFieldBGC">
+                                            @*<div class="input-group date dtDateTime">
+
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>*@
+                                        </td>
+
+                                    </tr>
+                                </table>
+                            </div>
+
+                            @*<div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button style="float:left;" disabled class="btn btn-info" type="button">
+                                                Calculate
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                </div>*@
+
+                            <table style="display:none;" class="tblFrm">
+                                @*<tr>
+                                        <td style="width: 25%;">
+                                            <label for="Disconame">Startup Type</label>
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <input id="ddlDIF_ST"  type="text" value="" class="form-control frm">
+                                        </td>
+
+                                    </tr>*@
+
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Target Time</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <div class="input-group date dtDateTime">
+                                            <input id="txtDIF_targetDateTime" type="text" class="form-control frm">
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </td>
+
+                                </tr>
+
+                                <tr style="display: none;">
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Intimation Sources</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="radio" />&nbsp;Telephone&nbsp;
+                                        <input type="radio" />&nbsp;Fax&nbsp;
+                                        <input type="radio" />&nbsp;Portal&nbsp;
+
+                                    </td>
+
+
+                                </tr>
+                            </table>
+
+
+
+
+                        </div>@*End Of Table*@
+
+
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Remarks</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <table class="tblFrm">
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Sender Name</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" id="txtDIF_senderName" value="" class="form-control frm">
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Sender Designation</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" id="txtDIF_senderDesg" value="" class="form-control frm">
+                                    </td>
+                                </tr>
+                            </table>
+                            <label>Sender Notes<span class="startColor"> *</span></label>
+                            <textarea cols="70" rows="6" maxlength="2000" class="requiredFieldBGC" id="prevTxtAreaRemarks" style="width: 100%;"></textarea>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-12">
+
+                                        <button style="float:left;" value="Submitted" class="btn btn-success" type="button" id="btnDIF_submit">
+                                            Submit
+                                        </button>
+
+                                        <button id="btnClose" style="float:left;" class="btn btn-default" type="button">
+                                            Close
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="tab0" style="display:none;">
+                            &nbsp;<div class="tab1">&nbsp;Power Producer Remarks</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+
+                        <div style="margin-bottom: 20px;display:none;">
+
+                            <table class="tblFrm">
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Receiver Name</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" value="" class="form-control frm">
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Receiver Designation</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" value="" class="form-control frm">
+                                    </td>
+                                </tr>
+                            </table>
+
+
+                            <textarea cols="70" rows="6" maxlength="2000" id="prevTxtAreaRemarks" style="width: 100%;"></textarea>
+
+
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-12">
+
+                                        <button style="float:left;" class="btn btn-success" type="button" id="btnDIF_Ack">
+                                            Acknowledge
+                                        </button>
+                                        <button style="float:left;" class="btn btn-info" type="button" id="btnDIF_Ack">
+                                            Achieve
+                                        </button>
+                                        <button id="btnClose" style="float:left;" class="btn btn-default" type="button">
+                                            Close
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            addComma(); //for now will be in current availability function when added.
+            var radioValue = '', isSDDateTimeVisible = false;
+            $('body').on('focus', ".dtDateTime", function () {
+                $(this).datetimepicker({
+                    format: 'DD-MMM-YYYY HH:mm'
+                });
+            });
+
+            $('input[type=radio][name=PresentState]').change(function () {
+                $('#ddlDIF_ST').val($("input[name='PresentState']:checked").val());
+            });
+
+
+            $('body').off('click', '#btnClose');
+            $('body').on('click', '#btnClose', function (e) {
+                e.preventDefault();
+                var options = {};
+                $("#pageContainer").hide('slide', options, 300);
+                $.ajax({
+                    url: "/NPCC/DespatchInstructionList" + $(location).attr('search'),
+                    success: function (result) {
+                        var options = {};
+                        $('#pageContainer').html($(result).find('#pcontent').html());
+                        $("#pageContainer").show('slide', options, 500);
+                    }
+                });
+            });//End of btnClose click
+
+            $("input[type='radio']").click(function (e) {
+                radioValue = $("input[name='rdDIF_DemandType']:checked").val();
+                if (radioValue.toLowerCase() == "sync") {
+                    $('#trDIF_SDDateTime').show();
+                    isSDDateTimeVisible = true;
+                }
+                else {
+                    $('#trDIF_SDDateTime').hide();
+                    isSDDateTimeVisible = false;
+                }
+            });
+
+            $('body').off('change', '#ddlDIF_IPP');
+            $('body').on('change', '#ddlDIF_IPP', function (e) {
+                e.preventDefault();
+                $('#ddlDIF_Site').html('<option selected="selected" value="-1">Select</option>');
+                $('#ddlDIF_PowerPolicy').val('');
+                $('#ddlDIF_CBF').html('<option selected="selected" value="-1">Select</option>');
+                $('#txtDIF_Fuel').val('');
+                if ($('#ddlDIF_IPP option:selected').val() != "-1") {
+                    LoadVendorSites();
+                }
+            });// End of change
+            $('body').off('change', '#ddlDIF_Site');
+            $('body').on('change', '#ddlDIF_Site', function (e) {
+                e.preventDefault();
+                $('#ddlDIF_PowerPolicy').val('');
+                $('#ddlDIF_CBF').html('<option selected="selected" value="-1">Select</option>');
+                $('#txtDIF_Fuel').val('');
+                if ($('#ddlDIF_Site option:selected').val() != "-1") {
+                    LoadBlockComplexFuels();
+                    LoadPowerPolicy();
+                }
+            });
+            $('body').off('change', '#ddlDIF_CBF');
+            $('body').on('change', '#ddlDIF_CBF', function (e) {
+                e.preventDefault();
+                $('#txtDIF_Fuel').val('');
+                if ($('#ddlDIF_CBF option:selected').val() != "-1") {
+                    $('#txtDIF_Fuel').val($('#ddlDIF_CBF option:selected').val().split('½')[1]);
+                }
+            });
+
+            $('body').on('focus', "#txtDIF_targetDemand", function () {
+                removeComma();
+            });
+
+            $('body').on('focusout', "#txtDIF_targetDemand", function () {
+                addComma();
+            });
+
+            $('body').off('change', '#txtDIF_targetDemand');
+            $('body').on('change', '#txtDIF_targetDemand', function (e) {
+                e.preventDefault();
+                var thisCtrl = $(this);
+                if (parseInt(thisCtrl.val()) > parseInt($('#txtDIF_currentAvailability').html())) {
+                    thisCtrl.val('');
+                    swal({
+                        title: "Warning",
+                        text: "Target demand should be less than or equal to current availability!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => thisCtrl.focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+                addComma();
+
+            });
+
+            $('body').off('keypress', '.clsAddComa');
+            $('body').on('keypress', '.clsAddComa', function (event) {
+                var keyCode = event.keyCode || event.which;
+                if (keyCode == 9) {
+                    event.preventDefault();
+                    // call custom function here
+                }
+                var $this = $(this);
+                if ((event.which != 46 || $this.val().indexOf('.') != -1) &&
+                    ((event.which < 48 || event.which > 57) &&
+                        (event.which != 0 && event.which != 8))) {
+                    event.preventDefault();
+
+                }
+
+                var text = $(this).val();
+                text = text.replace(/,/g, '');
+                if ((event.which == 46) && (text.indexOf('.') == -1)) {
+                    setTimeout(function () {
+                        if ($this.val().substring($this.val().indexOf('.')).length > 5) {
+                            $this.val($this.val().substring(0, $this.val().indexOf('.') + 5));
+                        }
+                    }, 1);
+                }
+
+                if ((text.indexOf('.') != -1) &&
+                    (text.substring(text.indexOf('.')).length > 4) &&
+                    (event.which != 0 && event.which != 8) &&
+                    ($(this)[0].selectionStart >= text.length - 4)) {
+                    event.preventDefault();
+                }
+
+            });
+
+            $('body').off("paste", '.clsAddComa');
+            $('body').on("paste", '.clsAddComa', function (e) {
+                var thisCtrl = $(this);
+                var text = e.originalEvent.clipboardData.getData('Text');
+                text = text.replace(/,/g, '');
+                if ($.isNumeric(text)) {
+                    if ((text.substring(text.indexOf('.')).length >= 5) && (text.indexOf('.') > -1)) {
+                        e.preventDefault();
+                        thisCtrl.val(text.substring(0, text.indexOf('.') + 5));
+                        thisCtrl.change();
+                    }
+                }
+                else {
+                    e.preventDefault();
+                    swal({
+                        title: "Invalid Input",
+                        text: "Please enter only numeric values!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => thisCtrl.focus(), 100)
+                        }
+                    });
+                }
+            });
+
+            $('body').off('click', '#btnDIF_submit');
+            $('body').on('click', '#btnDIF_submit', function (e) {
+                e.preventDefault();
+                removeComma();
+                var ctrl = $(this);
+                var isTrue = validations();
+                if (isTrue) {
+                    var fromdata = new FormData();
+                    fromdata.append("vls", '3½' + $('#ddlDIF_Site').val() + '½' + $('#ddlDIF_IPP option:selected').text() + '½' + $('#ddlDIF_CBF option:selected').text() + '½' + $('#txtDIF_Fuel').val() + '½' + $('#txtDIF_senderName').val() + '½' + $('#txtDIF_senderDesg').val() + '½' + $('#prevTxtAreaRemarks').val() + '½' + $('#txtDIF_targetDemand').val() + '½' + $('#txtDIF_targetDateTime').val() + '½' + $('#txtDIF_NotifyDateTime').val() + '½' + ctrl.val() + '½' + $('#ddlDIF_Site option:selected').text() + '½' + radioValue + '½' + $('#txtDIF_SDDateTime').val());
+                    $.ajax({
+                        type: "POST",
+                        url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                        data: fromdata,
+                        contentType: false,
+                        processData: false,
+                        success: function (response) {
+                            swal({
+                                title: "Submit Confirmation",
+                                text: "Do you want to submit this despatch instruction?",
+                                type: "warning",
+                                showCancelButton: true,
+                                confirmButtonClass: "btn btn-danger",
+                                confirmButtonText: "Continue"
+                            }).then((result) => {
+                                if (result.value) {
+                                    if (parseInt(response) > 0) {
+                                        swal({
+                                            title: "Despatch Instruction!",
+                                            text: "Despatch Instruction with demand no " + response + " has been " + ctrl.val().toLowerCase() + " successfully.",
+                                            type: "success",
+                                            showCancelButton: false,
+                                            showConfirmButton: false
+
+                                        });
+                                        var options = {};
+                                        $("#pageContainer").hide('slide', options, 300);
+                                        $.ajax({
+                                            url: "/NPCC/DespatchInstructionList" + $(location).attr('search'),
+                                            success: function (response) {
+                                                var options = {};
+                                                $('#pageContainer').html($(response).find('#pcontent').html());
+                                                $("#pageContainer").show('slide', options, 500);
+                                            }
+                                        });
+                                    }
+                                    else {
+                                        console.log(response);
+                                    }
+                                }
+                                else {
+                                    swal.close();
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+
+
+            function LoadPowerPolicy() {
+                var fromdata = new FormData();
+                fromdata.append("vls", '2½' + $('#ddlDIF_Site').val());
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        if (response) {
+                            $('#ddlDIF_PowerPolicy').val(response);
+                        }
+                    }
+                });
+            }//END OF LOAD
+
+            function LoadVendorSites() {
+                var fromdata = new FormData();
+                fromdata.append("vls", '0½' + $('#ddlDIF_IPP').val());
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        if (response) {
+                            $('#ddlDIF_Site').append(response);
+                            LoadBlockComplexFuels();
+                            LoadPowerPolicy();
+                        }
+                        // Load_ddlFuel();
+                    }
+                });
+            }//END OF LOAD
+            function LoadBlockComplexFuels() {
+                var fromdata = new FormData();
+
+                fromdata.append("vls", '1½' + $('#ddlDIF_IPP').val() + '½' + $('#ddlDIF_Site').val());
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        if (response) {
+                            $('#ddlDIF_CBF').append(response);
+                            $('#ddlDIF_CBF option').filter(function () { return $.trim($(this).text()) == 'Complex'; }).prop('selected', true);
+                            $('#ddlDIF_CBF').change();
+                            //$('#txtDIF_Fuel').val($('#ddlDIF_CBF option:selected').val().split('½')[1]);
+                        }
+                        // Load_ddlFuel();
+                    }
+                });
+            }
+
+            function validations() {
+                if ($('#ddlDIF_IPP').val() == '-1') {
+                    swal({
+                        title: "Error",
+                        text: "Please select power producer!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#ddlDIF_IPP').focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+                if ($('#ddlDIF_Site').val() == '-1') {
+                    swal({
+                        title: "Error",
+                        text: "Please select power producer site!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#ddlDIF_Site').focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+                if ($('#ddlDIF_CBF').val() == '-1') {
+                    swal({
+                        title: "Error",
+                        text: "Please select complex/block/unit!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#ddlDIF_CBF').focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+                if ($('#txtDIF_NotifyDateTime').val() == '') {
+                    swal({
+                        title: "Error",
+                        text: "Please enter notfication date & time!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#txtDIF_NotifyDateTime').focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+                if (radioValue == '') {
+                    swal({
+                        title: "Error",
+                        text: "Please select demand type!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#rdDIF_SDDateTime').focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+                if (isSDDateTimeVisible && $('#txtDIF_SDDateTime').val() == '') {
+                    swal({
+                        title: "Error",
+                        text: "Please enter sync / desync date & time!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#txtDIF_SDDateTime').focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+                if ($('#txtDIF_targetDemand').val() == '') {
+                    swal({
+                        title: "Error",
+                        text: "Please enter target demand!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#txtDIF_targetDemand').focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+                if ($('#txtDIF_targetDateTime').val() == '') {
+                    swal({
+                        title: "Error",
+                        text: "Please enter target date & time!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#txtDIF_targetDateTime').focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+                if ($('#prevTxtAreaRemarks').val() == '') {
+                    swal({
+                        title: "Error",
+                        text: "Please enter remarks!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#prevTxtAreaRemarks').focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+                return true;
+            }
+
+            function removeComma() {
+                $('.clsAddComa').each(function (index, element) {
+                    var $val = $(this).val().replace(/,/g, '');
+                    $(this).val($val);
+                });
+            }
+            function addComma() {
+                $('.clsAddComa').each(function (index, element) {
+                    var $val = $(this).val().replace(/,/g, '');
+                    $val = numberWithCommas($val);
+                    $(this).val($val);
+                });
+            }
+            function numberWithCommas(x) {
+                // return x.toString().replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                x = x.toString();
+                if (x % 1 == 0) {
+                    if (x.indexOf(".") < 0) {
+                        x = x.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                        x += ".0000";
+                    } else {
+                        x = x.replace('.0000', '').replace('.000', '').replace('.00', '').replace('.0', '');
+                        x = x.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                        x += ".0000";
+
+                    }
+                } else {
+                    var index = x.indexOf(".");
+                    var p1 = x.substring(0, index);
+                    p1 = p1.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                    var p2 = x.substring(index);
+                    p2 = p2 + "0000";
+                    p2 = p2.substring(0, 5);
+                    x = p1 + p2;
+                }
+                return x;
+            }
+
+        });
+
+
+    </script>
+    @*<script type="text/javascript">
+            $(document).ready(function () {
+                alert("hello world...!");
+            });
+        </script>*@
+</div>
+

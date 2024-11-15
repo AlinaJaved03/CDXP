@@ -1,0 +1,661 @@
+﻿@{
+    ViewBag.Title = "Plant Event";
+}
+<div id="pcontent">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff;"></i>
+                        <h6 class="panel-title txt-light">@ViewBag.Title</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+
+
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body">
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Search</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <table class="tblFrm">
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="ddlIPP_Cat">IPP Category<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control requiredFieldBGC Ipp" id="ddlIPP_Cat" required>
+                                            @Html.Raw(@ViewBag.IPP)
+                                        </select>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Generation Company</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select id="ddlIPP" class="form-control srch"></select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="ddlSite">Site </label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control srch" id="ddlSite"></select>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Block / Complex / Unit<span class="startColor">*</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control frm srch requiredFieldBGC" id="ddlBlock" required></select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Power Policy</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" id="txtPowerPolicy" class="form-control" readonly>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="ddlStatus">Status </label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select id="ddlStatus" class="form-control srch">
+                                            <option value="%">All</option>
+                                            <option value="Draft">Draft</option>
+                                            <option value="Submitted">Submitted</option>
+                                            <option value="Acknowledged">Acknowledged</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                @*<tr>*@
+                                @*<td>
+                                            <label for="txtFromDate">From Date </label>
+                                        </td>
+                                        <td>
+                                            <input id="txtFromDate" type="text" class="form-control srch dtDate" />
+                                        </td>
+                                        <td>
+                                            <label for="txtToDate">To Date </label>
+                                        </td>
+                                        <td>
+                                            <input id="txtToDate" type="text" class="form-control srch dtDate" />
+                                        </td>
+                                    </tr>*@
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Event Type<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control frmAck srch requiredFieldBGC" id="forNPCC_ddlPEF_Event" required>
+                                            <option value="%">All</option>
+                                            <option>Desync</option>
+                                            <option>Sync</option>
+                                            <option>Supply Failure</option>
+                                            <option>Supply Restoration</option>
+                                            <option>Declaration Of PFO</option>
+                                            <option>Availability After PFO</option>
+                                            <option>Miscellaneous</option>
+                                        </select>
+                                    </td>
+                                    @*<td style="width: 25%;"></td>
+                                        <td style="width: 25%;"></td>*@
+
+                                    <td style="width: 25%;">
+                                        <label for="Disconame" id="OutageLabel">Type of Outage<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control frmAck srch requiredFieldBGC" id="forNPCC_ddlPEF_TypeOfOutage" required>
+                                            <option value="%">All</option>
+                                            <option>Forced Outage</option>
+                                            <option>Scheduled Outage</option>
+                                            <option>Supply Failure</option>
+                                            <option>Standby</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="txtFromDate">From Date </label>
+                                    </td>
+                                    <td><input id="txtFromDate" value="@ViewBag.fromDate" type="text" class="form-control srch dtDate" /></td>
+                                    <td><label for="txtToDate">To Date </label></td>
+                                    <td><input id="txtToDate" value="@ViewBag.toDate" type="text" class="form-control srch dtDate" /></td>
+                                </tr>
+                            </table>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 10 || ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 7 || ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 9)
+                                        {
+                                            <button id="btnCreatePEC" style="float:right;" class="btn btn-success" type="button">Create Event</button>
+                                        }
+                                        <button id="btnSearch" class="btn btn-info" type="button" style="margin-right: 10px;">
+                                            Search
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>@*END OF tab0*@
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Detail</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+
+
+                        <div style="margin-bottom:20px;">
+
+
+                            @*<div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button id="btnCreatePEC" style="float:left;" class="btn btn-success" type="button">
+                                                Create
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>*@
+
+
+                            <div id="tblContainer1"></div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //$(window).unload(function () {
+            //    clearInterval(LoadGridPEL);
+            //    alert('Happyy clear interval :D')
+            //});
+
+            //$(window).bind('beforeunload', function () {
+            //    clearInterval(LoadGridPEL);
+            //    alert('Happyy clear interval :D')
+            //});
+
+            var usertype = 0;
+            function CheckUser()
+            {
+
+                @if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 7)
+                    {
+                         @: usertype = 7;
+                    }
+                @if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 9)
+                    {
+                         @: usertype = 9;
+                    }
+                @if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 10)
+                    {
+                         @: usertype = 10;
+                    }
+                console.log(usertype);
+
+
+                //new comment 2/10
+                //if (usertype == 7)
+                //{
+                //    $("#btnCreatePEC").hide();
+                //}
+            }
+
+
+            $(function () {
+                LoadVendors();
+                LoadGridPEL();
+                CheckUser();
+                //var autoRefreshgrid = null;
+                //alert(location.pathname);
+                //autoRefreshgrid = setInterval(LoadGridPEL, 60000);
+
+
+            });
+
+            function LoadGridPEL() {
+                $("#tblContainer1").html('<div style="text-align:center;padding:20px;"><img alt="" src="../Content/img/DataLoader.gif" /></div>');
+
+                var fromdata = new FormData();
+                fromdata.append("vls", '10½');
+                var choice = {};
+                choice.url = '/NPCC/AjaxCallNext' + $(location).attr('search');
+                choice.type = "POST";
+                choice.data = fromdata;
+                choice.contentType = false;
+                choice.processData = false;
+                choice.success = function (response) {
+                    if ($('#tblJ1').hasClass('dataTable')) {
+                        $('#tblJ1').dataTable().fnDestroy();
+                    }
+                    $('#tblContainer1').html(response);
+                    $($('#tblJ1 thead tr th')[0]).css('width', '35px');
+                    $('#tblJ1 tbody tr').each(function (index, element) {
+                        $($(this).find('td')[0]).html(parseInt(index) + 1);
+                    });
+
+                    var $editoption = '<i class="vedit fa fa-folder-open" title = "Open" customtooltip = "Open" style = "font-size:20px;"></i>';
+
+                    $('#tblJ1 thead tr').append('<th style="width:35px;"></th>');
+                    $('#tblJ1 tbody tr').append('<td style="width: 35px;"><div class="controls center" style="text-align:center">\
+                                                                   '+ $editoption + '\
+                                                              </div ></td >');
+                    if (usertype == 7 || usertype == 9) {
+                        
+                        $('#tblJ1 thead tr').append('<th style="width:35px;"><div class="controls center" style="text-align:center"><i id="btnloadList" title="Refresh" class="fa fa-refresh" style="font-size:30px;color:green"></i></div ></th>');
+                        $('#tblJ1 tbody tr').append('<td style="width: 35px;"><div class="controls center" style="text-align:center"><i id="btnAckIPPList" title="Acknowledge" class="fa fa-check-square" title="Acknowledge"  style="font-size:20px;""></i></div ></td>');
+
+                    }
+
+                    $('#tblJ1').append('<tfoot></tfoot>');
+                    $('#tblJ1 tfoot').html($('#tblJ1 thead').html());
+                    $('#tblJ1 tfoot tr').attr("style", "border-bottom: 1px solid #c4c4c4;border-right: 1px solid #c4c4c4;");
+                    $('#tblJ1').addClass('dynamicTable');
+
+                    $('#tblJ1 tbody tr').each(function (index, element) {
+                        if ($($(this).find('td')[7]).html() == "Acknowledged") {
+                            $($(this).find('td')[10]).html('');
+                        }
+                        if ($($(this).find('td')[8]).html() == "" || $($(this).find('td')[8]).html() == "False") {
+                            $($(this).find('td')[8]).html('');
+                        }
+                        if ($($(this).find('td')[8]).html() == "True") {
+                            $($(this).find('td')[8]).html('YES');
+                        }
+                        if ($($(this).find('td')[9]).html() == "-1") {
+                            $($(this).find('td')[9]).html('');
+                        }
+                        if ($($(this).find('td')[10]).html() == "Acknowledged") {
+                            $($(this).find('td')[15]).html('');
+
+                        }
+                    });
+
+                    $('#tblJ1 tfoot th').each(function () {
+                        var title = $(this).text();
+                        if ($.trim(title) != "") {
+                            $(this).html('<input type="text" class="form-control" style="width:90%;" placeholder="' + title + '" />');
+                        }
+
+                    });
+
+                    var table = $('#tblJ1').DataTable({
+                        "aLengthMenu": [[10, 25, 50, 100, 150, 250, 500, -1], [10, 25, 50, 100, 150, 250, 500, "All"]],
+                        "iDisplayLength": -1,
+                        //"bSort": false,
+                        "order": [[0, "asc"]],
+                        "sPaginationType": "full_numbers",
+                        "bJQueryUI": false,
+                        "bAutoWidth": false,
+                        "bLengthChange": true,
+                        "fnInitComplete": function (oSettings, json) {
+                            $('.dataTables_filter>label>input').attr('id', 'search');
+                        }
+                    });
+                    table.columns().every(function () {
+                        var that = this;
+
+                        $('input', this.footer()).on('keyup change', function () {
+                            if (that.search() !== this.value) {
+                                that
+                                    .search(this.value)
+                                    .draw();
+                            }
+                        });
+                    });
+
+                    $('#tblJ1_length').append('<input type="image" name="btnExcel" id="btnExcel" title="Export to Excel" class="Grd" src="../Content/img/xcel.png" style="margin-left: 30px;margin-top:5px;border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnWord" id="btnWord" title="Export to Word" class="Grd" src="../Content/img/wrd.png" style="border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnPNG" id="btnPNG" title="Export to PNG" class="Grd" src="../Content/img/png.png" style="width: 17px;border-width:0px;">');
+
+                };
+                choice.error = function (err) {
+                    console.log(err.statusText);
+                };
+                $.ajax(choice);
+            }//End of Load Grid
+
+            $('body').off('click', '#btnCreatePEC');
+            $('body').on('click', '#btnCreatePEC', function (e) {
+                e.preventDefault();
+                var options = {};
+                $("#pageContainer").hide('slide', options, 300);
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/PlantEventsForm" + $(location).attr('search'),
+                    success: function (result) {
+                        var options = {};
+                        $('#pageContainer').html($(result).find('#pcontent').html());
+                        $("#pageContainer").show('slide', options, 500);
+                    }
+                });
+            });//End of btnCreatePEC click
+
+
+            $('body').off('click', '#btnAckIPPList');
+            $('body').on('click', '#btnAckIPPList', function (e) {
+                var $id = $(this).parent().parent().parent().attr('tag');
+                var fromdata = new FormData();
+                fromdata.append("vls", '110½' + $id);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+
+                        swal({
+                            title: "Plant Event!",
+                            text: "Plant event with event no " + response + " has been Acknowledged successfully.",
+                            type: "success",
+                            showCancelButton: true,
+                            showConfirmButton: false
+
+                        });
+                        LoadGridPEL();
+
+                    }
+                });
+            });//End of btnCreatePEC click
+
+
+            $('body').off('click', '#btnloadList');
+            $('body').on('click', '#btnloadList', function (e) {
+                LoadGridPEL();
+            });//End of btnCreatePEC click
+
+            // Start of Edit Click
+            $('body').off('click', '.vedit,.vview');
+            $('body').on('click', '.vedit,.vview', function (e) {
+                console.log("Edit Option hit !!");
+                e.preventDefault();
+                var $id = $(this).parent().parent().parent().attr('tag');
+                if ($(this).hasClass("vedit")) {
+                    $id += "½e";
+                }
+                else {
+                    $id += "½v";
+                }
+                console.log($id);
+                var options = {};
+                var fromdata = new FormData();
+                fromdata.append('vls', $id);
+                $("#pageContainer").hide('slide', options, 300);
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/PlantEventsForm" + $(location).attr('search'),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (result) {
+                        var options = {};
+                        $('#pageContainer').html($(result).find('#pcontent').html());
+                        $("#pageContainer").show('slide', options, 500);
+                    }
+                });
+            });
+            //datatable
+
+
+            $('body').off('change', '#ddlIPP');
+            $('body').on('change', '#ddlIPP', function (e) {
+
+                //LoaddllBlockFuel();
+                LoadVendorSites();
+            });// End of change
+
+            function LoaddllBlockFuel() {
+                var fromdata = new FormData();
+                fromdata.append('vls', '1½' + $('#ddlIPP').val());
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        $('#ddlBlock').html('<option value="%½%½%½%½%">All</option>');
+                        $('#ddlBlock').append(response);
+                        if ($('#ddlBlock').val() != null || $('#ddlBlock').val() != undefined) {
+                            //$('#txtFuel').val($('#ddlBlock').val().split('½')[1]);
+                            //$('#txtCapacity').val($('#ddlBlock').val().split('½')[2]);
+                        }
+                        else {
+                            $('#txtFuel').val('');
+                        }
+                    }
+                });
+            }
+            $('body').off('change', '#ddlIPP_Cat');
+            $('body').on('change', '#ddlIPP_Cat', function (e) {
+                LoadVendors();
+            });
+
+            function LoadVendors() {
+                var fromdata = new FormData();
+                fromdata.append('vls', '104½' + $('#ddlIPP_Cat').val());
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+
+                        //var fd = $.parseJSON(response);
+                        //$('#ddlIPP').val(fd[0].vendors);
+                        $('#ddlIPP').html(response);
+
+                        if ($('#ddlIPP').val() == null || $('#ddlIPP').val() == undefined || $('#ddlIPP').val() == "") {
+                            $('#ddlBlock','#txtFuel').html('');
+                            //$('#txtFuel, #txtCapacity, #txtDependableCapacity, #txtPowerPolicy').val('');
+                        }
+                        else {
+                            LoadVendorSites();
+                        }
+                    }
+                });
+
+            }
+
+            $('body').off('click', '#btnSearch');
+            $('body').on('click', '#btnSearch', function (e) {
+
+                //var isTrue = validations();
+                //if (isTrue) {
+                $("#tblContainer1").html('<div style="text-align:center;padding:20px;"><img alt="" src="../Content/img/DataLoader.gif" /></div>');
+
+                var fromdata = new FormData();
+
+                var fromdata = new FormData();
+                var vls = [];
+                $('.srch').each(function (index, element) {
+                    vls.push($(this).val());
+                });
+                var params = vls.join('½');
+
+                fromdata.append("vls", '1010½' + params);
+                var choice = {};
+                choice.url = '/NPCC/AjaxCallNext' + $(location).attr('search');
+                choice.type = "POST";
+                choice.data = fromdata;
+                choice.contentType = false;
+                choice.processData = false;
+                choice.success = function (response) {
+                    if ($('#tblJ1').hasClass('dataTable')) {
+                        $('#tblJ1').dataTable().fnDestroy();
+                    }
+                    $('#tblContainer1').html('');
+                    $('#tblContainer1').html(response);
+                    $($('#tblJ1 thead tr th')[0]).css('width', '35px');
+                    $('#tblJ1 tbody tr').each(function (index, element) {
+                        $($(this).find('td')[0]).html(parseInt(index) + 1);
+                    });
+
+                    var $editoption = '<i class="vedit fa fa-folder-open" title = "Open" customtooltip = "Open" style = "font-size:20px;"></i>';
+
+                    $('#tblJ1 thead tr').append('<th style="width:35px;"></th>');
+                    $('#tblJ1 tbody tr').append('<td style="width: 35px;"><div class="controls center" style="text-align:center">\
+                                                                   '+ $editoption + '\
+                                                              </div ></td ><td><div class="controls center" style="text-align:center"> ');
+                    if (usertype == 7 || usertype == 9) {
+                        $('#tblJ1 thead tr').append('<th style="width:35px;"><div class="controls center" style="text-align:center"><i id="btnloadList" title="Refresh" class="fa fa-refresh" style="font-size:30px;color:green"></i></div ></th>');
+                        $('#tblJ1 tbody tr').append('<td style="width: 35px;"><div class="controls center" style="text-align:center"><i id="btnAckIPPList" title="Acknowledge" class="fa fa-check-square" title="Acknowledge"  style="font-size:20px;"></i></td>');
+
+                    }
+
+                    $('#tblJ1').append('<tfoot></tfoot>');
+                    $('#tblJ1 tfoot').html($('#tblJ1 thead').html());
+                    $('#tblJ1 tfoot tr').attr("style", "border-bottom: 1px solid #c4c4c4;border-right: 1px solid #c4c4c4;");
+                    $('#tblJ1').addClass('dynamicTable');
+
+                    $('#tblJ1 tbody tr').each(function (index, element) {
+                        if ($($(this).find('td')[7]).html() == "Acknowledged") {
+                            $($(this).find('td')[10]).html('');
+                        }
+                        if ($($(this).find('td')[8]).html() == "" || $($(this).find('td')[8]).html() == "False") {
+                            $($(this).find('td')[8]).html('');
+                        }
+                        if ($($(this).find('td')[8]).html() == "True") {
+                            $($(this).find('td')[8]).html('YES');
+                        }
+                        if ($($(this).find('td')[9]).html() == "-1") {
+                            $($(this).find('td')[9]).html('');
+                        }
+                    });
+
+                    $('#tblJ1 tfoot th').each(function () {
+                        var title = $(this).text();
+                        if ($.trim(title) != "") {
+                            $(this).html('<input type="text" class="form-control" style="width:90%;" placeholder="' + title + '" />');
+                        }
+
+                    });
+
+                    var table = $('#tblJ1').DataTable({
+                        "aLengthMenu": [[10, 25, 50, 100, 150, 250, 500, -1], [10, 25, 50, 100, 150, 250, 500, "All"]],
+                        "iDisplayLength": -1,
+                        //"bSort": false,
+                        "order": [[0, "asc"]],
+                        "sPaginationType": "full_numbers",
+                        "bJQueryUI": false,
+                        "bAutoWidth": false,
+                        "bLengthChange": true,
+                        "fnInitComplete": function (oSettings, json) {
+                            $('.dataTables_filter>label>input').attr('id', 'search');
+                        }
+                    });
+                    table.columns().every(function () {
+                        var that = this;
+
+                        $('input', this.footer()).on('keyup change', function () {
+                            if (that.search() !== this.value) {
+                                that
+                                    .search(this.value)
+                                    .draw();
+                            }
+                        });
+                    });
+
+                    $('#tblJ1_length').append('<input type="image" name="btnExcel" id="btnExcel" title="Export to Excel" class="Grd" src="../Content/img/xcel.png" style="margin-left: 30px;margin-top:5px;border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnWord" id="btnWord" title="Export to Word" class="Grd" src="../Content/img/wrd.png" style="border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnPNG" id="btnPNG" title="Export to PNG" class="Grd" src="../Content/img/png.png" style="width: 17px;border-width:0px;">');
+
+                };
+                choice.error = function (err) {
+                    console.log(err.statusText);
+                };
+                $.ajax(choice);
+                //  }
+            });
+
+
+            //START OF LOAD VENDOR SITES
+
+            function LoadVendorSites() {
+                // debugger;
+                var fromdata = new FormData();
+                fromdata.append('vls', '0½' + $('#ddlIPP').val());
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        $('#ddlSite').html(response);
+
+                        if ($('#ddlSite').val() == null || $('#ddlSite').val() == undefined || $('#ddlSite').val() == "") {
+
+                            $('#ddlPEF_BLOCK').html('');
+                            $('#txtPowerPolicy').val('');
+                        }
+                        else {
+                            LoadBlockComplexFuels();
+                        }
+                    }
+                });
+            }
+            // Start of loading power producer sites block dropdown
+
+            function LoadBlockComplexFuels() {
+                $('#ddlPEF_BLOCK').html('');
+                var fromdata = new FormData();
+                fromdata.append("vls", '707' + '½' + $('#ddlIPP').val() + '½' + $('#ddlSite').val());
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        $('#ddlBlock').html(response);
+
+                        if ($('#ddlBlock').val() != null || $('#ddlPEF_BLOCK').val() != undefined || $('#ddlPEF_BLOCK').val() != "") {
+                            $('#ddlBlock option').filter(function () { return $.trim($(this).text()) == 'Complex'; }).prop('selected', true);
+                            $('#ddlBlock').change();
+                        }
+                        else {
+
+                        }
+                    }
+                });
+            }
+
+
+
+        });//END OF DOC READY
+
+
+    </script>
+    @*<script type="text/javascript">
+            $(document).ready(function () {
+                alert("hello world...!");
+            });
+        </script>*@
+</div>
+
+
+

@@ -1,0 +1,352 @@
+﻿@{
+    ViewBag.Title = "TESCO_Energy_MDI";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>TESCO ENERGY DELIVERED</h2>
+<div id="pcontent">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff"></i>
+                        <h6 class="panel-title txt-light">TESCO ENERGY DETAILS</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+
+
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body">
+
+
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;TESCO Energy and MDI Values Form</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <input type="hidden" class="form-control" id="abc" value="@ViewBag.dddlEnergyVal">
+                        <div>
+                            <table class="tblFrm" style="width: 90%;">
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Select Month</label>
+                                    </td>
+                                    <td style="width: 25%;"> <select class="form-control frm" id="dddlMonths"> @Html.Raw(@ViewBag.ddlMonths)</select></td>
+                                    <td style="width: 25%;"> </td>
+                                    <td style="width: 25%;"></td>
+                                </tr>
+                                <tr>
+
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">PESCO Energy Value</label>
+                                    </td>
+                                    <td style="width: 25%;"><input type="text" id="pesco-energy-val" readonly class="form-control frm clr" /></td>
+
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">PESCO MDI Value</label>
+                                    </td>
+                                    <td style="width: 25%;"><input type="text" id="pesco-mdi-val" readonly class="form-control frm clr" /></td>
+
+                                </tr>
+                                <tr>
+
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">TESCO Energy Value</label>
+                                    </td>
+                                    <td style="width: 25%;"><input type="text" id="energy-val" value="Enter Value" class="form-control frm clr" /></td>
+
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">TESCO MDI Value</label>
+                                    </td>
+                                    <td style="width: 25%;"><input type="text" id="mdi-val" value="Enter Value" class="form-control frm clr" /></td>
+
+                                </tr>
+
+                            </table>
+
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button id="btnCancel" class="btn btn-default" type="button">
+                                            Cancel
+                                        </button>
+                                        <button id="btnSaveEnergy" class="btn btn-info frm" type="button">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div style="margin-bottom: 20px;">
+                            <div id="tblContainer" style="overflow: auto;margin-left: 5px;margin-right: 5px"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            //called when key is pressed in textbox
+            $("#mdi-val").keypress(function (e) {
+                //if the letter is not digit then display error and don't type anything
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    //display error message
+                    $("#errmsg").html("Digits Only").show().fadeOut("slow");
+                    return false;
+                }
+            });
+            $("#energy-val").keypress(function (e) {
+                //if the letter is not digit then display error and don't type anything
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    //display error message
+                    $("#errmsg").html("Digits Only").show().fadeOut("slow");
+                    return false;
+                }
+            });
+
+
+            var NewPESCOEnergy;
+            var NewPESCOMDI;
+
+            $('body').off('change', '#dddlMonths');
+            $('body').on('change', '#dddlMonths', function (e) {
+                e.preventDefault();
+                    debugger;
+                var SelectedMON = $('#dddlMonths').val();
+
+                    var fromdata = new FormData();
+                    fromdata.append("vls", '28½' + SelectedMON);
+                    $.ajax({
+                        type: "POST",
+                        url: "/Home/AjaxCall" + $(location).attr("search"),
+                        data: fromdata,
+                        contentType: false,
+                        processData: false,
+                        success: function (response) {
+                            var finalValues = response.split('½');
+                            $('#energy-val').val(numberWithCommas(finalValues[0]));
+                            $('#mdi-val').val(numberWithCommas(finalValues[1]));
+                            $('#pesco-energy-val').val(numberWithCommas(finalValues[2]));
+                            $('#pesco-mdi-val').val(numberWithCommas(finalValues[3]));
+
+                            if (finalValues[2] != "") {
+                                NewPESCOEnergy = parseInt(finalValues[2]);
+                            }
+                            else {
+                                NewPESCOEnergy = finalValues[2];
+                            }
+                            if (finalValues[3] != "") {
+                                NewPESCOMDI = parseInt(finalValues[3]);
+                            }
+                            else {
+                                NewPESCOMDI = finalValues[3];
+                            }
+
+
+                            if (NewPESCOEnergy == "") {
+                                document.getElementById("energy-val").readOnly = true;
+                            }
+                            else if (NewPESCOEnergy != "") {
+                                document.getElementById("energy-val").readOnly = false;
+                            }
+
+                            if (NewPESCOMDI == 0) {
+                                document.getElementById("mdi-val").readOnly = true;
+                            }
+                            else if (NewPESCOMDI != "") {
+                                document.getElementById("mdi-val").readOnly = false;
+                            }
+
+
+                        }
+                    });
+
+
+                    return true;
+
+
+            });
+
+
+
+
+
+            $('body').off('click', '#btnSaveEnergy');
+            $('body').on('click',
+                '#btnSaveEnergy',
+                function (e) {
+                    debugger;
+                    e.preventDefault();
+                    var neo = parseInt(removeCommas($('#energy-val').val()));
+                    var mdi = parseInt(removeCommas($('#mdi-val').val()));
+                    var MON = $('#dddlMonths').val();
+
+                    if (neo == "" || isNaN(neo) || neo == 0) {
+                        swal({
+                            title: "Error",
+                            text: "TESCO energy value cannot be empty or Zero",
+                            type: "warning",
+                            showCancelButton: false,
+                            confirmButtonClass: "btn btn-danger",
+                            confirmButtonText: "OK",
+                            onAfterClose: () => {
+                                setTimeout(() => $('#txtDocNo').focus(), 100);
+                            }
+                        });
+                        return false;
+                    }
+                    else if (mdi == "" || isNaN(mdi) || mdi == 0) {
+                        swal({
+                            title: "Error",
+                            text: "TESCO MDI value cannot be empty or Zero",
+                            type: "warning",
+                            showCancelButton: false,
+                            confirmButtonClass: "btn btn-danger",
+                            confirmButtonText: "OK",
+                            onAfterClose: () => {
+                                setTimeout(() => $('#txtDocNo').focus(), 100);
+                            }
+                        });
+                        return false;
+                    }
+                    if (neo > NewPESCOEnergy) {
+                        swal({
+                            title: "Error",
+                            text: "Incorrect Energy Value Entered!",
+                            type: "warning",
+                            showCancelButton: false,
+                            confirmButtonClass: "btn btn-danger",
+                            confirmButtonText: "OK",
+                            onAfterClose: () => {
+                                setTimeout(() => $('#txtDocNo').focus(), 100);
+                            }
+                        });
+                        return false;
+                    }
+                    else if (mdi > NewPESCOMDI) {
+                        swal({
+                            title: "Error",
+                            text: "Incorrect MDI Value Entered!",
+                            type: "warning",
+                            showCancelButton: false,
+                            confirmButtonClass: "btn btn-danger",
+                            confirmButtonText: "OK",
+                            onAfterClose: () => {
+                                setTimeout(() => $('#txtDocNo').focus(), 100);
+                            }
+                        });
+                        return false;
+                    }
+                    else {
+
+                        swal({
+                            title: "Are you sure?",
+                            text: "Do you really want to Save Data?",
+                            type: "warning",
+                            showCancelButton: true,
+                            confirmButtonClass: "btn-danger",
+                            confirmButtonText: "Yes, Save It!",
+                            closeOnConfirm: false
+                        },
+                            function () {
+                                debugger;
+
+                                var fromdata = new FormData();
+                                fromdata.append("vls", '27½' + MON + '½' + neo + '½' + mdi);
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/Home/AjaxCall" + $(location).attr("search"),
+                                    data: fromdata,
+                                    contentType: false,
+                                    processData: false,
+                                    success: function (response) {
+                                        swal("Success!", "Record has been saved Successfully.", "success");
+                                        var options = {};
+                                        $("#pageContainer").hide('slide', options, 300);
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "/Home/TESCO_Energy_MDI" + $(location).attr('search'),
+                                            success: function (result) {
+                                                console.log(result);
+                                                var options = {};
+                                                $('#pageContainer').html($(result).find('#pcontent').html());
+                                                $("#pageContainer").show('slide', options, 500);
+                                            }
+                                        });
+                                    }
+                                });
+                                return true;
+                            }
+                        );
+
+                    }
+                });
+        });
+        function removeCommas(str) {
+            //debugger;
+            //while (str.search(",") >= 0) {
+            //    str = (str + "").replace(',', '');
+            //}
+
+            if (str != "") {
+                str = str.replace(/,/g, '');
+            }
+            return str;
+        }
+
+        function numberWithCommas(x) {
+            //return x.toString().replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            x = x.toString();
+            if (x % 1 == 0) {
+                if (x.indexOf(".") < 0) {
+                    x = x.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                    //x += ".0000";
+                } else {
+                    x = x.replace('.0000', '').replace('.000', '').replace('.00', '').replace('.0', '');
+                    x = x.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                    // x += ".0000";
+
+                }
+            } else {
+                var index = x.indexOf(".");
+                var p1 = x.substring(0, index);
+                p1 = p1.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                //var p2 = x.substring(index);
+                //p2 = p2 + "0000";
+                //p2 = p2.substring(0, 5);
+                //x = p1 + p2;
+                x = p1;
+            }
+            return x;
+        }
+
+
+
+    </script>
+
+
+
+</div>
+
+

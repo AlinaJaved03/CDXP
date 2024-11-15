@@ -1,0 +1,654 @@
+﻿@{
+    ViewBag.Title = "User Access";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link href="https://cdn.materialdesignicons.com/4.4.95/css/materialdesignicons.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<div id="pcontent">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff;"></i>
+                        <h6 class="panel-title txt-light">@ViewBag.Title</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+
+
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                        @*<a class="pull-left inline-block close-panel" href="#" data-effect="fadeOut">
+                                <i class="zmdi zmdi-close"></i>
+                            </a>*@
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body" style="min-height: 300px;">
+                        @*====Body Start===*@
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Granting Access</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div>
+
+
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                @*<span class="panel-title txt-dark" style="color:black; font-weight:bold;">Granting Access </span>
+                                    <hr style="border-width:1px; margin-bottom:10px;">
+                                    <br>*@
+
+
+
+                                <div>
+                                    <table class="table" id="tableUserAccess" style="width:65%;border-collapse:separate; border-spacing:0 15px; margin-left: auto; margin-right: auto;">
+                                        <thead>
+
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <label style=" margin-top: 16px;margin-right: 50px; float:right">Select User <span style="color:red">*</span></label>
+                                                </td>
+                                                <td>
+                                                    <select class="form-control frm" id="UserDrp" style="width: 52%; background-color: rgb(251, 255, 193);">
+                                                        <option value="-1" style="background-color:white">Select</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                    <br><br>
+                                </div>
+
+                                <div>
+
+                                    <table class="tablesaw table-bordered table-hover table " data-tablesaw-mode="swipe" id="tbl_ipp_ofUser" style="width: 97%; margin-left: auto;margin-right: auto;">
+                                        <thead>
+                                            <tr>
+                                                <th id="org" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist" style="width: 553px;">
+                                                    IPP Name
+                                                </th>
+                                                <th id="org" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist" style="width: 313px;">
+                                                    Site
+                                                </th>
+                                                <th id="org" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist" style="width: 117px;">
+                                                    Inquiry Rights
+                                                </th>
+
+                                                <th id="org" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist" style="width: 117px;">
+                                                    Historic Data Rights
+                                                </th>
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist" style="width: 117px;">
+                                                    Is Assigned
+                                                </th>
+                                                <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist" style="width: 151px; text-align: center;">
+                                                    Action
+                                                </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody id="UserAccessData"></tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                            @*<div class="tab0">
+                                    &nbsp;<div class="tab1">&nbsp;User Access Form</div>
+                                    <div class="tab2">&nbsp;</div>
+                                </div>*@
+                            <div>
+
+                            </div>
+                            @*====Body End=====*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var SUser_ID;
+        var userTypeIdM;
+        var Token = "";
+        var userID = 0;
+        var SiteSelID = 0;
+        var vendorId = 0;
+        var statusDrop = "";
+        var editFlag = 0;
+        var myTable;
+
+        $(document).ready(function () {
+
+            debugger;
+
+            // if (SUser_ID == 1) { //Admin User
+            var data = @Html.Raw(@ViewBag.Useraccess);
+
+        tHead = $("#tbl_ipp_ofUser").html();
+
+        if ($("#UserDrp").hasClass('selectized')) {
+            $("#UserDrp")[0].selectize.destroy();
+        }
+        //$("#UserDrp").selectize();
+        $("#UserDrp").val("-1");
+
+        if (!String.prototype.includes) {
+            String.prototype.includes = function (search, start) {
+                'use strict';
+                if (typeof start !== 'number') {
+                    start = 0;
+                }
+
+
+                if (start + search.length > this.length) {
+                    return false;
+                } else {
+                    return this.indexOf(search, start) !== -1;
+                }
+            };
+
+        }
+
+
+        // var $select = $("#UserDrp").selectize();
+        //var selectize = $select[0].selectize;
+        var options;
+        if (data != null && data != "") {
+            //options = JSON.parse(data)
+
+            $(data).each(function (index, option) {
+                // selectize.addOption({ value: option.UserId, text: option.Name });
+                $('#UserDrp').append('<option value="' + option.UserId + '" style="background-color:white">' + option.Name + '</option>');
+            });
+        }
+
+
+        $('select#UserDrp').change(function () {
+            $("#UserAccessData").html('');
+            //$.each($("#UserDrp option:selected"), function(){
+            userID = $(this).val();
+            //});
+            //if (userID > -1){
+            if ($.isNumeric(userID) && userID != "-1") {
+
+
+                //20/09/19
+
+                $('#tbl_ipp_ofUser').DataTable().clear().destroy();
+                $('#tbl_ipp_ofUser').html('');
+                $('#tbl_ipp_ofUser').html(tHead);
+
+                $.ajax
+                    ({
+                        type: "GET",
+                        url: "/Adminstration/GetIPPAndSites",
+                        dataType: 'json',
+                        //headers: {
+                        //    "Token": Token
+                        //},
+                        beforeSend: function () {
+                            $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+                        },
+                        complete: function () {
+                            $.unblockUI();
+                        },
+                        success: function (data) {
+
+                            var options;
+
+                            var siteId = '';
+                            var vendorName = '';
+                            var siteName = '', s = '';
+                            var address_line = '';
+                            if (data != null && data != "") {
+                                options = data;
+                                var len = options.length;
+                                console.log(data);
+                                $(options).each(function (index, option) {
+
+
+                                    siteId = option.vendor_site_id;
+                                    vendorName = option.vendor_new_name;
+                                    siteName = option.vendor_site_code;
+                                    address_line = option.address_line1;
+                                    if (index == 0) {
+                                        vendorId = option.vendor_id;
+                                        s += '<tr><td style="display:none;">' + vendorId + '</td><td vendorid="' + vendorId + '"><span  class="txt-dark weight-500">' + vendorName + '</span></td><td> <select class="drpDwn" style="width: 228px; height: 23px;background-color: rgb(251, 255, 193);" id="SiteDrp"><option value="-1" selected="selected" >Select the Site</option>';
+                                    }
+                                    if (vendorId == options[index].vendor_id) {
+
+                                        s += '<option value="' + option.vendor_site_id + '">' + option.address_line1 + ', ' + option.vendor_site_code + '</option>';
+                                    } else {
+                                        vendorId = option.vendor_id;
+                                        //	$("#UserAccessData").empty();
+                                        $("#UserAccessData").append(s + '</select></td><td class="chkTD" style=" text-align: center; background-color: white !important; border-color: white;"></td><td class="chkTD" style=" text-align: center; background-color: white !important; border-color: white;"></td><td class="chkTD" style=" text-align: center; background-color: white !important; border-color: white;"></td><td class="chkTD" style=" text-align: center; background-color: white !important; border-color: white;"></td></tr>');
+
+                                        s = '';
+                                        if (index < len && index != len - 1)
+                                            s += '<tr><td style="display:none;">' + vendorId + '</td><td vendorid="' + vendorId + '"><span  class="txt-dark weight-500">' + vendorName + '</span></td> <td> <select class="drpDwn" style="width: 228px; height: 23px;background-color: rgb(251, 255, 193);" id="SiteDrp"><option value="-1" selected="selected" >Select the Site</option><option value="' + option.vendor_site_id + '">' + option.address_line1 + ', ' + option.vendor_site_code + '</option>';
+                                        else if (index == len - 1) {
+                                            $("#UserAccessData").append('<tr><td style="display:none;">' + vendorId + '</td><td vendorid="' + vendorId + '"><span  class="txt-dark weight-500">' + vendorName + '</span></td> <td> <select class="drpDwn" style="width: 228px; height: 23px;background-color: rgb(251, 255, 193);" id="SiteDrp"><option value="-1" selected="selected" >Select the Site</option><option value="' + option.vendor_site_id + '">' + option.address_line1 + ', ' + option.vendor_site_code + '</option></select></td><td class="chkTD" style=" text-align: center; background-color: white !important; border-color: white;"></td><td class="chkTD" style=" text-align: center; background-color: white !important; border-color: white;"></td><td class="chkTD" style=" text-align: center; background-color: white !important; border-color: white;"></td><td class="chkTD" style=" text-align: center; background-color: white !important; border-color: white;"></td></tr>');
+                                        }
+                                    }
+
+                                });
+                            }
+
+                            var table = $('#tbl_ipp_ofUser').DataTable({
+                                "dom": 'lBfrtip',
+                                "aLengthMenu": [[15, 30, 50, 100, 150, 250, 500, -1], [15, 30, 50, 100, 150, 250, 500, "All"]],
+                                "iDisplayLength": 10,
+                                "bSortCellsTop": true,
+                                "pageLength": 15,
+                                "bProcessing": true,
+                                "sPaginationType": "simple_numbers",
+                                "bJQueryUI": false,
+                                "bAutoWidth": false,
+                                "bLengthChange": true,
+                                "paging": true,
+                                "aaSorting": [],
+                                "aoColumns": [
+                                    null,
+                                    null,
+                                    null,
+                                    {
+                                        "mDataProp": null, "defaultContent": "", "bSortable": false,
+
+                                    },
+                                    {
+                                        "mDataProp": null, "defaultContent": "", "bSortable": false,
+                                    },
+                                    {
+                                        "mDataProp": null, "defaultContent": "", "bSortable": false,
+
+                                    },
+                                    {
+                                        "mDataProp": null, "defaultContent": "", "bSortable": false,
+                                    }
+
+                                ]//,
+                                //buttons: [
+                                //    {
+                                //        extend: 'excel',
+                                //        text: 'Export to Excel',
+                                //        className: "buttonsToHide",
+                                //        exportOptions: {
+                                //            modifier: {
+                                //                page: 'current'
+                                //            },
+                                //            columns: ':not(.notExport)'
+                                //        }
+                                //    }
+                                //]
+
+                            });
+                            //table.buttons('.buttonsToHide').remove();
+
+
+                        },//end of success
+                        error: function (request, textStatus, errorThrown) {
+                            console.log(request);
+                        }
+                    });
+            }
+        });
+
+        $('#tbl_ipp_ofUser').on('draw.dt', function () {
+
+            $('select#SiteDrp').not($(this)).parent().parent().find('#SiteDrp').val('-1');
+            // $('.chkTD').not($(this)).parent().parent().find('.chkTD').remove();
+            $('.chkTD').not($(this)).remove();
+
+        });
+
+
+        $('body').on('change', 'select#SiteDrp', function () {
+            $(this).parent().parent().find('.chkTD').remove();
+            if ($(this).val() != "-1") {
+
+
+                $('select#SiteDrp').not($(this)).val('-1');//find('option:first-child').attr('selected',true);
+
+                $('.chkTD').not($(this)).remove();
+                SiteSelID = $(this).val();
+                console.log("THE SITE SELECTED HAS AN ID OF: " + SiteSelID);
+
+                vendorId = ($(this).closest('tr').find('td').first()).text();
+                console.log("First cell in column(Vendor ID): " + vendorId);
+
+
+                getUserPermissionDetails(this);
+            }
+
+        });
+
+        function getUserPermissionDetails(thisCtrl) {
+
+            //var GetIPPWithUserAccess = "https://cppa2.azurewebsites.net/v1/D_H_Interface/GetIPPWithUserAccess";
+            $.ajax
+                ({
+                    type: "GET",
+                    url: "/Adminstration/GetIPPAndUserAccess?UserId=" + userID + "&VendorSiteId=" + SiteSelID,
+                    dataType: 'json',
+                    //headers: {
+                    //    "Token": Token,
+                    //    "UserId": userID,
+                    //    "VendorSiteId": SiteSelID
+                    //},
+                    beforeSend: function () {
+                        $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+                    },
+                    complete: function () {
+                        $.unblockUI();
+                    },
+                    success: function (data) {
+
+                        if (data != null) {
+
+                            //data = JSON.parse(data);
+                            //console.log(dataP);
+                            if (data.length == 0) {
+
+                                var InqR = '<input type="checkbox" name="_inquiry" unchecked>';
+                                var HistoryR = '<input type="checkbox" name="_history" unchecked>';
+                                var AssignedR = '<input type="checkbox" name="_assigned" disabled unchecked>';
+                                if ($('option[value=' + SiteSelID + ']').parents('tr').find('chkTD').length > 0) {
+                                    $('option[value=' + SiteSelID + ']').parents('tr').find('chkTD').destroy();
+                                }
+                                $('option[value=' + SiteSelID + ']').parents('tr').append('<td class="chkTD" style="text-align:center">' + InqR + '</td> <td class="chkTD" style="text-align:center">' + HistoryR + '</td><td class="chkTD" style="text-align:center">' + AssignedR + '</td><td class="chkTD" style="text-align: center; background-color: white !important; border-color: white;"><button class="btn btn-success _Allow" style="border: none;color: white;padding: 0px 15px; font-size: 2px;cursor: pointer; margin:3px" ><i class="zmdi zmdi-plus" style="font-size:22px;"></i></button></td></tr>');
+                            }
+                            else {
+                                var InqR = data[0].InquiryRights;
+                                var HistoryR = data[0].HistoricalDataRights;
+                                var AssignedR = '';
+                                if (InqR == true) {
+                                    inqBox = '<input type="checkbox" name="_inquiry" checked>';
+                                }
+                                else {
+                                    inqBox = '<input type="checkbox" name="_inquiry" unchecked>';
+                                }
+
+                                if (HistoryR == true) {
+                                    HistoryBox = '<input type="checkbox" name="_history" checked>';
+                                } else {
+                                    HistoryBox = '<input type="checkbox" name="_history" unchecked>';
+                                }
+
+                                if (InqR == true || HistoryR == true) {
+
+                                    AssignedR = '<input type="checkbox" name="_assigned" disabled checked>';
+
+                                }
+                                else {
+                                    AssignedR = '<input type="checkbox" name="_assigned" disabled  unchecked>';
+
+                                }
+                                
+                                if ($('option[value=' + SiteSelID + ']').parents('tr').find('chkTD').length > 0) {
+                                            $('option[value=' + SiteSelID + ']').parents('tr').find('chkTD').destroy();
+                                     }
+
+                               
+
+                                $('option[value=' + SiteSelID + ']').parents('tr').append('<td class="chkTD" style="text-align:center">' + inqBox + '</td><td class="chkTD" style="text-align:center">' + HistoryBox + '</td><td class="chkTD" style="text-align:center">' + AssignedR + '</td><td class="chkTD" style="text-align: center; background-color: white !important; border-color: white;"><button class="btn btn-success _Update" style="border: none;color: white;padding: 4px 15px; font-size: 2px;cursor: pointer;"><i class="zmdi zmdi-check" style="font-size:18px;"></i></button><button class="btn btn-danger _DltPrm"  style="border: none;color: white;padding: 4px 15px; font-size: 2px;cursor: pointer;margin:3px;"><i class="zmdi zmdi-delete" style="font-size:18px;"></i></button></td></tr>');
+                            }
+                        }      // end of if data not "" (outer ajax)
+                    }, // end of success
+                    error: function (request, textStatus, errorThrown) {
+                        console.log(request);
+                    }
+                }); // outer ajax ended
+        }//end of Function
+
+        //} // end of function
+
+        $('body').on("click", "._Allow", function (e) {
+            e.preventDefault();
+            debugger;
+            var P1 = "0";
+            var P2 = "1";
+            var P3 = "1";
+            var P4 = "1";
+            var P5 = "0";
+
+            var inq_ = $("input[name='_inquiry']:checkbox");
+            var hist_ = $("input[name='_history']:checkbox");
+
+            if (inq_.is(":checked")) {
+                P1 = "1";
+            }
+            else {
+                P1 = "0";
+            }
+
+            if (hist_.is(":checked")) {
+                P5 = "1";
+            }
+            else {
+                P5 = "0";
+            }
+
+            if (P1 == "0") {
+                swal({
+                    title: "Error",
+                    text: "Inquiry rights are mandatory to be allowed !",
+                    type: "warning"
+                });
+                return false;
+
+            }
+            else {
+                var thisCtrl = this;
+                $.ajax
+                    ({
+                        type: "POST",
+                        url: "/Adminstration/PostAddUserAccess?UserId=" + userID + "&VendorSiteId=" + SiteSelID + "&VendorId=" + vendorId + "&InquiryRights=" + P1 + "&CreateRights=" + P2 + "&EditRights=" + P3 + "&DeleteRights=" + P4 + "&HistoricDataRights=" + P5,
+                        dataType: 'json',
+                        //headers: {
+                        //    "Token": Token,
+                        //    "VendorId": vendorId,
+                        //    "VendorSiteId": SiteSelID,
+                        //    "UserId": userID,
+                        //    "InquiryRights": P1,
+                        //    "CreateRights": P2,
+                        //    "EditRights": P3,
+                        //    "DeleteRights": P4,
+                        //    "HistoricDataRights": P5
+
+                        //},
+                        beforeSend: function () {
+                            $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+                        },
+                        complete: function () {
+                            $.unblockUI();
+                        },
+                        success: function (data) {
+                            if (data == "1") {
+                                swal("Access Granted!", "The Permission has been Added.", "success");
+                                //$('#SiteDrp option[value="-1"]').prop('selected',true);
+                                editFlag = 1;
+                                $(thisCtrl).parent().prev().children().prop('checked', true);
+
+                                $(thisCtrl).parent().html('<button class="btn btn-success _Update" style="border: none;color: white;padding: 4px 15px; font-size: 2px;cursor: pointer;"><i class="zmdi zmdi-check" style="font-size:18px;"></i></button><button class="btn btn-danger _DltPrm"  style="border: none;color: white;padding: 4px 15px; font-size: 2px;cursor: pointer;margin:3px;"><i class="zmdi zmdi-delete" style="font-size:18px;"></i></button>');
+                            }
+                            else {
+                                swal("Error", "Some error has occured while adding", "error");
+                            }
+
+                        },//end of success
+                        error: function (request, textStatus, errorThrown) {
+                            console.log(request);
+                        }
+                    });
+                //end of update ajax
+
+            }//else of P1 == "0" ...
+        }); // end of add button click event
+
+
+
+
+        $('body').on("click", "._Update", function (e) {
+            e.preventDefault();
+            var P1 = "0";
+            var P2 = "1";
+            var P3 = "1";
+            var P4 = "1";
+            var P5 = "0";
+            var inq = $("input[name='_inquiry']:checkbox");
+
+            var hist = $("input[name='_history']:checkbox");
+
+            if (inq.is(":checked")) {
+                P1 = "1";
+            }
+            else {
+                P1 = "0";
+            }
+
+
+            if (hist.is(":checked")) {
+                P5 = "1";
+            }
+            else {
+                P5 = "0";
+            }
+            if (P1 == "0") {
+                swal({
+                    title: "Error",
+                    text: "Inquiry rights are mandatory to be allowed !",
+                    type: "warning"
+                });
+                return false;
+
+            }
+            else {
+
+                //console.log(VENDORID,SITE_ID,USER_ID,P1,P2,P3,P4,P5);
+                $.ajax
+                    ({
+                        type: "PUT",
+                        url: "/Adminstration/PutUpdateUserAccess?UserId=" + userID + "&VendorSiteId=" + SiteSelID + "&VendorId=" + vendorId + "&InquiryRights=" + P1 + "&CreateRights=" + P2 + "&EditRights=" + P3 + "&DeleteRights=" + P4 + "&HistoricDataRights=" + P5,
+                        dataType: 'json',
+                        //headers: {
+                        //    "Token": Token,
+                        //    "VendorId": vendorId,
+                        //    "VendorSiteId": SiteSelID,
+                        //    "UserId": userID,
+                        //    "InquiryRights": P1,
+                        //    "CreateRights": P2,
+                        //    "EditRights": P3,
+                        //    "DeleteRights": P4,
+                        //    "HistoricDataRights": P5
+
+                        //},
+                        beforeSend: function () {
+                            $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+                        },
+                        complete: function () {
+                            $.unblockUI();
+                        },
+                        success: function (data) {
+                            if (data == "1") {
+                                swal("Updated!", "The Permission has been Updated.", "success");
+                                //$('#SiteDrp option[value="-1"]').prop('selected',true);
+                            }
+                            else {
+                                swal("Error", "Some error has occured white updating", "error");
+                            }
+
+                        },//end of success
+                        error: function (request, textStatus, errorThrown) {
+                            console.log(request);
+                        }
+                    });
+                //end of update ajax
+
+            }//else of P1 == "0" ...
+
+
+        }); // end of update button click event
+
+        $('body').on("click", "._DltPrm", function (e) {
+            e.preventDefault();
+            var thisCtrl = this;
+            debugger;
+            swal({
+                title: "Are you sure to Delete?",
+                text: "",
+                type: "info",
+                showCancelButton: true,
+                confirmButtonClass: "btn btn-danger",
+                confirmButtonText: "Yes",
+                cancelButtonText: "Cancel"
+            }, function () {
+                // if (result.value) {
+
+                //console.log(VENDORID,SITE_ID,USER_ID,P1,P2,P3,P4,P5);
+                $.ajax
+                    ({
+                        type: "DELETE",
+                        url: "/Adminstration/DeleteUserAccess?UserId=" + userID + "&VendorSiteId=" + SiteSelID + "&VendorId=" + vendorId,
+                        dataType: 'json',
+                        //headers: {
+                        //    "Token": Token,
+                        //    "VendorId": vendorId,
+                        //    "VendorSiteId": SiteSelID,
+                        //    "UserId": userID
+                        //},
+                        beforeSend: function () {
+                            $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+                        },
+                        complete: function () {
+                            $.unblockUI();
+                        },
+                        success: function (data) {
+                            if (data == "1") {
+                                swal("Deleted!", "The Permission has been deleted successfully.", "success");
+                                $(thisCtrl).parent().parent().find('#SiteDrp').val('-1');
+                                $(thisCtrl).parent().parent().find('.chkTD').remove();
+
+                                //$('#SiteDrp option[value="-1"]').prop('selected',true);
+
+                            }
+                            else {
+                                swal("Error", "Some error has occured while Deleting.", "error");
+                            }
+
+                        },//end of success
+                        error: function (request, textStatus, errorThrown) {
+                            console.log(request);
+                        }
+                    });
+                //end of delete ajax
+                //}
+            }
+            );// then-res function
+
+
+        }); // end of delete button click event
+
+
+                    //}if s_id =1, user is admin ends
+
+                });
+
+
+    </script>
+</div>

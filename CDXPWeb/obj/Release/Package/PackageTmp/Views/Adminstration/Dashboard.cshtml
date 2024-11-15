@@ -1,0 +1,814 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="pcontent">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff;"></i>
+                        <h6 class="panel-title txt-light">@ViewBag.Title</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+
+
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                        @*<a class="pull-left inline-block close-panel" href="#" data-effect="fadeOut">
+                                <i class="zmdi zmdi-close"></i>
+                            </a>*@
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body" style="min-height: 300px;">
+                        @*====Body Start===*@
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Search</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div>
+                            <table style="width: 80%;margin-left: 10%;margin-right: 10%;" id="tbl_Search">
+                                <thead></thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="width: 130px;">
+                                            <label>Select Type</label>
+                                        </td>
+                                        <td style="width:35%">
+                                            <select class="form-control frm" id="ddlType" required="">
+                                                <option value="0">Select</option>
+                                                <option value="4">Generation Company</option>
+                                                <option value="2">Technical User</option>
+                                                <option value="3">Finance User</option>
+                                            </select>
+                                        </td>
+                                        <td style="width: 130px;"></td>
+                                        <td style="width: 130px;">
+                                            <label>Select User</label>
+                                        </td>
+                                        <td style="width:35%">
+                                            <select class="form-control frm" id="ddlUser" required="">
+                                                <option value="0">Select</option>
+                                            </select>
+                                            <!--<button class="btn btn-success btn-anim" id="btnSearch"></button>-->
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>Submission From Date</label>
+                                        </td>
+                                        <td>
+                                            <input style="background-color:rgb(251, 255, 193);" type="text" class="form-control frm" id="fromDate" style="background-color:white;" readonly>
+                                        </td>
+                                        <td></td>
+                                        <td>
+                                            <label>Submission To Date</label>
+                                        </td>
+                                        <td>
+                                            <input style="background-color:rgb(251, 255, 193);" type="text" class="form-control frm" id="toDate" style="background-color:white;" readonly>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5" style="text-align:right;">
+                                            <button id="btnSearch" class="btn btn-default" style="margin-top: 3px;">Search</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Invoices</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="max-width: 100% !important;">
+                            <table class="table-bordered table-hover table borderWidth" style="display:none;" id="tbl_results">
+                                <thead> </thead>
+                                <tbody></tbody>
+                            </table>
+                            <table class="tablesaw table-bordered table-hover table borderWidth" style="display:none;" data-tablesaw-mode="swipe" id="tbl_tf">
+                                <thead>
+                                    <tr>
+                                        <th class="ippHeading" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist" style="display:none;">
+                                            IPP
+                                        </th>
+                                        <th id="org" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                                            Site
+                                        </th>
+                                        <th id="org" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                                            IPP Invoice No
+                                        </th>
+                                        <th id="org" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                                            Transaction No
+                                        </th>
+                                        <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                                            Submission Date
+                                        </th>
+                                        <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-sortable-default-col="" data-tablesaw-priority="3">
+                                            Invoice Type
+                                        </th>
+                                        <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="1">
+                                            Claimed Amount
+                                        </th>
+                                        <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="4">
+                                            Status
+                                        </th>
+                                        <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="4">
+                                        </th>
+                                        <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="4">
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+
+                        @*====Body End=====*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div id="myModal" title="Record History" style="display:none;">
+    <!--<div class="form-group">
+        <label class="control-label mb-10" for="attachmentFile">
+            Select File
+        </label>
+        <div class="input-group" style="width:100%;">
+            <input style="padding-bottom: 50px;" class="form-control" id="attachmentFile" name="attachmentFile" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf, image/*" type="file">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label mb-10" for="attachmentTitle">
+            Attachment Title *
+        </label>
+        <div class="input-group" style="width:100%;">
+            <input name="attachmentTitle" style="padding-right: 300px;" class="form-control" id="attachmentTitle" placeholder="Attachment Title" maxlength="50" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label mb-10" for="attachmentType">
+            Attachment Type
+        </label>
+        <div class="input-group" style="width:100%;">
+            <select id="attachmentType" disabled="disabled" style="width:100%;">
+                <option>File</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label mb-10" for="attachmentDesc">
+            Description
+        </label>
+        <div class="input-group" style="width:100%;">
+            <textarea style="resize: none;" maxlength="100" name="attachmentTitle" cols="50" class="form-control" id="attachmentDesc" placeholder="Description Title" rows="4"></textarea>
+        </div>
+    </div>
+    <div style="text-align:right;">
+        <button type="button" tg="0" typ="0" class="btn btn-info" id="btnUpload" name="btnUpload">
+            Attach File
+        </button>
+        <button type="button" id="btnCloseDialog" class="btn btn-default">
+            Close
+        </button>
+    </div>-->
+    <table class="table-bordered table-hover table borderWidth" data-tablesaw-mode="swipe" id="tbl_history">
+        <thead>
+        <tr>
+            <th id="org" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                User Name
+            </th>
+            <th id="org" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                Designation
+            </th>
+            <th id="org" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                Permission Level
+            </th>
+            <th id="org" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                Date/Time
+            </th>
+            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">
+                Action
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <div style="text-align:right;">
+        <button type="button" id="btnCloseDialog" class="btn btn-default">
+            Close
+        </button>
+    </div>
+</div>
+<script src="~/Content/plugins/moment/min/moment.min.js"></script>
+<script src="~/Content/vendors/bower_components/moment/min/datetime-moment.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if ($('.slide-nav-toggle').length>0) {
+                $('#toggle_nav_btn').click();
+            }
+                var TechnicalUsers ="@Html.Raw(@ViewBag.TechnicalUsers)";
+                var FninanceUsers ="@Html.Raw(@ViewBag.FninanceUsers)";
+                var IPPUsers = "@Html.Raw(@ViewBag.IPPUsers)";
+
+                $('#ddlType').on('change', function() {
+                    if ($(this).val()=="0") {
+                        $('#ddlUser').html('<option value="0">Select</option>');
+                        return false;
+                    }
+                    if ($(this).val() == "2") {
+                        $('#ddlUser').html(TechnicalUsers);
+                        return false;
+                    }
+                    if ($(this).val() == "3") {
+                        $('#ddlUser').html(FninanceUsers);
+                        return false;
+                    }
+                    if ($(this).val() == "4") {
+                        $('#ddlUser').html(IPPUsers);
+                        return false;
+                    }
+                });
+
+                $('body').off('click', '#btnSearch');
+                $('body').on('click', '#btnSearch', function (e) {
+                    e.preventDefault();
+                    if ($('#fromDate').val() == '' || $('#fromDate').val() == null) {
+                        swal({
+                            title: "Error",
+                            text: "Please select from date!",
+                            type: "warning",
+                            showCancelButton: false,
+                            confirmButtonClass: "btn btn-danger",
+                            confirmButtonText: "OK"
+                            //,onAfterClose: () => {
+                            //    setTimeout(() => $('#fromDate').focus(), 100)
+                            //}
+                        }, function () {
+                                setTimeout(() => $('#fromDate').focus(), 100);
+                        });
+                        return false;
+                    }
+                    else if ($('#toDate').val() == '' || $('#toDate').val() == null) {
+                        swal({
+                            title: "Error",
+                            text: "Please select to date!",
+                            type: "warning",
+                            showCancelButton: false,
+                            confirmButtonClass: "btn btn-danger",
+                            confirmButtonText: "OK"
+                            //,onAfterClose: () => {
+                            //    setTimeout(() => $('#toDate').focus(), 100)
+                            //}
+                        }, function() {
+                            setTimeout(() => $('#toDate').focus(), 100);
+                        });
+                        return false;
+                    }
+
+                    var $val = $('#ddlUser').val();
+                    var $type = $('#ddlType').val();
+                    var userTypeIdM = $('#ddlType').val();
+
+                    if ($val == 0 && $type != 4) {
+                        return false;
+                    }
+
+                    $.ajax
+                        ({
+                            type: "GET",
+                            //url: "https://cppa2.azurewebsites.net/v1/D_H_Interface/GetAllDiariesbyUser4Admin/" + encodeURIComponent($val + "½" + $('#fromDate').val() + "½" + $('#toDate').val()),
+                            url: "../Adminstration/GetAllDiariesbyUser4Admin/" + encodeURIComponent($val + "½" + $('#fromDate').val() + "½" + $('#toDate').val() + "½" + $type),
+                            dataType: 'json',
+                            //headers: {
+                            //    "Token": Token
+                            //},
+                            beforeSend: function () {
+                                $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+                            },
+                            complete: function () {
+                                $.unblockUI();
+                            },
+                            success: function (data) {
+                                //if (table) {
+                                //    table.destroy();
+                                //}
+                                //debugger;
+                                //var data = $.parseJSON(data);
+
+                                if ($('#ddlType').val() == '4') {
+                                    if ($('#tbl_results').hasClass('dataTable')) {
+                                        $('#tbl_results').dataTable().fnDestroy();
+                                    }
+                                    $('#tbl_results').html('<thead></thead><tbody></tbody>');
+                                    $('#tbl_tf').hide();
+                                    $('#tbl_results').show();
+                                    var transNo = '';
+                                    $.each(data, function (index, value) {
+                                        debugger;
+                                        var organizationid = value.ORGANIZATION_ID;
+                                        var vendorName = value.VENDOR_NAME
+                                        var site = value.ORGANIZATION;
+                                        var letterNo = value.VEN_INV_LETTER_NO;
+                                        var submissionDate = value.SUBMIT_DATE;
+                                        var InvoiceType = value.INVOICE_TYPE;
+                                        var Amount = value.TOTAL_CLAIM;
+                                        var invoiceFrom = value.INVOICE_PERIOD_FROM;
+                                        var invoiceTo = value.INVOICE_PERIOD_TO;
+                                        Amount = Amount.toString().replace(/\D-/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                                        Amount += ".0000";
+                                        var Status = value.STATUS;
+                                        var receivedDate = '', formType = '';
+                                        if (Status == "Received" || value.btnFlg == "0")
+                                            receivedDate = value.LAST_UPDATE_DATE;
+                                        var url = '', vUrl = '';
+                                        if (value.IS_DIFFERENTIAL == "Yes") {
+                                            url = "/Pages/DifferentialInvoice.aspx?typ=E&diarynumber=" + value.DIARY_HEADER_ID + "&vendorSiteId=" + value.ORGANIZATION_ID;
+                                            vUrl = "/Pages/DifferentialInvoice.aspx?typ=V&diarynumber=" + value.DIARY_HEADER_ID + "&vendorSiteId=" + value.ORGANIZATION_ID;
+                                            formType = 'Differential';
+                                        }
+                                        else if (value.IS_DIFFERENTIAL == "No" && (value.INVOICE_TYPE != 'Interest / Late Payment Charge' && value.INVOICE_TYPE != 'Pre Live Interest')) {
+                                            vUrl = "/Pages/MonthlyForm.aspx?typ=V&diarynumber=" + value.DIARY_HEADER_ID + "&vendorSiteId=" + value.ORGANIZATION_ID;
+                                            url = "/Pages/MonthlyForm.aspx?typ=E&diarynumber=" + value.DIARY_HEADER_ID + "&vendorSiteId=" + value.ORGANIZATION_ID;
+                                            formType = 'Monthly/Hourly';
+                                        }
+                                        else if (value.IS_DIFFERENTIAL == "I" || (value.IS_DIFFERENTIAL == "No" && (value.INVOICE_TYPE == 'Interest / Late Payment Charge' || value.INVOICE_TYPE == 'Pre Live Interest'))) {
+                                            url = "/Pages/InterestInvoice.aspx?typ=E&diarynumber=" + value.DIARY_HEADER_ID + "&vendorSiteId=" + value.ORGANIZATION_ID;
+                                            vUrl = "/Pages/InterestInvoice.aspx?typ=V&diarynumber=" + value.DIARY_HEADER_ID + "&vendorSiteId=" + value.ORGANIZATION_ID;
+                                            formType = 'Interest';
+                                        }
+
+                                        transNo = value.TransactionNumber;
+                                        if (transNo <= 0)
+                                            transNo = '';
+
+                                        if (Status != "Deleted") {
+                                            var color = '';
+                                            if (Status == "Received")
+                                                color = 'green';
+                                            else if (Status == "Submitted")
+                                                color = 'Orange';
+                                            else if (Status == "Withdraw")
+                                                color = 'gray';
+                                            else if (Status == "Draft")
+                                                color = 'black';
+                                            else if (Status == "Returned")
+                                                color = 'red';
+                                            else
+                                                color = '#0095eb';
+
+                                            if (value.btnFlg == "1") {
+                                                if (Status == "Draft") {
+                                                    $('#tbl_results>tbody').append('<tr><td><span class="txt-dark weight-500">' + vendorName + '</span></td><td><span class="txt-dark weight-500">' + site + '</span></td><td><span class="txt-dark weight-500">' + letterNo + '</span></td><td><span class="txt-dark weight-500"></span></td><td><span class="txt-dark weight-500"></span></td> <td><span class="txt-dark weight-500">' + InvoiceType + '</span></td><td><span class="txt-dark weight-500 pull-right"> ' + Amount + '</span></td><td><span style="color: ' + color + ';">' + Status + '</span></td><td><span class="txt-dark weight-500">' + formType + '</span></td><td><span style="color: red;"></span></td><td><center><a href="#" hrf="' + vUrl + '"><span title="View" class="zmdi zmdi-file" style="color: #0095eb;"></span></a></center></td><td><center><span title="Record History" class="zmdi zmdi-time-restore zmdi-hc-lg history" itemid="' + value.DIARY_HEADER_ID + '" style="color: #926f2f;cursor:pointer;"></span></center></td></tr>'); // 8-4-2018 add edit/update link by Ahmad							
+                                                }
+                                                else if (Status == "Returned") {
+                                                    $('#tbl_results>tbody').append('<tr><td><span class="txt-dark weight-500">' + vendorName + '</span></td><td><span class="txt-dark weight-500">' + site + '</span></td><td><span class="txt-dark weight-500">' + letterNo + '</span></td><td style="text-align: center;"><span class="txt-dark weight-500">' + transNo + '</span></td> <td><span data-sort="dd-MMM-yyyy HH:MM" class="txt-dark weight-500">' + submissionDate + '</span></td> <td><span class="txt-dark weight-500">' + InvoiceType + '</span></td><td><span class="txt-dark weight-500 pull-right"> ' + Amount + '</span></td><td><span style="color: ' + color + ';">' + Status + '</span></td><td><span class="txt-dark weight-500">' + formType + '</span></td><td><span style="color: red;"></span></td><td><center><a href="#" hrf="'  + vUrl + '"><span title="View" class="zmdi zmdi-file" style="color: #0095eb;"></span></a></center></td><td><center><span title="Record History" class="zmdi zmdi-time-restore zmdi-hc-lg history" itemid="' + value.DIARY_HEADER_ID + '" style="color: #926f2f;cursor:pointer;"></span></center></td></tr>'); // 8-4-2018 add edit/update link by Ahmad									
+                                                }
+                                                else {
+                                                    $('#tbl_results>tbody').append('<tr><td><span class="txt-dark weight-500">' + vendorName + '</span></td><td><span class="txt-dark weight-500">' + site + '</span></td><td><span class="txt-dark weight-500">' + letterNo + '</span></td><td style="text-align: center;"><span class="txt-dark weight-500">' + transNo + '</span></td> <td><span data-sort="dd-MMM-yyyy HH:MM" class="txt-dark weight-500">' + submissionDate + '</span></td> <td><span class="txt-dark weight-500">' + InvoiceType + '</span></td><td><span class="txt-dark weight-500 pull-right"> ' + Amount + '</span></td><td><span style="color: ' + color + ';">' + Status + '</span></td><td><span class="txt-dark weight-500">' + formType + '</span></td><td><span style="color: green;">' + receivedDate + '</span></td><td><center><a href="#" hrf="'  + vUrl + '"><span title="View" class="zmdi zmdi-file" style="color: #0095eb;"></span></a></center></td><td><center><span title="Record History" class="zmdi zmdi-time-restore zmdi-hc-lg history" itemid="' + value.DIARY_HEADER_ID + '" style="color: #926f2f;cursor:pointer;"></span></center></td></tr>'); // 8-4-2018 add edit/update link by Ahmad							
+                                                }
+                                            }
+                                            else {
+                                                if (transNo != '' && transNo > 0) {
+                                                    $('#tbl_results>tbody').append('<tr><td><span class="txt-dark weight-500">' + vendorName + '</span></td><td><span class="txt-dark weight-500">' + site + '</span></td><td><span class="txt-dark weight-500">' + letterNo + '</span></td><td style="text-align: center;"><span class="txt-dark weight-500">' + transNo + '</span></td> <td><span data-sort="dd-MMM-yyyy HH:MM" class="txt-dark weight-500">' + submissionDate + '</span></td> <td><span class="txt-dark weight-500">' + InvoiceType + '</span></td><td><span class="txt-dark weight-500 pull-right"> ' + Amount + '</span></td><td><span style="color: ' + color + ';">' + Status + '</span></td><td><span class="txt-dark weight-500">' + formType + '</span></td><td><span style="color: green;">' + receivedDate + '</span></td><td><center><a href="#" hrf="'  + vUrl + '"><span title="View" class="zmdi zmdi-file" style="color: #0095eb;"></span></a></center></td><td><center><span title="Record History" class="zmdi zmdi-time-restore zmdi-hc-lg history" itemid="' + value.DIARY_HEADER_ID + '" style="color: #926f2f;cursor:pointer;"></span></center></td></tr>'); // 8-4-2018 add edit/update link by Ahmad
+                                                }
+                                                else {
+                                                    $('#tbl_results>tbody').append('<tr><td><span class="txt-dark weight-500">' + vendorName + '</span></td><td><span class="txt-dark weight-500">' + site + '</span></td><td><span class="txt-dark weight-500">' + letterNo + '</span></td><td style="text-align: center;"><span class="txt-dark weight-500">' + transNo + '</span></td> <td><span data-sort="dd-MMM-yyyy HH:MM" class="txt-dark weight-500">' + submissionDate + '</span></td> <td><span class="txt-dark weight-500">' + InvoiceType + '</span></td><td><span class="txt-dark weight-500 pull-right"> ' + Amount + '</span></td><td><span style="color: ' + color + ';">' + Status + '</span></td><td><span class="txt-dark weight-500">' + formType + '</span></td><td><span style="color: green;">' + receivedDate + '</span></td><td></td><td></td></tr>'); // 8-4-2018 add edit/update link by Ahmad								
+                                                }
+                                            }
+                                        }
+                                    });//end of each loop
+
+
+                                    ///////////
+               
+                                    $('#tbl_results thead').append('<tr><th class="filterhead">\
+									IPP </th>\
+                					<th class="filterhead">\
+									Site </th>\
+									<th class="filterhead">\
+									Power Generator Invoice No </th>\
+									<th class="filterhead">\
+									Transaction No </th>\
+									<th class="filterhead">\
+									Submission Date </th>\
+									<th class="filterhead">\
+									Invoice Type </th>\
+									<th class="filterhead">\
+									Claimed Amount</th>\
+									<th class="filterhead">\
+									Final Status </th>\
+									<th class="filterhead">\
+									Form Type </th>\
+									<th class="filterhead" style="width:125px;">\
+									Received Date </th>\
+									<th>\
+									</th>\
+									<th>\
+									</th>\
+								</tr>');
+
+                                    $('#tbl_results thead').append('<tr><th class="filterhead">\
+									IPP </th>\
+									<th>\
+									Site </th>\
+									<th>\
+									Power Generator Invoice No </th>\
+									<th>\
+									Transaction No </th>\
+									<th>\
+									Submission Date </th>\
+									<th>\
+									Invoice Type </th>\
+									<th>\
+									Claimed Amount</th>\
+									<th>\
+									Status </th>\
+									<th>\
+									Form Type </th>\
+									<th>\
+									Received Date </th>\
+									<th>\
+									</th>\
+									<th>\
+									</th>\
+								</tr>');
+                                    $('#tbl_results thead tr:last').attr("style", "border-bottom: 1px solid #c4c4c4;border-right: 1px solid #c4c4c4;");
+                                    //$('#tbl_results').addClass('dynamicTable');
+                                    $('#tbl_results thead tr:last th').each(function () {
+                                        var title = this.innerText;
+                                        if ($.trim(title) != "") {
+                                            $(this).html('<input type="text" class="column_search" placeholder="Search ' + title + '" />');
+                                        }
+
+                                    });
+
+                                    $.fn.dataTable.moment('DD-MMM-YYYY HH:mm');
+                                    $.fn.dataTable.moment('DD-MMM-YYYY');
+                                    $.fn.dataTable.moment('DD-MMM-YY HH:mm');
+                                    $.fn.dataTable.moment('DD-MMM-YY');
+                                    table = $('#tbl_results').DataTable({
+                                        "sScrollX": "100%",
+                                        "aLengthMenu": [[10, 25, 50, 100, 150, 250, 500, -1], [10, 25, 50, 100, 150, 250, 500, "All"]],
+                                        "iDisplayLength": 10,
+                                        "bSortCellsTop": true,
+                                        "sPaginationType": "full_numbers",
+                                        "bJQueryUI": false,
+                                        "bAutoWidth": false,
+                                        "bLengthChange": true,
+                                        "fnInitComplete": function (oSettings, json) {
+                                            $('.dataTables_filter>label>input').attr('id', 'search');
+                                            $('.dataTables_filter>label>input').attr('placeholder', 'Search All');
+                                        },
+                                        columnDefs: [
+                                            { orderable: false, targets: [-1, -2] }
+                                        ],
+                                    });//.fnAdjustColumnSizing( true );                			
+
+                                    $(table.table().container()).on('keyup', ".column_search", function () {
+
+                                        table
+                                            .column($(this).parent().index())
+                                            .search(this.value)
+                                            .draw();
+                                    });
+                                    //var dWidth = screen.width - 180;
+                                    //dWidth += "px";
+                                    $('div.dataTables_wrapper').css('width','100%');
+                                    if (userTypeIdM == 2 || userTypeIdM == 3 || userTypeIdM == 1 || userTypeIdM == 16) {
+                                        stl = "";
+                                        $('#org').attr('style', '');
+                                        $('.ippHeading').show();
+                                    }
+                                    else {
+                                        stl = "style='display:none;";
+                                        $('#org').attr('style', 'display:none;');
+                                        $('.ippHeading').hide();
+                                    }
+                                }
+                                else {
+                                    if ($('#tbl_tf').hasClass('dataTable')) {
+                                        $('#tbl_tf').dataTable().fnDestroy();
+                                    }
+                                    $('#tbl_tf>tbody').html('');
+                                    $('#tbl_tf>thead').html('<tr>\
+						<th class="ippHeading" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist" style="display:none;">\
+						IPP </th>\
+						<th id="org" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist" >\
+						Site </th>\
+						<th id="org" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">\
+						Power Generator Invoice No</th>\
+						<th id="org" scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">\
+						Transaction No</th>\
+						<th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist">\
+						Submission Date</th>\
+						<th scope="col" data-tablesaw-sortable-col="" data-tablesaw-sortable-default-col="" data-tablesaw-priority="3">\
+						Invoice Type </th>\
+						<th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="1">\
+						Claimed Amount</th>\
+						<th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="4">\
+						Status </th>\
+						<th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="4">\
+						</th>\
+						<th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="4">\
+						</th>\
+					</tr>');
+
+                                    $('#tbl_tf').show();
+                                    $('#tbl_results').hide();
+                                    $.each(data, function (index, value) {
+
+                                        var site = value.ADDRESS_LINE1;
+                                        var letterNo = value.VEN_INV_LETTER_NO;
+                                        var submissionDate = value.SUBMIT_DATE;
+                                        //var subTime = new Date(value.LAST_UPDATE_DATE);
+                                        //subTime = "  " + ("0" + subTime.getHours()).slice(-2) + ":" + ("0" + subTime.getMinutes()).slice(-2);
+                                        //submissionDate += subTime;
+                                        var InvoiceType = value.INVOICE_TYPE;
+                                        //var BillingMonth = value.INVOICE_PERIOD_FROM + ' , ' + value.INVOICE_PERIOD_TO;
+                                        var Amount = value.TOTAL_CLAIM;
+                                        Amount = numberWithCommas(Amount);
+                                        //Amount += ".0000";
+                                        var invoiceFrom = value.INVOICE_PERIOD_FROM;
+                                        var invoiceTo = value.INVOICE_PERIOD_TO;
+                                        var Status = value.STATUS;
+                                        var lastupdatedby = value.Last_Updated_By;
+                                        //alert('No enter');
+                                        var stl;
+                                        /*if(userTypeIdM == 3){
+                                            $('#importData').show();
+                                        }
+                                        else{
+                                            $('#importData').hide();
+                                        }*/
+                                        if (userTypeIdM == 2 || userTypeIdM == 3 || userTypeIdM == 1) {
+                                            stl = "";
+                                            $('#org').attr('style', '');
+                                            $('.ippHeading').show();
+                                        }
+                                        else {
+                                            stl = "style='display:none;";
+                                            $('#org').attr('style', 'display:none;');
+                                            $('.ippHeading').hide();
+                                        }
+                                        var vUrl = '';
+                                        //if (value.IS_DIFFERENTIAL == "Yes") {
+                                        //    vUrl = "/Pages/DifferentialInvoice.aspx?typ=V&diarynumber=" + value.DIARY_HEADER_ID;
+                                        //}
+                                        //else if (value.IS_DIFFERENTIAL == "No" && (value.INVOICE_TYPE != 'Interest / Late Payment Charge' && value.INVOICE_TYPE != 'Pre Live Interest')) {
+                                        //    vUrl = "/Pages/MonthlyForm.aspx?typ=V&diarynumber=" + value.DIARY_HEADER_ID;
+                                        //}
+                                        //else if (value.IS_DIFFERENTIAL == "I" || (value.IS_DIFFERENTIAL == "No" && (value.INVOICE_TYPE == 'Interest / Late Payment Charge' || value.INVOICE_TYPE == 'Pre Live Interest'))) {
+                                        //    vUrl = "/Pages/InterestInvoice.aspx?typ=V&diarynumber=" + value.DIARY_HEADER_ID;
+                                        //}
+
+
+                                        if (value.IS_DIFFERENTIAL == "Yes") {
+                                            vUrl = "/Pages/DifferentialInvoice.aspx?typ=V&diarynumber=" + value.DIARY_HEADER_ID + "&vendorSiteId=" + value.ORGANIZATION_ID;
+                                        }
+                                        else if (value.IS_DIFFERENTIAL == "No" && (value.INVOICE_TYPE != 'Interest / Late Payment Charge' && value.INVOICE_TYPE != 'Pre Live Interest')) {
+                                            vUrl = "/Pages/MonthlyForm.aspx?typ=V&diarynumber=" + value.DIARY_HEADER_ID + "&vendorSiteId=" + value.ORGANIZATION_ID;
+                                        }
+                                        else if (value.IS_DIFFERENTIAL == "I" || (value.IS_DIFFERENTIAL == "No" && (value.INVOICE_TYPE == 'Interest / Late Payment Charge' || value.INVOICE_TYPE == 'Pre Live Interest'))) {
+                                            vUrl = "/Pages/InterestInvoice.aspx?typ=V&diarynumber=" + value.DIARY_HEADER_ID + "&vendorSiteId=" + value.ORGANIZATION_ID;
+                                        }
+
+                                        var color = '';
+                                        if (Status == "Received")
+                                            color = 'green';
+                                        else if (Status == "Submitted")
+                                            color = 'Orange';
+                                        else if (Status == "Withdraw")
+                                            color = 'gray';
+                                        else if (Status.includes("Forwarded to Finance") || Status.includes("Received by"))
+                                            color = '#0095eb';
+                                        else if (Status.includes("Returned by"))
+                                            color = '#c103ef';
+                                        else if (Status == "Returned")
+                                            color = 'red';
+                                        $("#tbl_tf>tbody").append('<tr><td ' + stl + '><span  class="txt-dark weight-500">' + value.ORGANIZATION + '</span></td><td><span class="txt-dark weight-500">' + site + '</span></td><td><span class="txt-dark weight-500">' + letterNo + '</span></td><td style="text-align: center;"><span class="txt-dark weight-500">' + value.TransactionNumber + '</span></td><td><span class="txt-dark weight-500">' + submissionDate + '</span></td><td><span class="txt-dark weight-500">' + InvoiceType + '</span></td><td><span class="txt-dark weight-500 pull-right">' + Amount + '</span></td><td><span style="color: ' + color + ';">' + Status + '</span></td><td><center><a class="txt-dark weight-500" href="#" hrf="'  + vUrl + '"><span title="View" class="zmdi zmdi-file" style="color: #0095eb;"></span></a></center></td><td><center><span title="Record History" class="zmdi zmdi-time-restore zmdi-hc-lg history" itemid="' + value.DIARY_HEADER_ID + '" style="color: #926f2f;cursor:pointer;"></span></center></td></tr>'); //Change by Ahmad 7/30/2018 
+                                        //var y = $("#ippoo").html();
+                                        //alert(y);                                								
+                                    });
+
+                                    $('#tbl_tf thead').append($('#tbl_tf thead').html());
+                                    $('#tbl_tf thead tr:eq(1)').attr("style", "border-bottom: 1px solid #c4c4c4;border-right: 1px solid #c4c4c4;");
+                                    $('#tbl_tf').addClass('dynamicTable');
+                                    $('#tbl_tf thead tr:eq(1) th').each(function () {
+                                        var title = this.innerText;
+                                        if ($.trim(title) != "") {
+                                            $(this).html('<input type="text" class="form-control column_search" style="width:90%;" placeholder="Search ' + title + '" />');
+                                        }
+
+                                    });
+                                    $.fn.dataTable.moment('DD-MMM-YYYY');
+                                    table = $('#tbl_tf').DataTable({
+                                        "aLengthMenu": [[10, 25, 50, 100, 150, 250, 500, -1], [10, 25, 50, 100, 150, 250, 500, "All"]],
+                                        "iDisplayLength": 10,
+                                        "bSortCellsTop": true,
+                                        "sPaginationType": "full_numbers",
+                                        "bJQueryUI": false,
+                                        "bAutoWidth": false,
+                                        "bLengthChange": true,
+                                        "fnInitComplete": function (oSettings, json) {
+                                            $('.dataTables_filter>label>input').attr('id', 'search');
+                                            $('.dataTables_filter>label>input').attr('placeholder', 'Search All');
+                                        }
+                                    });
+
+
+                                    $('#tbl_tf thead').on('keyup', ".column_search", function () {
+
+                                        table
+                                            .column($(this).parent().index())
+                                            .search(this.value)
+                                            .draw();
+                                    });
+                                }
+                                $.unblockUI();
+                            },//end of success
+                            error: function (request, textStatus, errorThrown) {
+                                console.log(request);
+                            }
+                        });
+
+                });
+
+
+                $('body').off('click', '.history');
+                $('body').on('click', '.history', function (e) {
+                    debugger;
+                    e.preventDefault();
+                    var fromdata = new FormData();
+                    fromdata.append("vls", '16½' + $(this).attr('itemid'));
+                    $.ajax
+                        ({
+                            //type: "GET",
+                            //url: "https://cppa2.azurewebsites.net/v1/invoice/GetInvoiceHistory/" + $(this).attr('itemid'),
+                            //dataType: 'json',
+                            //headers: {
+                            //    "Token": Token
+                            //},
+                            type: "POST",
+                            url: "../Invoice/AjaxCall" + $(location).attr("search"),
+                            data: fromdata,
+                            contentType: false,
+                            processData: false,
+                            beforeSend: function () {
+                                $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+                            },
+                            complete: function () {
+                                $.unblockUI();
+                            },
+                            success: function (data) {
+                                var historyData = JSON.parse(data);
+                                $('#tbl_history>tbody').html('');
+                                $.each(historyData, function (index, value) {
+                                    if (value.Action != "VIEWED")
+                                        $('#tbl_history>tbody').append('<tr><td><span  class="txt-dark weight-500">' + value.Name + '</span></td><td><span  class="txt-dark weight-500">' + value.Designation + '</span></td><td><span  class="txt-dark weight-500">' + value['User Type'] + '</span></td><td><span  class="txt-dark weight-500">' + value['Date Time'] + '</span></td><td><span  class="txt-dark weight-500">' + value.Action + '</span></td></tr>');
+                                });
+                                $('#myModal').dialog('open');
+                            },//end of success
+                            error: function (request, textStatus, errorThrown) {
+                                console.log(request);
+                                $.unblockUI();
+                            }
+                        });// end of ajax call
+                });
+
+                $('#myModal').dialog({
+                    autoOpen: false,
+                    height: 455,
+                    width: 650,
+                    modal: true,
+                    show: {
+                        effect: "clip",
+                        duration: 500
+                    },
+                    hide: {
+                        effect: "clip",
+                        duration: 500
+                    }
+                });
+    
+                $('body').off("click", '#btnCloseDialog');
+                $('body').on("click", '#btnCloseDialog', function (e) {
+                    e.preventDefault();
+                    $('#myModal').dialog('close');
+                    $('#attachmentTitle').val('');
+                    $('#attachmentDesc').val('');
+                    $('#attachmentFile').val('');
+                    try {
+                        if ($.browser.msie) {
+                            $('#attachmentFile').replaceWith($('#attachmentFile').clone());
+                        }
+                        else {
+                            $('#attachmentFile').val('');
+                        }
+                        $('#attachmentFile').html('');
+                    } catch (e) {
+                        return false;
+                    }
+                });
+	
+                $('#fromDate,#toDate').datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    dateFormat: 'dd-M-yy'
+                });
+	
+                $('body').off('click', 'a[hrf]');
+                $('body').on('click',
+                    'a[hrf]',
+                    function (e) {
+                        
+                        e.preventDefault();
+
+                        var $lnk = $(this).attr('hrf');
+                        var TargetView = "";
+                        if ($lnk.split('?')[0].toLowerCase().indexOf("monthlyform.aspx") >= 0) {
+                            TargetView = "MonthlyInvoice";
+                        }
+                        if ($lnk.split('?')[0].toLowerCase().indexOf("differentialinvoice.aspx") >= 0) {
+                            TargetView = "DifferentialInvoice";
+                        }
+                        if ($lnk.split('?')[0].toLowerCase().indexOf("interestinvoice.aspx") >= 0) {
+                            TargetView = "InterestInvoice";
+                        }
+                        var parms = $lnk.split('?')[1];
+                        var arr = [];
+                        if (parms.length > 0) {
+                            var p = parms.split('&');
+                            for (var i = 0; i < p.length; i++) {
+                                var sval = { name: p[i].split('=')[0], vl: p[i].split('=')[1] };
+                                arr.push(sval);
+                            }
+                        } // end of if
+
+                        for (var i = 0; i < arr.length; i++) {
+                            sessionStorage.setItem(arr[i].name, arr[i].vl);
+                        }
+
+
+                        var options = {};
+                        var $id = "0½0";
+                        var fromdata = new FormData();
+                        fromdata.append('vls', $id);
+                        $("#pageContainer").hide('slide', options, 300);
+                        $.ajax({
+                            type: "POST",
+                            data: fromdata,
+                            contentType: false,
+                            processData: false,
+                            url: "../Invoice/" + TargetView + $(location).attr('search'),
+
+                            success: function (result) {
+                                var options = {};
+                                $('#pageContainer').html($(result).find('#pcontent').html());
+                                $("#pageContainer").show('slide', options, 500);
+                            }
+                        });
+                        //location.href = $lnk.split('?')[0];
+
+                    });
+
+                function numberWithCommas(x) {
+                    // return x.toString().replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                    x = x.toString();
+                    if (x % 1 == 0) {
+                        if (x.indexOf(".") < 0) {
+                            x = x.replace(/\D-/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                            x += ".0000";
+                        } else {
+                            x = x.replace('.0000', '');
+                            x = x.replace(/\D-/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                            x += ".0000";
+
+                        }
+                    } else {
+                        var index = x.indexOf(".");
+                        var p1 = x.substring(0, index);
+                        p1 = p1.replace(/\D-/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                        var p2 = x.substring(index);
+                        p2 = p2 + "0000";
+                        p2 = p2.substring(0, 5);
+                        x = p1 + p2;
+                    }
+                    return x;
+                }
+            });//End of Doc Ready
+    </script>
+</div>

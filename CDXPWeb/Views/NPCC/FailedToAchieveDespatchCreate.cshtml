@@ -1,0 +1,1306 @@
+﻿
+@{
+    /**/
+
+    ViewBag.Title = "Failure To Achieve Despatch Level - Notification";
+}
+<div id="pcontent">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff;"></i>
+                        <h6 class="panel-title txt-light">@ViewBag.Title</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                        @*<a class="pull-left inline-block close-panel" href="#" data-effect="fadeOut">
+                                <i class="zmdi zmdi-close"></i>
+                            </a>*@
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body">
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Header</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+
+
+
+                        <div style="margin-bottom: 20px;">
+                            <table class="tblFrm">
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="ddlIPP_Cat">Category<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control frm requiredFieldBGC Ipp" id="ddlIPP_Cat" required>
+                                            @Html.Raw(@ViewBag.IPP)
+                                        </select>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Power Producer<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select id="ddlFTADL_IPP" class="form-control frm requiredFieldBGC" required></select>
+                                    </td>
+                                    <td style="width: 25%; display:none">
+                                        <label for="Disconame">Producer Site<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%; display:none">
+                                        <select id="ddlFTADL_Site" class="form-control frm requiredFieldBGC" required></select>
+                                    </td>
+                                </tr>
+
+
+                                <tr style="display:none">
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Complex / Block / Unit<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control frm requiredFieldBGC" id="ddlFTADL_CBF" required></select>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Fuel Type</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" class="form-control frm" readonly id="txtFTADL_Fuel">
+                                    </td>
+                                </tr>
+
+
+                                <tr style="display:none">
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Installed Capacity</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" class="form-control frm clsAddComa" id="txtFTADL_installedCapacity" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4"><hr style="width:100%;border-top: 2px solid #1d4a6d;" /></td>
+                                </tr>
+                                <tr>
+                                    @*<td style="width: 25%;">
+                                            <label for="Disconame">	Demand No<span class="startColor"> *</span></label>
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <select id="ddlFTADL_DemandNo" class="form-control frm requiredFieldBGC" required></select>
+                                        </td>*@
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Notification Date & Time</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input id="ddlFTADL_Dated" value="@ViewBag.currentDate" type='text' class="form-control frm dtDateTime" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Failure Message Count<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select id="ddlFTADL_NotifyCount" class="form-control frm requiredFieldBGC" required>
+                                            <option>First</option>
+                                            <option>Second</option>
+                                        </select>
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Demand</label>
+                                    </td>
+                                    <td style="width: 25%; ">
+                                        <input style="display:inline-block; width:90%" type="text" value="" class="form-control frm " id="ddlFTADL_Demand">
+                                        <label style="display:inline-block;">MW</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Supplying<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%; ">
+                                        <input style="display:inline-block; width:90%" type="text" value="" class="form-control frm  requiredFieldBGC" id="txtFTADL_Supply" required>
+                                        <label style="display:inline-block;">MW</label>
+                                    </td>
+                                </tr>
+                            </table>
+
+
+                        </div>@*End Of Table*@
+
+
+
+                        <div class="tab0 npshow nphide" style="display:none;">
+                            &nbsp;<div class="tab1">&nbsp;NPCC Remarks</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+
+                        <div class="npshow nphide" style="margin-bottom: 20px; display:none;">
+
+                            <table class="tblFrm">
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Sender Name</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" id="txtFTADL_SenderName" value="@ViewBag.name" class="form-control frm npshow" >
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Sender Designation</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" id="txtFTADL_SenderDesg" value="@ViewBag.designation" class="form-control frm npshow" >
+                                    </td>
+                                </tr>
+                            </table>
+                            <label for="Disconame">Sender Notes<span class="startColor"> *</span></label>
+                            <textarea cols="70" rows="6" maxlength="2000" id="txtFTADL_prevTxtAreaRemarks" class="requiredFieldBGC frm npshow" style="width: 100%;"></textarea>
+
+
+                            <div class="tab0 ackshow ackhide" style="display:none;">
+                                &nbsp;<div class="tab1">&nbsp;Acknowledgement</div>
+                                <div class="tab2">&nbsp;</div>
+                            </div>
+
+                            <div class="ackshow ackhide" style="margin-bottom: 20px;display:none;">
+
+                                <table class="tblFrm">
+                                    <tr>
+                                        <td style="width: 25%;">
+                                            <label for="Disconame">Acknowledge By</label>
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <input type="text" value="@ViewBag.name" placeholder="@ViewBag.name" id="txtFTADL_AckBy" class="form-control  ackshow" >
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <label for="Disconame">Designation</label>
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <input type="text" value="@ViewBag.designation" placeholder="@ViewBag.designation" id="txtFTADL_AckDesignation" class="form-control  ackshow" >
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <label>Acknowledgement Notes<span class="startColor"></span></label>
+                                <textarea cols="70" rows="6" class="frm ackshow" maxlength="2000" id="prevTxtAreaAcknowledgement" style="width: 100%;"></textarea>
+
+                            </div>
+
+                            <div class="complianceshow">
+                                <table class="tblFrm">
+                                    @*<tr>
+                                        <td style="width: 25%;">
+                                            <label for="Disconame">Compliance Achieved</label>
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <input type="radio" name="rb_ComplianceAch" value="true" /><span>Full Achieved</span>
+                                            <input type="radio" name="rb_ComplianceAch" value="false" /><span>Partially Achieved</span>
+                                        </td>
+                                        <td style="width: 25%;"></td>
+                                        <td style="width: 25%;"></td>
+                                    </tr>*@
+                                    <tr>
+                                        <td style="width: 25%;">
+                                            <label for="Disconame">Failure Message Count<span class="startColor"> *</span></label>
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <select id="ddlFTADL_Compliance" class="form-control cmp requiredFieldBGC" required>
+                                                <option>Full Compliance</option>
+                                                <option>No Compliance</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr id="trCmp" style="display:none;">
+                                        <td style="width: 25%;">
+                                            <label for="Disconame">MW*</label>
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <input type="text" id="txtFTADL_MWcmp" class="form-control cmp">
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <label for="Disconame">Achievement Time</label>
+                                        </td>
+                                        <td style="width: 25%;">
+                                            <input type="text" id="txtFTADL_AchTimecmp" class="form-control cmp dtDateTime">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-12">
+
+                                        <button style="float:left;display:none;" value="Submitted" class="btn btn-success" type="button" id="btnFTADL_submit">
+                                            Submit
+                                        </button>
+                                        <button style="float:left;display:none;" value="Submitted" class="btn btn-success btnAction" type="button" id="btnFTADL_update">
+                                            Update
+                                        </button>
+                                        <button style="float:left;display:none;" value="Acknowledged" class="btn btn-success " type="button" id="btnFTADL_Ack">
+                                            Acknowledge
+                                        </button>
+                                        <button id="btnFTADL_Close" tg="@ViewBag.tg" value="@ViewBag.tg" style="float:left;" class="btn btn-default" type="button">
+                                            Close
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('body').off('change', '#ddlIPP_Cat');
+            $('body').on('change', '#ddlIPP_Cat', function (e) {
+                LoadVendors();
+            });
+            function LoadVendors() {
+                var fromdata = new FormData();
+                fromdata.append('vls', '104½' + $('#ddlIPP_Cat').val());
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+
+                        //var fd = $.parseJSON(response);
+                        //$('#ddlIPP').val(fd[0].vendors);
+                        $('#ddlFTADL_IPP').html(response);
+
+                        if ($('#ddlFTADL_IPP').val() == null || $('#ddlFTADL_IPP').val() == undefined || $('#ddlFTADL_IPP').val() == "") {
+
+                            $('#ddlFTADL_Site').html('');
+                            //$('#txtFuel, #txtCapacity, #txtDependableCapacity, #txtPowerPolicy').val('');
+                        }
+                        else {
+                            LoadVendorSites();
+                        }
+                    }
+                });
+
+            }//END OF LOAD
+
+            var usertype = 0;
+            var $status = "";
+            var $demandType = "";
+            var $Creation_datetime;
+
+                $(function() {
+
+
+                @if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 7) //NPCC
+                {
+                     @: usertype = 7;
+                }
+                @if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 9) //NPCC
+                {
+                     @: usertype = 9;
+                }
+                else if(ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 10) //IPP
+                {
+                    @: usertype = 10;
+                }
+
+
+                debugger;
+                if ($('#btnFTADL_Close').attr('tg') == "0") {
+                    LoadVendors();
+                    CheckStatus();
+
+                }
+                else {
+                    //FILL FORM TO UPDATE OR VIEW OR FOR FLOW
+                    LoadVendors();
+                    LoadFormByID();
+                    CheckStatus();
+                }
+
+
+            });
+
+            if ($('#ddlFTADL_Compliance').val() == 'Full Compliance') {
+
+                $('#trCmp').show();
+            }
+           
+
+            $('body').off('change', '#ddlFTADL_Compliance');
+            $('body').on('change', '#ddlFTADL_Compliance', function (e) {
+                e.preventDefault();
+
+                if ($(this).val() == 'Full Compliance') {
+                    $('#trCmp').show();
+                }
+                else {
+                    $('#trCmp').hide();
+                }
+
+            });
+
+
+            function CheckStatus() {
+
+                $('#btnFTADL_submit').hide();
+                $('#btnFTADL_save').hide();
+                $('#btnFTADL_Ack').hide();
+                $('.complianceshow').hide();
+                $('#btnFTADL_update').hide();
+                $('#btnFTADL_Ack').show();
+
+                if (((usertype == 7) || (usertype == 9)) && $status == "") {
+
+                    $('.npshow').show();
+                    $('#btnFTADL_submit').show();
+                    $('#btnFTADL_update').hide();
+                    $('#btnFTADL_Ack').hide();
+
+                    return false;
+                }
+                if (((usertype == 7) || (usertype == 9)) && $status == "Submitted") {
+                    $('.tlimits').hide();
+                    $('.npshow').show();
+                    $('#btnFTADL_update').show();
+                    $('#btnFTADL_submit').hide();
+                    $('#btnFTADL_Ack').hide();
+
+                    $('.frm, .rdtop').prop("disabled", false);
+                    //$('.complianceshow').show();
+                    $('[name="rb_ComplianceAch"]').prop("disabled", true);
+                    return false;
+                }
+
+                if (((usertype == 7) || (usertype == 9)) && $status == "Acknowledged") {
+                    $('tblrcd').hide();
+                    $('#btnFTADL_update').show();
+                    $('#btnFTADL_submit').hide();
+
+                    $('.tlimits').hide();
+                    $('.npshow').show();
+                    $('.frm, .rdtop').prop("disabled", true);
+                    $('.ackshow').show();
+                    $('#btn_AddRow').hide();
+                    $('.complianceshow').show();
+                    $('#btnFTADL_Ack').hide();
+
+                    $('[name="rb_ComplianceAch"]').prop("disabled", true);
+                    return false;
+                }
+
+
+                if (usertype == 10 && $status == "Submitted")
+                {
+                    $('#btnFTADL_Ack').html('Acknowledge & Compliance'); 
+                    $('.Ipp,.rdtop, .frm').prop("disabled", true);
+                    $('#prevTxtAreaAcknowledgement').prop("disabled", false);
+                    $('.tlimits').hide();
+                    $('.npshow').show();
+                    $('.npshow').prop("disabled", true);
+                    $('#btn_AddRow').hide();
+                    $('.ackshow').show();
+                    $('#btnFTADL_submit').hide();
+                    $('.complianceshow').show();
+                    $('#btnFTADL_Ack').show();
+
+                    /////////////////////////////////////////////////////////////////////////////////////////////
+                    var tenDate = new Date($Creation_datetime); // FTADL creation Date and time
+                    tenDate = new Date(tenDate.getTime() + 10 * 60000); // date with 10 mins from FTADL creation time
+                    var date = new Date(); // current date
+                    if (date > tenDate) { $('[name="rb_ComplianceAch"]').prop("disabled", true); return false; }
+                    /////////////////////////////////////////////////////////////////////////////////////////////
+
+                    return false;
+                }
+                if (usertype == 10 && $status == "Acknowledged") {
+
+                    $('.fieldsCustom').prop("disabled", true);
+                    $('#btnFTADL_submit').hide();
+                    $('#btnFTADL_Ack').hide();
+                    $('#btnFTADL_Ack').html('Compliance');
+
+                    $('.Ipp, .rdtop, .frm').prop("disabled", true);
+                    $('.tlimits').hide();
+                    $('.npshow').show();
+                    $('.npshow, .ackshow').prop("disabled", true);
+                    $('.ackshow').show();
+                    $('.ackshow').prop("disabled", true);
+                    $('.compshow').show();
+                    $('#btn_AddRow').hide(); 
+                    $('.cmp').prop("disabled", true);
+
+                    $('.complianceshow').show();
+                    $('[name="rb_ComplianceAch"]').prop("disabled", true);
+
+                    return false;
+                }
+
+                }
+
+
+            //Start OF EDIT //
+
+
+                function LoadFormByID() {
+
+
+                var fromdata = new FormData();
+                fromdata.append("vls", '23½' + $('#btnFTADL_Close').attr('tg'));
+                $.ajax({
+
+                    type: "POST",
+                    url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        console.log("init");
+                       // debugger;
+                        var fd = $.parseJSON(response);
+                        console.log('EDIT RESPONSE: ' + fd);
+                        //$demandType = fd[0].DEMAND_TYPE;
+                        // placing check o appropriate demand type
+                        //$('[name="rdFTADL_DemandType"]').removeAttr('checked');
+                        //var rdtop = fd[0].DEMAND_TYPE;
+                        //console.log(fd[0].POWERPRODUCER);
+                        //console.log(fd[0].SITE);
+                        //ddlFTADL_NotifyCount
+                        //console.log(fd[0].STATUS);
+                        //console.log(rdtop);
+                        // $('input:radio[name="rdFTADL_DemandType"][value="' + rdtop + '"]').prop('checked', true);
+                        $('#ddlIPP_Cat option:selected').text(fd[0].IPP_CAT);
+
+                        //$('#ddlFTADL_IPP').val(fd[0].POWERPRODUCER); 
+                        $('#ddlFTADL_IPP').html('<option>' + fd[0].POWERPRODUCER + ' </option>');
+
+                        $('#ddlFTADL_Site option:selected').text(fd[0].SITE);
+                        //$('#ddlFTADL_CBF').html('<option>' + fd[0].BLOCK + ' </option>');
+                        $status = fd[0].STATUS;
+                        $Creation_datetime = fd[0].CREATED_ON;
+
+                        CheckStatus();
+                        $('#txtFTADL_installedCapacity').val(fd[0].INSTALLED_CAPACITY);
+                        $('#txtFTADL_Fuel').val(fd[0].FUEL);
+                        //$('#txtFTADL_installedCapacity').html(fd[0].);
+                        $('#ddlFTADL_DemandNo').html('<option>' + fd[0].DEMAND_NO + ' </option>');
+                        console.log(fd[0].INTIMATION_TIME);
+                        $('#ddlFTADL_Dated').val(fd[0].INTIMATION_TIME); //demand date
+                        $('#ddlFTADL_Demand').val(fd[0].TARGET_DEMAND);
+                        $('#txtFTADL_Supply').val(fd[0].SUPPLY);
+                        $('#ddlFTADL_NotifyCount option:selected').text(fd[0].NOTIFICATION_COUNT);
+                        $('#txtFTADL_SenderName').val(fd[0].SENDER_NAME);
+                        $('#txtFTADL_SenderDesg').val(fd[0].SENDER_DESIGNATION);
+                        $('#txtFTADL_prevTxtAreaRemarks').val(fd[0].NPCC_REMARKS);
+
+                        $('#txtFTADL_AckBy').val(fd[0].GC_AckBy);
+                        $('#txtFTADL_AckDesignation').html(fd[0].GC_DESIGNATION);
+                        $('#prevTxtAreaAcknowledgement').val(fd[0].GC_REMARKS);
+
+                        $('[name="rb_ComplianceAch"][value="' + fd[0].COMPLAINCEMET + '"]').prop('checked', true);
+
+                        if ($status == 'Acknowledged') {
+                            if (fd[0].COMPLIANCE_TYPE == 'No Compliance') {
+                                $('#trCmp').hide();
+                            }
+                            $('#ddlFTADL_Compliance option:selected').text(fd[0].COMPLIANCE_TYPE);
+                            $('#txtFTADL_AchTimecmp').val(fd[0].COMPLIANCED_ACHIEVEMENT_TIME); //demand date
+                            $('#txtFTADL_MWcmp').val(fd[0].COMPLIANCED_MW);
+
+                        }
+                        //ASSIGN VIEWBAG VALUES AS THE ONE WHO IS SENDER
+                        @*$('#txtFTADL_AckBy, #txtFTADL_Update').val('@ViewBag.name');
+                        $('#txtFTADL_AckDesignation, #txtFTADL_UpdateDesignation').val('@ViewBag.designation');*@
+
+                        //var dtl = fd[0].DTL;
+                        //if (dtl != "") {
+                        //    dtl = $.parseJSON(dtl);
+                        //    $('#tblMultircd tbody').html('');
+                        //    $.each(dtl, function (i, j)
+                        //    {
+                        //        if (j.tblBlk[0].BLOCK_UNIT_TITLE == "Complex" || j.tblBlk[0].BLOCK_UNIT_TITLE == "Complex ()") {
+                        //            $('#tblMultircd tbody').append('<tr style="display:none">\
+                        //       <td tg="'+ j.BLOCK_ID + '">' + j.tblBlk[0].BLOCK_UNIT_TITLE + '</td>\
+                        //       <td>'+ j.SYNC_DESYNC_TIME + '</td>\
+                        //       <td style="padding-left: 1% !important;"></td>\</tr>');
+                        //        }
+                        //        else {
+                        //            $('#tblMultircd tbody').append('<tr>\
+                        //       <td tg="'+ j.BLOCK_ID + '">' + j.tblBlk[0].BLOCK_UNIT_TITLE + '</td>\
+                        //       <td>'+ j.SYNC_DESYNC_TIME + '</td>\
+                        //       <td style="padding-left: 1% !important;"></td>\</tr>');
+                        //        }
+
+                        //    });
+
+                    }
+
+                });//END OF SUCC
+
+            }
+
+            $('body').off('click', '#btnFTADL_Close');
+            $('body').on('click', '#btnFTADL_Close', function (e) {
+                e.preventDefault();
+                var options = {};
+                $("#pageContainer").hide('slide', options, 300);
+                $.ajax({
+                    url: "/NPCC/FailedToAchieveDespatch" + $(location).attr('search'),
+                    success: function (result) {
+                        var options = {};
+                        $('#pageContainer').html($(result).find('#pcontent').html());
+                        $("#pageContainer").show('slide', options, 500);
+                    }
+                });
+            });//End of btnClose click
+
+            $('body').on('focus', ".dtDateTime", function () {
+                $(this).datetimepicker({
+                    format: 'DD-MMM-YYYY HH:mm'
+                });
+            });
+
+
+            $('body').off('change', '#ddlFTADL_IPP');
+            $('body').on('change', '#ddlFTADL_IPP', function (e) {
+                e.preventDefault();
+                //$('#ddlFTADL_DemandNo').html('');
+                //$('#ddlFTADL_Demand').val('');
+                //$('#ddlFTADL_Dated').val('');
+                //$('#txtFTADL_Fuel').val('');
+                //$('#txtFTADL_installedCapacity').val('');
+                @*$('#ddlFTADL_Dated').val(@Html.Raw(@ViewBag.currentDate));*@
+                LoadVendorSites();
+
+            });// End of change
+            //LoadVendorSites();
+
+
+            $('body').on('focus', "#txtFTADL_Supply", function () {
+                removeComma();
+            });
+
+            $('body').on('focusout', "#txtFTADL_Supply", function () {
+                addComma();
+            });
+
+            $('body').on('change', "#txtFTADL_Supply", function () {
+                addComma();
+            });
+
+            $('body').off('keypress', '.clsAddComa');
+            $('body').on('keypress', '.clsAddComa', function (event) {
+                var keyCode = event.keyCode || event.which;
+                if (keyCode == 9) {
+                    event.preventDefault();
+                    // call custom function here
+                }
+                var $this = $(this);
+                if ((event.which != 46 || $this.val().indexOf('.') != -1) &&
+                    ((event.which < 48 || event.which > 57) &&
+                        (event.which != 0 && event.which != 8))) {
+                    event.preventDefault();
+
+                }
+
+                var text = $(this).val();
+                text = text.replace(/,/g, '');
+                if ((event.which == 46) && (text.indexOf('.') == -1)) {
+                    setTimeout(function () {
+                        if ($this.val().substring($this.val().indexOf('.')).length > 5) {
+                            $this.val($this.val().substring(0, $this.val().indexOf('.') + 5));
+                        }
+                    }, 1);
+                }
+
+                if ((text.indexOf('.') != -1) &&
+                    (text.substring(text.indexOf('.')).length > 4) &&
+                    (event.which != 0 && event.which != 8) &&
+                    ($(this)[0].selectionStart >= text.length - 4)) {
+                    event.preventDefault();
+                }
+
+            });
+
+            $('body').off("paste", '.clsAddComa');
+            $('body').on("paste", '.clsAddComa', function (e) {
+                var thisCtrl = $(this);
+                var text = e.originalEvent.clipboardData.getData('Text');
+                text = text.replace(/,/g, '');
+                if ($.isNumeric(text)) {
+                    if ((text.substring(text.indexOf('.')).length >= 5) && (text.indexOf('.') > -1)) {
+                        e.preventDefault();
+                        thisCtrl.val(text.substring(0, text.indexOf('.') + 5));
+                        thisCtrl.change();
+                    }
+                }
+                else {
+                    e.preventDefault();
+                    swal({
+                        title: "Invalid Input",
+                        text: "Please enter only numeric values!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => thisCtrl.focus(), 100)
+                        }
+                    });
+                }
+            });
+
+            $('body').off('change', '#ddlFTADL_Site');
+            $('body').on('change', '#ddlFTADL_Site', function (e) {
+                e.preventDefault();
+                ////$('#ddlFTADL_PowerPolicy').val('');
+                //$('#ddlFTADL_CBF').html('<option selected="selected" value="-1">Select</option>');
+                //$('#ddlFTADL_DemandNo').html('<option selected="selected" value="-1">Select</option>');
+                //$('#ddlFTADL_Demand').val('');
+                //$('#ddlFTADL_Dated').val('');
+                //$('#txtFTADL_Fuel').val('');
+                //$('#txtFTADL_installedCapacity').val('');
+            });
+
+            $('body').off('change', '#ddlFTADL_CBF');
+            $('body').on('change', '#ddlFTADL_CBF', function (e) {
+                e.preventDefault();
+                $('#txtFTADL_Fuel').val('');
+                $('#txtFTADL_installedCapacity').val('');
+                if ($('#ddlFTADL_CBF option:selected').val() != "-1") {
+                    $('#txtFTADL_Fuel').val($('#ddlFTADL_CBF option:selected').val().split('½')[1]);
+                    $('#txtFTADL_installedCapacity').val($('#ddlFTADL_CBF option:selected').val().split('½')[2]);
+                    addComma();
+                }
+            });
+
+            $('body').off('change', '#ddlFTADL_DemandNo');
+            $('body').on('change', '#ddlFTADL_DemandNo', function (e) {
+                e.preventDefault();
+                $('#ddlFTADL_Demand').val('');
+                $('#ddlFTADL_Dated').val('');
+                if ($('#ddlFTADL_DemandNo option:selected').val() != "-1") {
+                    $('#ddlFTADL_Demand').val($('#ddlFTADL_DemandNo option:selected').val().split('½')[1]);
+                    $('#ddlFTADL_Dated').val($('#ddlFTADL_DemandNo option:selected').val().split('½')[2]);
+                    addComma();
+                }
+            });
+
+            $('body').off('click', '#btnFTADL_submit');
+            $('body').on('click', '#btnFTADL_submit', function (e) {
+                e.preventDefault();
+                removeComma();
+                var ctrl = $(this);
+                var isTrue = validations();
+                if (isTrue) {
+                    var fromdata = new FormData();
+                    fromdata.append("vls", '6½' + $('#ddlFTADL_Site').val() + '½' + $('#ddlFTADL_IPP option:selected').text() + '½' + $('#txtFTADL_SenderName').val() + '½' + $('#txtFTADL_SenderDesg').val() + '½' + $('#txtFTADL_prevTxtAreaRemarks').val() + '½' + $('#ddlFTADL_Demand').val() + '½' + $('#ddlFTADL_Dated').val() + '½' + ctrl.val() + '½' + $('#ddlFTADL_Site option:selected').text() + '½' + $('#txtFTADL_Supply').val() + '½' + $('#ddlFTADL_NotifyCount').val() + '½' + $('#ddlIPP_Cat option:selected').text() );
+                    $.ajax({
+                        type: "POST",
+                        url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                        data: fromdata,
+                        contentType: false,
+                        processData: false,
+                        success: function (response) {
+                            swal({
+                                title: "Submit Confirmation",
+                                text: "Do you want to submit this FTDAL Notification?",
+                                type: "warning",
+                                showCancelButton: true,
+                                confirmButtonClass: "btn btn-danger",
+                                confirmButtonText: "Continue"
+                            })
+                            if (parseInt(response) > 0) {
+                                        swal({
+                                            title: "FTADL!",
+                                            text: "" + $('#ddlFTADL_NotifyCount option:selected').text() + " failure notification has been " + ctrl.val().toLowerCase() + " successfully.",
+                                            type: "success",
+                                            showCancelButton: false,
+                                            confirmButtonClass: "btn btn-danger",
+                                            confirmButtonText: "OK"
+
+                                        });
+                            var options = {};
+                            $("#pageContainer").hide('slide', options, 300);
+                            $.ajax({
+                                url: "/NPCC/FailedToAchieveDespatch" + $(location).attr('search'),
+                                success: function (response) {
+                                    var options = {};
+                                    //swal.close();
+                                    $('#pageContainer').html($(response).find('#pcontent').html());
+                                    $("#pageContainer").show('slide', options, 500);
+                                }
+                            });
+                        }
+                                else {
+                            swal.close();
+                        };
+
+
+                        }
+                    });
+                }
+            });
+
+
+                //Update button
+
+                $('body').off('click', '#btnFTADL_update');
+                $('body').on('click', '#btnFTADL_update', function (e) {
+                    e.preventDefault();
+                    removeComma();
+                    var ctrl = $(this);
+                    //var isTrue = validations();
+                    //if (isTrue) {
+                        var fromdata = new FormData();
+                    fromdata.append("vls", '60½' + $('#ddlFTADL_Site').val() + '½' + $('#ddlFTADL_IPP option:selected').text() + '½' + $('#txtFTADL_SenderName').val() + '½' + $('#txtFTADL_SenderDesg').val() + '½' + $('#txtFTADL_prevTxtAreaRemarks').val() + '½' + $('#ddlFTADL_Demand').val() + '½' + $('#ddlFTADL_Dated').val() + '½' + ctrl.val() + '½' + $('#ddlFTADL_Site option:selected').text() + '½' + $('#txtFTADL_Supply').val() + '½' + $('#ddlFTADL_NotifyCount').val() + '½' + $('#btnFTADL_Close').attr('tg') + '½' + $('#ddlIPP_Cat option:selected').text());
+                        $.ajax({
+                            type: "POST",
+                            url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                            data: fromdata,
+                            contentType: false,
+                            processData: false,
+                            success: function (response) {
+                                swal({
+                                    title: "Submit Confirmation",
+                                    text: "Do you want to update this FTDAL Notification?",
+                                    type: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonClass: "btn btn-danger",
+                                    confirmButtonText: "Continue"
+                                })
+                                if (parseInt(response) > 0) {
+                                    swal({
+                                        title: "FTADL!",
+                                        text: "" + $('#ddlFTADL_NotifyCount option:selected').text() + " failure notification has been " + ctrl.val().toLowerCase() + " successfully.",
+                                        type: "success",
+                                        showCancelButton: false,
+                                        confirmButtonClass: "btn btn-danger",
+                                        confirmButtonText: "OK"
+
+                                    });
+                                    var options = {};
+                                    $("#pageContainer").hide('slide', options, 300);
+                                    $.ajax({
+                                        url: "/NPCC/FailedToAchieveDespatch" + $(location).attr('search'),
+                                        success: function (response) {
+                                            var options = {};
+                                            swal.close();
+                                            $('#pageContainer').html($(response).find('#pcontent').html());
+                                            $("#pageContainer").show('slide', options, 500);
+                                        }
+                                    });
+                                }
+                                else {
+                                    swal.close();
+                                };
+
+
+                            }
+                        });
+                });
+
+
+            $('body').off('click', '#btnFTADL_Ack');
+            $('body').on('click', '#btnFTADL_Ack', function (e) {
+                e.preventDefault();
+                removeComma();
+                var ctrl = $(this);
+                //var isTrue = validations();
+                //if (isTrue) {
+
+                debugger;
+
+
+                if (($(txtFTADL_AchTimecmp).val() == '' || $(txtFTADL_MWcmp).val() == '') && $(ddlFTADL_Compliance).val() == 'Full Compliance') {
+                    swal({
+                        title: "Error",
+                        text: "Achievement time or MW is empty",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#ddlFTADL_IPP').focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+                else if (($(txtFTADL_AchTimecmp).val() == '' || $(txtFTADL_MWcmp).val() == '') && $(ddlFTADL_Compliance).val() == 'No Compliance') {
+                    debugger;
+                    var fromdata = new FormData();
+                    var achievementTime = '';
+                    if ($(ddlFTADL_Compliance).val() == 'No Compliance') {
+                        achievementTime = '';
+                    }
+                    else {
+                        achievementTime = $('#txtFTADL_AchTimecmp').val();
+                    }
+                    fromdata.append("vls", '62½' + $('#btnFTADL_Close').attr('tg') + '½' + ctrl.val() + '½' + $('#ddlFTADL_Compliance').val() + '½' + $('#txtFTADL_MWcmp').val() + '½' + achievementTime + '½' + $('#txtFTADL_AckBy').val());
+                    $.ajax({
+                        type: "POST",
+                        url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                        data: fromdata,
+                        contentType: false,
+                        processData: false,
+                        success: function (response) {
+                            //swal({
+                            //    title: "Submit Confirmation",
+                            //    text: "Do you want to Acknowledge this FTDAL Notification?",
+                            //    type: "warning",
+                            //    showCancelButton: true,
+                            //    confirmButtonClass: "btn btn-danger",
+                            //    confirmButtonText: "Continue"
+                            //})
+                            //if (parseInt(response) > 0) {
+                            swal({
+                                title: "FTADL!",
+                                text: "" + $('#ddlFTADL_NotifyCount option:selected').text() + " failures notification has been " + ctrl.val().toLowerCase() + " successfully.",
+                                type: "success",
+                                showCancelButton: false,
+                                confirmButtonClass: "btn btn-danger",
+                                confirmButtonText: "OK"
+
+                            });
+                            var options = {};
+                            $("#pageContainer").hide('slide', options, 300);
+                            $.ajax({
+                                url: "/NPCC/FailedToAchieveDespatch" + $(location).attr('search'),
+                                success: function (response) {
+                                    var options = {};
+                                    //swal.close();
+                                    $('#pageContainer').html($(response).find('#pcontent').html());
+                                    $("#pageContainer").show('slide', options, 500);
+                                }
+                            });
+                            //}
+                            //else {
+                            //    swal.close();
+                            //};
+
+
+                        }
+                    });
+
+                }
+
+                else {
+                    debugger;
+                    var fromdata = new FormData();
+                    var achievementTime = '';
+                    if ($(ddlFTADL_Compliance).val() == 'No Compliance') {
+                        achievementTime = null;
+                    }
+                    else {
+                        achievementTime = $('#txtFTADL_AchTimecmp').val();
+                    }
+                    fromdata.append("vls", '62½' + $('#btnFTADL_Close').attr('tg') + '½' + ctrl.val() + '½' + $('#ddlFTADL_Compliance').val() + '½' + $('#txtFTADL_MWcmp').val() + '½' + achievementTime + '½' + $('#txtFTADL_AckBy').val());
+                    $.ajax({
+                        type: "POST",
+                        url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                        data: fromdata,
+                        contentType: false,
+                        processData: false,
+                        success: function (response) {
+                            //swal({
+                            //    title: "Submit Confirmation",
+                            //    text: "Do you want to Acknowledge this FTDAL Notification?",
+                            //    type: "warning",
+                            //    showCancelButton: true,
+                            //    confirmButtonClass: "btn btn-danger",
+                            //    confirmButtonText: "Continue"
+                            //})
+                            //if (parseInt(response) > 0) {
+                            swal({
+                                title: "FTADL!",
+                                text: "" + $('#ddlFTADL_NotifyCount option:selected').text() + " failures notification has been " + ctrl.val().toLowerCase() + " successfully.",
+                                type: "success",
+                                showCancelButton: false,
+                                confirmButtonClass: "btn btn-danger",
+                                confirmButtonText: "OK"
+
+                            });
+                            var options = {};
+                            $("#pageContainer").hide('slide', options, 300);
+                            $.ajax({
+                                url: "/NPCC/FailedToAchieveDespatch" + $(location).attr('search'),
+                                success: function (response) {
+                                    var options = {};
+                                    //swal.close();
+                                    $('#pageContainer').html($(response).find('#pcontent').html());
+                                    $("#pageContainer").show('slide', options, 500);
+                                }
+                            });
+                            //}
+                            //else {
+                            //    swal.close();
+                            //};
+
+
+                        }
+                    });
+                }
+
+
+
+
+            });
+
+
+
+
+            //function LoadPowerPolicy() {
+            //    var fromdata = new FormData();
+            //    fromdata.append("vls", '2½' + $('#ddlFTADL_Site').val());
+            //    $.ajax({
+            //        type: "POST",
+            //        url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+            //        data: fromdata,
+            //        contentType: false,
+            //        processData: false,
+            //        success: function (response) {
+            //            $('#ddlFTADL_PowerPolicy').val(response);
+            //        }
+            //    });
+            //}//END OF LOAD
+
+            function LoadVendorSites() {
+                var fromdata = new FormData();
+                fromdata.append("vls", '0½' + $('#ddlFTADL_IPP').val());
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        $('#ddlFTADL_Site').html(response);
+                        if ($('#ddlFTADL_Site').val()=="" || $('#ddlFTADL_Site')==null || $('#ddlFTADL_Site')==undefined) {
+                            $('#ddlFTADL_CBF').html('');
+                            $('#ddlFTADL_DemandNo').html('');
+                        } else {
+                            LoadBlockComplexFuels();
+                            LoadDemandData();
+                        }
+                    }
+                });
+            }//END OF LOAD
+
+
+            function LoadBlockComplexFuels() {
+                var fromdata = new FormData();
+
+                fromdata.append("vls", '191½' + $('#ddlFTADL_IPP').val() + '½' + $('#ddlFTADL_Site').val());
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        $('#ddlFTADL_CBF').html(response);
+                        LoaddllBlockFuel();
+                      }
+                });
+
+                }
+
+                function LoaddllBlockFuel() {
+
+                    var fromdata = new FormData();
+                    fromdata.append('vls', '108½' + $('#ddlFTADL_Site').val() + "½" + $('#ddlFTADL_CBF').val());
+                    $.ajax({
+                        type: "POST",
+                        url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                        data: fromdata,
+                        contentType: false,
+                        processData: false,
+                        success: function (response) {
+                            var fd = $.parseJSON(response);
+                            console.log(fd);
+                            if ($('#ddlFTADL_CBF').val() == null || $('#ddlFTADL_CBF').val() == undefined || $('#ddlFTADL_CBF').val() == "") {
+                                $('#txtFTADL_Fuel, #txtFTADL_installedCapacity').val('');
+                            }
+                            else {
+                                $('#txtFTADL_Fuel').val(fd[0].fuel);
+                                $('#txtFTADL_installedCapacity').val(fd[0].capacity);
+                            }
+                        }
+                    });
+                }
+
+            function LoadDemandData() {
+                var fromdata = new FormData();
+
+                fromdata.append("vls", '5½' + $('#ddlFTADL_Site').val());
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        if (response) {
+                            $('#ddlFTADL_DemandNo').html(response);
+                            if ($('#ddlFTADL_DemandNo').val()=="" || $('#ddlFTADL_DemandNo').val()==null || $('#ddlFTADL_DemandNo').val()==undefined) {
+                                //$('#ddlFTADL_Demand').val('0');
+                                //$('#ddlFTADL_Dated').val('');
+                                addComma();
+                            } else {
+                                $('#ddlFTADL_Demand').val($('#ddlFTADL_DemandNo option:selected').val().split('½')[1]);
+                                $('#ddlFTADL_Dated').val($('#ddlFTADL_DemandNo option:selected').val().split('½')[2]);
+                                addComma();
+                            }
+                        }
+                        // Load_ddlFuel();
+                    }
+                });
+            }
+
+            function validations() {
+                if ($('#ddlFTADL_IPP').val() == '-1') {
+                    swal({
+                        title: "Error",
+                        text: "Please select power producer!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#ddlFTADL_IPP').focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+                if ($('#ddlFTADL_Site').val() == '-1') {
+                    swal({
+                        title: "Error",
+                        text: "Please select power producer site!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#ddlFTADL_Site').focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+                if ($('#ddlFTADL_CBF').val() == '-1') {
+                    swal({
+                        title: "Error",
+                        text: "Please select complex/block/unit!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#ddlFTADL_CBF').focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+                if ($('#ddlFTADL_Demand').val() == '') {
+                    swal({
+                        title: "Error",
+                        text: "Please Enter demand !",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#ddlFTADL_Demand').focus(), 100);
+                        }
+                    });
+                    return false;
+                }
+                if ($('#txtFTADL_Supply').val() == '') {
+                    swal({
+                        title: "Error",
+                        text: "Please enter supplying value!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#txtFTADL_Supply').focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+                if ($('#ddlFTADL_NotifyCount').val() == '-1') {
+                    swal({
+                        title: "Error",
+                        text: "Please select notification count!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#ddlFTADL_NotifyCount').focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+                if ($('#txtFTADL_prevTxtAreaRemarks').val() == '') {
+                    swal({
+                        title: "Error",
+                        text: "Please enter remarks!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#txtFTADL_prevTxtAreaRemarks').focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+                return true;
+            }
+
+            function removeComma() {
+                $('.clsAddComa').each(function (index, element) {
+                    var $val = $(this).val().replace(/,/g, '');
+                    $(this).val($val);
+                });
+            }
+            function addComma() {
+                $('.clsAddComa').each(function (index, element) {
+                    var $val = $(this).val().replace(/,/g, '');
+                    $val = numberWithCommas($val);
+                    $(this).val($val);
+                });
+            }
+            function numberWithCommas(x) {
+                // return x.toString().replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                x = x.toString();
+                if (x % 1 == 0) {
+                    if (x.indexOf(".") < 0) {
+                        x = x.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                        x += ".000";
+                    } else {
+                        x = x.replace('.000', '').replace('.000', '').replace('.00', '').replace('.0', '');
+                        x = x.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                        x += ".000";
+
+                    }
+                } else {
+                    var index = x.indexOf(".");
+                    var p1 = x.substring(0, index);
+                    p1 = p1.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                    var p2 = x.substring(index);
+                    p2 = p2 + "000";
+                    p2 = p2.substring(0, 5);
+                    x = p1 + p2;
+                }
+                return x;
+            }
+
+            $('body').off('click', '.btnAction');
+                $('body').on('click', '.btnAction', function (e) {
+                    debugger;
+                e.preventDefault();
+                removeComma();
+                var isTrue = validations();
+
+                if (!isTrue) {
+                    return false;
+                }
+                var NotificationStatus = $(this).val();
+                    var $Status = '24½' + $('#btnFTADL_Close').attr('tg').split('½')[0] + '½' + $(this).val() + '½' + $('#ddlFTADL_CBF').val().split('½')[0];
+                console.log('STATUS: ' + $Status);
+
+                $('.frm').each(function () {
+                    var i = $(this).attr('id');
+                    $Status += '½' + $(this).val();
+                    console.log('LUL: ' + i + ' - ' + $(this).val() + '\n');
+                });
+                debugger;
+                $Status += '½' + $('.rdtop:checked').val();
+                $Status += '½' + $('.rdAch:checked').val();
+                $Status += '½' + $('input:radio[name="rb_ComplianceAch"]:checked').val();
+
+                var nxt = "";
+                $('#tblMultircd tbody tr').each(function () {
+                    nxt += $($(this).find('td')[0]).attr('tg').split('½')[0] + '½' + $($(this).find('td')[1]).html() + '¼';
+                });
+
+                var fromdata = new FormData();
+                fromdata.append("vls", $Status);
+                fromdata.append("nxt", nxt);
+                debugger;
+                $.ajax({
+
+                    type: "POST",
+                    url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        swal({
+                            title: "" + NotificationStatus + " Confirmation",
+                            text: "Do you want to " + NotificationStatus + " this failure notification?",
+                            type: "warning",
+                            showCancelButton: true,
+                            confirmButtonClass: "btn btn-danger",
+                            confirmButtonText: "Continue"
+                        })
+                        if (parseInt(response) > 0) {
+                            swal({
+                                title: "" + NotificationStatus + " Confirmation",
+                                text: "This failure notification is " + NotificationStatus + "!",
+                                type: "success",
+
+
+                            });
+                            var options = {};
+                            $("#pageContainer").hide('slide', options, 300);
+                            $.ajax({
+                                url: "/NPCC/FailedToAchieveDespatch" + $(location).attr('search'),
+                                success: function (response) {
+                                    var options = {};
+                                    swal.close();
+                                    $('#pageContainer').html($(response).find('#pcontent').html());
+                                    $("#pageContainer").show('slide', options, 500);
+                                }
+                            });
+                        }
+                        else {
+                            swal.close();
+                        };
+
+
+                    }//END OF SUCC
+                });
+
+            });
+        });
+    </script>
+</div>

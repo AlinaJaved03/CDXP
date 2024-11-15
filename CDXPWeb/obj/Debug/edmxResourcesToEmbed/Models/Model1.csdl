@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="APP1DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CPPA_PPA_SCH_10">
+    <Key>
+      <PropertyRef Name="SCH_10_ID" />
+    </Key>
+    <Property Name="SCH_10_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VENDOR_ID" Type="Int32" Nullable="false" />
+    <Property Name="HEADER_ID_PK" Type="Decimal" Precision="23" Scale="0" Nullable="false" />
+    <Property Name="FUEL_LOOKUP_CODE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SCH_10_TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="REMARKS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CREATED_BY" Type="Decimal" Precision="23" Scale="0" Nullable="false" />
+    <Property Name="CREATION_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LAST_UPDATED_BY" Type="Decimal" Precision="23" Scale="0" />
+    <Property Name="LAST_UPDATE_DATE" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="CPPA_PPA_SCH_10_DTL">
+    <Key>
+      <PropertyRef Name="SCH_10_DTL_ID" />
+    </Key>
+    <Property Name="SCH_10_DTL_ID" Type="Decimal" Precision="23" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SCH_10_ID" Type="Int32" Nullable="false" />
+    <Property Name="Ambient_Temperature" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="NetPlant_Output" Type="Decimal" Precision="10" Scale="3" Nullable="false" />
+    <Property Name="Correction_Factor" Type="Decimal" Precision="10" Scale="6" Nullable="false" />
+    <Property Name="DG_Output" Type="Decimal" Precision="10" Scale="3" />
+    <Property Name="STG_Output" Type="Decimal" Precision="10" Scale="3" />
+    <Property Name="Equivalent_Output" Type="Decimal" Precision="10" Scale="3" />
+  </EntityType>
+  <EntityContainer Name="DBSEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CPPA_PPA_SCH_10" EntityType="Self.CPPA_PPA_SCH_10" />
+    <EntitySet Name="CPPA_PPA_SCH_10_DTL" EntityType="Self.CPPA_PPA_SCH_10_DTL" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,203 @@
+﻿
+@{
+    ViewBag.Title = "Pending Invoice List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="pcontent">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff;"></i>
+                        <h6 class="panel-title txt-light">@ViewBag.Title</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+
+
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                        @*<a class="pull-left inline-block close-panel" href="#" data-effect="fadeOut">
+                                <i class="zmdi zmdi-close"></i>
+                            </a>*@
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body" style="min-height: 300px;">
+                        @*====Body Start===*@
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Pending Invoice List</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div>
+                            <table class="table-bordered table-hover table borderWidth" data-tablesaw-mode="swipe" id="tbl_results">							
+                                <thead>
+                                <tr>
+									
+                                    <th class="filterhead"  style="width:80px;">Transaction No</th>
+									
+                                    <th class="filterhead" style="width:80px;">Vendor Name</th>
+                                    <th class="filterhead" style="width:80px;">IPP Invoice No</th>
+                                    <th class="filterhead" style="width:80px;">Actioned By Technical? </th>
+                                    <th class="filterhead" style="width:80px;">Technical Approved Date</th>
+                                    <th class="filterhead" style="width:80px;">Actioned By Finance?</th>
+                                    <th class="filterhead" style="width:80px;">Finance Approved Date</th>
+                                    <th class="filterhead" style="width:80px;">Invoice Type</th>
+                                    <th class="filterhead" style="width:80px;">Submit Date </th>
+                                    <th class="filterhead" style="width:80px;">Non Actioned Hours </th>
+                                    <th class="filterhead" style="width:140px;">Technical Username </th>
+                                    <th class="filterhead" style="width:140px;">Finance Username </th>
+								
+
+                                </tr>
+                                </thead>
+                                <tbody id="tbl_results_tbody">
+                                </tbody>							
+                            </table>
+                        </div>
+                        @*====Body End=====*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/plugins/moment/min/moment.min.js"></script>
+    <script src="~/Content/vendors/bower_components/moment/min/datetime-moment.js"></script>
+    <script type="text/javascript">
+            $(document).ready(function() {
+
+                $(function () {
+                    debugger;
+                    var data = @Html.Raw(@ViewBag.PendingInvoice);
+                    if (data.length > 0) {
+
+                        if ($('#tbl_results').hasClass('dataTable')) {
+                            $('#tbl_results').dataTable().fnDestroy();
+                        }
+                        var transNo = '';
+                        $.each(data, function (index, value) {
+                            var TransactionNumber = value.TransactionNumber;
+                            var VENDOR_NAME = value.VENDOR_NAME;
+                            var VEN_INV_LETTER_NO = value.VEN_INV_LETTER_NO;
+                            var Approved_By_Technical = value.Approved_By_Technical;
+                            var Technical_Approved_Date = value.Technical_Approved_Date;
+
+                            if (Technical_Approved_Date != null) {
+                                Technical_Approved_Date = formatdate(Technical_Approved_Date.split('T')[0]);
+                            }
+                            else {
+                                Technical_Approved_Date = '';
+                            }
+
+                            var Approved_By_Finance = value.Approved_By_Finance;
+
+                            var Finance_Approved_Date = value.Finance_Approved_Date;
+
+                            if (Finance_Approved_Date != null) {
+                                Finance_Approved_Date = formatdate(Finance_Approved_Date.split('T')[0]);
+                            }
+                            else {
+                                Finance_Approved_Date = '';
+                            }
+
+                            var INVOICE_TYPES = value.INVOICE_TYPES;
+                            var SUBMIT_DATE = value.SUBMIT_DATE;
+
+                            if (SUBMIT_DATE != null) {
+                                SUBMIT_DATE = formatdate(SUBMIT_DATE.split('T')[0]);
+                            }
+                            else {
+                                SUBMIT_DATE = '';
+                            }
+
+                            var NotActionedHours = value.NotActionedHours;
+                            var TechnicalUsersName = value.TechnicalUsersName;
+                            var FinanceUsersName = value.FinanceUsersName;
+                            $('#tbl_results_tbody').append('<tr><td><span class="txt-dark weight-500">' + TransactionNumber + '</span></td><td><span class="txt-dark weight-500">' + VENDOR_NAME + '</span></td><td><span class="txt-dark weight-500">' + VEN_INV_LETTER_NO + '</span></td><td><span class="txt-dark weight-500">' + Approved_By_Technical + '</span></td><td><span class="txt-dark weight-500 pull-left" >' + Technical_Approved_Date + '</span></td><td><span class="txt-dark weight-500"> ' + Approved_By_Finance + '</span></td><td><span class="txt-dark weight-500 pull-left"> ' + Finance_Approved_Date + '</span></td><td><span class="txt-dark weight-500 pull-left"> ' + INVOICE_TYPES + '</span></td><td><span class="txt-dark weight-500 pull-left"> ' + SUBMIT_DATE + '</span></td><td><span class="txt-dark weight-500 pull-right"> ' + NotActionedHours + '</span></td><td><span class="txt-dark weight-500 pull-left"> ' + TechnicalUsersName + '</span></td><td><span class="txt-dark weight-500 pull-left"> ' + FinanceUsersName + '</span></td></tr>'); // 8-4-2018 add edit/update link by Ahmad									
+
+
+
+                        });//end of each loop
+
+                        $('#tbl_results').DataTable({
+                            rowReorder: {
+                                selector: 'td:nth-child(2)'
+                            },
+                            "responsive": true,
+                            "aLengthMenu": [[10, 25, 50, 100, 150, 250, 500, -1], [10, 25, 50, 100, 150, 250, 500, "All"]],
+                            "iDisplayLength": 10,
+                            "sPaginationType": "full_numbers",
+                            "bJQueryUI": false,
+                            "bAutoWidth": false,
+                            "bLengthChange": true,
+                            "fnInitComplete": function (oSettings, json) {
+                                $('.dataTables_filter>label>input').attr('id', 'search');
+                            }
+                        });
+                        //table = $('#tbl_results').DataTable({
+                        //    "sScrollX": "100%",
+                        //    "dom": 'lBfrtip',
+                        //    columnDefs: [
+                        //        { "width": "80px", "targets": 0, },
+                        //        { "width": "80px", "targets": 1, },
+                        //        { "width": "80px", "targets": 2, },
+                        //        { "width": "80px", "targets": 3, },
+                        //        { "width": "80px", "targets": 4, },
+                        //        { "width": "80px", "targets": 5, },
+                        //        { "width": "80px", "targets": 6, },
+                        //        { "width": "80px", "targets": 7, },
+                        //        { "width": "80px", "targets": 8, },
+                        //        { "width": "80px", "targets": 9, },
+                        //        { "width": "140px", "targets": 10, },
+                        //        { "width": "140px", "targets": 11, }
+                        //    ],
+                        //    "order": [[3, 'desc']],
+                        //    "aLengthMenu": [[10, 25, 50, 100, 150, 250, 500, -1], [10, 25, 50, 100, 150, 250, 500, "All"]],
+                        //    "iDisplayLength": 10,
+                        //    "bSortCellsTop": true,
+                        //    "sPaginationType": "full_numbers",
+                        //    "bJQueryUI": false,
+                        //    "bAutoWidth": false,
+                        //    "bLengthChange": true,
+                        //    "fnInitComplete": function (oSettings, json) {
+                        //        $('.dataTables_filter>label>input').attr('id', 'search');
+                        //        $('.dataTables_filter>label>input').attr('placeholder', 'Search All');
+                        //    }
+
+                        //});//.fnAdjustColumnSizing( true );   
+
+                        $('#tbl_results_length').append(
+                            '<div class="dt-buttons" style="margin-left: 15px;"><a id="tbl_resultsExport" class="dt-button buttons-excel buttons-html5 form-control" tabindex="0" aria-controls="tbl_results" href="#" style="min-height: 88%;line-height: 40px;background-color: #1d4a6d;"><span>Export to Excel</span></a></div>');
+                        $('#tbl_results_length').attr('style', 'width: 400px;display: inline-flex;');
+                       
+                    }
+                });//===========
+                function formatdate(date) {
+                    try {
+                        var d = new Date(date);
+                        var dd = d.getDate() < 10 ? "0" + d.getDate() : d.getDate();
+                        return dd + "-" + monthNames[d.getMonth()] + "-" + d.getFullYear();
+                    }
+                    catch (err) {
+                        return "";
+                    }
+                }
+                $('body').off('click', '#tbl_resultsExport');
+                $('body').on('click', '#tbl_resultsExport', function (e) {
+                    e.preventDefault();
+                    $('#tbl_results').tableExport({fileName: 'Pending Invoices', type: 'excel', escape: 'false' });
+                    e.preventDefault();
+                });
+            });//End of Doc Ready
+    </script>
+</div>

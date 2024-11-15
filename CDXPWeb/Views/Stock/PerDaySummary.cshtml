@@ -1,0 +1,769 @@
+﻿
+@{
+    ViewBag.Title = "Per Day Summary";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div id="pcontent">
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px; margin-right: 5px; color: #fff;"></i>
+                        <h6 class="panel-title txt-light">@ViewBag.Title</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+
+
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                        @*<a class="pull-left inline-block close-panel" href="#" data-effect="fadeOut">
+                                <i class="zmdi zmdi-close"></i>
+                            </a>*@
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body" style="min-height: 300px;">
+                        @*====Body Start===*@
+                        @*<strong style="font-size:18px; color:black;">Stock Data </strong>
+                            <hr style="border-width:1px; margin-bottom:10px;" />*@
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Stock Data</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+
+                        <div style="overflow-x: auto; background-color: white;">
+                            <table class="tablex" id="tblHeader" style="color: #4F4F4F;margin-left: 10%;margin-right: 10%;width: 80%;">
+
+
+
+                                <tr style="background-color: white;">
+
+                                    <td style="width: 130px;">&nbsp;</td>
+                                    <td style="width: 130px;">
+                                        <label for="StockDate">
+                                            Date <span style="color:rgb(0, 149, 235);">*</span>
+                                        </label>
+                                    </td>
+                                    <td style="width:35%">
+                                        <input tabindex="2" style="background-color:rgb(251, 255, 193);" type="text" class="form-control frm StockDate" id="StockDate" name="SelectedDate" readonly>
+                                    </td>
+                                    <td colspan="5" style="text-align: right;">
+                                        <button type="button" class="btn btn-success btn-anim btnSearch" tg="0" id="btnSearch" value="Search">Search</button>
+                                    </td>
+                                </tr>
+
+                            </table>
+                            <div class="tab0">
+                                &nbsp;<div class="tab1">&nbsp;Search Results</div>
+                                <div class="tab2">&nbsp;</div>
+                            </div>
+                            <div>
+                                @using (Html.BeginForm("ExportToExcel_DailySummary", "Stock", FormMethod.Post))
+                                {
+
+
+                                    <table class="table-bordered  table-striped table-hover table borderWidth" data-tablesaw-mode="swipe" id="tbl_results">
+                                        <thead>
+                                            <tr style=" font-weight: bold;">
+
+                                                <th style="width:80px;" class="filterhead">Power Station</th>
+                                                <th style="width:80px;" class="filterhead">Capacity</th>
+                                                <th style="width:80px;" class="">Requirement Per Day(A)  </th>
+                                                <th style="width:80px;" class="">Stock to be Maintained </th>
+                                                <th style="width:80px;" class="">Total Stocks required as per PPA </th>
+                                                <th style="width:80px;" class="">Previous Day Consumption</th>
+                                                <th style="width:80px;" class=""> Previous Day Receipt </th>
+                                                <th style="width:80px;" class="OpeningStk">Opening Stock</th>
+                                                <th style="width:80px;" class="ClosingStk">Closing Stock</th>
+                                                <th style="width:80px;" class="">Dead Stock (M. Tons)</th>
+                                                <th style="width:80px;" class="">Useable Stock (M. Tons)</th>
+                                                <th style="width:80px;" class="">Days </th>
+                                                <th style="width:80px;" class=" ">Days/Hours</th>
+                                                <th style="width:80px;" class="">Firm Order Placed</th>
+                                                <th style="width:80px;" class="">Reciept against firm order till date</th>
+                                                <th style="width:80px;" class="Firm">Remarks</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                }
+                            </div>
+                            <br />
+                            <br />
+                        </div>
+                        <div id="dvexl" style="display: none;">
+                            <table id="tblprnt">
+                                <thead>
+                                    <tr>
+
+                                        <th style="width:80px;" class="filterhead">Power Station</th>
+                                        <th style="width:80px;" class="filterhead">Capacity</th>
+                                        <th style="width:80px;" class="">Requirement Per Day(A)  </th>
+                                        <th style="width:80px;" class="">Stock to be Maintained </th>
+                                        <th style="width:80px;" class="">Total Stocks required as per PPA </th>
+                                        <th style="width:80px;" class="">Previous Day Consumption</th>
+                                        <th style="width:80px;" class=""> Previous Day Receipt </th>
+                                        <th style="width:80px;" class="OpeningStk">Opening Stock</th>
+                                        <th style="width:80px;" class="ClosingStk">Closing Stock</th>
+                                        <th style="width:80px;" class="">Dead Stock (M. Tons)</th>
+                                        <th style="width:80px;" class="">Useable Stock (M. Tons)</th>
+                                        <th style="width:80px;" class="">Days </th>
+
+                                        <th style="width:80px;" class=" ">Days/Hours</th>
+                                        <th style="width:80px;" class="">Firm Order Placed</th>
+                                        <th style="width:80px;" class="">Reciept against firm order till date</th>
+                                        <th style="width:80px;" class="Firm">Remarks</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                        @*====Body End=====*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/plugins/moment/min/moment.min.js"></script>
+    <script src="~/Content/vendors/bower_components/moment/min/datetime-moment.js"></script>
+    <script type="text/javascript">
+        var tHead;
+        tHead = $('#tbl_results thead').html();
+
+        $(document).ready(function () {
+            debugger;
+
+            $('body').on('focus', ".StockDate", function () {
+
+                $(this).datepicker({
+                    dateFormat: 'dd-M-yy' /*,
+                        stepMonths: 0 */ /*,
+                               defaultDate: -1,
+                               minDate:'-1d',
+                               maxDate:'-1d'*/
+
+                });
+            });
+        });
+
+
+
+        function numberWithCommas(x) {
+            // return x.toString().replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+            if (x === null || x == "") {
+                x = "";
+            }
+            else {
+                x = x.toString();
+            }
+
+            if (x % 1 == 0) {
+                if (x.indexOf(".") < 0) {
+                    x = x.replace(/\D-/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                    x += ".0000";
+                } else {
+                    x = x.replace('.0000', '');
+                    x = x.replace(/\D-/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                    x += ".0000";
+
+                }
+            } else {
+                var index = x.indexOf(".");
+                var p1 = x.substring(0, index);
+                p1 = p1.replace(/\D-/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                var p2 = x.substring(index);
+                p2 = p2 + "0000";
+                p2 = p2.substring(0, 5);
+                x = p1 + p2;
+            }
+            return x;
+        }
+        $('body').on('click',
+            ".btnSearch",
+            function () {
+
+
+                debugger;
+                var SelectedDate = $('#StockDate').val();
+
+                $.ajax
+                    ({
+                        type: "GET",
+
+                        url: "/Stock/GetPerDaySummary/" + $(location).attr("search") + ($(location).attr("search") == "" ? "?SelectedDate=" : "&SelectedDate=") + SelectedDate,
+
+                        dataType: 'json',
+                        headers: {
+                            //"Token": Token
+                        },
+                        // async:false,
+                        beforeSend: function () {
+                            $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+                        },
+                        //async:false,
+                        complete: function () {
+                            $.unblockUI();
+                        },
+                        success: function (data) {
+                            debugger;
+                            console.log(data);
+
+                            if ($("#tbl_results").hasClass("dataTable")) {
+                                $("#tbl_results").dataTable().fnDestroy();
+                            }
+                            //debugger;
+                            $('#tbl_results tbody').html('');
+                            $('#tblprnt tbody').html('');
+                            $('#tblprntd1').html($('#fromStockDate').val());
+                            $('#tblprntd2').html($('#toStockDate').val());
+                            if (data.length > 0) {
+                                $('#tbl_results thead').html(tHead);
+                                var currentOilType = "";
+                                var currentParentOilType = "";
+                                var totalCapacity = 0, dataLength = data.length;
+                                var totalRequirementPerDay = 0, totalStocksRequired = 0, totalPreviousDayConsumption = 0, totalPreviousDayReceipt = 0, totalOpeningStock = 0, totalClosingStock = 0, totalFirmOrderPlacedfortheMonth = 0, totalRecieptAgainstFirmOrderTillDate = 0, totalDeadStock = 0, totalUsableStock = 0;
+
+                                var grandtotalCapacity = 0, grandtotalRequirementPerDay = 0, grandtotalStocksRequired = 0, grandtotalPreviousDayConsumption = 0, grandtotalPreviousDayReceipt = 0, grandtotalOpeningStock = 0, grandtotalClosingStock = 0, grandtotalFirmOrderPlacedfortheMonth = 0, grandtotalRecieptAgainstFirmOrderTillDate = 0, grandtotalDeadStock = 0, grandtotalUsableStock = 0;
+
+                                var lastgrandtotalCapacity = 0, lastgrandtotalRequirementPerDay = 0, lastgrandtotalStocksRequired = 0, lastgrandtotalPreviousDayConsumption = 0, lastgrandtotalPreviousDayReceipt = 0, lastgrandtotalOpeningStock = 0, lastgrandtotalClosingStock = 0, lastgrandtotalFirmOrderPlacedfortheMonth = 0, lastgrandtotalRecieptAgainstFirmOrderTillDate = 0, lastgrandtotalDeadStock = 0, lastgrandtotalUsableStock = 0;
+
+                                $.each(data,
+                                    function (index, value) {
+
+                                        //debugger;
+                                        // var transactionDate = value.TransactionDate;
+                                        //transactionDate = formatdate(transactionDate.split('T')[0]);
+                                        var ippName = value.VENDOR_NAME;
+                                        var Capacity = value.Capacity;
+                                        var RequirementPerDay = value.RequirementPerDay;
+                                        var StockMaintainedDays = value.StockMaintainedDays;
+                                        var TotalStocksRequired = value.TotalStocksRequired;
+
+                                        var Consumed = value.previousDayConsumption;
+                                        if (Consumed == null) { Consumed = 0; }
+
+                                        var Purchased = value.previousDayReceipt;
+                                        if (Purchased == null) { Purchased = 0; }
+
+                                        var OpeningStock = value.OpeningStock;
+                                        if (OpeningStock == null) { OpeningStock = 0; }
+
+                                        var ClosingStock = value.ClosingStock;
+                                        if (ClosingStock == null) { ClosingStock = 0; }
+
+                                        var DeadStock = value.DeadStock;
+                                        if (DeadStock == null) { DeadStock = 0; }
+
+                                        var UsableStock = value.UsableStock;
+                                        if (UsableStock == null) { UsableStock = 0; }
+
+                                        var Days = value.Days;
+                                        if (Days == null) { Days = 0; }
+
+                                        var FuelType = value.FuelType;
+                                        var FirmOrderPlacedfortheMonth = value.FirmOrderPlacedfortheMonth;
+                                        var RecieptAgainstFirmOrderTillDate = value.RecieptAgainstFirmOrderTillDate;
+                                        var Remarks = value.Remarks;
+                                        var OilType = value.OilType;
+                                        var ParentOilType = value.ParentOilType;
+                                        var previousDayConsumption = value.PreviousDayConsumption;
+                                        var previousDayReceipt = value.PreviousDayReceipt;
+
+
+
+                                        if (currentParentOilType == "HSFO" || ParentOilType == "HSFO" || currentParentOilType == "LSFO" || ParentOilType == "LSFO") {
+                                            lastgrandtotalCapacity += grandtotalCapacity;
+                                            lastgrandtotalPreviousDayConsumption += grandtotalPreviousDayConsumption;
+                                            lastgrandtotalPreviousDayReceipt += grandtotalPreviousDayReceipt;
+                                            lastgrandtotalStocksRequired += grandtotalStocksRequired;
+                                            lastgrandtotalRequirementPerDay += grandtotalRequirementPerDay;
+                                            lastgrandtotalOpeningStock += grandtotalOpeningStock;
+                                            lastgrandtotalClosingStock += grandtotalClosingStock;
+                                            lastgrandtotalDeadStock += grandtotalDeadStock;
+                                            lastgrandtotalUsableStock += grandtotalUsableStock;
+                                            lastgrandtotalFirmOrderPlacedfortheMonth += grandtotalFirmOrderPlacedfortheMonth;
+                                            lastgrandtotalRecieptAgainstFirmOrderTillDate += grandtotalRecieptAgainstFirmOrderTillDate;
+                                        }
+                                        if (currentOilType != OilType) {
+
+                                            if (index != 0) {
+
+                                                var thisrow = '<tr style="background: #1d4a6d5e;">\
+                                                            <td  align = "right" > <span class="txt-dark weight-500"><b style="font-weight: bold;">Sub Total ' + currentOilType +
+                                                    '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                    numberWithCommas(totalCapacity) +
+                                                    '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                    numberWithCommas(totalRequirementPerDay) +
+                                                    '</b></span></td><td></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                    numberWithCommas(totalStocksRequired) +
+                                                    '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                    numberWithCommas(totalPreviousDayConsumption) +
+                                                    '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                    numberWithCommas(totalPreviousDayReceipt) +
+                                                    '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                    numberWithCommas(totalOpeningStock) +
+                                                    '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                    numberWithCommas(totalClosingStock) +
+                                                    '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                    numberWithCommas(totalDeadStock) +
+                                                    '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                    numberWithCommas(totalUsableStock) +
+                                                    '</b></span></td><td></td><td></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                    numberWithCommas(totalFirmOrderPlacedfortheMonth) +
+                                                    '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                    numberWithCommas(RecieptAgainstFirmOrderTillDate) +
+                                                    '</b></span></td><td></td>\
+                                                        </tr > ';
+                                                $('#tbl_results tbody').append(thisrow);
+                                                $('#tblprnt tbody').append(thisrow);
+
+                                                grandtotalCapacity += totalCapacity;
+                                                grandtotalPreviousDayConsumption += totalPreviousDayConsumption;
+                                                grandtotalPreviousDayReceipt += totalPreviousDayReceipt;
+                                                grandtotalStocksRequired += totalStocksRequired;
+                                                grandtotalRequirementPerDay += totalRequirementPerDay;
+                                                grandtotalOpeningStock += totalOpeningStock;
+                                                grandtotalClosingStock += totalClosingStock;
+                                                grandtotalDeadStock += totalDeadStock;
+                                                grandtotalUsableStock += totalUsableStock;
+                                                grandtotalFirmOrderPlacedfortheMonth += totalFirmOrderPlacedfortheMonth;
+                                                grandtotalRecieptAgainstFirmOrderTillDate += totalRecieptAgainstFirmOrderTillDate;
+
+
+
+
+
+                                                totalCapacity = 0;
+                                                totalPreviousDayConsumption = 0;
+                                                totalPreviousDayReceipt = 0;
+                                                totalStocksRequired = 0;
+                                                totalRequirementPerDay = 0;
+                                                totalOpeningStock = 0;
+                                                totalClosingStock = 0;
+                                                totalDeadStock = 0;
+                                                totalUsableStock = 0;
+                                                totalFirmOrderPlacedfortheMonth = 0;
+                                                totalRecieptAgainstFirmOrderTillDate = 0;
+
+                                                if (currentParentOilType != ParentOilType) {
+
+
+                                                    var thisrow = '<tr style="background: #1d4a6d5e;">\
+                                                                <td  align = "right" > <span class="txt-dark weight-500"><b style="font-weight: bold;">GRANDTOTAL (' + currentParentOilType + ') M.Ton</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                        numberWithCommas(grandtotalCapacity) +
+                                                        '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                        numberWithCommas(grandtotalRequirementPerDay) +
+                                                        '</b></span></td><td></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                        numberWithCommas(grandtotalStocksRequired) +
+                                                        '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                        numberWithCommas(grandtotalPreviousDayConsumption) +
+                                                        '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                        numberWithCommas(grandtotalPreviousDayReceipt) +
+                                                        '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                        numberWithCommas(grandtotalOpeningStock) +
+                                                        '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                        numberWithCommas(grandtotalClosingStock) +
+                                                        '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                        numberWithCommas(grandtotalDeadStock) +
+                                                        '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                        numberWithCommas(grandtotalUsableStock) +
+                                                        '</b></span></td><td></td><td></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                        numberWithCommas(grandtotalFirmOrderPlacedfortheMonth) +
+                                                        '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                        numberWithCommas(grandtotalRecieptAgainstFirmOrderTillDate) +
+                                                        '</b></span></td><td></td>\
+                                                            </tr> ';
+
+                                                    $('#tbl_results tbody').append(thisrow);
+                                                    $('#tblprnt tbody').append(thisrow);
+                                                    grandtotalCapacity = 0;
+                                                    grandtotalPreviousDayConsumption = 0;
+                                                    grandtotalPreviousDayReceipt = 0;
+                                                    grandtotalStocksRequired = 0;
+                                                    grandtotalRequirementPerDay = 0;
+                                                    grandtotalOpeningStock = 0;
+                                                    grandtotalClosingStock = 0;
+                                                    grandtotalDeadStock = 0;
+                                                    grandtotalUsableStock = 0;
+                                                    grandtotalFirmOrderPlacedfortheMonth = 0;
+                                                    grandtotalRecieptAgainstFirmOrderTillDate = 0;
+                                                }
+                                                //$('#tblprnt tbody').append(thisrow);
+                                            }
+
+                                            totalCapacity += Capacity;
+                                            totalPreviousDayConsumption += previousDayConsumption;
+                                            totalPreviousDayReceipt += previousDayReceipt;
+                                            totalStocksRequired += TotalStocksRequired;
+                                            totalRequirementPerDay += RequirementPerDay;
+                                            totalOpeningStock += OpeningStock;
+                                            totalClosingStock += ClosingStock;
+                                            totalDeadStock += DeadStock;
+                                            totalUsableStock += UsableStock;
+                                            totalFirmOrderPlacedfortheMonth += FirmOrderPlacedfortheMonth;
+                                            totalRecieptAgainstFirmOrderTillDate += RecieptAgainstFirmOrderTillDate;
+
+
+                                            //if (currentParentOilType == ParentOilType) {
+
+                                            //    grandtotalCapacity += Capacity;
+                                            //    grandtotalPreviousDayConsumption += previousDayConsumption;
+                                            //    grandtotalPreviousDayReceipt += previousDayReceipt;
+                                            //    grandtotalStocksRequired += TotalStocksRequired;
+                                            //    grandtotalRequirementPerDay += RequirementPerDay;
+                                            //    grandtotalOpeningStock += OpeningStock;
+                                            //    grandtotalClosingStock += ClosingStock;
+                                            //    grandtotalFirmOrderPlacedfortheMonth += FirmOrderPlacedfortheMonth;
+                                            //    grandtotalRecieptAgainstFirmOrderTillDate += RecieptAgainstFirmOrderTillDate;
+
+                                            //}
+
+
+                                            var thisrow = '<tr>\
+                                                        <td colspan="16"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                OilType +
+                                                '</b></span></td>\
+                                                         <td style="display:none"></td>\
+                                                         <td style="display:none"></td>\
+                                                        <td style="display:none"></td>\
+                                                        <td style="display:none"></td>\
+                                                        <td style="display:none"></td>\
+                                                        <td style="display:none"></td>\
+                                                        <td style="display:none"></td>\
+                                                        <td style="display:none"></td>\
+                                                        <td style="display:none"></td>\
+                                                        <td style="display:none"></td>\
+                                                        <td style="display:none"></td>\
+                                                        <td style="display:none"></td>\
+                                                        <td style="display:none"></td>\
+                                                        <td style="display:none"></td>\
+                                                        <td style="display:none"></td>\
+                                                    </tr > ';
+                                            $('#tbl_results tbody').append(thisrow);
+                                            $('#tblprnt tbody').append(thisrow);
+
+
+                                            currentOilType = OilType;
+                                            currentParentOilType = ParentOilType;
+                                        }
+                                        else {
+                                            if (index == dataLength - 1) {
+                                                totalCapacity = 0;
+                                                totalPreviousDayConsumption = 0;
+                                                totalPreviousDayReceipt = 0;
+                                                totalStocksRequired = 0;
+                                                totalRequirementPerDay = 0;
+                                                totalOpeningStock = 0;
+                                                totalClosingStock = 0;
+                                                totalDeadStock = 0;
+                                                totalUsableStock = 0;
+                                                totalFirmOrderPlacedfortheMonth = 0;
+                                                totalRecieptAgainstFirmOrderTillDate = 0;
+                                            }
+                                            totalCapacity += Capacity;
+                                            totalPreviousDayConsumption += previousDayConsumption;
+                                            totalPreviousDayReceipt += previousDayReceipt;
+                                            totalStocksRequired += TotalStocksRequired;
+                                            totalRequirementPerDay += RequirementPerDay;
+                                            totalOpeningStock += OpeningStock;
+                                            totalClosingStock += ClosingStock;
+                                            totalDeadStock += DeadStock;
+                                            totalUsableStock += UsableStock;
+                                            totalFirmOrderPlacedfortheMonth += FirmOrderPlacedfortheMonth;
+                                            totalRecieptAgainstFirmOrderTillDate += RecieptAgainstFirmOrderTillDate;
+
+                                            //grandtotalCapacity += Capacity;
+                                            //grandtotalPreviousDayConsumption += previousDayConsumption;
+                                            //grandtotalPreviousDayReceipt += previousDayReceipt;
+                                            //grandtotalStocksRequired += TotalStocksRequired;
+                                            //grandtotalRequirementPerDay += RequirementPerDay;
+                                            //grandtotalOpeningStock += OpeningStock;
+                                            //grandtotalClosingStock += ClosingStock;
+                                            //grandtotalFirmOrderPlacedfortheMonth += FirmOrderPlacedfortheMonth;
+                                            //grandtotalRecieptAgainstFirmOrderTillDate += RecieptAgainstFirmOrderTillDate;
+
+                                        }
+
+
+
+                                        var thisrow = '<tr>\
+                                                    <td><span class="txt-dark weight-500">' +
+                                            ippName +
+                                            '</span></td><td><span class="txt-dark weight-500 pull-right">' +
+                                            numberWithCommas(Capacity) +
+                                            '</span></td><td><span class="txt-dark weight-500 pull-right">' +
+                                            numberWithCommas(RequirementPerDay) +
+                                            '</span></td><td><span class="txt-dark weight-500 pull-right">' +
+                                            numberWithCommas(StockMaintainedDays) +
+                                            '</span></td><td><span class="txt-dark weight-500 pull-right" >' +
+                                            numberWithCommas(TotalStocksRequired) +
+                                            '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                            numberWithCommas(previousDayConsumption) +
+                                            '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                            numberWithCommas(previousDayReceipt) +
+                                            '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                            numberWithCommas(OpeningStock) +
+                                            '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                            numberWithCommas(ClosingStock) +
+                                            '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                            numberWithCommas(DeadStock) +
+                                            '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                            numberWithCommas(UsableStock) +
+                                            '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                            Days +
+                                            '</span></td><td><span class="txt-dark weight-500 pull-right"> Days</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                            numberWithCommas(FirmOrderPlacedfortheMonth) +
+                                            '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                            numberWithCommas(RecieptAgainstFirmOrderTillDate) +
+                                            '</span></td><td><span class="txt-dark weight-500 pull-left"> ' +
+                                            Remarks +
+                                            '</span></td>\
+                                                </tr> ';
+
+                                        $('#tbl_results tbody').append(thisrow);
+                                        $('#tblprnt tbody').append(thisrow);
+
+                                        if (index == dataLength - 1) {
+
+                                            var thisrow = '<tr style="background: #1d4a6d5e;">\
+                                                        <td align = "right" > <span class="txt-dark weight-500"><b style="font-weight: bold;">Sub Total ' + OilType +
+                                                '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                numberWithCommas(totalCapacity) +
+                                                '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                numberWithCommas(totalRequirementPerDay) +
+                                                '</b></span></td><td></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                numberWithCommas(totalStocksRequired) +
+                                                '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                numberWithCommas(totalPreviousDayConsumption) +
+                                                '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                numberWithCommas(totalPreviousDayReceipt) +
+                                                '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                numberWithCommas(totalOpeningStock) +
+                                                '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                numberWithCommas(totalClosingStock) +
+                                                '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                numberWithCommas(totalDeadStock) +
+                                                '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                numberWithCommas(totalUsableStock) +
+                                                '</b></span></td><td></td><td></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                numberWithCommas(totalFirmOrderPlacedfortheMonth) +
+                                                '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                numberWithCommas(totalRecieptAgainstFirmOrderTillDate) +
+                                                '</b></span></td><td></td>\
+                                                    </tr > ';
+
+
+                                            $('#tbl_results tbody').append(thisrow);
+                                            $('#tblprnt tbody').append(thisrow);
+
+                                            grandtotalCapacity += totalCapacity;
+                                            grandtotalPreviousDayConsumption += totalPreviousDayConsumption;
+                                            grandtotalPreviousDayReceipt += totalPreviousDayReceipt;
+                                            grandtotalStocksRequired += totalStocksRequired;
+                                            grandtotalRequirementPerDay += totalRequirementPerDay;
+                                            grandtotalOpeningStock += totalOpeningStock;
+                                            grandtotalClosingStock += totalClosingStock;
+                                            grandtotalDeadStock += totalDeadStock;
+                                            grandtotalUsableStock += totalUsableStock;
+                                            grandtotalFirmOrderPlacedfortheMonth += totalFirmOrderPlacedfortheMonth;
+                                            grandtotalRecieptAgainstFirmOrderTillDate += totalRecieptAgainstFirmOrderTillDate;
+
+                                            totalCapacity = 0;
+                                            totalPreviousDayConsumption = 0;
+                                            totalPreviousDayReceipt = 0;
+                                            totalStocksRequired = 0;
+                                            totalRequirementPerDay = 0;
+                                            totalOpeningStock = 0;
+                                            totalClosingStock = 0;
+                                            totalDeadStock = 0;
+                                            totalUsableStock = 0;
+                                            totalFirmOrderPlacedfortheMonth = 0;
+                                            totalRecieptAgainstFirmOrderTillDate = 0;
+
+                                            if (currentParentOilType == "HSFO" || ParentOilType == "HSFO" || currentParentOilType == "LSFO" || ParentOilType == "LSFO") {
+                                                lastgrandtotalCapacity += grandtotalCapacity;
+                                                lastgrandtotalPreviousDayConsumption += grandtotalPreviousDayConsumption;
+                                                lastgrandtotalPreviousDayReceipt += grandtotalPreviousDayReceipt;
+                                                lastgrandtotalStocksRequired += grandtotalStocksRequired;
+                                                lastgrandtotalRequirementPerDay += grandtotalRequirementPerDay;
+                                                lastgrandtotalOpeningStock += grandtotalOpeningStock;
+                                                lastgrandtotalClosingStock += grandtotalClosingStock;
+                                                lastgrandtotalDeadStock += grandtotalDeadStock;
+                                                lastgrandtotalUsableStock += grandtotalUsableStock;
+                                                lastgrandtotalFirmOrderPlacedfortheMonth += grandtotalFirmOrderPlacedfortheMonth;
+                                                lastgrandtotalRecieptAgainstFirmOrderTillDate += grandtotalRecieptAgainstFirmOrderTillDate;
+                                            }
+
+                                        }
+
+
+
+
+
+
+
+                                        if (index == dataLength - 1) {
+
+                                            var thisrow = '<tr style="background: #1d4a6d5e;"><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">GRANDTOTAL (' + ParentOilType + ') M.Ton</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                numberWithCommas(grandtotalCapacity) +
+                                                '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                numberWithCommas(grandtotalRequirementPerDay) +
+                                                '</b></span></td><td></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                numberWithCommas(grandtotalStocksRequired) +
+                                                '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                numberWithCommas(grandtotalPreviousDayConsumption) +
+                                                '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                numberWithCommas(grandtotalPreviousDayReceipt) +
+                                                '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                numberWithCommas(grandtotalOpeningStock) +
+                                                '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                numberWithCommas(grandtotalClosingStock) +
+                                                '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                numberWithCommas(grandtotalDeadStock) +
+                                                '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                numberWithCommas(grandtotalUsableStock) +
+                                                '</b></span></td><td></td><td></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                numberWithCommas(grandtotalFirmOrderPlacedfortheMonth) +
+                                                '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                                numberWithCommas(grandtotalRecieptAgainstFirmOrderTillDate) +
+                                                '</b></span></td><td></td></tr>';
+
+                                            $('#tbl_results tbody').append(thisrow);
+                                            $('#tblprnt tbody').append(thisrow);
+
+
+
+
+
+                                            //var thisrow = '<tr style="background: #1d4a6d5e;"><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">GRANDTOTAL (' + ParentOilType + ') M.Ton</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                            //    numberWithCommas(lastgrandtotalCapacity) +
+                                            //    '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                            //    numberWithCommas(lastgrandtotalRequirementPerDay) +
+                                            //    '</b></span></td><td></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                            //    numberWithCommas(lastgrandtotalStocksRequired) +
+                                            //    '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                            //    numberWithCommas(lastgrandtotalPreviousDayConsumption) +
+                                            //    '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                            //    numberWithCommas(lastgrandtotalPreviousDayReceipt) +
+                                            //    '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                            //    numberWithCommas(lastgrandtotalOpeningStock) +
+                                            //    '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                            //    numberWithCommas(lastgrandtotalClosingStock) +
+                                            //    '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                            //    numberWithCommas(lastgrandtotalDeadStock) +
+                                            //    '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                            //    numberWithCommas(lastgrandtotalUsableStock) +
+                                            //    '</b></span></td><td></td><td></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                            //    numberWithCommas(lastgrandtotalFirmOrderPlacedfortheMonth) +
+                                            //    '</b></span></td><td align="right"><span class="txt-dark weight-500"><b style="font-weight: bold;">' +
+                                            //    numberWithCommas(lastgrandtotalRecieptAgainstFirmOrderTillDate) +
+                                            //    '</b></span></td><td></td></tr>';
+
+                                            //$('#tbl_results tbody').append(thisrow);
+                                            //$('#tblprnt tbody').append(thisrow);
+
+
+                                            grandtotalCapacity = 0;
+                                            grandtotalPreviousDayConsumption = 0;
+                                            grandtotalPreviousDayReceipt = 0;
+                                            grandtotalStocksRequired = 0;
+                                            grandtotalRequirementPerDay = 0;
+                                            grandtotalOpeningStock = 0;
+                                            grandtotalClosingStock = 0;
+                                            grandtotalDeadStock = 0;
+                                            grandtotalUsableStock = 0;
+                                            grandtotalFirmOrderPlacedfortheMonth = 0;
+                                            grandtotalRecieptAgainstFirmOrderTillDate = 0;
+                                        }
+
+                                    }); //end of each loop
+
+                                $.fn.dataTable.moment('DD-MMM-YYYY HH:mm');
+                                $.fn.dataTable.moment('DD-MMM-YYYY');
+                                $.fn.dataTable.moment('DD-MMM-YY HH:mm');
+                                $.fn.dataTable.moment('DD-MMM-YY');
+
+
+                                table = $("#tbl_results").DataTable({
+                                    //"order": [[0, 'desc']],
+                                    "sorting": false,
+                                    "aLengthMenu": [[100, 150, 250, 500, -1], [100, 150, 250, 500, "All"]],
+                                    "iDisplayLength": 100,
+                                    "sPaginationType": "full_numbers",
+                                    "bJQueryUI": false,
+                                    "bAutoWidth": false,
+                                    "bLengthChange": true,
+                                    "fnInitComplete": function (oSettings, json) {
+                                        $(".dataTables_filter > label > input").attr("id", "search");
+                                    }
+                                });
+
+                                $('#tbl_results_length').append(
+                                    '<div class="dt-buttons" style="margin-left: 15px;"><a id="prntEXL" class="dt-button buttons-excel buttons-html5 form-control" tabindex="0" aria-controls="tbl_results" href="#" style="min-height: 88%;line-height: 40px;background-color: #1d4a6d;"><span>Export to Excel</span></a></div>');
+                                $('#tbl_results_length').attr('style', 'width: 400px;display: inline-flex;');
+                                //table = $("#tbl_results").DataTable({
+                                //    "order": [[0, 'desc']],
+                                //    "aLengthMenu": [[10, 25, 50, 100, 150, 250, 500, -1], [10, 25, 50, 100, 150, 250, 500, "All"]],
+                                //    "iDisplayLength": 10,
+                                //    "sPaginationType": "full_numbers",
+                                //    "bJQueryUI": false,
+                                //    "bAutoWidth": false,
+                                //    "bLengthChange": true,
+                                //    "fnInitComplete": function (oSettings, json) {
+                                //        $(".dataTables_filter > label > input").attr("id", "search");
+                                //    }
+                                //});
+
+
+                                //$('#tbl_results_length').append(
+                                //    '<div class="dt-buttons" style="margin-left: 15px;"><a id="prntEXL" class="dt-button buttons-excel buttons-html5 form-control" tabindex="0" aria-controls="tbl_results" href="#" style="min-height: 88%;line-height: 40px;background-color: #1d4a6d5e;"><span>Export to Excel</span></a></div>');
+                                //$('#tbl_results_length').attr('style', 'width: 400px;display: inline-flex;');
+
+                                //end of success
+                            }
+                            else {
+                                $('#tbl_results').dataTable().fnClearTable();
+                                $('#tbl_results tbody').html('');
+                            }
+
+                        },
+                        error: function (request, textStatus, errorThrown) {
+                            // alert(request.getResponseHeader('some_header'));
+                        }
+                    });
+
+
+            });
+
+        $('body').off('click', '#prntEXL');
+        $('body').on('click', '#prntEXL', function (e) {
+            e.preventDefault();
+            debugger;
+            $('#dvexl').show();
+            $('#tblprnt').tableExport({ fileName: 'Stock Data', type: 'excel', escape: 'false' });
+            $('#dvexl').hide();
+            e.preventDefault();
+        });
+
+
+    </script>
+</div>

@@ -1,0 +1,1684 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WP_CPPAG_PrototypeModelStoreContainer" CdmEntityContainer="WP_CPPAG_PrototypeEntities">
+    <FunctionImportMapping FunctionImportName="CrossTab" FunctionName="WP_CPPAG_PrototypeModel.Store.CrossTab" />
+    <FunctionImportMapping FunctionImportName="SP_CPPA_CDP_HEADER_DETAIL_BY_CDP_ID" FunctionName="WP_CPPAG_PrototypeModel.Store.SP_CPPA_CDP_HEADER_DETAIL_BY_CDP_ID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WP_CPPAG_PrototypeModel.SP_CPPA_CDP_HEADER_DETAIL_BY_CDP_ID_Result">
+          <ScalarProperty Name="CDP_NUMBER" ColumnName="CDP_NUMBER" />
+          <ScalarProperty Name="GRID_STATION_NAME" ColumnName="GRID_STATION_NAME" />
+          <ScalarProperty Name="FEEDER_NAME_CODE" ColumnName="FEEDER_NAME_CODE" />
+          <ScalarProperty Name="ENGY_IMP_EXP_FROM_CODE" ColumnName="ENGY_IMP_EXP_FROM_CODE" />
+          <ScalarProperty Name="ENGY_IMP_EXP_TO_CODE" ColumnName="ENGY_IMP_EXP_TO_CODE" />
+          <ScalarProperty Name="LOCATION_CODE" ColumnName="LOCATION_CODE" />
+          <ScalarProperty Name="LOCATION_NAME" ColumnName="LOCATION_NAME" />
+          <ScalarProperty Name="PRIMARY_METER_NO" ColumnName="PRIMARY_METER_NO" />
+          <ScalarProperty Name="BACKUP_METER_NO" ColumnName="BACKUP_METER_NO" />
+          <ScalarProperty Name="PIMARY_DTL" ColumnName="PIMARY_DTL" />
+          <ScalarProperty Name="BACKUP_DTL" ColumnName="BACKUP_DTL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_ddlCDPNumber" FunctionName="WP_CPPAG_PrototypeModel.Store.SP_ddlCDPNumber">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WP_CPPAG_PrototypeModel.SP_ddlCDPNumber_Result">
+          <ScalarProperty Name="CDP_ID" ColumnName="CDP_ID" />
+          <ScalarProperty Name="GRID_STATION_NAME" ColumnName="GRID_STATION_NAME" />
+          <ScalarProperty Name="ORD" ColumnName="ORD" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_ddlDISCOs" FunctionName="WP_CPPAG_PrototypeModel.Store.SP_ddlDISCOs">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WP_CPPAG_PrototypeModel.SP_ddlDISCOs_Result">
+          <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+          <ScalarProperty Name="ABBREVIATION" ColumnName="ABBREVIATION" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_ddlMonths" FunctionName="WP_CPPAG_PrototypeModel.Store.SP_ddlMonths">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WP_CPPAG_PrototypeModel.SP_ddlMonths_Result">
+          <ScalarProperty Name="ACCOUNTING_MONTH_ID" ColumnName="ACCOUNTING_MONTH_ID" />
+          <ScalarProperty Name="DISPLAY" ColumnName="DISPLAY" />
+          <ScalarProperty Name="ord" ColumnName="ord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_DEL_DRAFT_DAC_OLD" FunctionName="WP_CPPAG_PrototypeModel.Store.SP_DEL_DRAFT_DAC_OLD" />
+    <FunctionImportMapping FunctionImportName="SP_DISCO_MONTHLY_REPORT" FunctionName="WP_CPPAG_PrototypeModel.Store.SP_DISCO_MONTHLY_REPORT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WP_CPPAG_PrototypeModel.SP_DISCO_MONTHLY_REPORT_Result">
+          <ScalarProperty Name="CDP_ID" ColumnName="CDP_ID" />
+          <ScalarProperty Name="Sr__" ColumnName="Sr #" />
+          <ScalarProperty Name="CDP__" ColumnName="CDP #" />
+          <ScalarProperty Name="NAME_OF_G_S" ColumnName="NAME OF G/S" />
+          <ScalarProperty Name="Voltage" ColumnName="Voltage" />
+          <ScalarProperty Name="TF_TL" ColumnName="TF/TL" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="Eng_Import_From" ColumnName="Eng Import From" />
+          <ScalarProperty Name="Eng_Export_To" ColumnName="Eng Export To" />
+          <ScalarProperty Name="Primary_Meter_No" ColumnName="Primary Meter No" />
+          <ScalarProperty Name="Backup_Meter_No" ColumnName="Backup Meter No" />
+          <ScalarProperty Name="Eng_Import" ColumnName="Eng Import" />
+          <ScalarProperty Name="Eng_Export" ColumnName="Eng Export" />
+          <ScalarProperty Name="MDI_Import" ColumnName="MDI Import" />
+          <ScalarProperty Name="MDI_EXPORT" ColumnName="MDI EXPORT" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Verified" ColumnName="Verified" />
+          <ScalarProperty Name="creat" ColumnName="creat" />
+          <ScalarProperty Name="nxt" ColumnName="nxt" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_DISCO_MONTHLY_REPORT_CPPA_VERIFICATION" FunctionName="WP_CPPAG_PrototypeModel.Store.SP_DISCO_MONTHLY_REPORT_CPPA_VERIFICATION">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WP_CPPAG_PrototypeModel.SP_DISCO_MONTHLY_REPORT_CPPA_VERIFICATION_Result">
+          <ScalarProperty Name="CDP_ID" ColumnName="CDP_ID" />
+          <ScalarProperty Name="Sr__" ColumnName="Sr #" />
+          <ScalarProperty Name="CDP__" ColumnName="CDP #" />
+          <ScalarProperty Name="NAME_OF_G_S" ColumnName="NAME OF G/S" />
+          <ScalarProperty Name="Voltage" ColumnName="Voltage" />
+          <ScalarProperty Name="TF_TL" ColumnName="TF/TL" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="Eng_Import_From" ColumnName="Eng Import From" />
+          <ScalarProperty Name="Eng_Export_To" ColumnName="Eng Export To" />
+          <ScalarProperty Name="Primary_Meter_No" ColumnName="Primary Meter No" />
+          <ScalarProperty Name="Backup_Meter_No" ColumnName="Backup Meter No" />
+          <ScalarProperty Name="Eng_Import" ColumnName="Eng Import" />
+          <ScalarProperty Name="Eng_Export" ColumnName="Eng Export" />
+          <ScalarProperty Name="MDI_Import" ColumnName="MDI Import" />
+          <ScalarProperty Name="MDI_EXPORT" ColumnName="MDI EXPORT" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Verified" ColumnName="Verified" />
+          <ScalarProperty Name="nxt" ColumnName="nxt" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_IMPORT_EMO_FORECAST" FunctionName="WP_CPPAG_PrototypeModel.Store.SP_IMPORT_EMO_FORECAST" />
+    <FunctionImportMapping FunctionImportName="SP_IMPORT_LAST_DAC" FunctionName="WP_CPPAG_PrototypeModel.Store.SP_IMPORT_LAST_DAC">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WP_CPPAG_PrototypeModel.SP_IMPORT_LAST_DAC_Result">
+          <ScalarProperty Name="CURRENT_AVAILABILITY" ColumnName="CURRENT_AVAILABILITY" />
+          <ScalarProperty Name="REVISED_AVAILABILITY" ColumnName="REVISED_AVAILABILITY" />
+          <ScalarProperty Name="TARGET_HOUR" ColumnName="TARGET_HOUR" />
+          <ScalarProperty Name="AMBIENT_TEMPERATURE" ColumnName="AMBIENT_TEMPERATURE" />
+          <ScalarProperty Name="AMBIENT_AVAILABILITY" ColumnName="AMBIENT_AVAILABILITY" />
+          <ScalarProperty Name="AVAILABILITY" ColumnName="AVAILABILITY" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_LAST_METER_Reading_By_CDP_DTL_ID" FunctionName="WP_CPPAG_PrototypeModel.Store.SP_LAST_METER_Reading_By_CDP_DTL_ID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WP_CPPAG_PrototypeModel.SP_LAST_METER_Reading_By_CDP_DTL_ID_Result">
+          <ScalarProperty Name="WP_DISCO_CDP_MONTHLY_DATA_ID" ColumnName="WP_DISCO_CDP_MONTHLY_DATA_ID" />
+          <ScalarProperty Name="READING_DATE_TIME" ColumnName="READING_DATE_TIME" />
+          <ScalarProperty Name="PRIMARY_IMPORT_ACTIVE_READING" ColumnName="PRIMARY_IMPORT_ACTIVE_READING" />
+          <ScalarProperty Name="PRIMARY_IMPORT_REACTIVE_READING" ColumnName="PRIMARY_IMPORT_REACTIVE_READING" />
+          <ScalarProperty Name="PRIMARY_EXPORT_ACTIVE_READING" ColumnName="PRIMARY_EXPORT_ACTIVE_READING" />
+          <ScalarProperty Name="PRIMARY_EXPORT_REACTIVE_READING" ColumnName="PRIMARY_EXPORT_REACTIVE_READING" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_LOAD_FUEL_RATES_BY_FORECAST_HEADER_ID" FunctionName="WP_CPPAG_PrototypeModel.Store.SP_LOAD_FUEL_RATES_BY_FORECAST_HEADER_ID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WP_CPPAG_PrototypeModel.SP_LOAD_FUEL_RATES_BY_FORECAST_HEADER_ID_Result">
+          <ScalarProperty Name="FORECAST_HEADER_ID" ColumnName="FORECAST_HEADER_ID" />
+          <ScalarProperty Name="FORECAST_NO" ColumnName="FORECAST_NO" />
+          <ScalarProperty Name="VENDOR_ID" ColumnName="VENDOR_ID" />
+          <ScalarProperty Name="VENDOR_SITE_ID" ColumnName="VENDOR_SITE_ID" />
+          <ScalarProperty Name="txtIPPTitle" ColumnName="txtIPPTitle" />
+          <ScalarProperty Name="ddlVendors" ColumnName="ddlVendors" />
+          <ScalarProperty Name="PPA_PLANT_EMO_ID" ColumnName="PPA_PLANT_EMO_ID" />
+          <ScalarProperty Name="BLOCK_TITLE" ColumnName="BLOCK_TITLE" />
+          <ScalarProperty Name="PPA_PLT_BLK_FUEL_ID" ColumnName="PPA_PLT_BLK_FUEL_ID" />
+          <ScalarProperty Name="FUEL_NAME" ColumnName="FUEL_NAME" />
+          <ScalarProperty Name="UNIT" ColumnName="UNIT" />
+          <ScalarProperty Name="DEPENDABLE_CAPACITY" ColumnName="DEPENDABLE_CAPACITY" />
+          <ScalarProperty Name="INV_METHOD_CODE" ColumnName="INV_METHOD_CODE" />
+          <ScalarProperty Name="ESTIMATED_CONSUMPTION" ColumnName="ESTIMATED_CONSUMPTION" />
+          <ScalarProperty Name="EMO_PERIOD_ID" ColumnName="EMO_PERIOD_ID" />
+          <ScalarProperty Name="FORECAST_FROM_DATE" ColumnName="FORECAST_FROM_DATE" />
+          <ScalarProperty Name="FORECAST_TO_DATE" ColumnName="FORECAST_TO_DATE" />
+          <ScalarProperty Name="PORTAL_SUBMISSION_DATE" ColumnName="PORTAL_SUBMISSION_DATE" />
+          <ScalarProperty Name="APPROVAL_STATUS" ColumnName="APPROVAL_STATUS" />
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+          <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+          <ScalarProperty Name="LAST_UPDATE_LOGIN" ColumnName="LAST_UPDATE_LOGIN" />
+          <ScalarProperty Name="ORGANIZATION_ID" ColumnName="ORGANIZATION_ID" />
+          <ScalarProperty Name="REVISED_BY" ColumnName="REVISED_BY" />
+          <ScalarProperty Name="REVISED_DATE_TIME" ColumnName="REVISED_DATE_TIME" />
+          <ScalarProperty Name="REVISED_REASON" ColumnName="REVISED_REASON" />
+          <ScalarProperty Name="OLD_FORECAST_HEADER_ID" ColumnName="OLD_FORECAST_HEADER_ID" />
+          <ScalarProperty Name="SUBMIT_DATE" ColumnName="SUBMIT_DATE" />
+          <ScalarProperty Name="BB" ColumnName="BB" />
+          <ScalarProperty Name="CC" ColumnName="CC" />
+          <ScalarProperty Name="DD" ColumnName="DD" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_MENU_BY_USER_ID" FunctionName="WP_CPPAG_PrototypeModel.Store.SP_MENU_BY_USER_ID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WP_CPPAG_PrototypeModel.SP_MENU_BY_USER_ID_Result">
+          <ScalarProperty Name="WP_SETUP_MENU_ID" ColumnName="WP_SETUP_MENU_ID" />
+          <ScalarProperty Name="MENU_NAME" ColumnName="MENU_NAME" />
+          <ScalarProperty Name="Herf_LINK" ColumnName="Herf_LINK" />
+          <ScalarProperty Name="CLASS_NAME" ColumnName="CLASS_NAME" />
+          <ScalarProperty Name="ORDER_BY" ColumnName="ORDER_BY" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="WP_SETUP_USER_TYPES_ID" ColumnName="WP_SETUP_USER_TYPES_ID" />
+          <ScalarProperty Name="USER_TYPE_NAME" ColumnName="USER_TYPE_NAME" />
+          <ScalarProperty Name="WP_PORTAL_USERS_ID" ColumnName="WP_PORTAL_USERS_ID" />
+          <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+          <ScalarProperty Name="DISPLAY_NAME" ColumnName="DISPLAY_NAME" />
+          <ScalarProperty Name="DISPLAY_DESIGNATION" ColumnName="DISPLAY_DESIGNATION" />
+          <ScalarProperty Name="S_MENU" ColumnName="S_MENU" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_METER_READING_PERFORMA_PREVIOUS_DATA" FunctionName="WP_CPPAG_PrototypeModel.Store.SP_METER_READING_PERFORMA_PREVIOUS_DATA" />
+    <FunctionImportMapping FunctionImportName="SP_METER_READING_PERFORMA_PREVIOUS_DATA_Coppy" FunctionName="WP_CPPAG_PrototypeModel.Store.SP_METER_READING_PERFORMA_PREVIOUS_DATA_Coppy" />
+    <FunctionImportMapping FunctionImportName="SP_MRP_EDIT_DATA_BY_WP_DISCO_CDP_MONTHLY_DATA_ID" FunctionName="WP_CPPAG_PrototypeModel.Store.SP_MRP_EDIT_DATA_BY_WP_DISCO_CDP_MONTHLY_DATA_ID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WP_CPPAG_PrototypeModel.SP_MRP_EDIT_DATA_BY_WP_DISCO_CDP_MONTHLY_DATA_ID_Result">
+          <ScalarProperty Name="WP_DISCO_CDP_MONTHLY_DATA_ID" ColumnName="WP_DISCO_CDP_MONTHLY_DATA_ID" />
+          <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+          <ScalarProperty Name="ACCOUNTING_MONTH_ID" ColumnName="ACCOUNTING_MONTH_ID" />
+          <ScalarProperty Name="IS_PRIMARY_METER" ColumnName="IS_PRIMARY_METER" />
+          <ScalarProperty Name="FROM_DATE" ColumnName="FROM_DATE" />
+          <ScalarProperty Name="TO_DATE" ColumnName="TO_DATE" />
+          <ScalarProperty Name="ddlMonths" ColumnName="ddlMonths" />
+          <ScalarProperty Name="TRANSACTION_TYPE" ColumnName="TRANSACTION_TYPE" />
+          <ScalarProperty Name="PREVIOUS_WP_DISCO_CDP_MONTHLY_DATA_ID" ColumnName="PREVIOUS_WP_DISCO_CDP_MONTHLY_DATA_ID" />
+          <ScalarProperty Name="PRIMARY_IMPORT_ACTIVE_READING" ColumnName="PRIMARY_IMPORT_ACTIVE_READING" />
+          <ScalarProperty Name="PRIMARY_IMPORT_REACTIVE_READING" ColumnName="PRIMARY_IMPORT_REACTIVE_READING" />
+          <ScalarProperty Name="PRIMARY_IMPORT_ACTIVE_MDI" ColumnName="PRIMARY_IMPORT_ACTIVE_MDI" />
+          <ScalarProperty Name="PRIMARY_IMPORT_REACTIVE_MDI" ColumnName="PRIMARY_IMPORT_REACTIVE_MDI" />
+          <ScalarProperty Name="PRIMARY_EXPORT_ACTIVE_READING" ColumnName="PRIMARY_EXPORT_ACTIVE_READING" />
+          <ScalarProperty Name="PRIMARY_EXPORT_REACTIVE_READING" ColumnName="PRIMARY_EXPORT_REACTIVE_READING" />
+          <ScalarProperty Name="PRIMARY_EXPORT_ACTIVE_MDI" ColumnName="PRIMARY_EXPORT_ACTIVE_MDI" />
+          <ScalarProperty Name="PRIMARY_EXPORT_REACTIVE_MDI" ColumnName="PRIMARY_EXPORT_REACTIVE_MDI" />
+          <ScalarProperty Name="PRIMARY_IMPORT_ACTIVE_AJD" ColumnName="PRIMARY_IMPORT_ACTIVE_AJD" />
+          <ScalarProperty Name="PRIMARY_IMPORT_REACTIVE_ADJ" ColumnName="PRIMARY_IMPORT_REACTIVE_ADJ" />
+          <ScalarProperty Name="PRIMARY_EXPORT_ACTIVE_AJD" ColumnName="PRIMARY_EXPORT_ACTIVE_AJD" />
+          <ScalarProperty Name="PRIMARY_EXPORT_REACTIVE_ADJ" ColumnName="PRIMARY_EXPORT_REACTIVE_ADJ" />
+          <ScalarProperty Name="BACKUP_IMPORT_ACTIVE_READING" ColumnName="BACKUP_IMPORT_ACTIVE_READING" />
+          <ScalarProperty Name="BACKUP_IMPORT_REACTIVE_READING" ColumnName="BACKUP_IMPORT_REACTIVE_READING" />
+          <ScalarProperty Name="BACKUP_IMPORT_ACTIVE_MDI" ColumnName="BACKUP_IMPORT_ACTIVE_MDI" />
+          <ScalarProperty Name="BACKUP_IMPORT_REACTIVE_MDI" ColumnName="BACKUP_IMPORT_REACTIVE_MDI" />
+          <ScalarProperty Name="BACKUP_EXPORT_ACTIVE_READING" ColumnName="BACKUP_EXPORT_ACTIVE_READING" />
+          <ScalarProperty Name="BACKUP_EXPORT_REACTIVE_READING" ColumnName="BACKUP_EXPORT_REACTIVE_READING" />
+          <ScalarProperty Name="BACKUP_EXPORT_ACTIVE_MDI" ColumnName="BACKUP_EXPORT_ACTIVE_MDI" />
+          <ScalarProperty Name="BACKUP_EXPORT_REACTIVE_MDI" ColumnName="BACKUP_EXPORT_REACTIVE_MDI" />
+          <ScalarProperty Name="BACKUP_IMPORT_ACTIVE_AJD" ColumnName="BACKUP_IMPORT_ACTIVE_AJD" />
+          <ScalarProperty Name="BACKUP_IMPORT_REACTIVE_ADJ" ColumnName="BACKUP_IMPORT_REACTIVE_ADJ" />
+          <ScalarProperty Name="BACKUP_EXPORT_ACTIVE_AJD" ColumnName="BACKUP_EXPORT_ACTIVE_AJD" />
+          <ScalarProperty Name="BACKUP_EXPORT_REACTIVE_ADJ" ColumnName="BACKUP_EXPORT_REACTIVE_ADJ" />
+          <ScalarProperty Name="P_ENG_ACTIVE_IMPORT" ColumnName="P_ENG_ACTIVE_IMPORT" />
+          <ScalarProperty Name="P_ENG_ACTIVE_EXPORT" ColumnName="P_ENG_ACTIVE_EXPORT" />
+          <ScalarProperty Name="P_MDI_ACTIVE_IMPORT" ColumnName="P_MDI_ACTIVE_IMPORT" />
+          <ScalarProperty Name="P_MDI_ACTIVE_EXPORT" ColumnName="P_MDI_ACTIVE_EXPORT" />
+          <ScalarProperty Name="B_ENG_ACTIVE_IMPORT" ColumnName="B_ENG_ACTIVE_IMPORT" />
+          <ScalarProperty Name="B_ENG_ACTIVE_EXPORT" ColumnName="B_ENG_ACTIVE_EXPORT" />
+          <ScalarProperty Name="B_MDI_ACTIVE_IMPORT" ColumnName="B_MDI_ACTIVE_IMPORT" />
+          <ScalarProperty Name="B_MDI_ACTIVE_EXPORT" ColumnName="B_MDI_ACTIVE_EXPORT" />
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="CREATED_BY_WP_PORTAL_USERS_ID" ColumnName="CREATED_BY_WP_PORTAL_USERS_ID" />
+          <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+          <ScalarProperty Name="LAST_UPDATE_BY_WP_PORTAL_USERS_ID" ColumnName="LAST_UPDATE_BY_WP_PORTAL_USERS_ID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="SUBMITT_DATE_TIME" ColumnName="SUBMITT_DATE_TIME" />
+          <ScalarProperty Name="ddlDISCOs" ColumnName="ddlDISCOs" />
+          <ScalarProperty Name="ddlCDPNumber" ColumnName="ddlCDPNumber" />
+          <ScalarProperty Name="FEEDER_NAME_CODE" ColumnName="FEEDER_NAME_CODE" />
+          <ScalarProperty Name="GRID_STATION_NAME" ColumnName="GRID_STATION_NAME" />
+          <ScalarProperty Name="ENGY_IMP_EXP_FROM_CODE" ColumnName="ENGY_IMP_EXP_FROM_CODE" />
+          <ScalarProperty Name="ENGY_IMP_EXP_TO_CODE" ColumnName="ENGY_IMP_EXP_TO_CODE" />
+          <ScalarProperty Name="LOCATION_CODE" ColumnName="LOCATION_CODE" />
+          <ScalarProperty Name="LOCATION_NAME" ColumnName="LOCATION_NAME" />
+          <ScalarProperty Name="PRIMARY_METER_NO" ColumnName="PRIMARY_METER_NO" />
+          <ScalarProperty Name="PRIMARY_METER_NO_DTL" ColumnName="PRIMARY_METER_NO_DTL" />
+          <ScalarProperty Name="BACKUP_METER_NO" ColumnName="BACKUP_METER_NO" />
+          <ScalarProperty Name="BACKUP_METER_NO_DTL" ColumnName="BACKUP_METER_NO_DTL" />
+          <ScalarProperty Name="PM_PREVIOUS_READING_DATE_TIME" ColumnName="PM_PREVIOUS_READING_DATE_TIME" />
+          <ScalarProperty Name="BM_PREVIOUS_READING_DATE_TIME" ColumnName="BM_PREVIOUS_READING_DATE_TIME" />
+          <ScalarProperty Name="PM_READING_DATE_TIME" ColumnName="PM_READING_DATE_TIME" />
+          <ScalarProperty Name="BM_READING_DATE_TIME" ColumnName="BM_READING_DATE_TIME" />
+          <ScalarProperty Name="PR1" ColumnName="PR1" />
+          <ScalarProperty Name="PR2" ColumnName="PR2" />
+          <ScalarProperty Name="PR3" ColumnName="PR3" />
+          <ScalarProperty Name="PR4" ColumnName="PR4" />
+          <ScalarProperty Name="PR5" ColumnName="PR5" />
+          <ScalarProperty Name="PR6" ColumnName="PR6" />
+          <ScalarProperty Name="PR7" ColumnName="PR7" />
+          <ScalarProperty Name="PR8" ColumnName="PR8" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_NPCC_Declaration_Avalable_Capacity_Load" FunctionName="WP_CPPAG_PrototypeModel.Store.sp_NPCC_Declaration_Avalable_Capacity_Load">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WP_CPPAG_PrototypeModel.sp_NPCC_Declaration_Avalable_Capacity_Load_Result">
+          <ScalarProperty Name="HOURLY_DATA_TYPE" ColumnName="HOURLY_DATA_TYPE" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="ddlIPP" ColumnName="ddlIPP" />
+          <ScalarProperty Name="ddlSite" ColumnName="ddlSite" />
+          <ScalarProperty Name="ddlBlock" ColumnName="ddlBlock" />
+          <ScalarProperty Name="fuel" ColumnName="fuel" />
+          <ScalarProperty Name="capacity" ColumnName="capacity" />
+          <ScalarProperty Name="policiy" ColumnName="policiy" />
+          <ScalarProperty Name="TARGET_DATE" ColumnName="TARGET_DATE" />
+          <ScalarProperty Name="SUBMIT_DATE_TIME" ColumnName="SUBMIT_DATE_TIME" />
+          <ScalarProperty Name="INTIMATION_DATE_TIME" ColumnName="INTIMATION_DATE_TIME" />
+          <ScalarProperty Name="SENDER_NAME" ColumnName="SENDER_NAME" />
+          <ScalarProperty Name="SENDER_DESIGNATION" ColumnName="SENDER_DESIGNATION" />
+          <ScalarProperty Name="SENDER_REMARKS" ColumnName="SENDER_REMARKS" />
+          <ScalarProperty Name="RECEIVER_NAME" ColumnName="RECEIVER_NAME" />
+          <ScalarProperty Name="RECEIVER_DESIGNATION" ColumnName="RECEIVER_DESIGNATION" />
+          <ScalarProperty Name="REVISION_TYPE" ColumnName="REVISION_TYPE" />
+          <ScalarProperty Name="RECEIVER_REMARKS" ColumnName="RECEIVER_REMARKS" />
+          <ScalarProperty Name="CURRENT_AVAILABILITY" ColumnName="CURRENT_AVAILABILITY" />
+          <ScalarProperty Name="REVISED_AVAILABILITY" ColumnName="REVISED_AVAILABILITY" />
+          <ScalarProperty Name="DTL" ColumnName="DTL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_NPCC_Declaration_Avalable_Capacity_Load_DAD" FunctionName="WP_CPPAG_PrototypeModel.Store.sp_NPCC_Declaration_Avalable_Capacity_Load_DAD">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WP_CPPAG_PrototypeModel.sp_NPCC_Declaration_Avalable_Capacity_Load_DAD_Result">
+          <ScalarProperty Name="HOURLY_DATA_TYPE" ColumnName="HOURLY_DATA_TYPE" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="SUBMIT_DATE" ColumnName="SUBMIT_DATE" />
+          <ScalarProperty Name="ddlIPP" ColumnName="ddlIPP" />
+          <ScalarProperty Name="ddlSite" ColumnName="ddlSite" />
+          <ScalarProperty Name="ddlBlock" ColumnName="ddlBlock" />
+          <ScalarProperty Name="fuel" ColumnName="fuel" />
+          <ScalarProperty Name="capacity" ColumnName="capacity" />
+          <ScalarProperty Name="policiy" ColumnName="policiy" />
+          <ScalarProperty Name="TARGET_DATE" ColumnName="TARGET_DATE" />
+          <ScalarProperty Name="INTIMATION_DATE_TIME" ColumnName="INTIMATION_DATE_TIME" />
+          <ScalarProperty Name="SENDER_NAME" ColumnName="SENDER_NAME" />
+          <ScalarProperty Name="SENDER_DESIGNATION" ColumnName="SENDER_DESIGNATION" />
+          <ScalarProperty Name="SENDER_REMARKS" ColumnName="SENDER_REMARKS" />
+          <ScalarProperty Name="RECEIVER_NAME" ColumnName="RECEIVER_NAME" />
+          <ScalarProperty Name="RECEIVER_DESIGNATION" ColumnName="RECEIVER_DESIGNATION" />
+          <ScalarProperty Name="RECEIVER_REMARKS" ColumnName="RECEIVER_REMARKS" />
+          <ScalarProperty Name="CURRENT_AVAILABILITY" ColumnName="CURRENT_AVAILABILITY" />
+          <ScalarProperty Name="REVISED_AVAILABILITY" ColumnName="REVISED_AVAILABILITY" />
+          <ScalarProperty Name="DTL" ColumnName="DTL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_NPCC_Declaration_Avalable_Capacity_LoadRDAC_ADAC_View" FunctionName="WP_CPPAG_PrototypeModel.Store.sp_NPCC_Declaration_Avalable_Capacity_LoadRDAC_ADAC_View">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WP_CPPAG_PrototypeModel.sp_NPCC_Declaration_Avalable_Capacity_LoadRDAC_ADAC_View_Result">
+          <ScalarProperty Name="HOURLY_DATA_TYPE" ColumnName="HOURLY_DATA_TYPE" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="ddlIPP" ColumnName="ddlIPP" />
+          <ScalarProperty Name="ddlSite" ColumnName="ddlSite" />
+          <ScalarProperty Name="ddlBlock" ColumnName="ddlBlock" />
+          <ScalarProperty Name="fuel" ColumnName="fuel" />
+          <ScalarProperty Name="capacity" ColumnName="capacity" />
+          <ScalarProperty Name="policiy" ColumnName="policiy" />
+          <ScalarProperty Name="TARGET_DATE" ColumnName="TARGET_DATE" />
+          <ScalarProperty Name="SUBMIT_DATE_TIME" ColumnName="SUBMIT_DATE_TIME" />
+          <ScalarProperty Name="INTIMATION_DATE_TIME" ColumnName="INTIMATION_DATE_TIME" />
+          <ScalarProperty Name="SENDER_NAME" ColumnName="SENDER_NAME" />
+          <ScalarProperty Name="SENDER_DESIGNATION" ColumnName="SENDER_DESIGNATION" />
+          <ScalarProperty Name="SENDER_REMARKS" ColumnName="SENDER_REMARKS" />
+          <ScalarProperty Name="RECEIVER_NAME" ColumnName="RECEIVER_NAME" />
+          <ScalarProperty Name="RECEIVER_DESIGNATION" ColumnName="RECEIVER_DESIGNATION" />
+          <ScalarProperty Name="REVISION_TYPE" ColumnName="REVISION_TYPE" />
+          <ScalarProperty Name="RECEIVER_REMARKS" ColumnName="RECEIVER_REMARKS" />
+          <ScalarProperty Name="CURRENT_AVAILABILITY" ColumnName="CURRENT_AVAILABILITY" />
+          <ScalarProperty Name="REVISED_AVAILABILITY" ColumnName="REVISED_AVAILABILITY" />
+          <ScalarProperty Name="DTL" ColumnName="DTL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_NPCC_NEW_ADAC_RDAC" FunctionName="WP_CPPAG_PrototypeModel.Store.sp_NPCC_NEW_ADAC_RDAC">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WP_CPPAG_PrototypeModel.sp_NPCC_NEW_ADAC_RDAC_Result">
+          <ScalarProperty Name="HOURLY_DATA_TYPE" ColumnName="HOURLY_DATA_TYPE" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="ddlIPP" ColumnName="ddlIPP" />
+          <ScalarProperty Name="ddlSite" ColumnName="ddlSite" />
+          <ScalarProperty Name="ddlBlock" ColumnName="ddlBlock" />
+          <ScalarProperty Name="fuel" ColumnName="fuel" />
+          <ScalarProperty Name="capacity" ColumnName="capacity" />
+          <ScalarProperty Name="policiy" ColumnName="policiy" />
+          <ScalarProperty Name="TARGET_DATE" ColumnName="TARGET_DATE" />
+          <ScalarProperty Name="INTIMATION_DATE_TIME" ColumnName="INTIMATION_DATE_TIME" />
+          <ScalarProperty Name="SENDER_NAME" ColumnName="SENDER_NAME" />
+          <ScalarProperty Name="SENDER_DESIGNATION" ColumnName="SENDER_DESIGNATION" />
+          <ScalarProperty Name="SENDER_REMARKS" ColumnName="SENDER_REMARKS" />
+          <ScalarProperty Name="RECEIVER_NAME" ColumnName="RECEIVER_NAME" />
+          <ScalarProperty Name="RECEIVER_DESIGNATION" ColumnName="RECEIVER_DESIGNATION" />
+          <ScalarProperty Name="RECEIVER_REMARKS" ColumnName="RECEIVER_REMARKS" />
+          <ScalarProperty Name="DTL" ColumnName="DTL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="ACCOUNTING_MONTH">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.ACCOUNTING_MONTH">
+        <MappingFragment StoreEntitySet="ACCOUNTING_MONTH">
+          <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+          <ScalarProperty Name="YEAR_NUMBER" ColumnName="YEAR_NUMBER" />
+          <ScalarProperty Name="MONTH_NUMBER" ColumnName="MONTH_NUMBER" />
+          <ScalarProperty Name="ACCOUNTING_MONTH_ID" ColumnName="ACCOUNTING_MONTH_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AP_SUPPLIER_SITE_ALL">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.AP_SUPPLIER_SITE_ALL">
+        <MappingFragment StoreEntitySet="AP_SUPPLIER_SITE_ALL">
+          <ScalarProperty Name="ORG_ID" ColumnName="ORG_ID" />
+          <ScalarProperty Name="ADDRESS_LINE1" ColumnName="ADDRESS_LINE1" />
+          <ScalarProperty Name="VENDOR_SITE_CODE" ColumnName="VENDOR_SITE_CODE" />
+          <ScalarProperty Name="VENDOR_ID" ColumnName="VENDOR_ID" />
+          <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+          <ScalarProperty Name="VENDOR_SITE_ID" ColumnName="VENDOR_SITE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AP_SUPPLIERS">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.AP_SUPPLIERS">
+        <MappingFragment StoreEntitySet="AP_SUPPLIERS">
+          <ScalarProperty Name="VENDOR_NAME" ColumnName="VENDOR_NAME" />
+          <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+          <ScalarProperty Name="VENDOR_ID" ColumnName="VENDOR_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CPPA_CDP_DETAIL">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.CPPA_CDP_DETAIL">
+        <MappingFragment StoreEntitySet="CPPA_CDP_DETAIL">
+          <ScalarProperty Name="LAST_UPDATE_LOGIN" ColumnName="LAST_UPDATE_LOGIN" />
+          <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+          <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="ORGANIZATION_ID" ColumnName="ORGANIZATION_ID" />
+          <ScalarProperty Name="GROUP_COMP" ColumnName="GROUP_COMP" />
+          <ScalarProperty Name="ATTRIBUTE10" ColumnName="ATTRIBUTE10" />
+          <ScalarProperty Name="ATTRIBUTE9" ColumnName="ATTRIBUTE9" />
+          <ScalarProperty Name="ATTRIBUTE8" ColumnName="ATTRIBUTE8" />
+          <ScalarProperty Name="ATTRIBUTE7" ColumnName="ATTRIBUTE7" />
+          <ScalarProperty Name="ATTRIBUTE6" ColumnName="ATTRIBUTE6" />
+          <ScalarProperty Name="ATTRIBUTE5" ColumnName="ATTRIBUTE5" />
+          <ScalarProperty Name="ATTRIBUTE4" ColumnName="ATTRIBUTE4" />
+          <ScalarProperty Name="ATTRIBUTE3" ColumnName="ATTRIBUTE3" />
+          <ScalarProperty Name="ATTRIBUTE2" ColumnName="ATTRIBUTE2" />
+          <ScalarProperty Name="ATTRIBUTE1" ColumnName="ATTRIBUTE1" />
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="EFFECTIVE_TO" ColumnName="EFFECTIVE_TO" />
+          <ScalarProperty Name="EFFECTIVE_FROM" ColumnName="EFFECTIVE_FROM" />
+          <ScalarProperty Name="METER_UNIT_CODE" ColumnName="METER_UNIT_CODE" />
+          <ScalarProperty Name="INITIAL_EXPORT_READING" ColumnName="INITIAL_EXPORT_READING" />
+          <ScalarProperty Name="INITIAL_IMPORT_READING" ColumnName="INITIAL_IMPORT_READING" />
+          <ScalarProperty Name="CORRECTION_FACTOR" ColumnName="CORRECTION_FACTOR" />
+          <ScalarProperty Name="MAX_RANGE" ColumnName="MAX_RANGE" />
+          <ScalarProperty Name="MLT_FCT_MDI" ColumnName="MLT_FCT_MDI" />
+          <ScalarProperty Name="MLT_FCT_ENERGY" ColumnName="MLT_FCT_ENERGY" />
+          <ScalarProperty Name="IS_PRIMARY_METER" ColumnName="IS_PRIMARY_METER" />
+          <ScalarProperty Name="METER_NO" ColumnName="METER_NO" />
+          <ScalarProperty Name="METER_MAKE_CODE" ColumnName="METER_MAKE_CODE" />
+          <ScalarProperty Name="CDP_ID" ColumnName="CDP_ID" />
+          <ScalarProperty Name="CDP_DTL_ID" ColumnName="CDP_DTL_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CPPA_CDP_DETAILYYYYYYYYYXXXXX">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.CPPA_CDP_DETAILYYYYYYYYYXXXXX">
+        <MappingFragment StoreEntitySet="CPPA_CDP_DETAILYYYYYYYYYXXXXX">
+          <ScalarProperty Name="LAST_UPDATE_LOGIN" ColumnName="LAST_UPDATE_LOGIN" />
+          <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+          <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="ORGANIZATION_ID" ColumnName="ORGANIZATION_ID" />
+          <ScalarProperty Name="GROUP_COMP" ColumnName="GROUP_COMP" />
+          <ScalarProperty Name="ATTRIBUTE10" ColumnName="ATTRIBUTE10" />
+          <ScalarProperty Name="ATTRIBUTE9" ColumnName="ATTRIBUTE9" />
+          <ScalarProperty Name="ATTRIBUTE8" ColumnName="ATTRIBUTE8" />
+          <ScalarProperty Name="ATTRIBUTE7" ColumnName="ATTRIBUTE7" />
+          <ScalarProperty Name="ATTRIBUTE6" ColumnName="ATTRIBUTE6" />
+          <ScalarProperty Name="ATTRIBUTE5" ColumnName="ATTRIBUTE5" />
+          <ScalarProperty Name="ATTRIBUTE4" ColumnName="ATTRIBUTE4" />
+          <ScalarProperty Name="ATTRIBUTE3" ColumnName="ATTRIBUTE3" />
+          <ScalarProperty Name="ATTRIBUTE2" ColumnName="ATTRIBUTE2" />
+          <ScalarProperty Name="ATTRIBUTE1" ColumnName="ATTRIBUTE1" />
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="EFFECTIVE_TO" ColumnName="EFFECTIVE_TO" />
+          <ScalarProperty Name="EFFECTIVE_FROM" ColumnName="EFFECTIVE_FROM" />
+          <ScalarProperty Name="METER_UNIT_CODE" ColumnName="METER_UNIT_CODE" />
+          <ScalarProperty Name="INITIAL_EXPORT_READING" ColumnName="INITIAL_EXPORT_READING" />
+          <ScalarProperty Name="INITIAL_IMPORT_READING" ColumnName="INITIAL_IMPORT_READING" />
+          <ScalarProperty Name="CORRECTION_FACTOR" ColumnName="CORRECTION_FACTOR" />
+          <ScalarProperty Name="MAX_RANGE" ColumnName="MAX_RANGE" />
+          <ScalarProperty Name="MLT_FCT_MDI" ColumnName="MLT_FCT_MDI" />
+          <ScalarProperty Name="MLT_FCT_ENERGY" ColumnName="MLT_FCT_ENERGY" />
+          <ScalarProperty Name="IS_PRIMARY_METER" ColumnName="IS_PRIMARY_METER" />
+          <ScalarProperty Name="METER_NO" ColumnName="METER_NO" />
+          <ScalarProperty Name="METER_MAKE_CODE" ColumnName="METER_MAKE_CODE" />
+          <ScalarProperty Name="CDP_ID" ColumnName="CDP_ID" />
+          <ScalarProperty Name="CDP_DTL_ID" ColumnName="CDP_DTL_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CPPA_CDP_HEADERS">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.CPPA_CDP_HEADERS">
+        <MappingFragment StoreEntitySet="CPPA_CDP_HEADERS">
+          <ScalarProperty Name="SR_NO_TMP" ColumnName="SR_NO_TMP" />
+          <ScalarProperty Name="LAST_UPDATE_LOGIN" ColumnName="LAST_UPDATE_LOGIN" />
+          <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+          <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="ORGANIZATION_ID" ColumnName="ORGANIZATION_ID" />
+          <ScalarProperty Name="GROUP_COMP" ColumnName="GROUP_COMP" />
+          <ScalarProperty Name="ATTRIBUTE10" ColumnName="ATTRIBUTE10" />
+          <ScalarProperty Name="ATTRIBUTE9" ColumnName="ATTRIBUTE9" />
+          <ScalarProperty Name="ATTRIBUTE8" ColumnName="ATTRIBUTE8" />
+          <ScalarProperty Name="ATTRIBUTE7" ColumnName="ATTRIBUTE7" />
+          <ScalarProperty Name="ATTRIBUTE6" ColumnName="ATTRIBUTE6" />
+          <ScalarProperty Name="ATTRIBUTE5" ColumnName="ATTRIBUTE5" />
+          <ScalarProperty Name="ATTRIBUTE4" ColumnName="ATTRIBUTE4" />
+          <ScalarProperty Name="ATTRIBUTE3" ColumnName="ATTRIBUTE3" />
+          <ScalarProperty Name="ATTRIBUTE2" ColumnName="ATTRIBUTE2" />
+          <ScalarProperty Name="ATTRIBUTE1" ColumnName="ATTRIBUTE1" />
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="CDP_STATUS_CODE" ColumnName="CDP_STATUS_CODE" />
+          <ScalarProperty Name="EFFECTIVE_TO" ColumnName="EFFECTIVE_TO" />
+          <ScalarProperty Name="EFFECTIVE_FROM" ColumnName="EFFECTIVE_FROM" />
+          <ScalarProperty Name="FEEDER_NAME_CODE" ColumnName="FEEDER_NAME_CODE" />
+          <ScalarProperty Name="CDP_UNIT_CODE" ColumnName="CDP_UNIT_CODE" />
+          <ScalarProperty Name="TF_TL" ColumnName="TF_TL" />
+          <ScalarProperty Name="TF_LINE_VOLTAGE" ColumnName="TF_LINE_VOLTAGE" />
+          <ScalarProperty Name="GRID_VOLTAGE_CODE" ColumnName="GRID_VOLTAGE_CODE" />
+          <ScalarProperty Name="ENGY_IMP_EXP_TO_CODE" ColumnName="ENGY_IMP_EXP_TO_CODE" />
+          <ScalarProperty Name="ENGY_IMP_EXP_FROM_CODE" ColumnName="ENGY_IMP_EXP_FROM_CODE" />
+          <ScalarProperty Name="LOCATION_NAME" ColumnName="LOCATION_NAME" />
+          <ScalarProperty Name="LOCATION_CODE" ColumnName="LOCATION_CODE" />
+          <ScalarProperty Name="DISCO_AREA_CODE" ColumnName="DISCO_AREA_CODE" />
+          <ScalarProperty Name="CONTROLLED_BY_CODE" ColumnName="CONTROLLED_BY_CODE" />
+          <ScalarProperty Name="LINE_NAME_CODE" ColumnName="LINE_NAME_CODE" />
+          <ScalarProperty Name="GRID_STATION_NAME" ColumnName="GRID_STATION_NAME" />
+          <ScalarProperty Name="GRID_STATION_CODE" ColumnName="GRID_STATION_CODE" />
+          <ScalarProperty Name="CDP_NUMBER" ColumnName="CDP_NUMBER" />
+          <ScalarProperty Name="FROM_CUSTOMER_ID" ColumnName="FROM_CUSTOMER_ID" />
+          <ScalarProperty Name="TO_CUSTOMER_ID" ColumnName="TO_CUSTOMER_ID" />
+          <ScalarProperty Name="CDP_ID" ColumnName="CDP_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CPPA_CDP_HEADERSYYYYYYYYYXXXX">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.CPPA_CDP_HEADERSYYYYYYYYYXXXX">
+        <MappingFragment StoreEntitySet="CPPA_CDP_HEADERSYYYYYYYYYXXXX">
+          <ScalarProperty Name="SR_NO_TMP" ColumnName="SR_NO_TMP" />
+          <ScalarProperty Name="LAST_UPDATE_LOGIN" ColumnName="LAST_UPDATE_LOGIN" />
+          <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+          <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="ORGANIZATION_ID" ColumnName="ORGANIZATION_ID" />
+          <ScalarProperty Name="GROUP_COMP" ColumnName="GROUP_COMP" />
+          <ScalarProperty Name="ATTRIBUTE10" ColumnName="ATTRIBUTE10" />
+          <ScalarProperty Name="ATTRIBUTE9" ColumnName="ATTRIBUTE9" />
+          <ScalarProperty Name="ATTRIBUTE8" ColumnName="ATTRIBUTE8" />
+          <ScalarProperty Name="ATTRIBUTE7" ColumnName="ATTRIBUTE7" />
+          <ScalarProperty Name="ATTRIBUTE6" ColumnName="ATTRIBUTE6" />
+          <ScalarProperty Name="ATTRIBUTE5" ColumnName="ATTRIBUTE5" />
+          <ScalarProperty Name="ATTRIBUTE4" ColumnName="ATTRIBUTE4" />
+          <ScalarProperty Name="ATTRIBUTE3" ColumnName="ATTRIBUTE3" />
+          <ScalarProperty Name="ATTRIBUTE2" ColumnName="ATTRIBUTE2" />
+          <ScalarProperty Name="ATTRIBUTE1" ColumnName="ATTRIBUTE1" />
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="CDP_STATUS_CODE" ColumnName="CDP_STATUS_CODE" />
+          <ScalarProperty Name="EFFECTIVE_TO" ColumnName="EFFECTIVE_TO" />
+          <ScalarProperty Name="EFFECTIVE_FROM" ColumnName="EFFECTIVE_FROM" />
+          <ScalarProperty Name="FEEDER_NAME_CODE" ColumnName="FEEDER_NAME_CODE" />
+          <ScalarProperty Name="CDP_UNIT_CODE" ColumnName="CDP_UNIT_CODE" />
+          <ScalarProperty Name="TF_TL" ColumnName="TF_TL" />
+          <ScalarProperty Name="TF_LINE_VOLTAGE" ColumnName="TF_LINE_VOLTAGE" />
+          <ScalarProperty Name="GRID_VOLTAGE_CODE" ColumnName="GRID_VOLTAGE_CODE" />
+          <ScalarProperty Name="ENGY_IMP_EXP_TO_CODE" ColumnName="ENGY_IMP_EXP_TO_CODE" />
+          <ScalarProperty Name="ENGY_IMP_EXP_FROM_CODE" ColumnName="ENGY_IMP_EXP_FROM_CODE" />
+          <ScalarProperty Name="LOCATION_NAME" ColumnName="LOCATION_NAME" />
+          <ScalarProperty Name="LOCATION_CODE" ColumnName="LOCATION_CODE" />
+          <ScalarProperty Name="DISCO_AREA_CODE" ColumnName="DISCO_AREA_CODE" />
+          <ScalarProperty Name="CONTROLLED_BY_CODE" ColumnName="CONTROLLED_BY_CODE" />
+          <ScalarProperty Name="LINE_NAME_CODE" ColumnName="LINE_NAME_CODE" />
+          <ScalarProperty Name="GRID_STATION_NAME" ColumnName="GRID_STATION_NAME" />
+          <ScalarProperty Name="GRID_STATION_CODE" ColumnName="GRID_STATION_CODE" />
+          <ScalarProperty Name="CDP_NUMBER" ColumnName="CDP_NUMBER" />
+          <ScalarProperty Name="FROM_CUSTOMER_ID" ColumnName="FROM_CUSTOMER_ID" />
+          <ScalarProperty Name="TO_CUSTOMER_ID" ColumnName="TO_CUSTOMER_ID" />
+          <ScalarProperty Name="CDP_ID" ColumnName="CDP_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CPPA_EMO_FC_OPN_STK_LINES">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.CPPA_EMO_FC_OPN_STK_LINES">
+        <MappingFragment StoreEntitySet="CPPA_EMO_FC_OPN_STK_LINES">
+          <ScalarProperty Name="LAST_UPDATE_LOGIN" ColumnName="LAST_UPDATE_LOGIN" />
+          <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+          <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="RATE" ColumnName="RATE" />
+          <ScalarProperty Name="UNIT" ColumnName="UNIT" />
+          <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+          <ScalarProperty Name="STOCK_DESCRIPTION" ColumnName="STOCK_DESCRIPTION" />
+          <ScalarProperty Name="FORECAST_HEADER_ID" ColumnName="FORECAST_HEADER_ID" />
+          <ScalarProperty Name="OPN_STOCK_LINE_ID" ColumnName="OPN_STOCK_LINE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CPPA_EMO_FORECAST_LINES">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.CPPA_EMO_FORECAST_LINES">
+        <MappingFragment StoreEntitySet="CPPA_EMO_FORECAST_LINES">
+          <ScalarProperty Name="LAST_UPDATE_LOGIN" ColumnName="LAST_UPDATE_LOGIN" />
+          <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+          <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="CHANGE_REASON" ColumnName="CHANGE_REASON" />
+          <ScalarProperty Name="VERIFIED_VALUE" ColumnName="VERIFIED_VALUE" />
+          <ScalarProperty Name="CLAIMED_VALUE" ColumnName="CLAIMED_VALUE" />
+          <ScalarProperty Name="FUEL_TEMPLATE_LINE_ID" ColumnName="FUEL_TEMPLATE_LINE_ID" />
+          <ScalarProperty Name="FORECAST_HEADER_ID" ColumnName="FORECAST_HEADER_ID" />
+          <ScalarProperty Name="FORECAST_LINE_ID" ColumnName="FORECAST_LINE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CPPA_EMO_FUEL_RATE_LINES">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.CPPA_EMO_FUEL_RATE_LINES">
+        <MappingFragment StoreEntitySet="CPPA_EMO_FUEL_RATE_LINES">
+          <ScalarProperty Name="FINANCE_VERIFIED" ColumnName="FINANCE_VERIFIED" />
+          <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+          <ScalarProperty Name="POWER_POLICY" ColumnName="POWER_POLICY" />
+          <ScalarProperty Name="LAST_UPDATE_LOGIN" ColumnName="LAST_UPDATE_LOGIN" />
+          <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+          <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="RATE" ColumnName="RATE" />
+          <ScalarProperty Name="OTHER_CHARGES" ColumnName="OTHER_CHARGES" />
+          <ScalarProperty Name="PRODUCT_COST" ColumnName="PRODUCT_COST" />
+          <ScalarProperty Name="FUEL_SUPPLIER" ColumnName="FUEL_SUPPLIER" />
+          <ScalarProperty Name="FORECAST_HEADER_ID" ColumnName="FORECAST_HEADER_ID" />
+          <ScalarProperty Name="FUEL_RATE_LINE_ID" ColumnName="FUEL_RATE_LINE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CPPA_EMO_FUEL_TEMP_HEADER">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.CPPA_EMO_FUEL_TEMP_HEADER">
+        <MappingFragment StoreEntitySet="CPPA_EMO_FUEL_TEMP_HEADER">
+          <ScalarProperty Name="LAST_UPDATE_LOGIN" ColumnName="LAST_UPDATE_LOGIN" />
+          <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+          <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="ORGANIZATION_ID" ColumnName="ORGANIZATION_ID" />
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="STOCK_MEASURING_UNIT" ColumnName="STOCK_MEASURING_UNIT" />
+          <ScalarProperty Name="SHOW_OPENING_STOCK" ColumnName="SHOW_OPENING_STOCK" />
+          <ScalarProperty Name="POWER_POLICY" ColumnName="POWER_POLICY" />
+          <ScalarProperty Name="FUEL_NAME" ColumnName="FUEL_NAME" />
+          <ScalarProperty Name="FUEL_TEMPLATE_NAME" ColumnName="FUEL_TEMPLATE_NAME" />
+          <ScalarProperty Name="FUEL_TEMPLATE_ID" ColumnName="FUEL_TEMPLATE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CPPA_EMO_FUEL_TEMP_LINES">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.CPPA_EMO_FUEL_TEMP_LINES">
+        <MappingFragment StoreEntitySet="CPPA_EMO_FUEL_TEMP_LINES">
+          <ScalarProperty Name="SHOW_ON_ERP" ColumnName="SHOW_ON_ERP" />
+          <ScalarProperty Name="COM_REF_CODE" ColumnName="COM_REF_CODE" />
+          <ScalarProperty Name="COMP_SEQUENCE" ColumnName="COMP_SEQUENCE" />
+          <ScalarProperty Name="LAST_UPDATE_LOGIN" ColumnName="LAST_UPDATE_LOGIN" />
+          <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+          <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="EFFECTIVE_END_DATE" ColumnName="EFFECTIVE_END_DATE" />
+          <ScalarProperty Name="EFFECTIVE_START_DATE" ColumnName="EFFECTIVE_START_DATE" />
+          <ScalarProperty Name="SHOW_ON_PORTAL" ColumnName="SHOW_ON_PORTAL" />
+          <ScalarProperty Name="UNIT" ColumnName="UNIT" />
+          <ScalarProperty Name="FORMULA" ColumnName="FORMULA" />
+          <ScalarProperty Name="COMP_VALUE" ColumnName="COMP_VALUE" />
+          <ScalarProperty Name="COMP_TYPE" ColumnName="COMP_TYPE" />
+          <ScalarProperty Name="COMP_NAME" ColumnName="COMP_NAME" />
+          <ScalarProperty Name="FUEL_TEMPLATE_ID" ColumnName="FUEL_TEMPLATE_ID" />
+          <ScalarProperty Name="FUEL_TEMPLATE_LINE_ID" ColumnName="FUEL_TEMPLATE_LINE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CPPA_EMO_PERIODS">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.CPPA_EMO_PERIODS">
+        <MappingFragment StoreEntitySet="CPPA_EMO_PERIODS">
+          <ScalarProperty Name="OPEN_BY_CPPA" ColumnName="OPEN_BY_CPPA" />
+          <ScalarProperty Name="ORGANIZATION_ID" ColumnName="ORGANIZATION_ID" />
+          <ScalarProperty Name="LAST_UPDATE_LOGIN" ColumnName="LAST_UPDATE_LOGIN" />
+          <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+          <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="QUARTER_NUM" ColumnName="QUARTER_NUM" />
+          <ScalarProperty Name="PERIOD_NUM" ColumnName="PERIOD_NUM" />
+          <ScalarProperty Name="PERIOD_YEAR" ColumnName="PERIOD_YEAR" />
+          <ScalarProperty Name="PERIOD_TYPE" ColumnName="PERIOD_TYPE" />
+          <ScalarProperty Name="END_DATE" ColumnName="END_DATE" />
+          <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+          <ScalarProperty Name="PERIOD_NAME" ColumnName="PERIOD_NAME" />
+          <ScalarProperty Name="EMO_PERIOD_ID" ColumnName="EMO_PERIOD_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CPPA_PPA_PLT_EMO">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.CPPA_PPA_PLT_EMO">
+        <MappingFragment StoreEntitySet="CPPA_PPA_PLT_EMO">
+          <ScalarProperty Name="FUEL_TEMPLATE_ID" ColumnName="FUEL_TEMPLATE_ID" />
+          <ScalarProperty Name="LAST_UPDATE_LOGIN" ColumnName="LAST_UPDATE_LOGIN" />
+          <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+          <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="ORGANIZATION_ID" ColumnName="ORGANIZATION_ID" />
+          <ScalarProperty Name="ATTRIBUTE10" ColumnName="ATTRIBUTE10" />
+          <ScalarProperty Name="ATTRIBUTE9" ColumnName="ATTRIBUTE9" />
+          <ScalarProperty Name="ATTRIBUTE8" ColumnName="ATTRIBUTE8" />
+          <ScalarProperty Name="ATTRIBUTE7" ColumnName="ATTRIBUTE7" />
+          <ScalarProperty Name="ATTRIBUTE6" ColumnName="ATTRIBUTE6" />
+          <ScalarProperty Name="ATTRIBUTE5" ColumnName="ATTRIBUTE5" />
+          <ScalarProperty Name="ATTRIBUTE4" ColumnName="ATTRIBUTE4" />
+          <ScalarProperty Name="ATTRIBUTE3" ColumnName="ATTRIBUTE3" />
+          <ScalarProperty Name="ATTRIBUTE2" ColumnName="ATTRIBUTE2" />
+          <ScalarProperty Name="ATTRIBUTE1" ColumnName="ATTRIBUTE1" />
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="EFFECTIVE_TO" ColumnName="EFFECTIVE_TO" />
+          <ScalarProperty Name="EFFECTIVE_FROM" ColumnName="EFFECTIVE_FROM" />
+          <ScalarProperty Name="INV_METHOD_CODE" ColumnName="INV_METHOD_CODE" />
+          <ScalarProperty Name="DEPENDABLE_CAPACITY" ColumnName="DEPENDABLE_CAPACITY" />
+          <ScalarProperty Name="BLK_TITLE_FOR_EMO" ColumnName="BLK_TITLE_FOR_EMO" />
+          <ScalarProperty Name="PLT_BLK_FUEL_ID" ColumnName="PLT_BLK_FUEL_ID" />
+          <ScalarProperty Name="HEADER_ID_FK" ColumnName="HEADER_ID_FK" />
+          <ScalarProperty Name="PLT_EMO_ID" ColumnName="PLT_EMO_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CPPA_PPA_PLT_EMOXXXX">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.CPPA_PPA_PLT_EMOXXXX">
+        <MappingFragment StoreEntitySet="CPPA_PPA_PLT_EMOXXXX">
+          <ScalarProperty Name="FUEL_TEMPLATE_ID" ColumnName="FUEL_TEMPLATE_ID" />
+          <ScalarProperty Name="LAST_UPDATE_LOGIN" ColumnName="LAST_UPDATE_LOGIN" />
+          <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+          <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="ORGANIZATION_ID" ColumnName="ORGANIZATION_ID" />
+          <ScalarProperty Name="ATTRIBUTE10" ColumnName="ATTRIBUTE10" />
+          <ScalarProperty Name="ATTRIBUTE9" ColumnName="ATTRIBUTE9" />
+          <ScalarProperty Name="ATTRIBUTE8" ColumnName="ATTRIBUTE8" />
+          <ScalarProperty Name="ATTRIBUTE7" ColumnName="ATTRIBUTE7" />
+          <ScalarProperty Name="ATTRIBUTE6" ColumnName="ATTRIBUTE6" />
+          <ScalarProperty Name="ATTRIBUTE5" ColumnName="ATTRIBUTE5" />
+          <ScalarProperty Name="ATTRIBUTE4" ColumnName="ATTRIBUTE4" />
+          <ScalarProperty Name="ATTRIBUTE3" ColumnName="ATTRIBUTE3" />
+          <ScalarProperty Name="ATTRIBUTE2" ColumnName="ATTRIBUTE2" />
+          <ScalarProperty Name="ATTRIBUTE1" ColumnName="ATTRIBUTE1" />
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="EFFECTIVE_TO" ColumnName="EFFECTIVE_TO" />
+          <ScalarProperty Name="EFFECTIVE_FROM" ColumnName="EFFECTIVE_FROM" />
+          <ScalarProperty Name="INV_METHOD_CODE" ColumnName="INV_METHOD_CODE" />
+          <ScalarProperty Name="DEPENDABLE_CAPACITY" ColumnName="DEPENDABLE_CAPACITY" />
+          <ScalarProperty Name="BLK_TITLE_FOR_EMO" ColumnName="BLK_TITLE_FOR_EMO" />
+          <ScalarProperty Name="PLT_BLK_FUEL_ID" ColumnName="PLT_BLK_FUEL_ID" />
+          <ScalarProperty Name="HEADER_ID_FK" ColumnName="HEADER_ID_FK" />
+          <ScalarProperty Name="PLT_EMO_ID" ColumnName="PLT_EMO_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FND_LOOKUP_VALUES">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.FND_LOOKUP_VALUES">
+        <MappingFragment StoreEntitySet="FND_LOOKUP_VALUES">
+          <ScalarProperty Name="ZD_EDITION_NAME" ColumnName="ZD_EDITION_NAME" />
+          <ScalarProperty Name="LEAF_NODE" ColumnName="LEAF_NODE" />
+          <ScalarProperty Name="TAG" ColumnName="TAG" />
+          <ScalarProperty Name="ATTRIBUTE15" ColumnName="ATTRIBUTE15" />
+          <ScalarProperty Name="ATTRIBUTE14" ColumnName="ATTRIBUTE14" />
+          <ScalarProperty Name="ATTRIBUTE13" ColumnName="ATTRIBUTE13" />
+          <ScalarProperty Name="ATTRIBUTE12" ColumnName="ATTRIBUTE12" />
+          <ScalarProperty Name="ATTRIBUTE11" ColumnName="ATTRIBUTE11" />
+          <ScalarProperty Name="ATTRIBUTE10" ColumnName="ATTRIBUTE10" />
+          <ScalarProperty Name="ATTRIBUTE9" ColumnName="ATTRIBUTE9" />
+          <ScalarProperty Name="ATTRIBUTE8" ColumnName="ATTRIBUTE8" />
+          <ScalarProperty Name="ATTRIBUTE7" ColumnName="ATTRIBUTE7" />
+          <ScalarProperty Name="ATTRIBUTE6" ColumnName="ATTRIBUTE6" />
+          <ScalarProperty Name="ATTRIBUTE5" ColumnName="ATTRIBUTE5" />
+          <ScalarProperty Name="ATTRIBUTE4" ColumnName="ATTRIBUTE4" />
+          <ScalarProperty Name="ATTRIBUTE3" ColumnName="ATTRIBUTE3" />
+          <ScalarProperty Name="ATTRIBUTE2" ColumnName="ATTRIBUTE2" />
+          <ScalarProperty Name="ATTRIBUTE1" ColumnName="ATTRIBUTE1" />
+          <ScalarProperty Name="ATTRIBUTE_CATEGORY" ColumnName="ATTRIBUTE_CATEGORY" />
+          <ScalarProperty Name="TERRITORY_CODE" ColumnName="TERRITORY_CODE" />
+          <ScalarProperty Name="VIEW_APPLICATION_ID" ColumnName="VIEW_APPLICATION_ID" />
+          <ScalarProperty Name="SECURITY_GROUP_ID" ColumnName="SECURITY_GROUP_ID" />
+          <ScalarProperty Name="SOURCE_LANG" ColumnName="SOURCE_LANG" />
+          <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+          <ScalarProperty Name="LAST_UPDATE_LOGIN" ColumnName="LAST_UPDATE_LOGIN" />
+          <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="END_DATE_ACTIVE" ColumnName="END_DATE_ACTIVE" />
+          <ScalarProperty Name="START_DATE_ACTIVE" ColumnName="START_DATE_ACTIVE" />
+          <ScalarProperty Name="ENABLED_FLAG" ColumnName="ENABLED_FLAG" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MEANING" ColumnName="MEANING" />
+          <ScalarProperty Name="LOOKUP_CODE" ColumnName="LOOKUP_CODE" />
+          <ScalarProperty Name="LANGUAGE" ColumnName="LANGUAGE" />
+          <ScalarProperty Name="LOOKUP_TYPE" ColumnName="LOOKUP_TYPE" />
+          <ScalarProperty Name="FND_LOOKUP_VALUES_ID_PK" ColumnName="FND_LOOKUP_VALUES_ID_PK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PPA_APPLICABLE_INVOICES">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.PPA_APPLICABLE_INVOICES">
+        <MappingFragment StoreEntitySet="PPA_APPLICABLE_INVOICES">
+          <ScalarProperty Name="ADJUSTMENTS" ColumnName="ADJUSTMENTS" />
+          <ScalarProperty Name="ADVANCE_PAYMENT" ColumnName="ADVANCE_PAYMENT" />
+          <ScalarProperty Name="LAST_UPDATE_LOGIN" ColumnName="LAST_UPDATE_LOGIN" />
+          <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+          <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="ORGANIZATION_ID" ColumnName="ORGANIZATION_ID" />
+          <ScalarProperty Name="IS_HOURLY" ColumnName="IS_HOURLY" />
+          <ScalarProperty Name="INVOICE_TYPES" ColumnName="INVOICE_TYPES" />
+          <ScalarProperty Name="HEADER_ID_FK" ColumnName="HEADER_ID_FK" />
+          <ScalarProperty Name="APP_INVOICES_ID_PK" ColumnName="APP_INVOICES_ID_PK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PPA_BLOCKS_FUELS">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.PPA_BLOCKS_FUELS">
+        <MappingFragment StoreEntitySet="PPA_BLOCKS_FUELS">
+          <ScalarProperty Name="GROUP_COMP" ColumnName="GROUP_COMP" />
+          <ScalarProperty Name="LAST_UPDATE_LOGIN" ColumnName="LAST_UPDATE_LOGIN" />
+          <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+          <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="ORGANIZATION_ID" ColumnName="ORGANIZATION_ID" />
+          <ScalarProperty Name="FUEL_TYPE" ColumnName="FUEL_TYPE" />
+          <ScalarProperty Name="BLOCK_NO" ColumnName="BLOCK_NO" />
+          <ScalarProperty Name="APP_INVOICES_ID_FK" ColumnName="APP_INVOICES_ID_FK" />
+          <ScalarProperty Name="HEADER_ID_FK" ColumnName="HEADER_ID_FK" />
+          <ScalarProperty Name="BLK_FUEL_ID_PK" ColumnName="BLK_FUEL_ID_PK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PPA_COMP_DEFS">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.PPA_COMP_DEFS">
+        <MappingFragment StoreEntitySet="PPA_COMP_DEFS">
+          <ScalarProperty Name="COMP_DEF_ORDER" ColumnName="COMP_DEF_ORDER" />
+          <ScalarProperty Name="INC_IN_DIARY_TOT" ColumnName="INC_IN_DIARY_TOT" />
+          <ScalarProperty Name="INCLUD_IN_CLAIM_PORTAL" ColumnName="INCLUD_IN_CLAIM_PORTAL" />
+          <ScalarProperty Name="PART_OF" ColumnName="PART_OF" />
+          <ScalarProperty Name="SHOW_TOT_ON_HRSINV" ColumnName="SHOW_TOT_ON_HRSINV" />
+          <ScalarProperty Name="SHOW_ON_DIARY" ColumnName="SHOW_ON_DIARY" />
+          <ScalarProperty Name="IS_DISABLE_COMP_ZONE" ColumnName="IS_DISABLE_COMP_ZONE" />
+          <ScalarProperty Name="IS_DISABLE_COMP_VALUE" ColumnName="IS_DISABLE_COMP_VALUE" />
+          <ScalarProperty Name="LAST_UPDATE_LOGIN" ColumnName="LAST_UPDATE_LOGIN" />
+          <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+          <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="ORGANIZATION_ID" ColumnName="ORGANIZATION_ID" />
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="EXEMPT_DATE_TO" ColumnName="EXEMPT_DATE_TO" />
+          <ScalarProperty Name="EXEMPT_DATE_FROM" ColumnName="EXEMPT_DATE_FROM" />
+          <ScalarProperty Name="COMPARE_WITH" ColumnName="COMPARE_WITH" />
+          <ScalarProperty Name="UNIT" ColumnName="UNIT" />
+          <ScalarProperty Name="FORMULA" ColumnName="FORMULA" />
+          <ScalarProperty Name="INC_IN_TOT" ColumnName="INC_IN_TOT" />
+          <ScalarProperty Name="SHOW_ON_INV" ColumnName="SHOW_ON_INV" />
+          <ScalarProperty Name="COMP_VALUE" ColumnName="COMP_VALUE" />
+          <ScalarProperty Name="COMP_ZONE" ColumnName="COMP_ZONE" />
+          <ScalarProperty Name="COMP_TYPE" ColumnName="COMP_TYPE" />
+          <ScalarProperty Name="COMP_NAME" ColumnName="COMP_NAME" />
+          <ScalarProperty Name="BLK_FUEL_ID_FK" ColumnName="BLK_FUEL_ID_FK" />
+          <ScalarProperty Name="APP_INVOICES_ID_FK" ColumnName="APP_INVOICES_ID_FK" />
+          <ScalarProperty Name="HEADER_ID_FK" ColumnName="HEADER_ID_FK" />
+          <ScalarProperty Name="COMP_DEF_ID_PK" ColumnName="COMP_DEF_ID_PK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PPA_HEADER">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.PPA_HEADER">
+        <MappingFragment StoreEntitySet="PPA_HEADER">
+          <ScalarProperty Name="PARENT_DOCUMENT" ColumnName="PARENT_DOCUMENT" />
+          <ScalarProperty Name="BENCHMARK_PER" ColumnName="BENCHMARK_PER" />
+          <ScalarProperty Name="INVENTORY_COSTING_METHOD" ColumnName="INVENTORY_COSTING_METHOD" />
+          <ScalarProperty Name="ORGANIZATION_ID" ColumnName="ORGANIZATION_ID" />
+          <ScalarProperty Name="LAST_UPDATE_LOGIN" ColumnName="LAST_UPDATE_LOGIN" />
+          <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+          <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="APPROVAL_STATUS" ColumnName="APPROVAL_STATUS" />
+          <ScalarProperty Name="APPLY_SLAB" ColumnName="APPLY_SLAB" />
+          <ScalarProperty Name="DUE_DATE_TOLERANCE" ColumnName="DUE_DATE_TOLERANCE" />
+          <ScalarProperty Name="EFFECTIVE_TO" ColumnName="EFFECTIVE_TO" />
+          <ScalarProperty Name="EFFECTIVE_FROM" ColumnName="EFFECTIVE_FROM" />
+          <ScalarProperty Name="ACHIEVED_COD" ColumnName="ACHIEVED_COD" />
+          <ScalarProperty Name="FORCE_MAJEURE" ColumnName="FORCE_MAJEURE" />
+          <ScalarProperty Name="ACTUAL_COD" ColumnName="ACTUAL_COD" />
+          <ScalarProperty Name="REQUIRED_COD" ColumnName="REQUIRED_COD" />
+          <ScalarProperty Name="FINANCIAL_CLOSE_DATE" ColumnName="FINANCIAL_CLOSE_DATE" />
+          <ScalarProperty Name="AGREEMENT_DATE" ColumnName="AGREEMENT_DATE" />
+          <ScalarProperty Name="CONTRACTED_CAPACITY" ColumnName="CONTRACTED_CAPACITY" />
+          <ScalarProperty Name="VENDOR_SITE_ID_FK" ColumnName="VENDOR_SITE_ID_FK" />
+          <ScalarProperty Name="VENDOR_ID_FK" ColumnName="VENDOR_ID_FK" />
+          <ScalarProperty Name="POWER_POLICY" ColumnName="POWER_POLICY" />
+          <ScalarProperty Name="DOCUMENT_DATE" ColumnName="DOCUMENT_DATE" />
+          <ScalarProperty Name="DOCUMENT_NO" ColumnName="DOCUMENT_NO" />
+          <ScalarProperty Name="HEADER_ID_PK" ColumnName="HEADER_ID_PK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblFiles">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.tblFile">
+        <MappingFragment StoreEntitySet="tblFiles">
+          <ScalarProperty Name="bisERPTransfered" ColumnName="bisERPTransfered" />
+          <ScalarProperty Name="strDescription" ColumnName="strDescription" />
+          <ScalarProperty Name="strSPUrl" ColumnName="strSPUrl" />
+          <ScalarProperty Name="strFileName" ColumnName="strFileName" />
+          <ScalarProperty Name="tblFilesID" ColumnName="tblFilesID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Testings">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.Testing">
+        <MappingFragment StoreEntitySet="Testing">
+          <ScalarProperty Name="dtDatetime" ColumnName="dtDatetime" />
+          <ScalarProperty Name="CheckVAL" ColumnName="CheckVAL" />
+          <ScalarProperty Name="TestingID" ColumnName="TestingID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WP_DISCO_CDP_MONTHLY_DATA">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.WP_DISCO_CDP_MONTHLY_DATA">
+        <MappingFragment StoreEntitySet="WP_DISCO_CDP_MONTHLY_DATA">
+          <ScalarProperty Name="BM_ROUND_COMPLETED_ER" ColumnName="BM_ROUND_COMPLETED_ER" />
+          <ScalarProperty Name="PM_ROUND_COMPLETED_ER" ColumnName="PM_ROUND_COMPLETED_ER" />
+          <ScalarProperty Name="BM_ROUND_COMPLETED_EA" ColumnName="BM_ROUND_COMPLETED_EA" />
+          <ScalarProperty Name="PM_ROUND_COMPLETED_EA" ColumnName="PM_ROUND_COMPLETED_EA" />
+          <ScalarProperty Name="BM_ROUND_COMPLETED_IR" ColumnName="BM_ROUND_COMPLETED_IR" />
+          <ScalarProperty Name="PM_ROUND_COMPLETED_IR" ColumnName="PM_ROUND_COMPLETED_IR" />
+          <ScalarProperty Name="BM_ROUND_COMPLETED_IA" ColumnName="BM_ROUND_COMPLETED_IA" />
+          <ScalarProperty Name="PM_ROUND_COMPLETED_IA" ColumnName="PM_ROUND_COMPLETED_IA" />
+          <ScalarProperty Name="CPPA_SELECTED" ColumnName="CPPA_SELECTED" />
+          <ScalarProperty Name="SUBMITT_DATE_TIME" ColumnName="SUBMITT_DATE_TIME" />
+          <ScalarProperty Name="PREVIOUS_READING_BACK_EXP_REACT" ColumnName="PREVIOUS_READING_BACK_EXP_REACT" />
+          <ScalarProperty Name="PREVIOUS_READING_BACK_EXP_ACT" ColumnName="PREVIOUS_READING_BACK_EXP_ACT" />
+          <ScalarProperty Name="PREVIOUS_READING_BACK_IMP_REACT" ColumnName="PREVIOUS_READING_BACK_IMP_REACT" />
+          <ScalarProperty Name="PREVIOUS_READING_BACK_IMP_ACT" ColumnName="PREVIOUS_READING_BACK_IMP_ACT" />
+          <ScalarProperty Name="PREVIOUS_READING_PRIM_EXP_REACT" ColumnName="PREVIOUS_READING_PRIM_EXP_REACT" />
+          <ScalarProperty Name="PREVIOUS_READING_PRIM_EXP_ACT" ColumnName="PREVIOUS_READING_PRIM_EXP_ACT" />
+          <ScalarProperty Name="PREVIOUS_READING_PRIM_IMP_REACT" ColumnName="PREVIOUS_READING_PRIM_IMP_REACT" />
+          <ScalarProperty Name="PREVIOUS_READING_PRIM_IMP_ACT" ColumnName="PREVIOUS_READING_PRIM_IMP_ACT" />
+          <ScalarProperty Name="BM_PREVIOUS_READING_DATE_TIME" ColumnName="BM_PREVIOUS_READING_DATE_TIME" />
+          <ScalarProperty Name="PM_PREVIOUS_READING_DATE_TIME" ColumnName="PM_PREVIOUS_READING_DATE_TIME" />
+          <ScalarProperty Name="B_MDI_ACTIVE_EXPORT" ColumnName="B_MDI_ACTIVE_EXPORT" />
+          <ScalarProperty Name="B_MDI_ACTIVE_IMPORT" ColumnName="B_MDI_ACTIVE_IMPORT" />
+          <ScalarProperty Name="B_ENG_ACTIVE_EXPORT" ColumnName="B_ENG_ACTIVE_EXPORT" />
+          <ScalarProperty Name="B_ENG_ACTIVE_IMPORT" ColumnName="B_ENG_ACTIVE_IMPORT" />
+          <ScalarProperty Name="TRANSACTION_TYPE" ColumnName="TRANSACTION_TYPE" />
+          <ScalarProperty Name="TO_DATE" ColumnName="TO_DATE" />
+          <ScalarProperty Name="FROM_DATE" ColumnName="FROM_DATE" />
+          <ScalarProperty Name="BM_READING_DATE_TIME" ColumnName="BM_READING_DATE_TIME" />
+          <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="LAST_UPDATE_BY_WP_PORTAL_USERS_ID" ColumnName="LAST_UPDATE_BY_WP_PORTAL_USERS_ID" />
+          <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+          <ScalarProperty Name="CREATED_BY_WP_PORTAL_USERS_ID" ColumnName="CREATED_BY_WP_PORTAL_USERS_ID" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="P_MDI_ACTIVE_EXPORT" ColumnName="P_MDI_ACTIVE_EXPORT" />
+          <ScalarProperty Name="P_MDI_ACTIVE_IMPORT" ColumnName="P_MDI_ACTIVE_IMPORT" />
+          <ScalarProperty Name="P_ENG_ACTIVE_EXPORT" ColumnName="P_ENG_ACTIVE_EXPORT" />
+          <ScalarProperty Name="P_ENG_ACTIVE_IMPORT" ColumnName="P_ENG_ACTIVE_IMPORT" />
+          <ScalarProperty Name="BACKUP_EXPORT_REACTIVE_ADJ" ColumnName="BACKUP_EXPORT_REACTIVE_ADJ" />
+          <ScalarProperty Name="BACKUP_EXPORT_ACTIVE_AJD" ColumnName="BACKUP_EXPORT_ACTIVE_AJD" />
+          <ScalarProperty Name="BACKUP_IMPORT_REACTIVE_ADJ" ColumnName="BACKUP_IMPORT_REACTIVE_ADJ" />
+          <ScalarProperty Name="BACKUP_IMPORT_ACTIVE_AJD" ColumnName="BACKUP_IMPORT_ACTIVE_AJD" />
+          <ScalarProperty Name="BACKUP_EXPORT_REACTIVE_MDI" ColumnName="BACKUP_EXPORT_REACTIVE_MDI" />
+          <ScalarProperty Name="BACKUP_EXPORT_ACTIVE_MDI" ColumnName="BACKUP_EXPORT_ACTIVE_MDI" />
+          <ScalarProperty Name="BACKUP_EXPORT_REACTIVE_READING" ColumnName="BACKUP_EXPORT_REACTIVE_READING" />
+          <ScalarProperty Name="BACKUP_EXPORT_ACTIVE_READING" ColumnName="BACKUP_EXPORT_ACTIVE_READING" />
+          <ScalarProperty Name="BACKUP_IMPORT_REACTIVE_MDI" ColumnName="BACKUP_IMPORT_REACTIVE_MDI" />
+          <ScalarProperty Name="BACKUP_IMPORT_ACTIVE_MDI" ColumnName="BACKUP_IMPORT_ACTIVE_MDI" />
+          <ScalarProperty Name="BACKUP_IMPORT_REACTIVE_READING" ColumnName="BACKUP_IMPORT_REACTIVE_READING" />
+          <ScalarProperty Name="BACKUP_IMPORT_ACTIVE_READING" ColumnName="BACKUP_IMPORT_ACTIVE_READING" />
+          <ScalarProperty Name="PRIMARY_EXPORT_REACTIVE_ADJ" ColumnName="PRIMARY_EXPORT_REACTIVE_ADJ" />
+          <ScalarProperty Name="PRIMARY_EXPORT_ACTIVE_AJD" ColumnName="PRIMARY_EXPORT_ACTIVE_AJD" />
+          <ScalarProperty Name="PRIMARY_IMPORT_REACTIVE_ADJ" ColumnName="PRIMARY_IMPORT_REACTIVE_ADJ" />
+          <ScalarProperty Name="PRIMARY_IMPORT_ACTIVE_AJD" ColumnName="PRIMARY_IMPORT_ACTIVE_AJD" />
+          <ScalarProperty Name="PRIMARY_EXPORT_REACTIVE_MDI" ColumnName="PRIMARY_EXPORT_REACTIVE_MDI" />
+          <ScalarProperty Name="PRIMARY_EXPORT_ACTIVE_MDI" ColumnName="PRIMARY_EXPORT_ACTIVE_MDI" />
+          <ScalarProperty Name="PRIMARY_EXPORT_REACTIVE_READING" ColumnName="PRIMARY_EXPORT_REACTIVE_READING" />
+          <ScalarProperty Name="PRIMARY_EXPORT_ACTIVE_READING" ColumnName="PRIMARY_EXPORT_ACTIVE_READING" />
+          <ScalarProperty Name="PRIMARY_IMPORT_REACTIVE_MDI" ColumnName="PRIMARY_IMPORT_REACTIVE_MDI" />
+          <ScalarProperty Name="PRIMARY_IMPORT_ACTIVE_MDI" ColumnName="PRIMARY_IMPORT_ACTIVE_MDI" />
+          <ScalarProperty Name="PRIMARY_IMPORT_REACTIVE_READING" ColumnName="PRIMARY_IMPORT_REACTIVE_READING" />
+          <ScalarProperty Name="PRIMARY_IMPORT_ACTIVE_READING" ColumnName="PRIMARY_IMPORT_ACTIVE_READING" />
+          <ScalarProperty Name="PREVIOUS_WP_DISCO_CDP_MONTHLY_DATA_ID" ColumnName="PREVIOUS_WP_DISCO_CDP_MONTHLY_DATA_ID" />
+          <ScalarProperty Name="BACKUP_CDP_DTL_ID" ColumnName="BACKUP_CDP_DTL_ID" />
+          <ScalarProperty Name="PRIMARY_CDP_DTL_ID" ColumnName="PRIMARY_CDP_DTL_ID" />
+          <ScalarProperty Name="IS_PRIMARY_METER" ColumnName="IS_PRIMARY_METER" />
+          <ScalarProperty Name="PM_READING_DATE_TIME" ColumnName="PM_READING_DATE_TIME" />
+          <ScalarProperty Name="ACCOUNTING_MONTH_ID" ColumnName="ACCOUNTING_MONTH_ID" />
+          <ScalarProperty Name="CDP_ID" ColumnName="CDP_ID" />
+          <ScalarProperty Name="WP_DISCO_CDP_MONTHLY_DATA_ID" ColumnName="WP_DISCO_CDP_MONTHLY_DATA_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WP_FILES">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.WP_FILES">
+        <MappingFragment StoreEntitySet="WP_FILES">
+          <ScalarProperty Name="ONLINE_URL" ColumnName="ONLINE_URL" />
+          <ScalarProperty Name="FILE_TYPE" ColumnName="FILE_TYPE" />
+          <ScalarProperty Name="FILE_EXT" ColumnName="FILE_EXT" />
+          <ScalarProperty Name="FILES_NAME" ColumnName="FILES_NAME" />
+          <ScalarProperty Name="IS_DELETED" ColumnName="IS_DELETED" />
+          <ScalarProperty Name="SHAREPOINT_FILE_GUID" ColumnName="SHAREPOINT_FILE_GUID" />
+          <ScalarProperty Name="SHAREPOINT_FILE_ID" ColumnName="SHAREPOINT_FILE_ID" />
+          <ScalarProperty Name="ERP_TRANSFER" ColumnName="ERP_TRANSFER" />
+          <ScalarProperty Name="FILE_DESCRIPTION" ColumnName="FILE_DESCRIPTION" />
+          <ScalarProperty Name="FILE_TITLE" ColumnName="FILE_TITLE" />
+          <ScalarProperty Name="UPLOADED_FOR" ColumnName="UPLOADED_FOR" />
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          <ScalarProperty Name="FILE_URL" ColumnName="FILE_URL" />
+          <ScalarProperty Name="UPLOAD_DATE_TIME" ColumnName="UPLOAD_DATE_TIME" />
+          <ScalarProperty Name="WP_FILE_ID" ColumnName="WP_FILE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WP_GC_HOURLY_DATA_DETAIL">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.WP_GC_HOURLY_DATA_DETAIL">
+        <MappingFragment StoreEntitySet="WP_GC_HOURLY_DATA_DETAIL">
+          <ScalarProperty Name="ATTRIBUTE_5" ColumnName="ATTRIBUTE_5" />
+          <ScalarProperty Name="ATTRIBUTE4" ColumnName="ATTRIBUTE4" />
+          <ScalarProperty Name="ATTRIBUTE3" ColumnName="ATTRIBUTE3" />
+          <ScalarProperty Name="ATTRIBUTE2" ColumnName="ATTRIBUTE2" />
+          <ScalarProperty Name="ATTRIBUTE1" ColumnName="ATTRIBUTE1" />
+          <ScalarProperty Name="DACLARED_AVAILABILITY" ColumnName="DACLARED_AVAILABILITY" />
+          <ScalarProperty Name="AVAILABILITY_AS_PER_SCH_10" ColumnName="AVAILABILITY_AS_PER_SCH_10" />
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="AVAILABILITY" ColumnName="AVAILABILITY" />
+          <ScalarProperty Name="AMBIENT_AVAILABILITY" ColumnName="AMBIENT_AVAILABILITY" />
+          <ScalarProperty Name="AMBIENT_TEMPERATURE" ColumnName="AMBIENT_TEMPERATURE" />
+          <ScalarProperty Name="TARGET_HOUR" ColumnName="TARGET_HOUR" />
+          <ScalarProperty Name="BLOCK_OR_FUEL_ID_FK" ColumnName="BLOCK_OR_FUEL_ID_FK" />
+          <ScalarProperty Name="WP_GC_HOURLY_DATA_HEADER_ID_FK" ColumnName="WP_GC_HOURLY_DATA_HEADER_ID_FK" />
+          <ScalarProperty Name="WP_GC_HOURLY_DATA_DETAIL_ID_PK" ColumnName="WP_GC_HOURLY_DATA_DETAIL_ID_PK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WP_GC_HOURLY_DATA_HEADER">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.WP_GC_HOURLY_DATA_HEADER">
+        <MappingFragment StoreEntitySet="WP_GC_HOURLY_DATA_HEADER">
+          <ScalarProperty Name="FLAG" ColumnName="FLAG" />
+          <ScalarProperty Name="REVISION_TYPE" ColumnName="REVISION_TYPE" />
+          <ScalarProperty Name="SUBMIT_DATE" ColumnName="SUBMIT_DATE" />
+          <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+          <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="REVISED_AVAILABILITY" ColumnName="REVISED_AVAILABILITY" />
+          <ScalarProperty Name="CURRENT_AVAILABILITY" ColumnName="CURRENT_AVAILABILITY" />
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          <ScalarProperty Name="IS_REVISED" ColumnName="IS_REVISED" />
+          <ScalarProperty Name="PLT_BLK_FUEL_ID" ColumnName="PLT_BLK_FUEL_ID" />
+          <ScalarProperty Name="POWER_POLICIY" ColumnName="POWER_POLICIY" />
+          <ScalarProperty Name="ATTRIBUTE5" ColumnName="ATTRIBUTE5" />
+          <ScalarProperty Name="ATTRIBUTE4" ColumnName="ATTRIBUTE4" />
+          <ScalarProperty Name="ATTRIBUTE3" ColumnName="ATTRIBUTE3" />
+          <ScalarProperty Name="ATTRIBUTE2" ColumnName="ATTRIBUTE2" />
+          <ScalarProperty Name="ATTRIBUTE1" ColumnName="ATTRIBUTE1" />
+          <ScalarProperty Name="RECEIVER_REMARKS" ColumnName="RECEIVER_REMARKS" />
+          <ScalarProperty Name="RECEIVER_DESIGNATION" ColumnName="RECEIVER_DESIGNATION" />
+          <ScalarProperty Name="RECEIVER_NAME" ColumnName="RECEIVER_NAME" />
+          <ScalarProperty Name="SENDER_REMARKS" ColumnName="SENDER_REMARKS" />
+          <ScalarProperty Name="SENDER_DESIGNATION" ColumnName="SENDER_DESIGNATION" />
+          <ScalarProperty Name="SENDER_NAME" ColumnName="SENDER_NAME" />
+          <ScalarProperty Name="ACK_TIME" ColumnName="ACK_TIME" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="INTIMATION_SOURCE_PORTAL" ColumnName="INTIMATION_SOURCE_PORTAL" />
+          <ScalarProperty Name="INTIMATION_SOURCE_FAX_DATE_TIME" ColumnName="INTIMATION_SOURCE_FAX_DATE_TIME" />
+          <ScalarProperty Name="INTIMATION_SOURCE_FAX" ColumnName="INTIMATION_SOURCE_FAX" />
+          <ScalarProperty Name="INTIMATION_SOURCE_TELEPHONE_DATE_TIME" ColumnName="INTIMATION_SOURCE_TELEPHONE_DATE_TIME" />
+          <ScalarProperty Name="INTIMATION_SOURCE_TELEPHONE" ColumnName="INTIMATION_SOURCE_TELEPHONE" />
+          <ScalarProperty Name="TARGET_DATE" ColumnName="TARGET_DATE" />
+          <ScalarProperty Name="INTIMATION_DATE_TIME" ColumnName="INTIMATION_DATE_TIME" />
+          <ScalarProperty Name="FUEL" ColumnName="FUEL" />
+          <ScalarProperty Name="BLOCK" ColumnName="BLOCK" />
+          <ScalarProperty Name="SITE" ColumnName="SITE" />
+          <ScalarProperty Name="COMPLEX_WISE" ColumnName="COMPLEX_WISE" />
+          <ScalarProperty Name="GENERATION_COMPANY" ColumnName="GENERATION_COMPANY" />
+          <ScalarProperty Name="HOURLY_DATA_TYPE" ColumnName="HOURLY_DATA_TYPE" />
+          <ScalarProperty Name="VENDOR_SITE_ID_FK" ColumnName="VENDOR_SITE_ID_FK" />
+          <ScalarProperty Name="WP_GC_HOURLY_DATA_HEADER_ID_PK" ColumnName="WP_GC_HOURLY_DATA_HEADER_ID_PK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WP_GC_USER_ACCESS">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.WP_GC_USER_ACCESS">
+        <MappingFragment StoreEntitySet="WP_GC_USER_ACCESS">
+          <ScalarProperty Name="HISTORICAL_DATA_VIEW_RIGHTS" ColumnName="HISTORICAL_DATA_VIEW_RIGHTS" />
+          <ScalarProperty Name="DELETE_RIGHTS" ColumnName="DELETE_RIGHTS" />
+          <ScalarProperty Name="EDIT_RIGHTS" ColumnName="EDIT_RIGHTS" />
+          <ScalarProperty Name="CREATE_RIGHTS" ColumnName="CREATE_RIGHTS" />
+          <ScalarProperty Name="INQUIRY_RIGHTS" ColumnName="INQUIRY_RIGHTS" />
+          <ScalarProperty Name="EFFECTIVE_DATE_TO" ColumnName="EFFECTIVE_DATE_TO" />
+          <ScalarProperty Name="EFFECTIVE_DATE_FROM" ColumnName="EFFECTIVE_DATE_FROM" />
+          <ScalarProperty Name="ENTITY_TABLE_NAME" ColumnName="ENTITY_TABLE_NAME" />
+          <ScalarProperty Name="ENTITY_SITE_ID" ColumnName="ENTITY_SITE_ID" />
+          <ScalarProperty Name="ENTITY_ID" ColumnName="ENTITY_ID" />
+          <ScalarProperty Name="ENTITY_WP_SETUP_USER_TYPES" ColumnName="ENTITY_WP_SETUP_USER_TYPES" />
+          <ScalarProperty Name="WP_PORTAL_USERS_ID" ColumnName="WP_PORTAL_USERS_ID" />
+          <ScalarProperty Name="WP_GC_USER_ACCESS_ID" ColumnName="WP_GC_USER_ACCESS_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WP_NPCC_DESPATCH_HEADER">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.WP_NPCC_DESPATCH_HEADER">
+        <MappingFragment StoreEntitySet="WP_NPCC_DESPATCH_HEADER">
+          <ScalarProperty Name="FLAG" ColumnName="FLAG" />
+          <ScalarProperty Name="DEMAND_NO" ColumnName="DEMAND_NO" />
+          <ScalarProperty Name="TARGET_DEMAND_2" ColumnName="TARGET_DEMAND_2" />
+          <ScalarProperty Name="TARGET_DATE_TIME_2" ColumnName="TARGET_DATE_TIME_2" />
+          <ScalarProperty Name="TARGET_DEMAND" ColumnName="TARGET_DEMAND" />
+          <ScalarProperty Name="TARGET_DATE_TIME" ColumnName="TARGET_DATE_TIME" />
+          <ScalarProperty Name="EMERGENCY_TYPE" ColumnName="EMERGENCY_TYPE" />
+          <ScalarProperty Name="SYNC_DESYNC_DATE_TIME" ColumnName="SYNC_DESYNC_DATE_TIME" />
+          <ScalarProperty Name="DEMAND_TYPE" ColumnName="DEMAND_TYPE" />
+          <ScalarProperty Name="NPCC_REMARKS" ColumnName="NPCC_REMARKS" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="GC_COMP_TARGET_ACHIEVED" ColumnName="GC_COMP_TARGET_ACHIEVED" />
+          <ScalarProperty Name="GC_COMP_REMARKS" ColumnName="GC_COMP_REMARKS" />
+          <ScalarProperty Name="GC_COMP_ACHIEVE_DATE_TIME" ColumnName="GC_COMP_ACHIEVE_DATE_TIME" />
+          <ScalarProperty Name="GC_COMP_TYPE" ColumnName="GC_COMP_TYPE" />
+          <ScalarProperty Name="GC_COMP_DESIGNATION" ColumnName="GC_COMP_DESIGNATION" />
+          <ScalarProperty Name="MODIFIED_ON" ColumnName="MODIFIED_ON" />
+          <ScalarProperty Name="GC_COMP_BY" ColumnName="GC_COMP_BY" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="GC_ACK_REMARKS" ColumnName="GC_ACK_REMARKS" />
+          <ScalarProperty Name="GC_ACK_DESIGNATION" ColumnName="GC_ACK_DESIGNATION" />
+          <ScalarProperty Name="GC_ACK_TIME" ColumnName="GC_ACK_TIME" />
+          <ScalarProperty Name="GC_ACK_BY" ColumnName="GC_ACK_BY" />
+          <ScalarProperty Name="SENDER_DESIGNATION" ColumnName="SENDER_DESIGNATION" />
+          <ScalarProperty Name="SENDER_NAME" ColumnName="SENDER_NAME" />
+          <ScalarProperty Name="INTIMATION_SOURCE_PORTAL" ColumnName="INTIMATION_SOURCE_PORTAL" />
+          <ScalarProperty Name="INTIMATION_SOURCE_FAX_DATE_TIME" ColumnName="INTIMATION_SOURCE_FAX_DATE_TIME" />
+          <ScalarProperty Name="INTIMATION_SOURCE_FAX" ColumnName="INTIMATION_SOURCE_FAX" />
+          <ScalarProperty Name="INTIMATION_SOURCE_TELEPHONE_DATE_TIME" ColumnName="INTIMATION_SOURCE_TELEPHONE_DATE_TIME" />
+          <ScalarProperty Name="INTIMATION_SOURCE_TELEPHONE" ColumnName="INTIMATION_SOURCE_TELEPHONE" />
+          <ScalarProperty Name="INTIMATION_TIME" ColumnName="INTIMATION_TIME" />
+          <ScalarProperty Name="FUEL" ColumnName="FUEL" />
+          <ScalarProperty Name="FUEL_ID" ColumnName="FUEL_ID" />
+          <ScalarProperty Name="BLOCK" ColumnName="BLOCK" />
+          <ScalarProperty Name="BLOCK_ID" ColumnName="BLOCK_ID" />
+          <ScalarProperty Name="SITE" ColumnName="SITE" />
+          <ScalarProperty Name="VENDOR_ID" ColumnName="VENDOR_ID" />
+          <ScalarProperty Name="VENDOR_SITE_ID" ColumnName="VENDOR_SITE_ID" />
+          <ScalarProperty Name="GENERATION_COMPANY" ColumnName="GENERATION_COMPANY" />
+          <ScalarProperty Name="SETUP_SITE_ID_FK" ColumnName="SETUP_SITE_ID_FK" />
+          <ScalarProperty Name="WP_NPCC_DESPATCH_HEADER_ID" ColumnName="WP_NPCC_DESPATCH_HEADER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WP_NPCC_HOURLY_DATA_SMRY_DETAIL">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.WP_NPCC_HOURLY_DATA_SMRY_DETAIL">
+        <MappingFragment StoreEntitySet="WP_NPCC_HOURLY_DATA_SMRY_DETAIL">
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="ADMISSIBLE_CAPACITY" ColumnName="ADMISSIBLE_CAPACITY" />
+          <ScalarProperty Name="APPLICABLE_WIND_FACTOR" ColumnName="APPLICABLE_WIND_FACTOR" />
+          <ScalarProperty Name="FORCED_OUTAGE" ColumnName="FORCED_OUTAGE" />
+          <ScalarProperty Name="SCHEDULED_OUTAGE" ColumnName="SCHEDULED_OUTAGE" />
+          <ScalarProperty Name="ADMISSIBLE_NEO_FUEL4" ColumnName="ADMISSIBLE_NEO_FUEL4" />
+          <ScalarProperty Name="ADMISSIBLE_NEO_FUEL3" ColumnName="ADMISSIBLE_NEO_FUEL3" />
+          <ScalarProperty Name="ADMISSIBLE_NEO_FUEL2" ColumnName="ADMISSIBLE_NEO_FUEL2" />
+          <ScalarProperty Name="ADMISSIBLE_NEO_FUEL1" ColumnName="ADMISSIBLE_NEO_FUEL1" />
+          <ScalarProperty Name="ADMISSIBLE_NEO" ColumnName="ADMISSIBLE_NEO" />
+          <ScalarProperty Name="NEO_DELIVERED_FUEL4" ColumnName="NEO_DELIVERED_FUEL4" />
+          <ScalarProperty Name="NEO_DELIVERED_FUEL3" ColumnName="NEO_DELIVERED_FUEL3" />
+          <ScalarProperty Name="NEO_DELIVERED_FUEL2" ColumnName="NEO_DELIVERED_FUEL2" />
+          <ScalarProperty Name="NEO_DELIVERED_FUEL1" ColumnName="NEO_DELIVERED_FUEL1" />
+          <ScalarProperty Name="NEO_DELIVERED" ColumnName="NEO_DELIVERED" />
+          <ScalarProperty Name="NPCC_DESPATCH_WITH_EXCESS_LIMIT" ColumnName="NPCC_DESPATCH_WITH_EXCESS_LIMIT" />
+          <ScalarProperty Name="NPCC_DESPATCH_AS_PER_PPA" ColumnName="NPCC_DESPATCH_AS_PER_PPA" />
+          <ScalarProperty Name="NPCC_DESPATCH_INSTRUCTION" ColumnName="NPCC_DESPATCH_INSTRUCTION" />
+          <ScalarProperty Name="OD_FINAL_DAC" ColumnName="OD_FINAL_DAC" />
+          <ScalarProperty Name="OD_ADAC_45MINUTES_INTIMATION_TIME" ColumnName="OD_ADAC_45MINUTES_INTIMATION_TIME" />
+          <ScalarProperty Name="OD_ADAC_45MINUTES_TEMP" ColumnName="OD_ADAC_45MINUTES_TEMP" />
+          <ScalarProperty Name="OD_ADAC_45MINUTES_AVAILABILITY" ColumnName="OD_ADAC_45MINUTES_AVAILABILITY" />
+          <ScalarProperty Name="OD_REVISION_1HOUR_INTIMATION_TIME" ColumnName="OD_REVISION_1HOUR_INTIMATION_TIME" />
+          <ScalarProperty Name="OD_REVISION_1HOUR_AVAILABILITY" ColumnName="OD_REVISION_1HOUR_AVAILABILITY" />
+          <ScalarProperty Name="OD_UPWARDREVISION_4HOURS_INTIMATION_TIME" ColumnName="OD_UPWARDREVISION_4HOURS_INTIMATION_TIME" />
+          <ScalarProperty Name="OD_UPWARDREVISION_4HOURS_AVAILABILITY" ColumnName="OD_UPWARDREVISION_4HOURS_AVAILABILITY" />
+          <ScalarProperty Name="BOD_FINALDAC" ColumnName="BOD_FINALDAC" />
+          <ScalarProperty Name="BOD_RDAC_P4TO0_INTIMATION_TIME" ColumnName="BOD_RDAC_P4TO0_INTIMATION_TIME" />
+          <ScalarProperty Name="BOD_RDAC_P4TO0_TEMP" ColumnName="BOD_RDAC_P4TO0_TEMP" />
+          <ScalarProperty Name="BOD_RDAC_P4TO0_AVAILABILITY" ColumnName="BOD_RDAC_P4TO0_AVAILABILITY" />
+          <ScalarProperty Name="BOD_RDAC_P12TO4_INTIMATION_TIME" ColumnName="BOD_RDAC_P12TO4_INTIMATION_TIME" />
+          <ScalarProperty Name="BOD_RDAC_P12TO4_TEMP" ColumnName="BOD_RDAC_P12TO4_TEMP" />
+          <ScalarProperty Name="BOD_RDAC_P12TO4_AVAILABILITY" ColumnName="BOD_RDAC_P12TO4_AVAILABILITY" />
+          <ScalarProperty Name="BOD_DAC_INTIMATION_TIME" ColumnName="BOD_DAC_INTIMATION_TIME" />
+          <ScalarProperty Name="BOD_DAC_TEMP" ColumnName="BOD_DAC_TEMP" />
+          <ScalarProperty Name="BOD_DAC_AVAILABILITY" ColumnName="BOD_DAC_AVAILABILITY" />
+          <ScalarProperty Name="DATA_HOUR" ColumnName="DATA_HOUR" />
+          <ScalarProperty Name="DATA_DATE" ColumnName="DATA_DATE" />
+          <ScalarProperty Name="RECORD_SEQUENCE" ColumnName="RECORD_SEQUENCE" />
+          <ScalarProperty Name="HOURLY_DATA_SUMMARY_HEADER_ID_FK" ColumnName="HOURLY_DATA_SUMMARY_HEADER_ID_FK" />
+          <ScalarProperty Name="HOURLY_DATA_SUMMARY_DETAIL_ID_PK" ColumnName="HOURLY_DATA_SUMMARY_DETAIL_ID_PK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WP_NPCC_HOURLY_DATA_SMRY_HEADER">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.WP_NPCC_HOURLY_DATA_SMRY_HEADER">
+        <MappingFragment StoreEntitySet="WP_NPCC_HOURLY_DATA_SMRY_HEADER">
+          <ScalarProperty Name="FLAG" ColumnName="FLAG" />
+          <ScalarProperty Name="MODIFIED_ON" ColumnName="MODIFIED_ON" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="FUEL" ColumnName="FUEL" />
+          <ScalarProperty Name="BLOCK" ColumnName="BLOCK" />
+          <ScalarProperty Name="SITE_NAME" ColumnName="SITE_NAME" />
+          <ScalarProperty Name="COMPLEX_WISE" ColumnName="COMPLEX_WISE" />
+          <ScalarProperty Name="GENERATION_COMPANY" ColumnName="GENERATION_COMPANY" />
+          <ScalarProperty Name="SETUP_SITE_ID_FK" ColumnName="SETUP_SITE_ID_FK" />
+          <ScalarProperty Name="HOURLY_DATA_SUMMARY_HEADER_ID_PK" ColumnName="HOURLY_DATA_SUMMARY_HEADER_ID_PK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WP_NPCC_LOAD_CURTAILMENT">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.WP_NPCC_LOAD_CURTAILMENT">
+        <MappingFragment StoreEntitySet="WP_NPCC_LOAD_CURTAILMENT">
+          <ScalarProperty Name="FLAG" ColumnName="FLAG" />
+          <ScalarProperty Name="ACH_REMARKS" ColumnName="ACH_REMARKS" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="SITE" ColumnName="SITE" />
+          <ScalarProperty Name="MODIFIED_ON" ColumnName="MODIFIED_ON" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="GC_REMARKS" ColumnName="GC_REMARKS" />
+          <ScalarProperty Name="RECEIVER_DESIGNATION" ColumnName="RECEIVER_DESIGNATION" />
+          <ScalarProperty Name="RECEIVER_NAME" ColumnName="RECEIVER_NAME" />
+          <ScalarProperty Name="NPCC_REMARKS" ColumnName="NPCC_REMARKS" />
+          <ScalarProperty Name="SENDER_DESIGNATION" ColumnName="SENDER_DESIGNATION" />
+          <ScalarProperty Name="SENDER_NAME" ColumnName="SENDER_NAME" />
+          <ScalarProperty Name="WTG_AFTER_CURTAILMENT" ColumnName="WTG_AFTER_CURTAILMENT" />
+          <ScalarProperty Name="WTG_PRIOR_TO_CURTAILMENT" ColumnName="WTG_PRIOR_TO_CURTAILMENT" />
+          <ScalarProperty Name="AFTER_CURTAILMENT" ColumnName="AFTER_CURTAILMENT" />
+          <ScalarProperty Name="PRIOR_TO_CURTAILMENT" ColumnName="PRIOR_TO_CURTAILMENT" />
+          <ScalarProperty Name="ACTUAL_ACHIEVEMENT_TIME" ColumnName="ACTUAL_ACHIEVEMENT_TIME" />
+          <ScalarProperty Name="SYNC_DYSYNC_TIME" ColumnName="SYNC_DYSYNC_TIME" />
+          <ScalarProperty Name="NOTIFICATION_TIME" ColumnName="NOTIFICATION_TIME" />
+          <ScalarProperty Name="CURTAILMENT_DETAIL" ColumnName="CURTAILMENT_DETAIL" />
+          <ScalarProperty Name="LOAD_CURTAILMENT" ColumnName="LOAD_CURTAILMENT" />
+          <ScalarProperty Name="WTG_CURTAILMENT" ColumnName="WTG_CURTAILMENT" />
+          <ScalarProperty Name="INSTRUCTION_TYPE" ColumnName="INSTRUCTION_TYPE" />
+          <ScalarProperty Name="UNAVAILABLE_DUE_TO_SO" ColumnName="UNAVAILABLE_DUE_TO_SO" />
+          <ScalarProperty Name="UNAVAILABLE_DUE_TO_FO" ColumnName="UNAVAILABLE_DUE_TO_FO" />
+          <ScalarProperty Name="AVAILABLE_WTG" ColumnName="AVAILABLE_WTG" />
+          <ScalarProperty Name="TOTAL_WTG" ColumnName="TOTAL_WTG" />
+          <ScalarProperty Name="GENERATION_COMPANY" ColumnName="GENERATION_COMPANY" />
+          <ScalarProperty Name="GENERATION_COMPANY_ID_FK" ColumnName="GENERATION_COMPANY_ID_FK" />
+          <ScalarProperty Name="WP_NPCC_LOAD_CURTAILMENT_ID_PK" ColumnName="WP_NPCC_LOAD_CURTAILMENT_ID_PK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WP_NPCC_PLANT_EVENTS">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.WP_NPCC_PLANT_EVENTS">
+        <MappingFragment StoreEntitySet="WP_NPCC_PLANT_EVENTS">
+          <ScalarProperty Name="FLAG" ColumnName="FLAG" />
+          <ScalarProperty Name="STATUS_OF_MACHINE" ColumnName="STATUS_OF_MACHINE" />
+          <ScalarProperty Name="MODIFIED_ON" ColumnName="MODIFIED_ON" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="EVENT_VERIFIED" ColumnName="EVENT_VERIFIED" />
+          <ScalarProperty Name="NPCC_REASON" ColumnName="NPCC_REASON" />
+          <ScalarProperty Name="NPCC_TYPE_OF_OUTAGE" ColumnName="NPCC_TYPE_OF_OUTAGE" />
+          <ScalarProperty Name="NPCC_REMARKS_ONLY_NPCC" ColumnName="NPCC_REMARKS_ONLY_NPCC" />
+          <ScalarProperty Name="NPCC_REMARKS" ColumnName="NPCC_REMARKS" />
+          <ScalarProperty Name="NPCC_RECEIVER_DESIGNATION" ColumnName="NPCC_RECEIVER_DESIGNATION" />
+          <ScalarProperty Name="NPCC_RECEIVER_NAME" ColumnName="NPCC_RECEIVER_NAME" />
+          <ScalarProperty Name="NPCC_ACK_DATE_TIME" ColumnName="NPCC_ACK_DATE_TIME" />
+          <ScalarProperty Name="NPCC_ACK" ColumnName="NPCC_ACK" />
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="AVAILABILITY" ColumnName="AVAILABILITY" />
+          <ScalarProperty Name="SENDER_DESIGNATION" ColumnName="SENDER_DESIGNATION" />
+          <ScalarProperty Name="SENDER_NAME" ColumnName="SENDER_NAME" />
+          <ScalarProperty Name="INTIMATION_SOURCE_PORTAL" ColumnName="INTIMATION_SOURCE_PORTAL" />
+          <ScalarProperty Name="INTIMATION_SOURCE_FAX" ColumnName="INTIMATION_SOURCE_FAX" />
+          <ScalarProperty Name="INTIMATION_SOURCE_TELEPHONE" ColumnName="INTIMATION_SOURCE_TELEPHONE" />
+          <ScalarProperty Name="INTIMATION_TIME" ColumnName="INTIMATION_TIME" />
+          <ScalarProperty Name="EVENT_TIME" ColumnName="EVENT_TIME" />
+          <ScalarProperty Name="REASON" ColumnName="REASON" />
+          <ScalarProperty Name="TYPE_OF_OUTAGE" ColumnName="TYPE_OF_OUTAGE" />
+          <ScalarProperty Name="EVENT" ColumnName="EVENT" />
+          <ScalarProperty Name="FUEL" ColumnName="FUEL" />
+          <ScalarProperty Name="PLT_BLK_FUEL_ID" ColumnName="PLT_BLK_FUEL_ID" />
+          <ScalarProperty Name="BLOCK" ColumnName="BLOCK" />
+          <ScalarProperty Name="SITE" ColumnName="SITE" />
+          <ScalarProperty Name="GENERATION_COMPANY" ColumnName="GENERATION_COMPANY" />
+          <ScalarProperty Name="VENDOR_ID" ColumnName="VENDOR_ID" />
+          <ScalarProperty Name="SETUP_SITE_ID_FK" ColumnName="SETUP_SITE_ID_FK" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="WP_NPCC_PLANT_EVENTS_ID_PK" ColumnName="WP_NPCC_PLANT_EVENTS_ID_PK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WP_PORTAL_USERS">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.WP_PORTAL_USERS">
+        <MappingFragment StoreEntitySet="WP_PORTAL_USERS">
+          <ScalarProperty Name="USER_NAME_OLD" ColumnName="USER_NAME_OLD" />
+          <ScalarProperty Name="DISPLAY_DESIGNATION" ColumnName="DISPLAY_DESIGNATION" />
+          <ScalarProperty Name="EMAIL_SUBSCRIPTION" ColumnName="EMAIL_SUBSCRIPTION" />
+          <ScalarProperty Name="EMAIL_ADDRESSES" ColumnName="EMAIL_ADDRESSES" />
+          <ScalarProperty Name="WP_SETUP_USER_TYPES_ID" ColumnName="WP_SETUP_USER_TYPES_ID" />
+          <ScalarProperty Name="PPA_HEADER_ID_FK" ColumnName="PPA_HEADER_ID_FK" />
+          <ScalarProperty Name="DISPLAY_NAME" ColumnName="DISPLAY_NAME" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+          <ScalarProperty Name="WP_PORTAL_USERS_ID" ColumnName="WP_PORTAL_USERS_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WP_SETUP_DISCO">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.WP_SETUP_DISCO">
+        <MappingFragment StoreEntitySet="WP_SETUP_DISCO">
+          <ScalarProperty Name="ABBREVIATION" ColumnName="ABBREVIATION" />
+          <ScalarProperty Name="CUSTOMER_NUMBER" ColumnName="CUSTOMER_NUMBER" />
+          <ScalarProperty Name="CUSTOMER_NAME" ColumnName="CUSTOMER_NAME" />
+          <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+          <ScalarProperty Name="WP_SETUP_DISCO_ID" ColumnName="WP_SETUP_DISCO_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WP_SETUP_MENU">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.WP_SETUP_MENU">
+        <MappingFragment StoreEntitySet="WP_SETUP_MENU">
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="IS_VIEW_PARTIAL" ColumnName="IS_VIEW_PARTIAL" />
+          <ScalarProperty Name="CONTROLLER_VIEW" ColumnName="CONTROLLER_VIEW" />
+          <ScalarProperty Name="CONTROLLER" ColumnName="CONTROLLER" />
+          <ScalarProperty Name="ORDER_BY" ColumnName="ORDER_BY" />
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          <ScalarProperty Name="CLASS_NAME" ColumnName="CLASS_NAME" />
+          <ScalarProperty Name="Herf_LINK" ColumnName="Herf_LINK" />
+          <ScalarProperty Name="MENU_NAME" ColumnName="MENU_NAME" />
+          <ScalarProperty Name="WP_SETUP_MENU_ID" ColumnName="WP_SETUP_MENU_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WP_SETUP_MENU_USER_TYPE">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.WP_SETUP_MENU_USER_TYPE">
+        <MappingFragment StoreEntitySet="WP_SETUP_MENU_USER_TYPE">
+          <ScalarProperty Name="WP_SETUP_USER_TYPES_ID" ColumnName="WP_SETUP_USER_TYPES_ID" />
+          <ScalarProperty Name="WP_SETUP_MENU_ID" ColumnName="WP_SETUP_MENU_ID" />
+          <ScalarProperty Name="WP_SETUP_MENU_USER_TYPE_ID" ColumnName="WP_SETUP_MENU_USER_TYPE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WP_SETUP_USER_TYPES">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.WP_SETUP_USER_TYPES">
+        <MappingFragment StoreEntitySet="WP_SETUP_USER_TYPES">
+          <ScalarProperty Name="DASHBOARD" ColumnName="DASHBOARD" />
+          <ScalarProperty Name="USER_TYPE_NAME" ColumnName="USER_TYPE_NAME" />
+          <ScalarProperty Name="WP_SETUP_USER_TYPES_ID" ColumnName="WP_SETUP_USER_TYPES_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WP_NPCC_DESPATCH_DETAIL">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.WP_NPCC_DESPATCH_DETAIL">
+        <MappingFragment StoreEntitySet="WP_NPCC_DESPATCH_DETAIL">
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="SYNC_DESYNC_TIME" ColumnName="SYNC_DESYNC_TIME" />
+          <ScalarProperty Name="BLOCK_NAME" ColumnName="BLOCK_NAME" />
+          <ScalarProperty Name="BLOCK_ID" ColumnName="BLOCK_ID" />
+          <ScalarProperty Name="WP_NPCC_DESPATCH_HEADER_ID" ColumnName="WP_NPCC_DESPATCH_HEADER_ID" />
+          <ScalarProperty Name="WP_NPCC_DESPATCH_DETAIL_ID" ColumnName="WP_NPCC_DESPATCH_DETAIL_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CPPA_PPA_PLT_BLK_FUEL">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.CPPA_PPA_PLT_BLK_FUEL">
+        <MappingFragment StoreEntitySet="CPPA_PPA_PLT_BLK_FUEL">
+          <ScalarProperty Name="EFFECTIVE_TO" ColumnName="EFFECTIVE_TO" />
+          <ScalarProperty Name="EFFECTIVE_FROM" ColumnName="EFFECTIVE_FROM" />
+          <ScalarProperty Name="LAST_UPDATE_LOGIN" ColumnName="LAST_UPDATE_LOGIN" />
+          <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+          <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="ORGANIZATION_ID" ColumnName="ORGANIZATION_ID" />
+          <ScalarProperty Name="GROUP_COMP" ColumnName="GROUP_COMP" />
+          <ScalarProperty Name="ATTRIBUTE10" ColumnName="ATTRIBUTE10" />
+          <ScalarProperty Name="ATTRIBUTE9" ColumnName="ATTRIBUTE9" />
+          <ScalarProperty Name="ATTRIBUTE8" ColumnName="ATTRIBUTE8" />
+          <ScalarProperty Name="ATTRIBUTE7" ColumnName="ATTRIBUTE7" />
+          <ScalarProperty Name="ATTRIBUTE6" ColumnName="ATTRIBUTE6" />
+          <ScalarProperty Name="ATTRIBUTE5" ColumnName="ATTRIBUTE5" />
+          <ScalarProperty Name="ATTRIBUTE4" ColumnName="ATTRIBUTE4" />
+          <ScalarProperty Name="ATTRIBUTE3" ColumnName="ATTRIBUTE3" />
+          <ScalarProperty Name="ATTRIBUTE2" ColumnName="ATTRIBUTE2" />
+          <ScalarProperty Name="ATTRIBUTE1" ColumnName="ATTRIBUTE1" />
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="CAPACITY" ColumnName="CAPACITY" />
+          <ScalarProperty Name="FUEL_LOOKUP_CODE" ColumnName="FUEL_LOOKUP_CODE" />
+          <ScalarProperty Name="BLOCK_UNIT_TITLE" ColumnName="BLOCK_UNIT_TITLE" />
+          <ScalarProperty Name="UNIT_LOOKUP_CODE" ColumnName="UNIT_LOOKUP_CODE" />
+          <ScalarProperty Name="BLOCK_LOOKUP_CODE" ColumnName="BLOCK_LOOKUP_CODE" />
+          <ScalarProperty Name="HEADER_ID_FK" ColumnName="HEADER_ID_FK" />
+          <ScalarProperty Name="PLT_BLK_FUEL_ID" ColumnName="PLT_BLK_FUEL_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CPPA_PPA_PLT_BLK_FUEL04032019">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.CPPA_PPA_PLT_BLK_FUEL04032019">
+        <MappingFragment StoreEntitySet="CPPA_PPA_PLT_BLK_FUEL04032019">
+          <ScalarProperty Name="EFFECTIVE_TO" ColumnName="EFFECTIVE_TO" />
+          <ScalarProperty Name="EFFECTIVE_FROM" ColumnName="EFFECTIVE_FROM" />
+          <ScalarProperty Name="LAST_UPDATE_LOGIN" ColumnName="LAST_UPDATE_LOGIN" />
+          <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+          <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="ORGANIZATION_ID" ColumnName="ORGANIZATION_ID" />
+          <ScalarProperty Name="GROUP_COMP" ColumnName="GROUP_COMP" />
+          <ScalarProperty Name="ATTRIBUTE10" ColumnName="ATTRIBUTE10" />
+          <ScalarProperty Name="ATTRIBUTE9" ColumnName="ATTRIBUTE9" />
+          <ScalarProperty Name="ATTRIBUTE8" ColumnName="ATTRIBUTE8" />
+          <ScalarProperty Name="ATTRIBUTE7" ColumnName="ATTRIBUTE7" />
+          <ScalarProperty Name="ATTRIBUTE6" ColumnName="ATTRIBUTE6" />
+          <ScalarProperty Name="ATTRIBUTE5" ColumnName="ATTRIBUTE5" />
+          <ScalarProperty Name="ATTRIBUTE4" ColumnName="ATTRIBUTE4" />
+          <ScalarProperty Name="ATTRIBUTE3" ColumnName="ATTRIBUTE3" />
+          <ScalarProperty Name="ATTRIBUTE2" ColumnName="ATTRIBUTE2" />
+          <ScalarProperty Name="ATTRIBUTE1" ColumnName="ATTRIBUTE1" />
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="CAPACITY" ColumnName="CAPACITY" />
+          <ScalarProperty Name="FUEL_LOOKUP_CODE" ColumnName="FUEL_LOOKUP_CODE" />
+          <ScalarProperty Name="BLOCK_UNIT_TITLE" ColumnName="BLOCK_UNIT_TITLE" />
+          <ScalarProperty Name="UNIT_LOOKUP_CODE" ColumnName="UNIT_LOOKUP_CODE" />
+          <ScalarProperty Name="BLOCK_LOOKUP_CODE" ColumnName="BLOCK_LOOKUP_CODE" />
+          <ScalarProperty Name="HEADER_ID_FK" ColumnName="HEADER_ID_FK" />
+          <ScalarProperty Name="PLT_BLK_FUEL_ID" ColumnName="PLT_BLK_FUEL_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WP_NPCC_FAILURE_NOTIFICATION">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.WP_NPCC_FAILURE_NOTIFICATION">
+        <MappingFragment StoreEntitySet="WP_NPCC_FAILURE_NOTIFICATION">
+          <ScalarProperty Name="FLAG" ColumnName="FLAG" />
+          <ScalarProperty Name="SENDER_DESIGNATION" ColumnName="SENDER_DESIGNATION" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="NPCC_REMARKS" ColumnName="NPCC_REMARKS" />
+          <ScalarProperty Name="INSTALLED_CAPACITY" ColumnName="INSTALLED_CAPACITY" />
+          <ScalarProperty Name="SUPPLY" ColumnName="SUPPLY" />
+          <ScalarProperty Name="TARGET_DEMAND" ColumnName="TARGET_DEMAND" />
+          <ScalarProperty Name="DEMAND_NO" ColumnName="DEMAND_NO" />
+          <ScalarProperty Name="MODIFIED_ON" ColumnName="MODIFIED_ON" />
+          <ScalarProperty Name="MODIFIED_BY" ColumnName="MODIFIED_BY" />
+          <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="COMPLAINCEMET" ColumnName="COMPLAINCEMET" />
+          <ScalarProperty Name="GC_REMARKS" ColumnName="GC_REMARKS" />
+          <ScalarProperty Name="GC_DESIGNATION" ColumnName="GC_DESIGNATION" />
+          <ScalarProperty Name="GC_AckBy" ColumnName="GC_AckBy" />
+          <ScalarProperty Name="GC_ACKNOWLEDGEMENT_TIME" ColumnName="GC_ACKNOWLEDGEMENT_TIME" />
+          <ScalarProperty Name="GC_ACK" ColumnName="GC_ACK" />
+          <ScalarProperty Name="SENDER_NAME" ColumnName="SENDER_NAME" />
+          <ScalarProperty Name="INTIMATION_SOURCE_PORTAL" ColumnName="INTIMATION_SOURCE_PORTAL" />
+          <ScalarProperty Name="INTIMATION_SOURCE_FAX_TIME" ColumnName="INTIMATION_SOURCE_FAX_TIME" />
+          <ScalarProperty Name="INTIMATION_SOURCE_FAX" ColumnName="INTIMATION_SOURCE_FAX" />
+          <ScalarProperty Name="INTIMATION_SOURCE_TELEPHONE_TIME" ColumnName="INTIMATION_SOURCE_TELEPHONE_TIME" />
+          <ScalarProperty Name="INTIMATION_SOURCE_TELEPHONE" ColumnName="INTIMATION_SOURCE_TELEPHONE" />
+          <ScalarProperty Name="INTIMATION_TIME" ColumnName="INTIMATION_TIME" />
+          <ScalarProperty Name="NOTIFICATION_COUNT" ColumnName="NOTIFICATION_COUNT" />
+          <ScalarProperty Name="WP_NPCC_DESPATCH_HEADER_ID_FK" ColumnName="WP_NPCC_DESPATCH_HEADER_ID_FK" />
+          <ScalarProperty Name="FUEL" ColumnName="FUEL" />
+          <ScalarProperty Name="BLOCK" ColumnName="BLOCK" />
+          <ScalarProperty Name="SITE" ColumnName="SITE" />
+          <ScalarProperty Name="GENERATION_COMPANY" ColumnName="GENERATION_COMPANY" />
+          <ScalarProperty Name="SETUP_SITE_ID_FK" ColumnName="SETUP_SITE_ID_FK" />
+          <ScalarProperty Name="WP_NPCC_FAILURE_NOTIFICATION_ID_PK" ColumnName="WP_NPCC_FAILURE_NOTIFICATION_ID_PK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CPPA_CDP_HEADER">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.CPPA_CDP_HEADER">
+        <MappingFragment StoreEntitySet="CPPA_CDP_HEADER">
+          <ScalarProperty Name="SR_NO_TMP" ColumnName="SR_NO_TMP" />
+          <ScalarProperty Name="LAST_UPDATE_LOGIN" ColumnName="LAST_UPDATE_LOGIN" />
+          <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+          <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="ORGANIZATION_ID" ColumnName="ORGANIZATION_ID" />
+          <ScalarProperty Name="GROUP_COMP" ColumnName="GROUP_COMP" />
+          <ScalarProperty Name="ATTRIBUTE10" ColumnName="ATTRIBUTE10" />
+          <ScalarProperty Name="ATTRIBUTE9" ColumnName="ATTRIBUTE9" />
+          <ScalarProperty Name="ATTRIBUTE8" ColumnName="ATTRIBUTE8" />
+          <ScalarProperty Name="ATTRIBUTE7" ColumnName="ATTRIBUTE7" />
+          <ScalarProperty Name="ATTRIBUTE6" ColumnName="ATTRIBUTE6" />
+          <ScalarProperty Name="ATTRIBUTE5" ColumnName="ATTRIBUTE5" />
+          <ScalarProperty Name="ATTRIBUTE4" ColumnName="ATTRIBUTE4" />
+          <ScalarProperty Name="ATTRIBUTE3" ColumnName="ATTRIBUTE3" />
+          <ScalarProperty Name="ATTRIBUTE2" ColumnName="ATTRIBUTE2" />
+          <ScalarProperty Name="ATTRIBUTE1" ColumnName="ATTRIBUTE1" />
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="CDP_STATUS_CODE" ColumnName="CDP_STATUS_CODE" />
+          <ScalarProperty Name="EFFECTIVE_TO" ColumnName="EFFECTIVE_TO" />
+          <ScalarProperty Name="EFFECTIVE_FROM" ColumnName="EFFECTIVE_FROM" />
+          <ScalarProperty Name="FEEDER_NAME_CODE" ColumnName="FEEDER_NAME_CODE" />
+          <ScalarProperty Name="CDP_UNIT_CODE" ColumnName="CDP_UNIT_CODE" />
+          <ScalarProperty Name="TF_TL" ColumnName="TF_TL" />
+          <ScalarProperty Name="TF_LINE_VOLTAGE" ColumnName="TF_LINE_VOLTAGE" />
+          <ScalarProperty Name="GRID_VOLTAGE_CODE" ColumnName="GRID_VOLTAGE_CODE" />
+          <ScalarProperty Name="ENGY_IMP_EXP_TO_CODE" ColumnName="ENGY_IMP_EXP_TO_CODE" />
+          <ScalarProperty Name="ENGY_IMP_EXP_FROM_CODE" ColumnName="ENGY_IMP_EXP_FROM_CODE" />
+          <ScalarProperty Name="LOCATION_NAME" ColumnName="LOCATION_NAME" />
+          <ScalarProperty Name="LOCATION_CODE" ColumnName="LOCATION_CODE" />
+          <ScalarProperty Name="DISCO_AREA_CODE" ColumnName="DISCO_AREA_CODE" />
+          <ScalarProperty Name="CONTROLLED_BY_CODE" ColumnName="CONTROLLED_BY_CODE" />
+          <ScalarProperty Name="LINE_NAME_CODE" ColumnName="LINE_NAME_CODE" />
+          <ScalarProperty Name="GRID_STATION_NAME" ColumnName="GRID_STATION_NAME" />
+          <ScalarProperty Name="GRID_STATION_CODE" ColumnName="GRID_STATION_CODE" />
+          <ScalarProperty Name="CDP_NUMBER" ColumnName="CDP_NUMBER" />
+          <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+          <ScalarProperty Name="CDP_ID" ColumnName="CDP_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PlantBlocks">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.PlantBlock">
+        <MappingFragment StoreEntitySet="PlantBlocks">
+          <ScalarProperty Name="VENDOR_ID" ColumnName="VENDOR_ID" />
+          <ScalarProperty Name="VENDOR_SITE_ID" ColumnName="VENDOR_SITE_ID" />
+          <ScalarProperty Name="POWER_POLICY" ColumnName="POWER_POLICY" />
+          <ScalarProperty Name="VENDOR_SITE_CODE" ColumnName="VENDOR_SITE_CODE" />
+          <ScalarProperty Name="VENDOR_NAME" ColumnName="VENDOR_NAME" />
+          <ScalarProperty Name="GROUP_COMP" ColumnName="GROUP_COMP" />
+          <ScalarProperty Name="CAPACITY" ColumnName="CAPACITY" />
+          <ScalarProperty Name="BLOCK_UNIT_TITLE" ColumnName="BLOCK_UNIT_TITLE" />
+          <ScalarProperty Name="HEADER_ID_FK" ColumnName="HEADER_ID_FK" />
+          <ScalarProperty Name="PLT_BLK_FUEL_ID" ColumnName="PLT_BLK_FUEL_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="database_firewall_rules">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.database_firewall_rules">
+        <MappingFragment StoreEntitySet="database_firewall_rules">
+          <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
+          <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_ddlMonthsEnergyDelivered" FunctionName="WP_CPPAG_PrototypeModel.Store.SP_ddlMonthsEnergyDelivered">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WP_CPPAG_PrototypeModel.SP_ddlMonthsEnergyDelivered_Result">
+          <ScalarProperty Name="ACCOUNTING_MONTH_ID" ColumnName="ACCOUNTING_MONTH_ID" />
+          <ScalarProperty Name="DISPLAY" ColumnName="DISPLAY" />
+          <ScalarProperty Name="ord" ColumnName="ord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_ddlMonths_DISCO_MONTHLY_DATA" FunctionName="WP_CPPAG_PrototypeModel.Store.SP_ddlMonths_DISCO_MONTHLY_DATA">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WP_CPPAG_PrototypeModel.SP_ddlMonths_DISCO_MONTHLY_DATA_Result">
+          <ScalarProperty Name="ACCOUNTING_MONTH_ID" ColumnName="ACCOUNTING_MONTH_ID" />
+          <ScalarProperty Name="DISPLAY" ColumnName="DISPLAY" />
+          <ScalarProperty Name="ord" ColumnName="ord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="CPPA_EMO_FORECAST_HEADER">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.CPPA_EMO_FORECAST_HEADER">
+        <MappingFragment StoreEntitySet="CPPA_EMO_FORECAST_HEADER">
+          <ScalarProperty Name="ERP_TRANSFER" ColumnName="ERP_TRANSFER" />
+          <ScalarProperty Name="SUBMIT_DATE" ColumnName="SUBMIT_DATE" />
+          <ScalarProperty Name="OLD_FORECAST_HEADER_ID" ColumnName="OLD_FORECAST_HEADER_ID" />
+          <ScalarProperty Name="REVISED_REASON" ColumnName="REVISED_REASON" />
+          <ScalarProperty Name="REVISED_DATE_TIME" ColumnName="REVISED_DATE_TIME" />
+          <ScalarProperty Name="REVISED_BY" ColumnName="REVISED_BY" />
+          <ScalarProperty Name="ORGANIZATION_ID" ColumnName="ORGANIZATION_ID" />
+          <ScalarProperty Name="LAST_UPDATE_LOGIN" ColumnName="LAST_UPDATE_LOGIN" />
+          <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+          <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+          <ScalarProperty Name="APPROVAL_STATUS" ColumnName="APPROVAL_STATUS" />
+          <ScalarProperty Name="PORTAL_SUBMISSION_DATE" ColumnName="PORTAL_SUBMISSION_DATE" />
+          <ScalarProperty Name="FORECAST_TO_DATE" ColumnName="FORECAST_TO_DATE" />
+          <ScalarProperty Name="FORECAST_FROM_DATE" ColumnName="FORECAST_FROM_DATE" />
+          <ScalarProperty Name="EMO_PERIOD_ID" ColumnName="EMO_PERIOD_ID" />
+          <ScalarProperty Name="ESTIMATED_CONSUMPTION" ColumnName="ESTIMATED_CONSUMPTION" />
+          <ScalarProperty Name="INV_METHOD_CODE" ColumnName="INV_METHOD_CODE" />
+          <ScalarProperty Name="DEPENDABLE_CAPACITY" ColumnName="DEPENDABLE_CAPACITY" />
+          <ScalarProperty Name="UNIT" ColumnName="UNIT" />
+          <ScalarProperty Name="FUEL_NAME" ColumnName="FUEL_NAME" />
+          <ScalarProperty Name="PPA_PLT_BLK_FUEL_ID" ColumnName="PPA_PLT_BLK_FUEL_ID" />
+          <ScalarProperty Name="BLOCK_TITLE" ColumnName="BLOCK_TITLE" />
+          <ScalarProperty Name="PPA_PLANT_EMO_ID" ColumnName="PPA_PLANT_EMO_ID" />
+          <ScalarProperty Name="VENDOR_SITE_ID" ColumnName="VENDOR_SITE_ID" />
+          <ScalarProperty Name="VENDOR_ID" ColumnName="VENDOR_ID" />
+          <ScalarProperty Name="FORECAST_NO" ColumnName="FORECAST_NO" />
+          <ScalarProperty Name="FORECAST_HEADER_ID" ColumnName="FORECAST_HEADER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MDINEO_HEADER">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.MDINEO_HEADER">
+        <MappingFragment StoreEntitySet="MDINEO_HEADER">
+          <ScalarProperty Name="FLAG" ColumnName="FLAG" />
+          <ScalarProperty Name="NEO_TOTAL" ColumnName="NEO_TOTAL" />
+          <ScalarProperty Name="MDI_TOTAL" ColumnName="MDI_TOTAL" />
+          <ScalarProperty Name="DOC_DATE" ColumnName="DOC_DATE" />
+          <ScalarProperty Name="DOC_MONTH" ColumnName="DOC_MONTH" />
+          <ScalarProperty Name="LAST_UPDATE_LOGIN" ColumnName="LAST_UPDATE_LOGIN" />
+          <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+          <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="ORGANIZATION_ID" ColumnName="ORGANIZATION_ID" />
+          <ScalarProperty Name="ATTRIBUTE10" ColumnName="ATTRIBUTE10" />
+          <ScalarProperty Name="ATTRIBUTE9" ColumnName="ATTRIBUTE9" />
+          <ScalarProperty Name="ATTRIBUTE8" ColumnName="ATTRIBUTE8" />
+          <ScalarProperty Name="ATTRIBUTE7" ColumnName="ATTRIBUTE7" />
+          <ScalarProperty Name="ATTRIBUTE6" ColumnName="ATTRIBUTE6" />
+          <ScalarProperty Name="ATTRIBUTE5" ColumnName="ATTRIBUTE5" />
+          <ScalarProperty Name="ATTRIBUTE4" ColumnName="ATTRIBUTE4" />
+          <ScalarProperty Name="ATTRIBUTE3" ColumnName="ATTRIBUTE3" />
+          <ScalarProperty Name="ATTRIBUTE2" ColumnName="ATTRIBUTE2" />
+          <ScalarProperty Name="ATTRIBUTE1" ColumnName="ATTRIBUTE1" />
+          <ScalarProperty Name="APPROVAL_STATUS" ColumnName="APPROVAL_STATUS" />
+          <ScalarProperty Name="DOCUMENT_DATE" ColumnName="DOCUMENT_DATE" />
+          <ScalarProperty Name="DOCUMENT_NO" ColumnName="DOCUMENT_NO" />
+          <ScalarProperty Name="HEADER_ID_PK" ColumnName="HEADER_ID_PK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MDINEO_LINE">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.MDINEO_LINE">
+        <MappingFragment StoreEntitySet="MDINEO_LINE">
+          <ScalarProperty Name="MDI_TOTAL" ColumnName="MDI_TOTAL" />
+          <ScalarProperty Name="DISCO_ID" ColumnName="DISCO_ID" />
+          <ScalarProperty Name="LAST_UPDATE_LOGIN" ColumnName="LAST_UPDATE_LOGIN" />
+          <ScalarProperty Name="LAST_UPDATED_BY" ColumnName="LAST_UPDATED_BY" />
+          <ScalarProperty Name="LAST_UPDATE_DATE" ColumnName="LAST_UPDATE_DATE" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="ATTRIBUTE10" ColumnName="ATTRIBUTE10" />
+          <ScalarProperty Name="ATTRIBUTE9" ColumnName="ATTRIBUTE9" />
+          <ScalarProperty Name="ATTRIBUTE8" ColumnName="ATTRIBUTE8" />
+          <ScalarProperty Name="ATTRIBUTE7" ColumnName="ATTRIBUTE7" />
+          <ScalarProperty Name="ATTRIBUTE6" ColumnName="ATTRIBUTE6" />
+          <ScalarProperty Name="ATTRIBUTE5" ColumnName="ATTRIBUTE5" />
+          <ScalarProperty Name="ATTRIBUTE4" ColumnName="ATTRIBUTE4" />
+          <ScalarProperty Name="ATTRIBUTE3" ColumnName="ATTRIBUTE3" />
+          <ScalarProperty Name="ATTRIBUTE2" ColumnName="ATTRIBUTE2" />
+          <ScalarProperty Name="ATTRIBUTE1" ColumnName="ATTRIBUTE1" />
+          <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+          <ScalarProperty Name="NEO_KW" ColumnName="NEO_KW" />
+          <ScalarProperty Name="MDI_KW" ColumnName="MDI_KW" />
+          <ScalarProperty Name="DISCO_NAME" ColumnName="DISCO_NAME" />
+          <ScalarProperty Name="HEADER_ID_FK" ColumnName="HEADER_ID_FK" />
+          <ScalarProperty Name="MDINEO_LINE_PK" ColumnName="MDINEO_LINE_PK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WP_NPCC_METERING">
+      <EntityTypeMapping TypeName="WP_CPPAG_PrototypeModel.WP_NPCC_METERING">
+        <MappingFragment StoreEntitySet="WP_NPCC_METERING">
+          <ScalarProperty Name="FLAG" ColumnName="FLAG" />
+          <ScalarProperty Name="NEO_DELIVERED" ColumnName="NEO_DELIVERED" />
+          <ScalarProperty Name="PLT_MTR_TO_TIME" ColumnName="PLT_MTR_TO_TIME" />
+          <ScalarProperty Name="PLT_MTR_FROM_TIME" ColumnName="PLT_MTR_FROM_TIME" />
+          <ScalarProperty Name="WP_NPCC_METERING_ID" ColumnName="WP_NPCC_METERING_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_ddlMonths_TotalEnergy_Delivered" FunctionName="WP_CPPAG_PrototypeModel.Store.SP_ddlMonths_TotalEnergy_Delivered">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WP_CPPAG_PrototypeModel.SP_ddlMonths_TotalEnergy_Delivered_Result">
+          <ScalarProperty Name="ACCOUNTING_MONTH_ID" ColumnName="ACCOUNTING_MONTH_ID" />
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
+          <ScalarProperty Name="ord" ColumnName="ord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+<div id="pcontent">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff"></i>
+                        <h6 class="panel-title txt-light">Contact</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+
+
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                        @*<a class="pull-left inline-block close-panel" href="#" data-effect="fadeOut">
+                                <i class="zmdi zmdi-close"></i>
+                            </a>*@
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                        <h2>@ViewBag.Title.</h2>
+                        <h3>@ViewBag.Message</h3>
+
+                        <div id="pcontent">
+                            <address>
+                                One Microsoft Way<br />
+                                Redmond, WA 98052-6399<br />
+                                <abbr title="Phone">P:</abbr>
+                                425.555.0100
+                            </address>
+
+                            <address>
+                                <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
+                                <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+                            </address>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

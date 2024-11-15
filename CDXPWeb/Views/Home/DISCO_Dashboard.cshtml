@@ -1,0 +1,341 @@
+﻿
+@{
+    // ViewBag.Title = "DISCO Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="pcontent">
+    <style type="text/css">
+        .center {
+            text-align: center;
+            padding-top: 9px;
+        }
+
+        .vedit {
+            font-size: 18px;
+            cursor: pointer !important;
+        }
+
+        .vview {
+            font-size: 18px;
+            cursor: pointer !important;
+        }
+    </style>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff"></i>
+                        <h6 class="panel-title txt-light">@ViewBag.Title</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+
+
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                        @*<a class="pull-left inline-block close-panel" href="#" data-effect="fadeOut">
+                                <i class="zmdi zmdi-close"></i>
+                            </a>*@
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                        @*===============================================*@
+                        <div class="tab0">
+                            &nbsp;<div class="tab1" style="float: left">&nbsp;Monthly Meter Reading</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <div id="tblContainer"></div>
+                        </div>@*END OF tab0*@
+                        <div class="tab0" style="display:none;">
+                            &nbsp;<div class="tab1" style="float: left">&nbsp;Monthly Invoice</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom: 20px; display:none;">
+                            <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" id="tblMeterData">
+                                <tr>
+
+                                    <th style="width:200px;text-align:Right;">S.No.</th>
+                                    <th style="width:200px;text-align:Right;">Month</th>
+                                    <th style="width:200px;text-align:Right;">Billing Date</th>
+                                    <th style="width:200px;text-align:Right;">   </th>
+                                    <th style="width:200px;text-align:Right;">Due date</th>
+                                    <th style="width:200px;text-align:Right;">Status</th>
+                                    <th style="width:200px;text-align:Right;">Total Energy(KWh)</th>
+                                    <th style="width:200px;text-align:Right;">Total MDI(KW)</th>
+
+                                    <th style="width:200px;text-align:Right;"></th>
+                                    <th style="width:200px;text-align:Right;"></th>
+
+                                </tr>
+
+
+                                <tr>
+                                    <td style="width:300px; text-align:right;">
+                                        4
+                                    </td>
+                                    <td>jun-18</td>
+                                    <td>IESCO</td>
+                                    <td>1-jul-18</td>
+                                    <td>45</td>
+                                    <td>40</td>
+                                    <td>Submitted</td>
+
+                                    <td>80,639</td>
+                                    <td></td>
+                                    <td></td>
+
+
+                                </tr>
+                                <tr>
+                                    <td style="width:300px; text-align:right;">
+                                        4
+                                    </td>
+                                    <td>jun-18</td>
+                                    <td>******</td>
+                                    <td>1-jul-18</td>
+                                    <td>45</td>
+                                    <td>40</td>
+                                    <td>Submitted</td>
+
+                                    <td>80,639</td>
+                                    <td></td>
+                                    <td></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="width:300px; text-align:right;">
+                                        4
+                                    </td>
+                                    <td>jun-18</td>
+                                    <td>LESCO</td>
+                                    <td>1-jul-18</td>
+                                    <td>45</td>
+                                    <td>40</td>
+                                    <td>Submitted</td>
+
+                                    <td>80,639</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td style="width:300px; text-align:right;">
+                                        4
+                                    </td>
+                                    <td>jun-18</td>
+                                    <td>PESCO</td>
+                                    <td>1-jul-18</td>
+                                    <td>45</td>
+                                    <td>40</td>
+                                    <td>Submitted</td>
+
+                                    <td>80,639</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+
+
+                            </table>
+                        </div>@*END OF tab0*@
+                        @*===============================================*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //LoadGrid()
+            function LoadGrid() {
+                $("#tblContainer").html('<div style="text-align:center;padding:20px;"><img alt="" src="../Content/img/DataLoader.gif" /></div>');
+                var fromdata = new FormData();
+                fromdata.append("vls", '4½');
+                var choice = {};
+                choice.url = '/Home/AjaxCall' + $(location).attr('search');
+                choice.type = "POST";
+                choice.data = fromdata;
+                choice.contentType = false;
+                choice.processData = false;
+                choice.success = function (response) {
+
+                    if ($('#tblJ1').hasClass('dataTable')) {
+                        $('#tblJ1').dataTable().fnDestroy();
+                    }
+
+                    $('#tblContainer').html(response);
+                    $('#tblJ1 thead tr').append('<th></th>');
+                    $('#tblJ1 tbody tr').append('<td style="width: 60px;"><div class="controls center">\
+                                                                    <i class="vedit fa fa-edit" title="Edit"></i>\
+                                                                    <i class="vview fa fa-eye" title="View" style="display:none;"></i>\
+                                                                </div></td>');
+                    $('#tblJ1').append('<tfoot></tfoot>');
+                    $('#tblJ1 tfoot').html($('#tblJ1 thead').html());
+                    $('#tblJ1 tfoot tr').attr("style", "border-bottom: 1px solid #c4c4c4;border-right: 1px solid #c4c4c4;");
+                    $('#tblJ1').addClass('dynamicTable');
+                    $('#tblJ1 tfoot th').each(function () {
+                        var title = $(this).text();
+                        if ($.trim(title) != "") {
+                            $(this).html('<input type="text" class="form-control" style="width:90%;" placeholder="' + title + '" />');
+                        }
+
+                    });
+
+                    $($('#tblJ1 thead tr th')[0]).css('width', '60px');
+                    $('#tblJ1 tbody tr').each(function (index, element) {
+                        $($(this).find('td')[0]).html(parseInt(index) + 1);
+                        if ($(this).attr('Disableedit') == "1") {
+                            $(this).find('.vedit').prop("disabled", true);
+                            $(this).find('.vedit').removeAttr('title');
+                        }
+
+                        var status = $($(this).find('td')[4]).html();
+                        if (status == "Submitted") {
+                            $($(this).find('td')[4]).css({ 'color': 'red' });
+                        }
+                        else if (status == "Draft") {
+                            $($(this).find('td')[4]).css({ 'color': 'blue' });
+                        }
+                        else if (status == "Verified") {
+                            $($(this).find('td')[4]).css({ 'color': 'green' });
+                        }
+                        else if (status == "Returned") {
+                            $($(this).find('td')[4]).css({ 'color': 'blue' });
+                        }
+                    });
+
+                    //$($('#tblJ1 thead tr').find('th')[4]).hide();
+
+                    //$($('#tblJ1 tbody tr').find('td')[4]).hide();
+                    //$($('#tblJ1 tbody tr').find('td')[6]).hide();
+
+                    //$($('#tblJ1 tfoot tr').find('th')[4]).hide();
+                    //$($('#tblJ1 tfoot tr').find('th')[6]).hide();
+
+                    var table = $('#tblJ1').DataTable({
+                        "aLengthMenu": [[10, 25, 50, 100, 150, 250, 500, -1], [10, 25, 50, 100, 150, 250, 500, "All"]],
+                        "iDisplayLength": -1,
+                        //"bSort": false,
+                        "sPaginationType": "full_numbers",
+                        "bJQueryUI": false,
+                        "bAutoWidth": false,
+                        "bLengthChange": true,
+                        "fnInitComplete": function (oSettings, json) {
+                            $('.dataTables_filter>label>input').attr('id', 'search');
+                        }
+                    });
+                    table.columns().every(function () {
+                        var that = this;
+
+                        $('input', this.footer()).on('keyup change', function () {
+                            if (that.search() !== this.value) {
+                                that
+                                    .search(this.value)
+                                    .draw();
+                            }
+                        });
+                    });
+
+                    $('#tblJ1_length').append('<input type="image" name="btnExcel" id="btnExcel" title="Export to Excel" class="Grd" src="../Content/img/xcel.png" style="margin-left: 30px;margin-top:5px;border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnWord" id="btnWord" title="Export to Word" class="Grd" src="../Content/img/wrd.png" style="border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnPNG" id="btnPNG" title="Export to PNG" class="Grd" src="../Content/img/png.png" style="width: 17px;border-width:0px;">');
+
+                };
+                choice.error = function (err) {
+                    console.log(err.statusText);
+                };
+                $.ajax(choice);
+            }//End of Load Grid
+
+            $('body').off('click', '#btnExcel');
+            $('body').on('click', '#btnExcel', function (e) {
+
+                e.preventDefault();
+                $('#tblJ1').tableExport({ type: 'excel', escape: 'false' });
+                e.preventDefault();
+            });
+            $('body').off('click', '#btnWord');
+            $('body').on('click', '#btnWord', function (e) {
+                e.preventDefault();
+                $('#tblJ1').tableExport({ type: 'doc', escape: 'false' });
+                e.preventDefault();
+            });
+            $('body').off('click', '#btnPNG');
+            $('body').on('click', '#btnPNG', function (e) {
+                e.preventDefault();
+                $('#tblJ1').tableExport({ type: 'png', escape: 'false' });
+                e.preventDefault();
+            });
+
+            $(function () {
+                LoadGrid();
+                var dta = $('body').attr('disco');
+                if (dta != null || dta != undefined) {
+                    LoadGrid();
+                    $('body').removeAttr('disco');
+                }
+            });
+
+            $('body').off('click', '.vedit');
+            $('body').on('click', '.vedit', function (e) {
+                e.preventDefault();
+
+                var $passvals = '0½0½' + $(this).parent().parent().parent().attr('tag') + '½0½e';
+                $('body').attr('disco', $passvals);
+                var options = {};
+                var fromdata = new FormData();
+                fromdata.append('vls', $passvals);
+                $("#pageContainer").hide('slide', options, 300);
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/DISCO_Monthly_Data" + $(location).attr('search'),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (result) {
+                        var options = {};
+                        $('#pageContainer').html($(result).find('#pcontent').html());
+                        $("#pageContainer").show('slide', options, 500);
+                    }
+                });
+            });//End of edit click
+
+            $('body').off('click', '.vview');
+            $('body').on('click', '.vview', function (e) {
+                e.preventDefault();
+
+                var $passvals = '0½0½' + $(this).parent().parent().parent().attr('tag') + '½0½v';
+                $('body').attr('disco', $passvals);
+                var options = {};
+                var fromdata = new FormData();
+                fromdata.append('vls', $passvals);
+                $("#pageContainer").hide('slide', options, 300);
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/DISCO_Monthly_Data" + $(location).attr('search'),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (result) {
+                        var options = {};
+                        $('#pageContainer').html($(result).find('#pcontent').html());
+                        $("#pageContainer").show('slide', options, 500);
+                    }
+                });
+            });//End of edit click
+
+
+        });//end of doc ready
+    </script>
+</div>
+
+

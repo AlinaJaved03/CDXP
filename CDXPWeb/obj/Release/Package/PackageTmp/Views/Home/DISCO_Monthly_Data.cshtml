@@ -1,0 +1,865 @@
+﻿
+@{
+    //ViewBag.Title = "DISCO_Monthly_Data";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="pcontent">
+    <style type="text/css">
+        .center {
+            text-align: center;
+            padding-top: 5px;
+        }
+
+        .vdelete2, .vedit2, .veditit, .viewit {
+            font-size: 18px;
+            cursor: pointer !important;
+        }
+
+        .vdelete {
+            display: none;
+        }
+
+        #tblJ1 > thead > tr > th {
+            font-weight: 700 !important;
+        }
+
+        .chld > td {
+            background: #dddddd;
+        }
+
+        #tblJ1 thead tr th {
+            background: whitesmoke;
+            position: -webkit-sticky;
+            position: sticky;
+            top: 84px;
+            box-shadow: 0 2px 2px -1px rgb(29, 74, 109);
+        }
+    </style>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff;"></i>
+                        <h6 class="panel-title txt-light">DISCO Monthly Data</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+
+
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                        @*<a class="pull-left inline-block close-panel" href="#" data-effect="fadeOut">
+                                <i class="zmdi zmdi-close"></i>
+                            </a>*@
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body">
+
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;CDP Data Submission</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+
+                            <table class="tblFrm">
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">DISCO </label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control frm" id="ddlDISCOs" disabled="disabled" style="-webkit-appearance: none;-moz-appearance: none;text-indent: 1px;text-overflow: '';">@Html.Raw(@ViewBag.ddlDISCOs)</select>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Billing Month</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control frm" id="ddlMonths" disabled="disabled" style="-webkit-appearance: none;-moz-appearance: none;text-indent: 1px;text-overflow: '';"> @Html.Raw(@ViewBag.ddlMonths)</select>
+                                    </td>
+                                <tr style="background-color: white;display:none;">
+                                <tr>
+                                    <td style="width: 25%;"></td>
+                                    <td style="width: 25%;"></td>
+                                    <td style="width: 25%;"></td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control" id="ddlViewType" style="-webkit-appearance: none; -moz-appearance: none; text-indent: 1px; text-overflow: '';display:none;">
+                                            <option value="3">Combined View</option>
+                                            <option value="1">Standard View</option>
+                                            <option value="2">Finalized View</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr style="display:none;">
+                                    <td>
+                                        <label for="Disconame">Status</label>
+                                    </td>
+                                    <td>
+                                        <select class="form-control frm" id="ddlType"><option>Draft</option><option>Submitted</option></select>
+                                    </td>
+                                    <td> </td>
+                                    <td></td>
+                                </tr>
+                            </table>
+
+
+
+                        </div>@*END OF tab0*@
+
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;CDPs</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <div style="text-align:right;"><input type="text" id="filterInput" style="width:250px;" placeholder="Search ..."></div>
+                            <div>
+                                <div id="tblContainer"></div>
+                            </div>
+                        </div>@*END OF tab0*@
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Notes</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <textarea cols="70" rows="6" maxlength="2000" id="prevTxtAreaRemarks" style="width: 100%;"></textarea>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button id="btnCancel" class="btn btn-default" type="button">
+                                            Close
+                                        </button>
+                                        <button id="btnSubmit" class="btn btn-info" value="0" type="button">
+                                            Submit
+                                        </button>
+                                        @*<button id="btnSave" class="btn btn-info" value="0" type="button">
+                                                <i class="fa fa-save"></i>
+                                                Save
+                                            </button>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>@*END OF tab0*@
+
+
+                        @*===============================================*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="historyModal" title="History" style="display:none;">
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#historyModal').dialog({
+                autoOpen: false,
+                height: 455,
+                width: 650,
+                modal: true,
+                show: {
+                    effect: "clip",
+                    duration: 500
+                },
+                hide: {
+                    effect: "clip",
+                    duration: 500
+                },
+                open: function () {
+                    $(this).closest(".ui-dialog")
+                        .find(".ui-dialog-titlebar-close")
+                        .html("<span class='ui-button-icon-primary ui-icon ui-icon-closethick'></span>");
+                }
+            });
+            $('body').off("click", '#btnCloseDialog2');
+            $('body').on("click", '#btnCloseDialog2', function (e) {
+                e.preventDefault();
+                $('#historyModal').dialog('close');
+            });
+
+            $(function () {
+                var dta = $('body').attr('disco');
+                if (dta != null || dta != undefined) {
+                    if (dta.split("½")[0] != "0") {
+                        $('#ddlDISCOs').val(dta.split("½")[0]);
+                    }
+                    if (dta.split("½")[2] != "0") {
+                        $('#ddlMonths').val(dta.split("½")[2]);
+                    }
+
+                    LoadGrid();
+                    $('body').removeAttr('disco');
+                }
+            });
+            //onkeyup="fnFilterTable()"
+            $('body').off('keyup', '#filterInput');
+            $('body').on('keyup', '#filterInput', function () {
+                fnFilterTable();
+            });
+            function fnFilterTable() {
+
+                var $filter = $('#filterInput').val().replace(/\s+/g, ' ').toUpperCase();
+                $('.prnt').each(function (index, element) {
+                    var $t = $(this).attr('tag');
+                    var $tr = $(this);
+                    var rtext = $($tr.find('td')[1]).text().replace(/\s+/g, ' ').toUpperCase() + $($tr.find('td')[2]).text().replace(/\s+/g, ' ').toUpperCase() + $($tr.find('td')[3]).text().replace(/\s+/g, ' ').toUpperCase() + $($tr.find('td')[4]).text().replace(/\s+/g, ' ').toUpperCase() + $($tr.find('td')[5]).text().replace(/\s+/g, ' ').toUpperCase() + $($tr.find('td')[6]).text().replace(/\s+/g, ' ').toUpperCase() + $($tr.find('td')[7]).text().replace(/\s+/g, ' ').toUpperCase() + $($tr.find('td')[8]).text().replace(/\s+/g, ' ').toUpperCase() + $($tr.find('td')[9]).text().replace(/\s+/g, ' ').toUpperCase() + $($tr.find('td')[14]).text().replace(/\s+/g, ' ').toUpperCase();
+                    if (rtext.indexOf($filter) === -1) {
+                        $tr.hide();
+                        $('.chld[ptag="' + $t + '"]').hide();
+                    }
+                    else {
+                        $tr.show();
+                        $('.chld[ptag="' + $t + '"]').show();
+                    }
+                });
+
+            }
+
+
+            $('body').off('change', '#ddlViewType');
+            $('body').on('change',
+                '#ddlViewType',
+                function (e) {
+                    LoadGrid();
+                });
+            function LoadGrid() {
+                $("#tblContainer").html('<div style="text-align:center;padding:20px;"><img alt="" src="../Content/img/DataLoader.gif" /></div>');
+
+                var fromdata = new FormData();
+                fromdata.append("vls", '3½' + $('#ddlDISCOs').val() + '½' + $('#ddlMonths').val() + '½' + $('#ddlViewType').val());
+                var choice = {};
+                choice.url = '/Home/Meter_Reading_Proforma' + $(location).attr('search');
+                choice.type = "POST";
+                choice.data = fromdata;
+                choice.contentType = false;
+                choice.processData = false;
+                choice.success = function (response) {
+                    if ($('#tblJ1').hasClass('dataTable')) {
+                        $('#tblJ1').dataTable().fnDestroy();
+                    }
+                    $('#tblContainer').html(response);
+                    $('#tblJ1').addClass('dynamicTable');
+
+                    if ($('#ddlViewType').val() != "3") {
+
+                        $($('#tblJ1 thead tr th')[0]).css('width', '35px');
+                        $($('#tblJ1 thead tr th')[15]).css('width', '35px');
+                        $($('#tblJ1 thead tr th')[15]).html('<input type="checkbox" id="chkmain" class="form-control" style="height: 20px;">');
+                        $($('#tblJ1 thead tr th')[16]).css('width', '35px');
+                        $($('#tblJ1 thead tr th')[16]).html('');
+                        $($('#tblJ1 thead tr th')[17]).html('');
+                        $($('#tblJ1 thead tr th')[17]).css('width', '35px');
+                        //$($('#tblJ1 thead tr th')[17]).html('');
+                        $('#tblJ1 tbody tr').each(function (index, element) {
+
+                            var newtag = $(this).attr('tag');
+                            $(this).attr('tag1', newtag.split('½')[1]);
+                            $(this).attr('tag', newtag.split('½')[0]);
+
+                            $($(this).find('td')[0]).html(parseInt(index) + 1);
+                            var $html = $($(this).find('td')[17]).html();
+                            $($(this).find('td')[17]).attr('tg', $html);
+                            $($(this).find('td')[17]).html('<div class="controls center"><i class="vedit2 fa fa-plus" title="New Entry"></i></div>');
+                        });
+
+                        var $tr = "";
+                        $('#tblJ1 tbody tr').each(function (index, element) {
+
+                            var $this = $(this);
+                            var $ptag = $(this).attr('tag');
+                            var $ptag1 = $(this).attr('tag1');
+
+                            var $thisj = $($(this).find('td')[17]).attr('tg');
+                            if ($thisj != "") {
+                                try {
+                                    var $j = $.parseJSON($thisj);
+                                    var thisflg = true;
+                                    $.each($j, function (iii, jjj) {
+
+                                        var editit = ''
+                                        if (jjj.Status == "0" || jjj.Status == "3") {
+                                            editit = '<div class="controls center"><i class="veditit fa fa-edit" title="edit"></i></div>';
+                                            $($this.find('td')[15]).html('<input type="checkbox" class="form-control chkbx" style="height:20px;width:35px;">');
+                                        }
+                                        else {
+                                            $($this.find('td')[15]).html('');
+                                            $($this.find('td')[16]).html('');
+
+                                        }
+                                        $($this.find('td')[14]).html(jjj.StatusTxt);
+                                        if (thisflg) {
+                                            $tr += '<tr class="prnt" tag="' + $this.attr('tag') + '" tag1="' + $this.attr('tag1') + '">' + $this.html() + '</tr>';
+                                            thisflg = false;
+                                        }
+                                        $tr += '<tr class="chld"  tag="' + jjj.WP_DISCO_CDP_MONTHLY_DATA_ID + '" ptag="' + $ptag + '"><td colspan="8" style="background: #dddddd;"></td><td>' + jjj.BBB[0]["Primary Meter No"] + '</td><td>' + jjj.BBB[0].CCC[0]["Backup Meter No"] + '</td><td>' + jjj.BBB[0].CCC[0].ENG_ACTIVE_IMPORT + '</td><td>' + jjj.BBB[0].CCC[0].ENG_ACTIVE_EXPORT + '</td><td>' + jjj.BBB[0].CCC[0].MDI_ACTIVE_IMPORT + '</td><td>' + jjj.BBB[0].CCC[0].MDI_ACTIVE_EXPORT + '</td><td>' + jjj.BBB[0].CCC[0]["StatusTxt"] + '</td><td></td><td>' + editit + '</td><td><div class="controls center"><i class="viewit fa fa-file-text-o" title="View Details"></i></div></td></tr>'
+
+                                    });
+                                } catch (e) {
+
+                                }
+                            }
+                            else {
+                                $tr += '<tr class="prnt empty" tag1="' + $this.attr('tag1') + '" tag="' + $this.attr('tag') + '">' + $this.html() + '</tr>';
+                            }
+                        });
+                        $('#tblJ1 tbody').html($tr);
+                        $('.prnt').each(function (index, element) {
+                            $($(this).find('td')[16]).html('<div class="controls center"><i tag="' + $(this).attr('tag') + '" class="vdelete2 fa fa-trash" title="Remove below entries of this CDP"></i></div>');
+                            if ($(this).hasClass('empty')) {
+                                $($(this).find('td')[14]).html('');
+                                $($(this).find('td')[15]).html('');
+                            }
+                            if ($($(this).find('td')[14 + 4]).html() == "Submitted" || $($(this).find('td')[14 + 4]).html() == "Received" || $($(this).find('td')[14 + 4]).html() == "Draft") {
+                                $($(this).find('td')[17 + 4]).html('');
+                                if ($($(this).find('td')[14 + 4]).html() != "Draft")
+                                    $($(this).find('td')[16 + 4]).html('');
+                            }
+                        });
+
+
+
+                        $('.prnt').each(function (iiii, jjjj) {
+
+                            $($(this).find('td')[10]).html(numberWithCommas($($(this).find('td')[10]).html()));
+                            $($(this).find('td')[11]).html(numberWithCommas($($(this).find('td')[11]).html()));
+                            $($(this).find('td')[12]).html(numberWithCommas($($(this).find('td')[12]).html()));
+                            $($(this).find('td')[13]).html(numberWithCommas($($(this).find('td')[13]).html()));
+
+                            $($(this).find('td')[10]).css('text-align', 'right');
+                            $($(this).find('td')[11]).css('text-align', 'right');
+                            $($(this).find('td')[12]).css('text-align', 'right');
+                            $($(this).find('td')[13]).css('text-align', 'right');
+
+
+                        });
+                        $('.chld').each(function (iiii, jjjj) {
+                            $($(this).find('td')[3]).css('text-align', 'right');
+                            $($(this).find('td')[4]).css('text-align', 'right');
+                            $($(this).find('td')[5]).css('text-align', 'right');
+                            $($(this).find('td')[6]).css('text-align', 'right');
+                            $($(this).find('td')[3]).html(numberWithCommas($($(this).find('td')[3]).html()));
+                            $($(this).find('td')[4]).html(numberWithCommas($($(this).find('td')[4]).html()));
+                            $($(this).find('td')[5]).html(numberWithCommas($($(this).find('td')[5]).html()));
+                            $($(this).find('td')[6]).html(numberWithCommas($($(this).find('td')[6]).html()));
+
+                        });
+                        $('.prnt').css('font-weight', 'bold');
+                        $('.prnt[tag1="1"]').css('background', '#ea19194f');
+                        $('.chld').each(function (index, element) {
+                            // element == this
+                            $($(this).find('td')[7]).html('');
+                        });
+
+
+                        $('#tblJ1').append('<tfoot>\
+                                    <tr style="font-weight: bolder;"><th colspan="10" style="text-align: center;font-weight: bolder;"></th><th style="text-align:center;">Energy Import (kWh)</th><th style="text-align:center;">Energy Export (kWh)</th><th style="text-align:center;">MDI Import (kW)</th><th style="text-align:center;">MDI Export (kW)</th><th colspan="4"></th></tr>\
+                                    <tr style="font-weight: bolder;"><th colspan="10" style="text-align: center;font-weight: bolder;">GRAND TOTAL UNITS</th><th style="text-align:right;" id="tblJ1a">0</th><th style="text-align:right;" id="tblJ1b">0</th><th style="text-align:right;" id="tblJ1c">0</th><th style="text-align:right;" id="tblJ1d">0</th><th colspan="4"></th></tr>\
+                                    <tr style="font-weight: bolder;"><th colspan="10" style="text-align: center;font-weight: bolder;">NET ENERGY (KWH) DELIVERED / MDI (KW)</th><th colspan="2" style="text-align:right;" id="tblJ1aa">0</th><th colspan="2" style="text-align:right;" id="tblJ1bb">0</th><th colspan="4"></th></tr>\
+                                    </tfoot> ');
+
+                        var EngImp = 0.0;
+                        var EngExp = 0.0;
+                        var MDIImp = 0.0;
+                        var MDIExp = 0.0;
+                        $('.prnt').each(function (index, element) {
+                            var a30 = $.trim($($(this).find('td')[10]).html()) == "" ? "0.0" : $.trim($($(this).find('td')[10]).html());
+                            var b30 = $.trim($($(this).find('td')[11]).html()) == "" ? "0.0" : $.trim($($(this).find('td')[11]).html());
+                            var c30 = $.trim($($(this).find('td')[12]).html()) == "" ? "0.0" : $.trim($($(this).find('td')[12]).html());
+                            var d30 = $.trim($($(this).find('td')[13]).html()) == "" ? "0.0" : $.trim($($(this).find('td')[13]).html());
+                            a30 = a30.replace(/,/g, '');
+                            b30 = b30.replace(/,/g, '');
+                            c30 = c30.replace(/,/g, '');
+                            d30 = d30.replace(/,/g, '');
+                            EngImp += parseFloat(a30);
+                            EngExp += parseFloat(b30);
+                            MDIImp += parseFloat(c30);
+                            MDIExp += parseFloat(d30);
+                        });
+                        $('#tblJ1a').html(numberWithCommas(EngImp));
+                        $('#tblJ1b').html(numberWithCommas(EngExp));
+                        $('#tblJ1c').html(numberWithCommas(MDIImp));
+                        $('#tblJ1d').html(numberWithCommas(MDIExp));
+                        $('#tblJ1aa').html(numberWithCommas(EngImp - EngExp));
+                        $('#tblJ1bb').html(numberWithCommas(MDIImp - MDIExp));
+
+
+                    }
+                    else {
+
+                        $($('#tblJ1 thead tr th')[0]).css('width', '35px');
+                        $($('#tblJ1 thead tr th')[15 + 4]).css('width', '35px');
+                        $($('#tblJ1 thead tr th')[15 + 4]).html('<input type="checkbox" id="chkmain" class="form-control" style="height: 20px;">');
+                        $($('#tblJ1 thead tr th')[16 + 4]).css('width', '35px');
+                        $($('#tblJ1 thead tr th')[16 + 4]).html('');
+                        $($('#tblJ1 thead tr th')[17 + 4]).html('');
+                        $($('#tblJ1 thead tr th')[17 + 4]).css('width', '35px');
+                        //$($('#tblJ1 thead tr th')[17]).html('');
+                        $('#tblJ1 tbody tr').each(function (index, element) {
+
+                            var newtag = $(this).attr('tag');
+                            $(this).attr('tag1', newtag.split('½')[1]);
+                            $(this).attr('tag', newtag.split('½')[0]);
+
+                            $($(this).find('td')[0]).html(parseInt(index) + 1);
+                            var $html = $($(this).find('td')[17 + 4]).html();
+                            $($(this).find('td')[17 + 4]).attr('tg', $html);
+                            $($(this).find('td')[17 + 4]).html('<div class="controls center"><i class="vedit2 fa fa-plus" title="New Entry"></i></div>');
+                        });
+
+
+                        var $tr = "";
+                        $('#tblJ1 tbody tr').each(function (index, element) {
+
+                            var $this = $(this);
+                            var $ptag = $(this).attr('tag');
+                            var $ptag1 = $(this).attr('tag1');
+
+                            var $thisj = $($(this).find('td')[17 + 4]).attr('tg');
+                            if ($thisj != "") {
+                                try {
+                                    var $j = $.parseJSON($thisj);
+                                    var thisflg = true;
+                                    $.each($j, function (iii, jjj) {
+
+                                        var editit = '', histHTMl = '';
+                                        if (jjj.Status == "0" || jjj.Status == "3") {
+                                            editit = '<div class="controls center"><i class="veditit fa fa-edit" title="edit"></i></div>';
+                                            $($this.find('td')[15 + 4]).html('<input type="checkbox" class="form-control chkbx" style="height:20px;width:35px;">');
+                                        }
+                                        else {
+                                            $($this.find('td')[15 + 4]).html('');
+                                            $($this.find('td')[16 + 4]).html('');
+
+                                        }
+                                        debugger;
+                                        //if (jjj.Status == "2" && jjj.Received_CDP_Record != "0") {
+                                        //    histHTMl = '<center><span title="DISCO Claim" class="zmdi zmdi-time-restore zmdi-hc-lg history" cdpid="' + jjj.CDP_ID + '" accid="' + jjj.ACCOUNTING_MONTH_ID + '" custid="' + $('#ddlDISCOs').val() + '"  style="color: #926f2f; cursor: pointer;"></span></center>';
+                                        //}
+                                        $($this.find('td')[14 + 4]).html(jjj.StatusTxt);
+                                        if (thisflg) {
+                                            $tr += '<tr class="prnt" tag="' + $this.attr('tag') + '" tag1="' + $this.attr('tag1') + '">' + $this.html() + '</tr>';
+                                            thisflg = false;
+                                        }
+                                        $tr += '<tr class="chld"  tag="' + jjj.WP_DISCO_CDP_MONTHLY_DATA_ID + '" ptag="' + $ptag + '"><td colspan="8" style="background: #dddddd;"></td><td>' + jjj.BBB[0]["Primary Meter No"] + '</td><td>' + jjj.BBB[0].CCC[0]["Backup Meter No"] + '</td><td>' + jjj.BBB[0].CCC[0].ENG_ACTIVE_IMPORT + '</td><td>' + jjj.BBB[0].CCC[0].ENG_ACTIVE_EXPORT + '</td><td>' + jjj.BBB[0].CCC[0].MDI_ACTIVE_IMPORT + '</td><td>' + jjj.BBB[0].CCC[0].MDI_ACTIVE_EXPORT + '</td><td>' + jjj.BBB[0].CCC[0]._ENG_ACTIVE_IMPORT + '</td><td>' + jjj.BBB[0].CCC[0]._ENG_ACTIVE_EXPORT + '</td><td>' + jjj.BBB[0].CCC[0]._MDI_ACTIVE_IMPORT + '</td><td>' + jjj.BBB[0].CCC[0]._MDI_ACTIVE_EXPORT + '</td><td>' + jjj.BBB[0].CCC[0]["StatusTxt"] + '</td><td></td><td>' + editit + '</td><td><div class="controls center"><i class="viewit fa fa-file-text-o" title="View Details"></i></div></td><td>' + histHTMl + '</td></tr>'
+
+                                    });
+                                } catch (e) {
+
+                                }
+                            }
+                            else {
+                                $tr += '<tr class="prnt empty" tag1="' + $this.attr('tag1') + '" tag="' + $this.attr('tag') + '">' + $this.html() + '</tr>';
+                            }
+                        });
+                        $('#tblJ1 tbody').html($tr);
+
+                        $('.prnt').each(function (index, element) {
+                            $($(this).find('td')[16 + 4]).html('<div class="controls center"><i tag="' + $(this).attr('tag') + '" class="vdelete2 fa fa-trash" title="Remove below entries of this CDP"></i></div>');
+                            if ($(this).hasClass('empty')) {
+                                $($(this).find('td')[14 + 4]).html('');
+                                $($(this).find('td')[15 + 4]).html('');
+                            }
+                            if ($($(this).find('td')[14 + 4]).html() == "Submitted" || $($(this).find('td')[14 + 4]).html() == "Received" || $($(this).find('td')[14 + 4]).html() == "Draft") {
+                                $($(this).find('td')[17 + 4]).html('');
+                                if ($($(this).find('td')[14 + 4]).html() != "Draft")
+                                    $($(this).find('td')[16 + 4]).html('');
+                            }
+                        });
+
+                        //return false;
+
+                        $('.prnt').each(function (iiii, jjjj) {
+
+                            $($(this).find('td')[10]).html(numberWithCommas($($(this).find('td')[10]).html()));
+                            $($(this).find('td')[11]).html(numberWithCommas($($(this).find('td')[11]).html()));
+                            $($(this).find('td')[12]).html(numberWithCommas($($(this).find('td')[12]).html()));
+                            $($(this).find('td')[13]).html(numberWithCommas($($(this).find('td')[13]).html()));
+
+                            $($(this).find('td')[14]).html(numberWithCommas($($(this).find('td')[14]).html()));
+                            $($(this).find('td')[15]).html(numberWithCommas($($(this).find('td')[15]).html()));
+                            $($(this).find('td')[16]).html(numberWithCommas($($(this).find('td')[16]).html()));
+                            $($(this).find('td')[17]).html(numberWithCommas($($(this).find('td')[17]).html()));
+
+                            $($(this).find('td')[9]).css('border-right', '3px solid #97a6b4');
+                            $($(this).find('td')[10]).css('text-align', 'right');
+                            $($(this).find('td')[11]).css('text-align', 'right');
+                            $($(this).find('td')[12]).css('text-align', 'right');
+                            $($(this).find('td')[13]).css('text-align', 'right').css('border-right', '3px solid #97a6b4');
+
+                            $($(this).find('td')[14]).css('text-align', 'right');
+                            $($(this).find('td')[15]).css('text-align', 'right');
+                            $($(this).find('td')[16]).css('text-align', 'right');
+                            $($(this).find('td')[17]).css('text-align', 'right').css('border-right', '3px solid #97a6b4');
+
+
+                        });
+
+                        $('.chld').each(function (iiii, jjjj) {
+                            $($(this).find('td')[2]).css('border-right', '3px solid #97a6b4');
+                            $($(this).find('td')[3]).css('text-align', 'right');
+                            $($(this).find('td')[4]).css('text-align', 'right');
+                            $($(this).find('td')[5]).css('text-align', 'right');
+                            $($(this).find('td')[6]).css('text-align', 'right').css('border-right', '3px solid #97a6b4');
+                            $($(this).find('td')[7]).css('text-align', 'right');
+                            $($(this).find('td')[8]).css('text-align', 'right');
+                            $($(this).find('td')[9]).css('text-align', 'right');
+                            $($(this).find('td')[10]).css('text-align', 'right').css('border-right', '3px solid #97a6b4');
+                            $($(this).find('td')[3]).html(numberWithCommas($($(this).find('td')[3]).html()));
+                            $($(this).find('td')[4]).html(numberWithCommas($($(this).find('td')[4]).html()));
+                            $($(this).find('td')[5]).html(numberWithCommas($($(this).find('td')[5]).html()));
+                            $($(this).find('td')[6]).html(numberWithCommas($($(this).find('td')[6]).html()));
+                            $($(this).find('td')[7]).html(numberWithCommas($($(this).find('td')[7]).html()));
+                            $($(this).find('td')[8]).html(numberWithCommas($($(this).find('td')[8]).html()));
+                            $($(this).find('td')[9]).html(numberWithCommas($($(this).find('td')[9]).html()));
+                            $($(this).find('td')[10]).html(numberWithCommas($($(this).find('td')[10]).html()));
+
+                        });
+                        //return false;
+                        $('.prnt').css('font-weight', 'bold');
+                        $('.prnt[tag1="1"]').css('background', '#ea19194f');
+                        $('.chld').each(function (index, element) {
+                            // element == this
+                            $($(this).find('td')[7 + 4]).html('');
+                        });
+
+
+                        $('#tblJ1').append('<tfoot>\
+                                    <tr style="font-weight: bolder;"><th colspan="10" style="text-align: center;font-weight: bolder;border-right: 3px solid rgb(151, 166, 180);"></th><th style="text-align:center;">Energy Import (kWh)</th><th style="text-align:center;">Energy Export (kWh)</th><th style="text-align:center;">MDI Import (kW)</th><th style="text-align:center;border-right: 3px solid rgb(151, 166, 180);">MDI Export (kW)</th><th style="text-align:center;">Energy Import (kWh)</th><th style="text-align:center;">Energy Export (kWh)</th><th style="text-align:center;">MDI Import (kW)</th><th style="text-align:center;border-right: 3px solid rgb(151, 166, 180);">MDI Export (kW)</th><th colspan="4"></th></tr>\
+                                    <tr style="font-weight: bolder;"><th colspan="10" style="text-align: center;font-weight: bolder;border-right: 3px solid rgb(151, 166, 180);">GRAND TOTAL UNITS</th><th style="text-align:right;" id="tblJ1a">0</th><th style="text-align:right;" id="tblJ1b">0</th><th style="text-align:right;" id="tblJ1c">0</th><th style="text-align:right;border-right: 3px solid rgb(151, 166, 180);" id="tblJ1d">0</th><th style="text-align:right;" id="tblJ2a">0</th><th style="text-align:right;" id="tblJ2b">0</th><th style="text-align:right;" id="tblJ2c">0</th><th style="text-align:right;border-right: 3px solid rgb(151, 166, 180);" id="tblJ2d">0</th><th colspan="4"></th></tr>\
+                                    <tr style="font-weight: bolder;"><th colspan="10" style="text-align: center;font-weight: bolder;border-right: 3px solid rgb(151, 166, 180);">NET ENERGY (KWH) DELIVERED / MDI (KW)</th><th colspan="2" style="text-align:right;" id="tblJ1aa">0</th><th colspan="2" style="text-align:right;border-right: 3px solid rgb(151, 166, 180);" id="tblJ1bb">0</th><th colspan="2" style="text-align:right;" id="tblJ2aa">0</th><th colspan="2" style="text-align:right;border-right: 3px solid rgb(151, 166, 180);" id="tblJ2bb">0</th><th colspan="4"></th></tr>\
+                                    </tfoot> ');
+
+                        var EngImp = 0.0;
+                        var EngExp = 0.0;
+                        var MDIImp = 0.0;
+                        var MDIExp = 0.0;
+                        var EngImpN = 0.0;
+                        var EngExpN = 0.0;
+                        var MDIImpN = 0.0;
+                        var MDIExpN = 0.0;
+                        $('.prnt').each(function (index, element) {
+                            var a30 = $.trim($($(this).find('td')[10]).html()) == "" ? "0.0" : $.trim($($(this).find('td')[10]).html());
+                            var b30 = $.trim($($(this).find('td')[11]).html()) == "" ? "0.0" : $.trim($($(this).find('td')[11]).html());
+                            var c30 = $.trim($($(this).find('td')[12]).html()) == "" ? "0.0" : $.trim($($(this).find('td')[12]).html());
+                            var d30 = $.trim($($(this).find('td')[13]).html()) == "" ? "0.0" : $.trim($($(this).find('td')[13]).html());
+
+                            var e30 = $.trim($($(this).find('td')[14]).html()) == "" ? "0.0" : $.trim($($(this).find('td')[14]).html());
+                            var f30 = $.trim($($(this).find('td')[15]).html()) == "" ? "0.0" : $.trim($($(this).find('td')[15]).html());
+                            var g30 = $.trim($($(this).find('td')[16]).html()) == "" ? "0.0" : $.trim($($(this).find('td')[16]).html());
+                            var h30 = $.trim($($(this).find('td')[17]).html()) == "" ? "0.0" : $.trim($($(this).find('td')[17]).html());
+
+                            a30 = a30.replace(/,/g, '');
+                            b30 = b30.replace(/,/g, '');
+                            c30 = c30.replace(/,/g, '');
+                            d30 = d30.replace(/,/g, '');
+
+                            e30 = e30.replace(/,/g, '');
+                            f30 = f30.replace(/,/g, '');
+                            g30 = g30.replace(/,/g, '');
+                            h30 = h30.replace(/,/g, '');
+
+                            EngImp += parseFloat(a30);
+                            EngExp += parseFloat(b30);
+                            MDIImp += parseFloat(c30);
+                            MDIExp += parseFloat(d30);
+
+                            EngImpN += parseFloat(e30);
+                            EngExpN += parseFloat(f30);
+                            MDIImpN += parseFloat(g30);
+                            MDIExpN += parseFloat(h30);
+
+                        });
+                        $('#tblJ1a').html(numberWithCommas(EngImp));
+                        $('#tblJ1b').html(numberWithCommas(EngExp));
+                        $('#tblJ1c').html(numberWithCommas(MDIImp));
+                        $('#tblJ1d').html(numberWithCommas(MDIExp));
+
+                        $('#tblJ2a').html(numberWithCommas(EngImpN));
+                        $('#tblJ2b').html(numberWithCommas(EngExpN));
+                        $('#tblJ2c').html(numberWithCommas(MDIImpN));
+                        $('#tblJ2d').html(numberWithCommas(MDIExpN));
+
+                        $('#tblJ1aa').html(numberWithCommas(EngImp - EngExp));
+                        $('#tblJ1bb').html(numberWithCommas(MDIImp - MDIExp));
+
+                        $('#tblJ2aa').html(numberWithCommas(EngImpN - EngExpN));
+                        $('#tblJ2bb').html(numberWithCommas(MDIImpN - MDIExpN));
+                    }
+
+
+                    $('#tblContainer').prepend('<input type="image" name="btnExcel" id="btnExcel" title="Export to Excel" class="Grd" src="../Content/img/xcel.png" style="margin-left: 30px;margin-top:5px;border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnWord" id="btnWord" title="Export to Word" class="Grd" src="../Content/img/wrd.png" style="border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnPNG" id="btnPNG" title="Export to PNG" class="Grd" src="../Content/img/png.png" style="width: 17px;border-width:0px;">');
+                };//END OF SUCCESS
+                choice.error = function (err) {
+                    console.log(err.statusText);
+                };
+                $.ajax(choice);
+            }//End of Load Grid
+
+            function numberWithCommas(number) {
+                var parts = number.toString().split(".");
+                parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                return parts.join(".");
+            }
+            //function numberWithCommas(x) {
+            //    return x.toString().replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            //}
+
+            $('body').off('click', '.history');
+            $('body').on('click', '.history', function (e) {
+                e.preventDefault();
+                debugger;
+                var fromdata = new FormData();
+                let thisCtrl = this;
+                fromdata.append("vls", '26½' + $(thisCtrl).attr('cdpid') + '½' + $(thisCtrl).attr('accid') + '½' + $('#ddlDISCOs').val());
+                $.ajax
+                    ({
+                        type: "POST",
+                        url: "/Home/AjaxCall" + $(location).attr("search"),
+                        data: fromdata,
+                        contentType: false,
+                        processData: false,
+                        success: function (data) {
+                            debugger;
+                            let htmlBody = data + '<div style="text-align:left;"><button type = "button" id = "btnCloseDialog2" class="btn btn-default" >Close</button ></div >'
+                            $("#historyModal").html(htmlBody);
+                            $('#historyModal').dialog('open');
+                        },//end of success
+                        error: function (request, textStatus, errorThrown) {
+                            console.log(request);
+                        }
+                    });// end of ajax call
+            });
+
+            $('body').off('change', '#ddlMonths');
+            $('body').on('change', '#ddlMonths', function (e) {
+                e.preventDefault();
+                if ($(this).val() == "0") {
+                    $('#tblContainer').html('');
+                    return false;
+                }
+                else {
+                    LoadGrid();
+                }
+            });
+
+            $('body').off('click', '#btnExcel');
+            $('body').on('click', '#btnExcel', function (e) {
+
+                e.preventDefault();
+                $('#tblJ1').tableExport({ type: 'excel', escape: 'false' });
+                e.preventDefault();
+            });
+            $('body').off('click', '#btnWord');
+            $('body').on('click', '#btnWord', function (e) {
+                e.preventDefault();
+                $('#tblJ1').tableExport({ type: 'doc', escape: 'false' });
+                e.preventDefault();
+            });
+            $('body').off('click', '#btnPNG');
+            $('body').on('click', '#btnPNG', function (e) {
+                e.preventDefault();
+                $('#tblJ1').tableExport({ type: 'png', escape: 'false' });
+                e.preventDefault();
+            });
+
+            $('body').off('click', '#chkmain');
+            $('body').on('click', '#chkmain', function (e) {
+                var $val = $(this).prop('checked');
+                $('.chkbx').prop('checked', $val);
+
+            });
+
+            $('body').off('click', '.vdelete2');
+            $('body').on('click', '.vdelete2', function (e) {
+                e.preventDefault();
+                var tg = $(this).attr('tag');
+
+                if ($('.chld[ptag="' + tg + '"]').length == 0) {
+                    swal({
+                        title: "Error",
+                        text: "No Data to Delete...!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK"
+                    });
+                    return false;
+                }
+
+                var fromdata = new FormData();
+                fromdata.append("vls", '14½' + $('#ddlDISCOs').val() + '½' + $('#ddlMonths').val() + '½' + $(this).attr('tag'));
+                swal({
+                    title: "Are you sure?",
+                    text: "Do you really want to delete this CDPs Record?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "Yes, Delete it!",
+                    closeOnConfirm: false
+                },
+                    function () {
+                        $('.sa-button-container').hide();
+                        $.ajax({
+                            type: "POST",
+                            url: "/Home/AjaxCall" + $(location).attr("search"),
+                            data: fromdata,
+                            contentType: false,
+                            processData: false,
+                            success: function (response) {
+                                $('.sa-button-container').show();
+                                swal("Success!", "Record has been Deleted Successfully.", "success");
+                                LoadGrid();
+                            }
+                        });
+
+
+                    }
+
+                );
+
+            });
+
+            $('body').off('click', '.vedit2,.veditit,.viewit');
+            $('body').on('click', '.vedit2,.veditit,.viewit', function (e) {
+
+                e.preventDefault();
+
+                var $trSelected = $(this).parent().parent().parent();
+
+                //var currentrow = $(this).closest('tr');
+                //var $cdpno = currentrow.find('td:eq(1)').text();
+                var $passvals = "";
+                var $url = "/Home/MRP" + $(location).attr('search');
+                if ($(this).hasClass('vedit2')) {
+                    $passvals = $('#ddlDISCOs').val() + '½' + $('#ddlDISCOs option:selected').text() + '½' + $('#ddlMonths').val() + '½' + $('#ddlMonths option:selected').text() + '½' + $trSelected.attr('tag') + '½N½0';
+                }
+                if ($(this).hasClass('veditit')) {
+                    $passvals = $('#ddlDISCOs').val() + '½' + $('#ddlDISCOs option:selected').text() + '½' + $('#ddlMonths').val() + '½' + $('#ddlMonths option:selected').text() + '½' + $trSelected.attr('tag') + '½E½0';
+                }
+                if ($(this).hasClass('viewit')) {
+                    $passvals = $('#ddlDISCOs').val() + '½' + $('#ddlDISCOs option:selected').text() + '½' + $('#ddlMonths').val() + '½' + $('#ddlMonths option:selected').text() + '½' + $trSelected.attr('tag') + '½V½0';
+                    //$url = "/Home/MeterReadingProformaDisplayOnly" + $(location).attr('search');
+                }
+
+                $('body').attr('disco', $passvals);
+                var fromdata = new FormData();
+                fromdata.append("vls", $passvals);
+                var options = {};
+
+                $("#pageContainer").hide('slide', options, 300);
+                $.ajax({
+                    type: "POST",
+                    url: $url,
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (result) {
+
+                        var options = {};
+                        $('#pageContainer').html($(result).find('#pcontent').html());
+                        $("#pageContainer").show('slide', options, 500);
+                    }
+                });
+            });//End of edit click
+
+
+            $('body').off('click', '#btnSubmit');
+            $('body').on('click', '#btnSubmit', function (e) {
+                var $vals = [];
+                $('.chkbx').each(function (index, element) {
+                    //if ($(this).prop('checked')) {
+                    //    var $vp = $(this).parent().parent().attr('tag');
+                    //    $('.chld[ptag="' + $vp + '"]').each(function (index, element) {
+                    //        $vals.push($(this).attr('tag'));
+                    //    });
+                    //    //$vals.push($(this).parent().parent().attr('tag'));
+                    //}
+                    if ($(this).prop('checked')) {
+                        $vals.push($(this).parent().parent().attr('tag'));
+                    }
+                });
+                var fromdata = new FormData();
+                if ($vals.join(",") == "") {
+                    swal({
+                        title: "Error",
+                        text: "select at least one CDP to Submit...!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#invoiceDate').focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+                fromdata.append("vls", '7½' + $('#ddlDISCOs').val() + '½' + $('#ddlMonths').val() + '½' + $('#prevTxtAreaRemarks').val() + '½' + $vals.join(","));
+
+
+                swal({
+                    title: "Are you sure?",
+                    text: "Do you really want to Submit Record?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "Yes, Submit it!",
+                    closeOnConfirm: false
+                },
+                    function () {
+                        $('.sa-button-container').hide();
+                        $.ajax({
+                            type: "POST",
+                            url: "/Home/AjaxCall" + $(location).attr("search"),
+                            data: fromdata,
+                            contentType: false,
+                            processData: false,
+                            success: function (response) {
+                                $('.sa-button-container').show();
+                                swal("Success!", "Record has been Submitted Successfully.", "success");
+                                LoadGrid();
+                            }
+                        });
+
+                    }
+
+                );
+
+
+
+            });//END OF CLICK
+
+            $('body').off('click', '#btnCancel');
+            $('body').on('click', '#btnCancel', function (e) {
+                e.preventDefault();
+                var options = {};
+                $("#pageContainer").hide('slide', options, 300);
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/DISCO_Dashboard" + $(location).attr('search'),
+                    success: function (result) {
+                        var options = {};
+                        $('#pageContainer').html($(result).find('#pcontent').html());
+                        $("#pageContainer").show('slide', options, 500);
+                    }
+                });
+
+            });//end of cancel
+
+        });//END OF DOC READY
+    </script>
+
+
+</div>

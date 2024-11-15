@@ -1,0 +1,232 @@
+﻿
+@{
+    ViewBag.Title = "UploadFile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+</head>
+<body>*@
+<div id="pcontent">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff;"></i>
+                        <h6 class="panel-title txt-light">@ViewBag.Title</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+
+
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                        @*<a class="pull-left inline-block close-panel" href="#" data-effect="fadeOut">
+                                <i class="zmdi zmdi-close"></i>
+                            </a>*@
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                        <div class="container body-content">
+                            <h2>UploadFile</h2>
+
+
+                            <input id="fileUpload" style="width:300px;" type="file" class="btn btn-default" />
+                            <input type="text" id="txtDtl" />
+                            <button id="btnSave" class="btn btn-info frm" value="0" type="button">
+                                <i class="fa fa-save"></i>
+                                Submit
+                            </button>
+
+                            <hr />
+                            <footer>
+                                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                            </footer>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            $('body').off('click', '#btnSave');
+            $('#btnSave').on('click', function (e) {
+                e.preventDefault();
+
+
+                var uploadfiles = $("#fileUpload").get(0);
+                var Is_FileUpload = "";
+                var uploadedfiles = uploadfiles.files;
+                var fromdata = new FormData();
+                fromdata.append("vls", $("#txtDtl").val());
+
+                for (var i = 0; i < uploadedfiles.length; i++) {
+                    fromdata.append(uploadedfiles[i].name, uploadedfiles[i]);
+                    Is_FileUpload = "1";
+                }
+
+                var choice = {};
+                choice.url = '/Upload/UploadFileWithFile' + $(location).attr('search');
+                choice.type = "POST";
+                choice.data = fromdata;
+                choice.contentType = false;
+                choice.processData = false;
+                choice.success = function (result) {
+
+                    console.log(result);
+                    if (result.split('½')[0]=="1") {
+                       
+                        //triggerFlow(result);
+                        alert("File Uploaded Successfully...!");
+                    }
+                    else {
+                        alert(result);
+                    }
+
+                    ////////////alertify.alert("User Successfully Created...!");
+                    ////////////LoadGrid();
+                    ////////////$('.clr').val('');
+                    ////////////if ($.browser.msie) {
+                    ////////////    $('#fileUpload').replaceWith($('#fileUpload').clone());
+                    ////////////}
+                    ////////////else {
+                    ////////////    $('#fileUpload').val('');
+                    ////////////}
+                    ////////////$('#fileUpload').html('');
+                    ////////////$('#btnSave').val('0');
+                    ////////////$('#btnSave').html('Save');
+                    ////////////$('#imgprvw').attr('src', 'Images/no_image.jpg');
+                };
+
+                choice.error = function (err) {
+                    alert(err.statusText);
+                };
+                $.ajax(choice);
+            });
+
+
+
+            var appWebUrl = "";
+            var spHostUrl = "";
+            var args = window.location.search.substring(1).split("&");
+
+            for (var i = 0; i < args.length; i++) {
+                var n = args[i].split("=");
+                if (n[0] == "SPHostUrl")
+                    spHostUrl = decodeURIComponent(n[1]);
+            }
+            console.log("SP Host Url:   " + spHostUrl);
+            for (var i = 0; i < args.length; i++) {
+                var n = args[i].split("=");
+                if (n[0] == "SPAppWebUrl")
+                    appWebUrl = decodeURIComponent(n[1]);
+            }
+            console.log("App Web Url:   " + appWebUrl);
+            //Load Libraries
+            var scriptbase = spHostUrl + "/_layouts/15/";
+            console.log("Script Base:   " + scriptbase);
+            $("#scriptbaseId").val(scriptbase);
+        });
+        function triggerFlow(result) {
+            debugger;
+            //Get Host and App web URLS
+            var bodyContent = "{\r\n    \"DocId\":\"{0}\",\r\n    \"LibraryName\": \"{1}\",\r\n    \"SiteUrl\": \"{2}\",\r\n    \"SiteName\": \"{3}\",\r\n    \"currentUserItemId\": \"{4}\",\r\n    \"WebId\": \"{5}\"\r\n}";
+            try {
+                bodyContent = bodyContent.FormatRow(result.split('½')[2], "Documents", "https://cppapk.sharepoint.com/departments/it", "Information Technology Department", "0", result.split('½')[1]);
+            } catch (e) {
+
+            }
+
+            $.ajax({
+
+                url: "https://prod-15.westeurope.logic.azure.com:443/workflows/2d08ebbbf7ed420eb4dbb7e71c173cb3/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=80pOZbDcBdzo148xQb5UC6feDLrG0STQAB5CsFAdYtA",
+
+                //url: "https://prod-120.westeurope.logic.azure.com:443/workflows/5b9f58942d1b428b8f389d27d09ab668/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=h8fQkqZpfGrNpP8K53WS8_odjvCZz2Sop4PyzYFYMpw",
+                crossDomain: true,
+
+                method: "POST",
+
+                async: false,
+
+                data: bodyContent,
+
+                processData: false,
+
+                headers: {
+
+                    "content-type": "application/json",
+
+                    "cache-control": "no-cache"
+
+                },
+
+                success: function (data) {
+
+                    console.log(data);
+
+                },
+
+                error: function (err) {
+
+                    console.log(err);
+
+                }
+
+            });
+
+
+
+
+
+
+        }
+        String.prototype.FormatRow = function () {
+
+            try {
+                var content = this;
+
+                for (var i = 0; i < arguments.length; i++) {
+
+                    var replacement = '{' + i + '}';
+
+                    content = content.replace(replacement, arguments[i]);
+
+                }
+
+                return content;
+
+            }
+
+            catch (e) {
+
+                console.log("Error occurred in FormatRow " + e.message);
+
+            }
+
+        }
+    </script>
+    @Html.Raw("<script>" + ViewBag.DynamicScripts + "</script>")
+</div>
+                    @*</body>
+                        </html>*@
+

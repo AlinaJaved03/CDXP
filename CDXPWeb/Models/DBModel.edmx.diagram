@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="846fbe81e7f046e1874adeafc3db4fa1" Name="Diagram1">
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.ACCOUNTING_MONTH" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.AP_SUPPLIER_SITE_ALL" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.AP_SUPPLIERS" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.CPPA_CDP_DETAIL" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.CPPA_CDP_DETAILYYYYYYYYYXXXXX" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.CPPA_CDP_HEADERS" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.CPPA_CDP_HEADERSYYYYYYYYYXXXX" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.CPPA_EMO_FC_OPN_STK_LINES" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.CPPA_EMO_FORECAST_LINES" Width="1.5" PointX="10.75" PointY="5.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.CPPA_EMO_FUEL_RATE_LINES" Width="1.5" PointX="6.75" PointY="10.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.CPPA_EMO_FUEL_TEMP_HEADER" Width="1.5" PointX="8.75" PointY="10.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.CPPA_EMO_FUEL_TEMP_LINES" Width="1.5" PointX="10.75" PointY="9.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.CPPA_EMO_PERIODS" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.CPPA_PPA_PLT_EMO" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.CPPA_PPA_PLT_EMOXXXX" Width="1.5" PointX="12.75" PointY="7.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.FND_LOOKUP_VALUES" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.PPA_APPLICABLE_INVOICES" Width="1.5" PointX="14.75" PointY="9.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.PPA_BLOCKS_FUELS" Width="1.5" PointX="12.75" PointY="14.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.PPA_COMP_DEFS" Width="1.5" PointX="14.75" PointY="14.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.PPA_HEADER" Width="1.5" PointX="6.75" PointY="15.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.tblFile" Width="1.5" PointX="8.75" PointY="15.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.Testing" Width="1.5" PointX="16.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.WP_DISCO_CDP_MONTHLY_DATA" Width="1.5" PointX="0.75" PointY="16.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.WP_FILES" Width="1.5" PointX="16.75" PointY="3.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.WP_GC_HOURLY_DATA_DETAIL" Width="1.5" PointX="16.75" PointY="8.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.WP_GC_HOURLY_DATA_HEADER" Width="1.5" PointX="16.75" PointY="13.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.WP_GC_USER_ACCESS" Width="1.5" PointX="18.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.WP_NPCC_DESPATCH_HEADER" Width="1.5" PointX="2.75" PointY="18.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.WP_NPCC_HOURLY_DATA_SMRY_DETAIL" Width="1.5" PointX="18.75" PointY="5.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.WP_NPCC_HOURLY_DATA_SMRY_HEADER" Width="1.5" PointX="8.75" PointY="18.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.WP_NPCC_LOAD_CURTAILMENT" Width="1.5" PointX="18.75" PointY="15.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.WP_NPCC_PLANT_EVENTS" Width="1.5" PointX="10.75" PointY="19.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.WP_PORTAL_USERS" Width="1.5" PointX="20.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.WP_SETUP_DISCO" Width="1.5" PointX="20.75" PointY="4.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.WP_SETUP_MENU" Width="1.5" PointX="20.75" PointY="7.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.WP_SETUP_MENU_USER_TYPE" Width="1.5" PointX="20.75" PointY="11.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.WP_SETUP_USER_TYPES" Width="1.5" PointX="20.75" PointY="14.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.WP_NPCC_DESPATCH_DETAIL" Width="1.5" PointX="20.75" PointY="17.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.CPPA_PPA_PLT_BLK_FUEL" Width="1.5" PointX="20.75" PointY="20.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.CPPA_PPA_PLT_BLK_FUEL04032019" Width="1.5" PointX="22.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.WP_NPCC_FAILURE_NOTIFICATION" Width="1.5" PointX="22.75" PointY="7.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.CPPA_CDP_HEADER" Width="1.5" PointX="12.75" PointY="22.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.PlantBlock" Width="1.5" PointX="22.75" PointY="15.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.database_firewall_rules" Width="1.5" PointX="22.75" PointY="19.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.CPPA_EMO_FORECAST_HEADER" Width="1.5" PointX="5.375" PointY="23.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.MDINEO_HEADER" Width="1.5" PointX="3.375" PointY="11.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.MDINEO_LINE" Width="1.5" PointX="7.375" PointY="23.75" />
+        <EntityTypeShape EntityType="WP_CPPAG_PrototypeModel.WP_NPCC_METERING" Width="1.5" PointX="15.375" PointY="23.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,656 @@
+﻿
+@{
+    ViewBag.Title = "View Stock";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="pcontent">
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px; margin-right: 5px; color: #fff;"></i>
+                        <h6 class="panel-title txt-light">@ViewBag.Title</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+
+
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                        @*<a class="pull-left inline-block close-panel" href="#" data-effect="fadeOut">
+                                <i class="zmdi zmdi-close"></i>
+                            </a>*@
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body" style="min-height: 300px;">
+                        @*====Body Start===*@
+                        @*<strong style="font-size:18px; color:black;">Stock Data </strong>
+                            <hr style="border-width:1px; margin-bottom:10px;" />*@
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Stock Data</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+
+                        <div style="overflow-x: auto; background-color: white;">
+                            <table class="tablex" id="tblHeader" style="color: #4F4F4F;margin-left: 10%;margin-right: 10%;width: 80%;">
+
+
+                                <tr style="background-color: white">
+                                    <td style="width: 130px;">
+                                        <label for="fuelType">Fuel Type</label>
+                                    </td>
+                                    <td style="width:35%">
+                                        <!--<input type="text" class="form-control" id="producerSite" value="" readonly name="producerSite">-->
+
+                                        <select tabindex="1" class="form-control frm" id="fuelType" name="fuelType" required="">
+                                            @Html.Raw(@ViewBag.FuelType)
+                                        </select>
+
+                                    </td>
+                                    <td style="width: 130px;">
+                                        &nbsp;
+                                    </td>
+                                    <td style="width: 130px;">
+
+                                </tr>
+
+                                <tr style="background-color: white;">
+
+                                    <td style="width:130px">
+                                        <label for="producerSite">Power Producer</label>
+                                    </td>
+                                    @*<td style="width: 35%;">
+            <select tabindex="1" class="form-control frm" id="PowerProducer" name="PowerProducer" required="">
+                @Html.Raw(@ViewBag.ddls)
+            </select>
+        </td>*@
+                                    <td style="width: 35%;">
+                                        <select tabindex="1" class="form-control frm" id="PowerProducer" name="PowerProducer" required="">
+                                            <option selected="" value="0">-Select-</option>
+                                        </select>
+                                    </td>
+
+                                    <td style="width:130px">&nbsp;</td>
+                                    <td style="width:130px">
+                                        <label for="producerSite">Producer Site</label>
+                                    </td>
+                                    <td style="width: 35%;">
+                                        <select tabindex="2" class="form-control frm" id="producerSite" name="producerSite" required="">
+                                            <option selected="" value="0">-Select-</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:130px">
+                                        <label for="fromStockDate">
+                                            From <span style="color:red;">*</span>
+                                        </label>
+                                    </td>
+
+                                    <td>
+                                        <input tabindex="3" style="background-color:rgb(251, 255, 193);" type="text" class="form-control frm fromStockDate" id="fromStockDate" name="fromStockDate" readonly>
+                                    </td>
+                                    <td style="width:130px">&nbsp;</td>
+                                    <td style="width:130px">
+                                        <label for="toStockDate">
+                                            To <span style="color:red;">*</span>
+                                        </label>
+                                    </td>
+
+                                    <td>
+                                        <input tabindex="4" style="background-color:rgb(251, 255, 193);" type="text" class="form-control frm toStockDate" id="toStockDate" name="toStockDate" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5" style="text-align: right;">
+                                        <button type="button" class="btn btn-success btn-anim btnSearch" tg="0" id="btnSearch" value="Search">Search</button>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="tab0">
+                                &nbsp;<div class="tab1">&nbsp;Search Results</div>
+                                <div class="tab2">&nbsp;</div>
+                            </div>
+                            <div>
+                                @using (Html.BeginForm("ExportToExcel_Users", "Stock", FormMethod.Post))
+                                {
+
+                                    <input type="hidden" value="@ViewBag.VendorId" class="btn btn-primary" />
+                                    <input type="hidden" value="@ViewBag.VendorSiteId" class="btn btn-primary" id="vendorSiteIdForDownload" name="vendorSiteIdForDownload" />
+
+                                    <input type="submit" value="Export Consolidated" class="btn btn-primary" style="margin-bottom:10px;" />
+
+                                    <table class="table-bordered table-hover table borderWidth" data-tablesaw-mode="swipe" id="tbl_results">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:80px;">Transaction Date</th>
+                                                <th style="width:80px;" class="filterhead">IPP Name</th>
+                                                <th style="width:80px;" class="filterhead">IPP Site Name</th>
+                                                @if (@ViewBag.StockAccess == "1" || @ViewBag.StockAccess == "2")
+                                                {
+                                                    <th style="width:80px;" class="OpeningStk">Opening Stock (MT)</th>
+                                                }
+
+                                                @if (@ViewBag.StockAccess == "3")
+                                                {
+                                                    <th style="width:80px;" class="OpeningStk">Opening Stock (KL)</th>
+                                                }
+                                                <th style="width:80px;" class="filterhead">Consumption (KL)</th>
+                                                <th style="width:80px;" class="filterhead">Receipts (KL)</th>
+                                                <th style="width:80px;" class="filterhead">Closing</th>
+                                                <th style="width:80px;" class="filterhead">Midnight Load (MG)</th>
+                                                <th style="width:80px;" class="filterhead deadstockThead">Dead Stock (KL)</th>
+                                                <th style="width:80px;" class="filterhead usableThead">Usable Stock (KL)</th>
+                                                <th style="width:80px;" class="filterhead">Firm Order (KL)</th>
+                                                <th style="width:80px;" class="filterhead">Rate</th>
+                                                <th style="width:80px;" class="filterhead">Remarks</th>
+                                                <th style="width:80px;" class="filterhead">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                }
+                            </div>
+                            <br />
+                            <br />
+                        </div>
+                        <div id="dvexl" style="display: none;">
+                            <table id="tblprnt">
+                                <thead>
+                                    <tr>
+                                        <th colspan="9">Stock Data</th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="7"></th>
+                                        <th>From Date</th>
+                                        <th id="tblprntd1"></th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="7"></th>
+                                        <th>To Date</th>
+                                        <th id="tblprntd2"></th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="9">&nbsp;</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Transaction Date</th>
+                                        <th>IPP Name</th>
+                                        <th>IPP Site Name</th>
+                                        <th>Opening (KL)</th>
+                                        <th>Consumption (KL)</th>
+                                        <th>Receipts (KL)</th>
+                                        <th>Closing</th>
+                                        <th>Midnight Load (MG)</th>
+                                        <th class="deadstockThead">Dead Stock (KL)</th>
+                                        <th class="usableThead">Usable Stock (KL)</th>
+                                        <th>Firm Order (KL)</th>
+                                        <th>Rate</th>
+                                        <th>Remarks</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                        @*====Body End=====*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/plugins/moment/min/moment.min.js"></script>
+    <script src="~/Content/vendors/bower_components/moment/min/datetime-moment.js"></script>
+    <script type="text/javascript">
+        var tHead;
+        var Token = "";
+        var vendorId, vendorSiteId;
+            var SUser_ID, UserId, _To, _From;
+        var StockAccess = "";
+        var fuelType = "";
+        var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+            $(document).ready(function () {
+                debugger;
+            SUser_ID = @ViewBag.UserType; // uData.UserDTL.UserTypeID;
+            UserId = @ViewBag.UserId; //uData.UserDTL.UserID;
+
+            if (SUser_ID == 2 || SUser_ID == 3) { //Admin User
+                tHead = $('#tbl_results thead').html();
+                @*var ddldata = @Html.Raw(@ViewBag.ddls);
+                if (ddldata.length > 0) {
+                    $("#PowerProducer").html('<option selected="" value="0">-Select-</option>');
+                    for (var i = 0; i < ddldata.length; i++) {
+                        $("#PowerProducer").append('<option tg="'+encodeURIComponent(ddldata[i].SiteJson)+'" value="' +
+                            ddldata[i].VENDOR_ID +
+                            '">' +
+                            ddldata[i].VENDOR_NAME +
+                            '</option>');
+                    }
+                }*@
+                //$.ajax
+                //    ({
+                //        type: "GET",
+                //        url: "https://cppa2.azurewebsites.net/v1/D_H_Interface/GetIPPByUser?userId=" + UserId,
+                //        dataType: 'json',
+                //        headers: {
+                //            "Token": Token
+                //        },
+                //        beforeSend: function () {
+                //            $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+                //        },
+                //        complete: function () {
+                //            $.unblockUI();
+                //        },
+                //        success: function (data) {
+
+                //            data = JSON.parse(data);
+
+                //            if (data.length > 0) {
+
+                //                for (var i = 0; i < data.length; i++) {
+                //                    $("#PowerProducer").append('<option value="' + data[i].VENDOR_ID + '">' + data[i].VENDOR_NAME + '</option>');
+                //                }
+                //            }
+
+
+                //        },
+                //        error: function (request, textStatus, errorThrown) {
+                //        }
+                //    });//END OF AJAX CALL
+
+
+            } else {
+                //window.location.replace('https://cppag.sharepoint.com/Pages/Home.aspx');
+                // window.location.replace(window.location.origin);
+               // alert('Go to Dashboard');
+
+            }
+
+        });//END OF DOC READY
+
+
+        $('body').on('focus',
+            ".fromStockDate",
+            function() {
+
+                $(this).datepicker({
+                    dateFormat: 'dd-M-yy'
+
+                });
+            });
+
+        $('body').on('focus',
+            ".toStockDate",
+            function() {
+
+                $(this).datepicker({
+                    dateFormat: 'dd-M-yy',
+                    minDate: $($(this).parent().parent().children()[1]).children().val()
+
+                });
+            });
+
+        /*
+           function getStockDataBySite () {
+
+            vendorSiteId = $('#producerSite').val();
+
+        }*/
+
+        $('body').off('change', '#PowerProducer');
+        $('body').on('change', '#PowerProducer', function () {
+                debugger;
+                if ($(this).val() != 0) {
+                    $("#producerSite").html('');
+                    var data =$.parseJSON(decodeURIComponent($(this).find(':selected').attr('tg')));
+                    if (data.length > 0) {
+                        for (var i = 0; i < data.length; i++) {
+                            $("#producerSite").append('<option vid="' +
+                                $(this).val() +
+                                '" value="' +
+                                data[i].VENDOR_SITE_ID +
+                                '">' +
+                                data[i].ADDRESS_LINE1 +
+                                '</option>');
+                        }
+                    }
+                } else {
+                    $("#producerSite").html('<option selected="" value="0">-Select-</option>');
+                }
+
+            });//END OF FUNCTION
+
+             $('body').off('change', '#fuelType');
+            $('body').on('change', '#fuelType', function () {
+                debugger;
+                 var fuelID;
+                $("#PowerProducer").html('<option selected="" value="0">-Select-</option>');
+                $("#producerSite").html('<option selected="" value="0">-Select-</option>');
+                if($(this).val() > 0)
+                {
+                    fuelID = $(this).val();
+                    if (fuelID == "1" || fuelID == "2") {
+                        $('.OpeningStk').text('Opening Stock (MT)');
+                    }
+                    else {
+                        $('.OpeningStk').text('Opening Stock (KL)');
+                    }
+
+                    if (fuelID == "1" || fuelID == "3") {
+                        $('.usableThead').text('Usable Stock');
+                        $('.deadstockThead').text('Dead Stock');
+                    }
+                    if (fuelID == "2") {
+                        $('.usableThead').text('On-Site Inventory');
+                        $('.deadstockThead').text('Off-Site Inventory');
+                    }
+
+                    $.ajax({
+                        url: "/Stock/GetStockIPPBYFuel/" + $(location).attr("search"),
+                        type: 'GET',
+                        dataType:'JSON',
+                        data: {
+                            fid : fuelID
+                        },
+                        headers: {
+                            "Token": Token
+                        },
+                        beforeSend: function () {
+                            $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+                        },
+                        complete: function () {
+                            $.unblockUI();
+                        }
+                    }).done(function (data) {
+
+                        debugger;
+
+                        if (data.length > 0) {
+
+                            for (var i = 0; i < data.length; i++) {
+                                for (var i = 0; i < data.length; i++) {
+                                    $("#PowerProducer").append('<option tg="' + encodeURIComponent(data[i].SiteJson) + '" value="' +
+                                        data[i].VENDOR_ID +
+                                        '">' +
+                                        data[i].VENDOR_NAME +
+                                        '</option>');
+                                }
+                            }
+                        }
+                        
+                        });
+            }
+
+            });//END OF FUNCTION
+
+        $('#fuelType').change();
+        $('body').on('click',
+            ".btnSearch",
+            function() {
+
+                vendorSiteId = $('#producerSite').val();
+                // vendorId = $('#powerProducer').val();
+                var fromDate = $('#fromStockDate').val();
+                var toDate = $('#toStockDate').val();
+                $('#vendorSiteIdForDownload').val(vendorSiteId);
+                fuelType = $('#fuelType').val();
+                var pConfirm = true;
+                var thisControl;
+
+                $.each($('#tblHeader > tbody'),
+                    function(x, y) {
+                        if ($($(this).find('#PowerProducer')).val() == "0") {
+                            pConfirm = false;
+                            thisControl = $(this).find('#PowerProducer');
+                            return false;
+                        }
+
+
+                        if ($($(this).find('#producerSite')).val() == "0") {
+                            pConfirm = false;
+                            thisControl = $(this).find('#producerSite');
+                            return false;
+                        }
+
+
+                        if ($($(this).find('#fromStockDate')).val() == "") {
+                            pConfirm = false;
+                            thisControl = $(this).find('#fromStockDate');
+                            return false;
+                        }
+
+                        if ($($(this).find('#toStockDate')).val() == "") {
+                            pConfirm = false;
+                            thisControl = $(this).find('#toStockDate');
+                            return false;
+                        }
+
+
+                        pConfirm = true;
+                    });
+
+                if (!pConfirm) {
+                    swal({
+                        title: "Error",
+                        text: "Marked fields are mandatory.",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK"
+                        //,onAfterClose: () => {
+                        //    setTimeout(() => $(thisControl).focus(), 100)
+                        //}
+                    }, function() {
+                        setTimeout(() => $(thisControl).focus(), 100);
+                    });
+                    return false;
+                }
+                tHead = $('#tbl_results thead').html();
+                $.ajax
+                ({
+                    type: "GET",
+                    //url: "https://cppa2.azurewebsites.net/v1/D_H_Interface/GetStockDataBySiteId?vendorSiteId=" +
+                    url: "/Stock/GetStockDataBySiteId/" + $(location).attr("search")+($(location).attr("search")==""? "?vendorSiteId=" : "&vendorSiteId=")+
+                        vendorSiteId +
+                        "&fromDate=" +
+                        $('#fromStockDate').val() +
+                        "&toDate=" +
+                            $('#toStockDate').val() +
+                            "&fuelType=" +
+                            $('#fuelType').val(),
+                        
+                    dataType: 'json',
+                    headers: {
+                        "Token": Token
+                    },
+                    // async:false,
+                    beforeSend: function() {
+                        $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+                    },
+                    //async:false,
+                    complete: function() {
+                        $.unblockUI();
+                    },
+                    success: function (data) {
+                        if ($("#tbl_results").hasClass("dataTable")) {
+                            $("#tbl_results").dataTable().fnDestroy();
+                        }
+                        //debugger;
+                        $('#tbl_results tbody').html('');
+                        $('#tblprnt tbody').html('');
+                        $('#tblprntd1').html($('#fromStockDate').val());
+                        $('#tblprntd2').html($('#toStockDate').val());
+                        if (data.length > 0) {
+
+                            //$('#tbl_results').DataTable().clear().destroy();
+                            //$('#tbl_results thead').html('');
+                            $('#tbl_results thead').html(tHead);
+                            debugger;
+                            var transNo = '';
+                            $.each(data,
+                                function(index, value) {
+
+                                    //debugger;
+                                    var transactionDate = value.TransactionDate;
+                                    //transactionDate = formatdate(transactionDate.split('T')[0]);
+                                    var ippName = value.VENDOR_NAME;
+                                    var ippSiteName = value.ADDRESS_LINE1;
+                                    var consumed = (value.Consumed).toFixed(4);
+                                    var purchased = (value.Purchased).toFixed(4);
+                                    var closed = (value.StockPosition).toFixed(4);
+                                    var OpeningStock = (value.OpeningStock).toFixed(4);
+                                    var midnightLoad = (value.MidCost).toFixed(4);
+                                    var status = value.Status;
+                                    var DeadStock = (value.DeadStock).toFixed(4);
+                                    var UsableStock = (value.UsableStock).toFixed(4);
+                                    var FirmOrder = (value.FirmOrder).toFixed(4);
+                                    var Rate = value.Rate;
+                                    var Remarks = value.Remarks;
+
+
+                                    var thisrow = '<tr><td><span class="txt-dark weight-500">' +
+                                        transactionDate +
+                                        '</span></td><td><span class="txt-dark weight-500">' +
+                                        ippName +
+                                        '</span></td><td><span class="txt-dark weight-500">' +
+                                        ippSiteName +
+                                        '</span></td><td><span class="txt-dark weight-500 pull-right">' +
+                                        OpeningStock +
+                                        '</span></td><td><span class="txt-dark weight-500 pull-right">' +
+                                        consumed +
+                                        '</span></td><td><span class="txt-dark weight-500 pull-right" >' +
+                                        purchased +
+                                        '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                        closed +
+                                        '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                        midnightLoad +
+                                        '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                        DeadStock +
+                                        '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                        UsableStock +
+                                        '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                        FirmOrder +
+                                        '</span></td><td><span class="txt-dark weight-500 pull-right"> ' +
+                                        Rate +
+                                        '</span></td><td><span class="txt-dark weight-500 pull-left"><textarea readonly style="resize: none;  overflow: hidden; border:none; background: none !important;" cols="37" rows="5"> ' + Remarks + ' </textarea></span></td><td><span class="txt-dark weight-500 pull-left"> ' +
+                                        status +
+                                        '</span></td></tr>';
+                                    $('#tbl_results tbody').append(thisrow);
+                                    $('#tblprnt tbody').append(thisrow);
+
+                                }); //end of each loop
+
+                            $.fn.dataTable.moment('DD-MMM-YYYY HH:mm');
+                            $.fn.dataTable.moment('DD-MMM-YYYY');
+                            $.fn.dataTable.moment('DD-MMM-YY HH:mm');
+                            $.fn.dataTable.moment('DD-MMM-YY');
+                            ////table = $('#tbl_results').DataTable({
+                            ////    "sScrollX": "100%",
+                            ////    "dom": 'lBfrtip',
+                            ////    columnDefs: [
+                            ////        { "width": "80px", "targets": 0, },
+                            ////        { "width": "80px", "targets": 1, },
+                            ////        { "width": "80px", "targets": 2, },
+                            ////        { "width": "80px", "targets": 3, },
+                            ////        { "width": "80px", "targets": 4, },
+                            ////        { "width": "80px", "targets": 5, },
+                            ////        { "width": "80px", "targets": 6, },
+                            ////        { "width": "80px", "targets": 7, },
+                            ////        { "width": "80px", "targets": 8, },
+                            ////        { type: 'datetime-moment', target: [0] }
+                            ////    ],
+                            ////    "order": [[0, 'desc']],
+                            ////    "aLengthMenu": [
+                            ////        [10, 25, 50, 100, 150, 250, 500, -1], [10, 25, 50, 100, 150, 250, 500, "All"]
+                            ////    ],
+                            ////    "iDisplayLength": 10,
+                            ////    "bSortCellsTop": true,
+                            ////    "sPaginationType": "full_numbers",
+                            ////    "bJQueryUI": false,
+                            ////    "bAutoWidth": false,
+                            ////    "bLengthChange": true
+
+                            ////});
+                            table = $("#tbl_results").DataTable({
+                                "order": [[0, 'desc']],
+                                "aLengthMenu": [[10, 25, 50, 100, 150, 250, 500, -1], [10, 25, 50, 100, 150, 250, 500, "All"]],
+                                "iDisplayLength": 10,
+                                "sPaginationType": "full_numbers",
+                                "bJQueryUI": false,
+                                "bAutoWidth": false,
+                                "bLengthChange": true,
+                                "fnInitComplete": function (oSettings, json) {
+                                    $(".dataTables_filter > label > input").attr("id", "search");
+                                }
+                            });
+                            //if (stockMenuAccess == 1 && SUser_ID==3) {
+
+                                $('#tbl_results_length').append(
+                                    '<div class="dt-buttons" style="margin-left: 15px;"><a id="prntEXL" class="dt-button buttons-excel buttons-html5 form-control" tabindex="0" aria-controls="tbl_results" href="#" style="min-height: 88%;line-height: 40px;background-color: #1d4a6d;"><span>Export to Excel</span></a></div>');
+                                $('#tbl_results_length').attr('style', 'width: 400px;display: inline-flex;');
+                            //}
+
+                        } //end of success
+                        else {
+                            $('#tbl_results').dataTable().fnClearTable();
+                            $('#tbl_results tbody').html('');
+                        }
+
+                    },
+                    error: function(request, textStatus, errorThrown) {
+                        // alert(request.getResponseHeader('some_header'));
+                    }
+                });
+
+            });
+
+
+        function formatdate(date) {
+            try {
+                var d = new Date(date);
+                var dd = d.getDate() < 10 ? "0" + d.getDate() : d.getDate();
+                return dd + "-" + monthNames[d.getMonth()] + "-" + d.getFullYear();
+            } catch (err) {
+                return "";
+            }
+
+        }
+
+        function GetMonth(date) {
+            try {
+
+                var d = new Date(date);
+
+                return monthNames[d.getMonth()];
+            } catch (err) {
+                return "";
+            }
+
+        }
+
+
+        $('body').off('click', '#prntEXL');
+        $('body').on('click', '#prntEXL', function (e) {
+            e.preventDefault();
+
+            $('#dvexl').show();
+            $('#tblprnt').tableExport({ fileName: 'Stock Data', type: 'excel', escape: 'false' });
+            $('#dvexl').hide();
+            e.preventDefault();
+        });
+    </script>
+</div>

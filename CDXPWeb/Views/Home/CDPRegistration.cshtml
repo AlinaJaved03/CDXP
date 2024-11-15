@@ -1,0 +1,584 @@
+﻿
+@{
+    ViewBag.Title = "CDPRegistration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CDPRegistration</h2>
+
+
+
+<div id="pcontent">
+    <style type="text/css">
+        .center {
+            text-align: center;
+            padding-top: 9px;
+        }
+
+        .veditCDP {
+            font-size: 18px;
+            cursor: pointer !important;
+        }
+
+        .vdelete {
+            display: none;
+        }
+
+        #tblJ1 > tbody > tr > td:nth-child(4), #tblJ1 > tbody > tr > td:nth-child(5), #tblJ1 > tbody > tr > td:nth-child(6) {
+            text-align: right;
+        }
+    </style>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff"></i>
+                        <h6 class="panel-title txt-light">CDP Registration</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+
+
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                        @*<a class="pull-left inline-block close-panel" href="#" data-effect="fadeOut">
+                                <i class="zmdi zmdi-close"></i>
+                            </a>*@
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body">
+
+
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;CDP Registration Form</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+
+                        <div>
+                            <table class="tblFrm" style="width: 90%;">
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">From Customer</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select id="ddlCustomer1" class="form-control frm">@Html.Raw(@ViewBag.ddlDISCOs)</select>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">To Customer</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select id="ddlCustomer2" class="form-control frm">@Html.Raw(@ViewBag.ddlDISCOs)</select>
+                                    </td>
+                                <tr>
+                                    <td><label for="ddlStatus"> CDP Number</label></td>
+                                    <td>
+                                        <input id="txtCDPNumber" type="text" class="form-control frm clr" />
+                                    </td>
+                                    <td><label for="ddlStatus">Grid Station Code</label></td>
+                                    <td><input type="text" class="form-control frm clr" /></td>
+                                </tr>
+
+                                <tr>
+                                    <td><label for="ddlStatus">Grid Station Name</label></td>
+                                    <td>
+                                        <input type="text" class="form-control frm clr" />
+                                    </td>
+                                    <td><label for="ddlStatus">Line Name Code</label></td>
+                                    <td><input type="text" class="form-control frm clr" /></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td><label for="ddlStatus">Controlled by Code</label></td>
+                                    <td>
+                                        <input type="text" class="form-control frm clr" />
+                                    </td>
+                                    <td><label for="ddlStatus">DISCO Area Code</label></td>
+                                    <td><input type="text" class="form-control frm clr" /></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td><label for="ddlStatus">Location Code</label></td>
+                                    <td>
+                                        <input type="text" class="form-control frm clr" />
+                                    </td>
+                                    <td><label for="ddlStatus">Location Name</label></td>
+                                    <td>
+                                        <input type="text" class="form-control frm clr" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td><label for="ddlStatus">Energy Import/Export From</label></td>
+                                    <td><input id="txt1" type="text" class="form-control frm" /></td>
+                                    <td><label for="ddlStatus">Energy Import/Export To</label></td>
+                                    <td>
+                                        <input id="txt2" type="text" class="form-control frm" />
+                                    </td>
+
+
+
+                                </tr>
+
+                                <tr>
+
+                                    <td><label for="ddlStatus">Grid Voltage Code</label></td>
+                                    <td><input type="text" class="form-control frm clr" /></td>
+                                    <td><label for="ddlStatus">TF Line Voltage</label></td>
+                                    <td>
+                                        <input type="text" class="form-control frm clr" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td><label for="ddlStatus">TF-TL</label></td>
+                                    <td><input type="text" class="form-control frm clr" /></td>
+                                    <td><label for="ddlStatus">CDP Unit Code</label></td>
+                                    <td>
+                                        <input type="text" class="form-control frm clr" />
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+
+                                    <td><label for="ddlStatus">Feeder Name Code</label></td>
+                                    <td><input type="text" class="form-control frm clr" /></td>
+                                    <td><label for="dtFromDate">Effective From Date</label></td>
+                                    <td>
+                                        <input id="dtFromDate" type="text" readonly="readonly" class="form-control frm clr" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td><label for="dtTOdate">Effective To Date</label></td>
+                                    <td><input id="dtTOdate" type="text" readonly="readonly" class="form-control frm clr" /></td>
+                                    <td><label for="ddlCDPStatus">CDP Status</label></td>
+                                    <td>
+                                        <select id="ddlCDPStatus" class="form-control frm">
+                                            <option>Active</option>
+                                            <option>De-active</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="ddlAuxilary">Auxilary CDP</label></td>
+                                    <td>
+                                        <select id="ddlAuxilary" class="form-control frm">
+                                            <option value="1">Yes</option>
+                                            <option value="0">No</option>
+                                        </select>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+
+                            </table>
+
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button id="btnCancel" class="btn btn-default" type="button">
+                                            Cancel
+                                        </button>
+                                        <button id="btnSave" class="btn btn-info frm" value="0" type="button">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Registered CDP's</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <div id="tblContainer" style="overflow: auto;margin-left: 5px;margin-right: 5px"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //debugger;
+            $(function () {
+                var dateFormat = "dd-M-yy",
+                    from = $("#dtFromDate")
+                        .datepicker({
+                            changeMonth: true,
+                            changeYear: true,
+                            dateFormat: 'dd-M-yy'
+                        })
+                        .on("change", function () {
+                            to.datepicker("option", "minDate", getDate(this));
+                        }),
+                    to = $("#dtTOdate").datepicker({
+                        changeMonth: true,
+                        changeYear: true,
+                        dateFormat: 'dd-M-yy'
+                    })
+                        .on("change", function () {
+                            from.datepicker("option", "maxDate", getDate(this));
+                        });
+
+                function getDate(element) {
+                    var date;
+                    try {
+                        date = $.datepicker.parseDate(dateFormat, element.value);
+                    } catch (error) {
+                        date = null;
+                    }
+
+                    return date;
+                }
+            });
+            function LoadGridCDPs() {
+                //debugger;
+                $("#tblContainer").html('<div style="text-align:center;padding:20px;"><img alt="" src="../Content/img/DataLoader.gif" /></div>');
+
+                var a = "";
+                var b = "";
+                if ($('#ddlCustomer1').val() == null || $('#ddlCustomer1').val() == undefined || $('#ddlCustomer1').val() == "") {
+                    a = "NULL";
+                } else {
+                    a = $('#ddlCustomer1').val();
+                }
+                if ($('#ddlCustomer2').val() == null || $('#ddlCustomer2').val() == undefined || $('#ddlCustomer2').val() == "") {
+                    b = "NULL";
+                } else {
+                    b = $('#ddlCustomer2').val();
+                }
+                var fromdata = new FormData();
+                fromdata.append("vls", '18½' + a + '½' + b);
+                var choice = {};
+                choice.url = '/Home/AjaxCall' + $(location).attr('search');
+                choice.type = "POST";
+                choice.data = fromdata;
+                choice.contentType = false;
+                choice.processData = false;
+                choice.success = function (response) {
+                    if ($('#tblJ1').hasClass('dataTable')) {
+                        $('#tblJ1').dataTable().fnDestroy();
+                    }
+                    $('#tblContainer').html(response);
+                    $($('#tblJ1 thead tr th')[0]).css('width', '35px');
+                    $('#tblJ1 tbody tr').each(function (index, element) {
+                        $($(this).find('td')[0]).html(parseInt(index) + 1);
+                    });
+                    $('#tblJ1 thead tr').append('<th></th>');
+                    $('#tblJ1 tbody tr').append('<td style="width: 35px;"><div class="controls center">\
+                                                                        <i class="veditCDP fa fa-edit" title="Edit"></i>\
+                                                                        <i class="vdelete fa fa-times" title="Delete"></i>\
+                                                                    </div></td>');
+                    //$('#tblJ1').append('<tfoot></tfoot>');
+                    //$('#tblJ1 tfoot').html($('#tblJ1 thead').html());
+                    $('#tblJ1 tfoot tr').attr("style", "border-bottom: 1px solid #c4c4c4;border-right: 1px solid #c4c4c4;");
+                    $('#tblJ1').addClass('dynamicTable dataTable');
+
+                    //var eng = 0.0;
+                    //var mdi = 0.0;
+                    //var tempEnergy = 0;
+                    //var tempMDI = 0;
+
+                    //$('#tblJ1 tbody tr').each(function (index, element) {
+
+                    //    if ($.trim($($(this).find('td')[3]).html()) != "") {
+                    //        3
+                    //        tempEnergy = $($(this).find('td')[3]).html();
+                    //        tempEnergy = removeCommas(tempEnergy);
+                    //        eng += parseFloat(tempEnergy);
+
+                    //    }
+                    //    if ($.trim($($(this).find('td')[4]).html()) != "") {
+                    //        tempMDI = $($(this).find('td')[4]).html();
+                    //        tempMDI = removeCommas(tempMDI);
+                    //        mdi += parseFloat(tempMDI);
+                    //    }
+                    //    // Disable view button
+                    //    if ($(this).attr('Disableedit') == "1") {
+                    //        $(this).find('.veditCDP').prop("disabled", true);
+                    //        $(this).find('.veditCDP').removeAttr('title');
+                    //    }
+
+                    //});
+                    //$('#tblJ1 tfoot').append('<tr style="font-weight: bold;">\
+                    //        <td colspan="3" style="text-align:center;">Totals</td>\
+                    //        <td style="text-align:right;">'+ eng + '</td>\
+                    //        <td style="text-align:right;">'+ mdi + '</td>\
+                    //        <td></td>\
+                    //            </tr > ');
+
+
+
+
+                    $('#tblJ1_length').append('<input type="image" name="btnExcel" id="btnExcel" title="Export to Excel" class="Grd" src="../Content/img/xcel.png" style="margin-left: 30px;margin-top:5px;border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnWord" id="btnWord" title="Export to Word" class="Grd" src="../Content/img/wrd.png" style="border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnPNG" id="btnPNG" title="Export to PNG" class="Grd" src="../Content/img/png.png" style="width: 17px;border-width:0px;">');
+
+                };
+                choice.error = function (err) {
+                    console.log(err.statusText);
+                };
+                $.ajax(choice);
+            }//End of Load Grid
+
+            function removeCommas(str) {
+                while (str.search(",") >= 0) {
+                    str = (str + "").replace(',', '');
+                }
+                return str;
+            };
+
+            $('body').off('click', '#btnExcel');
+            $('body').on('click', '#btnExcel', function (e) {
+
+                e.preventDefault();
+                $('#tblJ1').tableExport({ type: 'excel', escape: 'false' });
+                e.preventDefault();
+            });
+            $('body').off('click', '#btnWord');
+            $('body').on('click', '#btnWord', function (e) {
+                e.preventDefault();
+                $('#tblJ1').tableExport({ type: 'doc', escape: 'false' });
+                e.preventDefault();
+            });
+            $('body').off('click', '#btnPNG');
+            $('body').on('click', '#btnPNG', function (e) {
+                e.preventDefault();
+                $('#tblJ1').tableExport({ type: 'png', escape: 'false' });
+                e.preventDefault();
+            });
+
+
+
+
+            //$('body').off('change', '#ddlMonths');
+            //$('body').on('change', '#ddlMonths', function (e) {
+            //    e.preventDefault();
+            //    if ($(this).val() == "0") {
+            //        $('#tblContainer').html('');
+            //    }
+            //    else {
+            //        LoadGridCDPs();
+            //    }
+
+            //});
+
+            $(function () {
+
+                //var dta = $('body').attr('disco');
+                //if (dta != null || dta != undefined) {
+                //    LoadGridCDPs();
+                $('body').removeAttr('disco');
+                //}
+            });
+
+
+
+            $('body').off('click', '#btnCancel')
+            $('body').on('click', '#btnCancel', function (e) {
+                e.preventDefault();
+                $('.clr').val('');
+                $('#btnSave').val('0');
+                $('#ddlCDP').prop('disabled', false);
+
+                $('#btnSave').addClass('btn-info');
+                $('#btnSave').removeClass('btn-danger');
+                $('#btnSave').html('Save');
+            });
+
+
+            $('body').off('click', '#btnSave');
+            $('body').on('click', '#btnSave', function (e) {
+                e.preventDefault();
+
+
+                if ($('#ddlCustomer1').val() == $('#ddlCustomer2').val()) {
+                    swal({
+                        title: "Error",
+                        text: "From Customer and To Customer cannot be same.. !",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#ddlCustomer1').focus(), 100);
+                        }
+                    });
+                    return false;
+                }
+
+                if ($('#txtCDPNumber').val() == "") {
+                    swal({
+                        title: "Error",
+                        text: "CDP Number value cannot be empty !",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#txtCDPNumber').focus(), 100);
+                        }
+                    });
+
+                    return false;
+                }
+
+                swal({
+                    title: "Are you sure?",
+                    text: "Do you really want to Save Record?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "Yes, Save it!",
+                    closeOnConfirm: false
+                },
+                    function () {
+                        $('.sa-button-container').hide();
+                        $('.sweet-alert > h2').html('Please Wait..!');
+                        $('.sweet-alert > P').html('Processing..!');
+
+                        var t = [];
+                        $('.frm').each(function (index, element) {
+                            t.push($(this).val());
+                        });
+                        var vals = t.join('½');
+                        debugger;
+                        var fromdata = new FormData();
+                        fromdata.append("vls", '19½' + vals);
+                        $.ajax({
+                            type: "POST",
+                            url: "/Home/AjaxCall" + $(location).attr("search"),
+                            data: fromdata,
+                            contentType: false,
+                            processData: false,
+                            success: function (response) {
+                                if (response != "-1") {
+                                    $('.sa-button-container').show();
+                                    swal("Success!", "Record has been saved Successfully.", "success");
+                                    $('#btnCancel').click();
+                                    LoadGridCDPs();
+                                } else {
+                                    $('.sa-button-container').show();
+                                    //swal("Success!", "Record has been saved Successfully.", "success");
+                                    swal({
+                                        title: "Error",
+                                        text: "CDP Number already Exists... !",
+                                        type: "warning",
+                                        showCancelButton: false,
+                                        confirmButtonClass: "btn btn-danger",
+                                        confirmButtonText: "OK"
+                                    });
+                                }
+
+                            }
+                        });
+                    }
+
+                );
+
+            });
+
+
+
+            $('body').off('change', '#ddlCustomer1');
+            $('body').on('change', '#ddlCustomer1', function (e) {
+                $('#txt1').val($('#ddlCustomer1 option:selected').text());
+                if ($('#txt1').val() == "") {
+                    $('#txt1').val('');
+                    $('#txt1').prop('disabled', false);
+                } else {
+                    //$('#txt1').prop('disabled', true);
+                }
+                LoadGridCDPs();
+            });
+            $('body').off('change', '#ddlCustomer2');
+            $('body').on('change', '#ddlCustomer2', function (e) {
+                $('#txt2').val($('#ddlCustomer2 option:selected').text());
+                if ($('#txt2').val() == "") {
+                    $('#txt2').val('');
+                    $('#txt2').prop('disabled', false);
+                } else {
+                    //$('#txt2').prop('disabled', true);
+                }
+                LoadGridCDPs();
+            });
+            $('body').off('click', '.veditCDP');
+            $('body').on('click', '.veditCDP', function (e) {
+                e.preventDefault();
+
+
+                $('#btnSave').removeClass('btn-info');
+                $('#btnSave').addClass('btn-danger');
+                $('#btnSave').html('Update');
+                var $passvals = $(this).parent().parent().parent().attr('tag');
+
+
+                var fromdata = new FormData();
+                fromdata.append("vls", '20½' + $passvals);
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/AjaxCall" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        var jData = $.parseJSON(response);
+                        debugger;
+                        var row = jData[0];
+                        var keysbyindex = Object.keys(row);
+
+                        $('.frm').each(function (index, element) {
+                            $(this).val(row[keysbyindex[index]]);
+                        });
+                    }
+                });
+
+                //$('#ddlMonth').val($passvals.split('½')[1]);
+                //$('#txtYear').val($passvals.split('½')[2]);
+                //$('#ddlStatus').val($passvals.split('½')[3]);
+
+                //$('body').attr('cppagdisco', $passvals);
+                //var options = {};
+                //$("#pageContainer").hide('slide', options, 300);
+                //var fromdata = new FormData();
+                //$.ajax({
+                //    type: "POST",
+                //    contentType : false,
+                //    processData: false,
+                //    data : fromdata,
+                //    url: "/Home/DISCO_Monthly_Data" + $(location).attr('search'),
+                //    //url: "/Home/DISCO_Monthly_DataCPPAG" + $(location).attr('search'),
+                //    success: function (result) {
+                //        var options = {};
+                //        $('#pageContainer').html($(result).find('#pcontent').html());
+                //        $("#pageContainer").show('slide', options, 500);
+                //    }
+                //});
+            });//End of edit click
+
+
+        });//end of doc ready
+    </script>
+
+</div>

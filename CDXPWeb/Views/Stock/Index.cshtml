@@ -1,0 +1,1090 @@
+﻿
+@{
+    ViewBag.Title = "Stock Information";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .txt-dark {
+        line-height: 5px !important;
+    }
+
+    .td, th {
+        padding: 0px !important;
+    }
+
+    table.dataTable tbody th, table.dataTable tbody td {
+        padding: 0px 8px !important;
+    }
+</style>
+<div id="pcontent">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff;"></i>
+                        <h6 class="panel-title txt-light">@ViewBag.Title</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+
+
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                        @*<a class="pull-left inline-block close-panel" href="#" data-effect="fadeOut">
+                                <i class="zmdi zmdi-close"></i>
+                            </a>*@
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body" style="min-height: 300px;">
+                        @*====Body Start===*@
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Stock Details</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="overflow-x: auto; background-color: white;">
+                            <table class="tablex" id="tblHeader" style="margin-left: 10%;margin-right: 10%;width: 80%;">
+
+                                <tr style="background-color: white">
+                                    <td style="width: 130px;">
+                                        <label for="fuelType">Fuel Type</label>
+                                    </td>
+                                    <td style="width:35%">
+                                        <!--<input type="text" class="form-control" id="producerSite" value="" readonly name="producerSite">-->
+
+                                        <select tabindex="1" class="form-control frm" id="fuelType" name="fuelType" required="">
+                                            @Html.Raw(@ViewBag.FuelType)
+
+                                        </select>
+
+                                    </td>
+                                    <td style="width: 130px;">&nbsp;</td>
+                                    <td style="width: 130px;">
+
+                                </tr>
+
+                                <tr style="background-color: white">
+                                    <td style="width: 130px;">
+                                        <label for="producerSite">Producer Site</label>
+                                    </td>
+                                    <td style="width:35%">
+                                        <!--<input type="text" class="form-control" id="producerSite" value="" readonly name="producerSite">-->
+                                        <select tabindex="1" class="form-control frm" id="producerSite" name="producerSite" required="">@Html.Raw(@ViewBag.dll)</select>
+                                    </td>
+                                    <td style="width: 130px;">&nbsp;</td>
+                                    <td style="width: 130px;">
+                                        <label for="StockDate">
+                                            Date <span style="color:rgb(0, 149, 235);">*</span>
+                                        </label>
+                                    </td>
+                                    <td style="width:35%">
+                                        <input tabindex="2" style="background-color:rgb(251, 255, 193);" type="text" class="form-control frm StockDate" id="StockDate" name="StockDate" readonly>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        @*@if (@ViewBag.StockAccess == "1" || @ViewBag.StockAccess == "2")
+        {
+            <label for="OpenStk" class="OpenStk">Opening Stock  (MT) </label>
+        }
+        @if (@ViewBag.StockAccess == "3")
+        {
+            <label for="OpenStk" class="OpenStk">Opening Stock (KL) </label>
+        }*@
+
+                                        @if (((ViewBag.VendorSiteId == "282076" || ViewBag.VendorSiteId == "270066" || ViewBag.VendorSiteId == "324078") && ViewBag.StockAccess == "2") || @ViewBag.StockAccess == "1")
+                                        {
+                                            <label for="OpenStk">Opening Stock (MT)</label>
+                                        }
+
+                                        else
+                                        {
+                                            <label for="OpenStk">Opening Stock (KL)</label>
+                                        }
+                                    </td>
+                                    <td>
+                                        <!--<label id="OpenStk" stockID="0">5</label>-->
+
+                                        <input stockID="0" tabindex="3" style="text-align: right;" type="text" class="form-control frm decicost" id="OpenStk" name="OpenStk" readonly>
+
+                                    </td>
+                                    <td style="width: 130px;">&nbsp;</td>
+                                    <td>
+                                        @*<label for="deadStk">Off-Site Inventory</label>
+                    <label for="deadStk">Dead Stock (KL)</label>*@
+                                        @if (@ViewBag.StockAccess == "2") // cHANGE HERE
+                                        {
+                                            <label for="deadStk" class="cls_Off_Site">Off-Site Inventory</label>
+                                        }
+                                        @if (@ViewBag.StockAccess == "1") // cHANGE HERE
+                                        {
+                                            <label for="deadStk" class="cls_Off_Site">Dead Stock (MT) </label>
+                                        }
+
+                                        @if (@ViewBag.StockAccess == "3")
+                                        {
+                                            <label for="deadStk" class="cls_Off_Site">Dead Stock (KL)</label>
+                                        }
+
+                                    </td>
+                                    <td>
+                                        <input stockID="0" tabindex="4" style="text-align: right;" type="text" class="form-control frm decicost" id="deadStk" name="deadStk" value="0.0000" maxlength="15">
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        @if (@ViewBag.StockAccess == "1" || ((ViewBag.VendorSiteId == "282076" || ViewBag.VendorSiteId == "270066" || ViewBag.VendorSiteId == "324078") && ViewBag.StockAccess == "2"))
+                                        {
+
+                                            <label for="ConsStk" class="ConsStk">Consumed Stock (MT)</label>
+                                        }
+                                        @if (@ViewBag.StockAccess == "3")
+                                        {
+
+                                            <label for="ConsStk" class="ConsStk">Consumed Stock (KL)</label>
+                                        }
+
+                                    </td>
+                                    <td>
+                                        <input tabindex="5" style="background-color:rgb(251, 255, 193); text-align: right;" type="text" class="form-control frm decicost" id="ConsStk" name="ConsStk" required="" value="0.0000" maxlength="15">
+                                    </td>
+                                    <td style="width: 130px;">&nbsp;</td>
+                                    <td>
+
+                                        @if ((ViewBag.VendorSiteId == "282076" || ViewBag.VendorSiteId == "270066" || ViewBag.VendorSiteId == "324078") && ViewBag.StockAccess == "2")
+                                        {
+                                            <label for="deadStk" class="cls_On_Site">Total Stock/Useable Stock (MT)</label>
+                                        }
+                                        else if (ViewBag.StockAccess == "2")
+                                        {
+                                            <label for="deadStk" class="cls_On_Site">On-Site Inventory</label>
+                                        }
+                                        else if (ViewBag.StockAccess == "1")
+                                        {
+                                            <label for="usableStk" class="cls_On_Site">Usable Stock (MT)</label>
+                                        }
+
+                                        else if (@ViewBag.StockAccess == "3")
+                                        {
+                                            <label for="usableStk" class="cls_On_Site">Usable Stock (KL)</label>
+                                        }
+
+
+                                        @*@if (ViewBag.StockAccess == "2")
+                                        {
+                                            <label for="deadStk" class="cls_On_Site">On-Site Inventory</label>
+                                        }
+                                        @if (ViewBag.StockAccess == "1")
+                                        {
+                                            <label for="usableStk" class="cls_On_Site">Usable Stock (MT)</label>
+                                        }
+
+                                        @if (@ViewBag.StockAccess == "3")
+                                        {
+                                            <label for="usableStk" class="cls_On_Site">Usable Stock (KL)</label>
+                                        }*@
+                                    </td>
+                                    <td>
+                                        <input stockID="0" tabindex="6" style="text-align: right;" type="text" class="form-control frm decicost" id="usableStk" name="usableStk" value="0.0000" maxlength="20" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @if (@ViewBag.StockAccess == "1" || @ViewBag.StockAccess == "2")
+                                        {
+                                            <label for="PurStk" class="PurStk">  Receipt (MT)</label>
+                                        }
+                                        @if (@ViewBag.StockAccess == "3")
+                                        {
+                                            <label for="PurStk" class=" PurStk">  Receipt (KL)</label>
+                                        }
+
+
+                                    </td>
+                                    <td>
+                                        <input tabindex="7" style="background-color:rgb(251, 255, 193); text-align: right;" type="text" class="form-control frm decicost" id="PurStk" name="PurStk" required="" value="0.0000" maxlength="15">
+                                    </td>
+                                    <td style="width: 130px;">&nbsp;</td>
+                                    <td>
+                                        @if (@ViewBag.StockAccess == "1" || @ViewBag.StockAccess == "2")
+                                        {
+                                            <label for="firmOrder" class="firmOrder">Firm Order (MT)</label>
+                                        }
+                                        @if (@ViewBag.StockAccess == "3")
+                                        {
+                                            <label for="firmOrder" class="firmOrder">Firm Order (KL)</label>
+                                        }
+
+                                    </td>
+                                    <td>
+                                        <input stockID="0" tabindex="8" style="text-align: right;" type="text" class="form-control frm decicost" id="firmOrder" name="firmOrder" value="0.0000" maxlength="15">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    @*<td>
+            <label for="MidCost">
+                Midnight Load (MW)
+            </label>
+        </td>
+        <td>
+            <input tabindex="9" style="text-align: right;" type="text" class="form-control frm decicost" id="MidCost" value="0.0000" name="MidCost" required="" maxlength="15">
+        </td>*@
+                                    @if ((ViewBag.VendorSiteId == "282076" || ViewBag.VendorSiteId == "270066" || ViewBag.VendorSiteId == "324078") && ViewBag.StockAccess == "2")
+                                    {
+                                        <td style="width:80px;"><label for="firmOrder">Average Load (MW)</label></td>
+                                        <td>
+                                            <input tabindex="9" style="text-align: right;" type="text" class="form-control frm decicost" value="0.0000" required="" maxlength="15">
+                                        </td>
+                                    }
+
+                                    else if (ViewBag.VendorSiteId != "282076" || ViewBag.VendorSiteId != "270066" || ViewBag.VendorSiteId != "324078")
+                                    {
+                                        <td>
+                                            <label for="MidCost">
+                                                Midnight Load (MG)
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <input tabindex="9" style="text-align: right;" type="text" class="form-control frm decicost" id="MidCost" value="0.0000" name="MidCost" required="" maxlength="15">
+                                        </td>
+                                    }
+                                    <td style="width: 130px;">&nbsp;</td>
+                                    <td>
+
+                                        <label for="remarks">Remarks</label>
+                                    </td>
+                                    <td>
+                                        <textarea tabindex="10" rows="4" cols="10" maxlength="2000" style="resize:none; " class="form-control frm" id="remarks"></textarea>
+
+                                        @*<textarea cols="70" rows="6" maxlength="2000" id="prevTxtAreaRemarks" style="width: 99%; height: 99%;"></textarea>*@
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label for="rate">
+                                            Rate
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input tabindex="7" style="text-align:right;" type="text" class="form-control frm Rate" id="Rate" name="rate" required="" value="0.0000" maxlength="15">
+                                    </td>
+                                    <td style="width: 130px;">&nbsp;</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+
+
+                            </table>
+                            <div style="margin-bottom: 7%">
+                                <!--<div class="pull-left">
+            <button class="btn btn-danger" id="btnClear">
+                Clear All
+            </button>
+        </div>-->
+                                <div class="pull-right">
+                                    <button type="button" style="width: 100%;" class="btn btn-info btnAction" tg="0" id="btnSave" value="Draft" tabindex="11">
+                                        Save
+                                    </button>
+                                </div>
+
+                                <div class="pull-right">
+                                    <button type="button" style="width: 100%; " class="btn btn-success btn-anim btnAction" tg="0" id="btnSend" value="Submitted" tabindex="12">submit</button>
+                                </div>
+
+                                <!--<div class="pull-right">
+            <button style="width: 100%;" type="submit" class="btn btn-default pull-right" id="btnCancel">
+                Cancel
+            </button>
+        </div>-->
+                            </div>
+
+                            @*<div class="col-md-2"><a id="" class="form-control" aria-controls="tbl_stock" href="#" style="min-height: 88%;line-height: 40px;background-color: #1d4a6d; color:#fff;"><span>Export to Excel Lib</span></a></div>*@
+                            @using (Html.BeginForm("ExportToExcel", "Stock", new { vendorsiteid = @ViewBag.VendorSiteId }, FormMethod.Post))
+                            {
+                                <input type="hidden" value="@ViewBag.VendorId" class="btn btn-primary" />
+                                <input type="hidden" value="@ViewBag.VendorSiteId" class="btn btn-primary" />
+                                if (@ViewBag.StockAccess == "2")
+                                {
+                                    <input type="submit" value="Export to Excel" class="btn btn-primary" style="margin-bottom:10px;" />
+                                }
+
+
+
+
+                                <table class="table-bordered table-hover table borderWidth" id="tbl_stock">
+                                    <thead>
+                                        <tr>
+                                            @*class="filterhead"*@
+                                            <th style="width:80px;">Date</th>
+                                            <th style="width:80px;">Opening Stock (KL)</th>
+                                            <th style="width:80px;">Consumed (KL)</th>
+                                            <th style="width:80px;">Receipt (KL)</th>
+                                            <th style="width:80px;">Closing Stock</th>
+                                            @if (@ViewBag.StockAccess == "1" || @ViewBag.StockAccess == "3")
+                                            {
+                                                <th style="width:80px;">Midnight Load (MG)</th>
+                                                <th style="width:80px;" class="deadstockThead">Dead Stock (KL)</th>
+                                            }
+
+                                            <th style="width:80px;" class="usableThead">Usable Stock (KL)</th>
+                                            <th style="width:80px;">Firm Order (KL)</th>
+                                            <th style="width:80px;">Rate</th>
+                                            <th style="width:60px;">Remarks</th>
+                                            <th style="width:80px;">Action</th>
+                                        </tr>
+                                    </thead>
+
+
+
+                                    <tbody id="tbl_stock_tbody"></tbody>
+                                </table>
+                            }
+                        </div>
+                        @*====Body End=====*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/plugins/moment/min/moment.min.js"></script>
+    <script src="~/Content/vendors/bower_components/moment/min/datetime-moment.js"></script>
+    <script type="text/javascript">
+
+        var tHead = "";
+        var closing = 0.0000;
+        var fuelType = "", stockMenuAccess;
+
+
+
+        $(document).ready(function () {
+           // debugger;
+            const currentDate = new Date();
+            const year = currentDate.getFullYear();
+            const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+            const day = String(currentDate.getDate()).padStart(2, '0');
+            const formattedDate = `${year}-${month}-${day}`;
+
+              $('#fuelType').val('@ViewBag.StockAccess');
+            fuelType = $('#fuelType').val();
+            stockMenuAccess = parseInt(fuelType);
+            getOpeningStock(fuelType, $('#producerSite').val().split('½')[1]);
+       
+            tHead = $('#tbl_stock thead').html();
+
+            $('#remarks').on('paste', function (e) {
+                // Allow paste action
+                e.stopPropagation();
+            });
+            $('#remarks').on('copy', function (e) {
+                e.stopPropagation();
+            });
+            $('#remarks').on('cut', function (e) {
+                e.stopPropagation();
+            });
+
+
+
+            $('body').on('focus', ".StockDate", function () {
+
+                $(this).datepicker({
+                    dateFormat: 'dd-M-yy' /*,
+                    stepMonths: 0 */ /*,
+                           defaultDate: -1,
+                           minDate:'-1d',
+                           maxDate:'-1d'*/
+
+                });
+            });
+
+            function Clear() {
+
+                let vendorSiteId1 = $('#producerSite').val().split('½')[1];
+                // fuelType = $('#producerSite').val();
+                var fuelType1 = $('#fuelType').val();
+                $("#ConsStk").val("0.0000");
+                $("#PurStk").val("0.0000");
+                $("#StockDate").val("");
+                $("#MidCost").val("0.0000");
+                $("#deadStk").val("0.0000");
+                $("#usableStk").val("0.0000");
+                $("#firmOrder").val("0.0000");
+                $("#Rate").val("0.0000");
+                $("#OpenStk").attr('stockid', 0);
+                $("#remarks").val("");
+                getOpeningStock(fuelType1, vendorSiteId1);
+            }
+
+            function DisableForm()
+            {
+
+                $("#ConsStk").val("0.0000");
+                $("#ConsStk").prop("disabled", true);
+                $("#PurStk").val("0.0000");
+                $("#PurStk").prop("disabled", true);
+                $("#StockDate").val("");
+                $("#MidCost").val("0.0000");
+                $("#MidCost").prop("disabled", true);
+                $("#OpenStk").attr('stockid', 0);
+                $(".btnAction").hide();
+
+            }
+
+            
+
+
+            $('body').off("change", "#PurStk");
+            $('body').on("change", "#PurStk", function (event) {
+                debugger;
+
+                if ($(this).val() == "") {
+                    $(this).val("0.0000");
+                }
+                closing = (parseFloat($('#OpenStk').val()) + parseFloat($('#PurStk').val())) - parseFloat($('#ConsStk').val());
+                if ($('#deadStk').val() != "")
+                    $('#usableStk').val(closing - parseFloat($('#deadStk').val())).toFixed(4);
+            });
+
+            $('body').off("change", "#ConsStk");
+            $('body').on("change", "#ConsStk", function (event) {
+
+                if ($(this).val() == "") {
+                    $(this).val("0.0000");
+                }
+
+                closing = (parseFloat($('#OpenStk').val()) + parseFloat($('#PurStk').val())) - parseFloat($('#ConsStk').val());
+                if ($('#deadStk').val() != "")
+                    $('#usableStk').val(closing - parseFloat($('#deadStk').val()));
+            });
+
+            $('body').off("change", "#deadStk");
+            $('body').on("change", "#deadStk", function (event) {
+
+                if ($(this).val() == "") {
+                    $(this).val("0.0000");
+                }
+                if (closing == 0.0000) {
+
+                    closing = parseFloat($('#OpenStk').val());
+                }
+                $('#usableStk').val(closing - parseFloat($(this).val()));
+            });
+
+            $('body').off("keypress", ".decicost");
+            $('body').on("keypress", ".decicost", function (event) { //4 dec places
+                // removeComma();
+
+                var keyCode = event.keyCode || event.which;
+                if (keyCode == 9) {
+                    e.preventDefault();
+                    // call custom function here
+                }
+                var $this = $(this);
+
+                if ((event.which != 46 || $this.val().indexOf('.') != -1) &&
+                    (((event.which < 48 && event.which != 45) || event.which > 57) &&
+                        (event.which != 0 && event.which != 8))) {
+                    event.preventDefault();
+
+                }
+
+                var text = $(this).val();
+                text = text.replace(/,/g, '');
+                if ((event.which == 46) && (text.indexOf('.') == -1)) {
+                    setTimeout(function () {
+                        if ($this.val().substring($this.val().indexOf('.')).length > 5) {
+                            $this.val($this.val().substring(0, $this.val().indexOf('.') + 5));
+                        }
+                    }, 1);
+                }
+
+                if ((text.indexOf('.') != -1) &&
+                    (text.substring(text.indexOf('.')).length > 4) &&
+                    (event.which != 0 && event.which != 8) &&
+                    ($(this)[0].selectionStart >= text.length - 4)) {
+                    event.preventDefault();
+                }
+
+            }); // END OF KEY PRESS
+
+            $('body').off('click', '.btnAction');
+            $('body').on('click', '.btnAction', function (e) {
+                var consumed = $('#ConsStk').val();
+                var purchased = $('#PurStk').val();
+                vendorSiteId = $('#producerSite').val();
+                var openingStock = $('#OpenStk').val();
+                var StockDate = $('#StockDate').val();
+
+                var deadStock = $('#deadStk').val();
+                var usableStock = $('#usableStk').val();
+                var firmOrder = $('#firmOrder').val();
+
+                var rate = $('#Rate').val();
+
+               // debugger;
+                var remarks = $('#remarks').val();
+                fuelType = $('#fuelType').val();
+
+                var current_datetime = new Date(StockDate)
+                var dd = current_datetime.getDate() < 10 ? "0" + current_datetime.getDate() : current_datetime.getDate();
+                var mm = current_datetime.getMonth() + 1 < 10 ? "0" + (current_datetime.getMonth() + 1) : (current_datetime.getMonth() + 1);
+
+                StockDate = current_datetime.getFullYear() + "-" + mm + "-" + dd;
+                //console.log(formatted_date)
+
+                if (StockDate > formattedDate) {
+                    swal({
+                        title: "Error",
+                        text: "Selected date cannot be greater than today date!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK"
+                        //,
+                        //onAfterClose: () => {
+                        //    setTimeout(() => $(thisControl).focus(), 100)
+                        //}
+                    }, function () {
+                        setTimeout(() => $(thisControl).focus(), 100);
+                    });
+                    return false;
+                }
+
+                if (openingStock == "") {
+                    openingStock = 0;
+                }
+
+                //var MidCost = $('#MidCost').val();
+
+                var MidCost = 0; //= $('#MidCost').val();
+                var VSID = vendorSiteId.split('½')[1];
+                if ((VSID == "282076" || VSID == "270066" || VSID == "324078") && fuelType == "2") {
+                    MidCost = 0;
+                } else {
+                    MidCost = $('#MidCost').val();
+                }
+                var stockId = $('#OpenStk').attr('stockID');
+                var id = this.id;
+                if (id == 'btnSave') {
+                    var status = "Draft";
+                }
+                else if (id == 'btnSend') {
+                    var status = "Submitted";
+                }
+
+                /////////////////
+
+                var pConfirm = true;
+                var thisControl;
+
+                $.each($('#tblHeader > tbody '), function (x, y) {
+                    if ($($(this).find('#ConsStk')).val() == "") {
+                        pConfirm = false;
+                        thisControl = $(this).find('#ConsStk');
+                        return false;
+                    }
+
+
+                    if ($($(this).find('#PurStk')).val() == "") {
+                        pConfirm = false;
+                        thisControl = $(this).find('#PurStk');
+                        return false;
+                    }
+
+
+                    if ($($(this).find('#StockDate')).val() == "") {
+                        pConfirm = false;
+                        thisControl = $(this).find('#StockDate');
+                        return false;
+                    }
+
+                    if ($($(this).find('#Rate')).val() == "") {
+                        pConfirm = false;
+                        thisControl = $(this).find('#Rate');
+                        return false;
+                    }
+
+                    pConfirm = true;
+                });
+
+                if (!pConfirm) {
+                    swal({
+                        title: "Error",
+                        text: "Marked fields are mandatory.",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK"
+                        //,
+                        //onAfterClose: () => {
+                        //    setTimeout(() => $(thisControl).focus(), 100)
+                        //}
+                    }, function () {
+                        setTimeout(() => $(thisControl).focus(), 100);
+                    });
+                    return false;
+                }
+                //Aymen Starts
+                //debugger;
+                var vid = $('#producerSite').val();
+
+
+                var $data = vid + '½' + consumed + '½' + purchased + '½' + openingStock + '½' + stockId + '½' + status + '½' + MidCost + '½' + StockDate + '½' + deadStock + '½' + usableStock + '½' + firmOrder + '½' + $('#remarks').val() + '½' + stockMenuAccess + '½' + rate + '½' + fuelType ;
+
+                var fromdata = new FormData();
+                fromdata.append("vls", $data);
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "../Stock/SaveStockData",
+
+                    data: fromdata,
+
+
+                    beforeSend : function () {
+                        $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+                    },
+                    complete : function () {
+                        $.unblockUI();
+                    },
+
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        console.log(response);
+                        LoadStockData();
+                        if (response == "CPPA-STOCK-01") {
+                            swal({
+                                title: "Stock Success!",
+                                text: "Stock inserted successfully.",
+                                type: "success",
+                                showCancelButton: false,
+                                showConfirmButton: true
+                            });
+                            Clear();
+                            //  location.href = _spPageContextInfo.webAbsoluteUrl + "/Pages/Home.aspx";
+                        }
+                        else if (response == "CPPA-STOCK-02") {
+                            swal({
+                                title: "Stock Success!",
+                                text: "Stock updated successfully.",
+                                type: "success",
+                                showCancelButton: false,
+                                showConfirmButton: true
+                            });
+                            Clear();
+                        }
+                        else if (response == "ERR-STOCK-01") {
+                            swal({
+                                title: "Previous Stock Not Submitted!",
+                                text: "Please Submit the Previous Stock First to proceed with further record(s).",
+                                type: "error",
+                                showCancelButton: false,
+                                showConfirmButton: true
+                            });
+
+                        }
+
+                        else if (response == "ERR-STOCK-02") {
+                            swal({
+                                title: "Duplicate Record!",
+                                text: "Stock Record for selected date already exists.",
+                                type: "error",
+                                showCancelButton: false,
+                                showConfirmButton: true
+                            });
+
+                        }
+                        else if (response == "ERR-STOCK-03") {
+                            swal({
+                                title: "Not Allowed!",
+                                text: "Please select the date after the last stock.",
+                                type: "error",
+                                showCancelButton: false,
+                                showConfirmButton: true
+                            });
+
+                        }
+                        else {
+                            swal({
+                                title: "Error!",
+                                text: data,
+                                type: "error",
+                                showCancelButton: false,
+                                showConfirmButton: true
+                            });
+
+                        }
+                        //$.unblockUI();
+                    }
+                });
+
+
+                //Aymen Ends
+
+            });
+
+
+
+            $('body').off("change", "#fuelType");
+            $('body').on("change", "#fuelType", function (event) {
+                //debugger;
+                vendorSiteId = $('#producerSite').val().split('½')[1];
+                // fuelType = $('#producerSite').val();
+                var fuelType = $(this).val();
+                stockMenuAccess = parseInt(fuelType);
+                //var $data = vendorSiteId + '½' + fuelType;
+                //var lastClosing = data[0].StockPosition;geto
+                if (stockMenuAccess == 1 || stockMenuAccess == 2) {
+
+                    // $('#usableStk').attr('readonly', true);
+                    if (stockMenuAccess == 1) {
+                        $('.cls_On_Site').text('Usable Stock (MT)');
+                        $('.cls_Off_Site').text('Dead Stock(MT)');
+                    }
+                    else {
+                        $('.cls_On_Site').text('On-Site Inventory');
+                        $('.cls_Off_Site').text('Off-Site Inventory');
+                    }
+
+                    $('.OpenStk').text('Opening Stock (MT)');
+
+                    $('.ConsStk').text('Consumed Stock (MT)');
+
+                    $('.PurStk').text('Receipt (MT)');
+                    $('.firmOrder').text('Firm Order (MT)');
+
+                }
+
+                else {
+                    $('.cls_On_Site').text('Usable Stock (KL)');
+                    $('.cls_Off_Site').text('Dead Stock(KL)');
+                    $('.OpenStk').text('Opening Stock (KL)');
+                    $('.cls_Off_Site').text('Dead Stock (KL)');
+                    $('.ConsStk').text('Consumed Stock (KL)');
+                    $('.cls_On_Site').text('Usable Stock (KL)');
+                    $('.PurStk').text('Receipt (KL)');
+                    $('.firmOrder').text('Firm Order (KL)');
+                }
+                getOpeningStock(fuelType, vendorSiteId);
+            });
+
+
+            $('body').off('click', '.btnEdit');
+            $('body').on('click', '.btnEdit', function (e) {
+
+                e.preventDefault();
+                if (stockMenuAccess == 1 || stockMenuAccess == 3) {
+                    var StockId = $(this).attr('stockid');
+                    $('#OpenStk').attr('stockId', StockId);
+                    var data = $(this).parent().parent().parent().find('span.clsStk');
+                    debugger;
+                    //$.each(data , function(index,value){
+                    var x = formatdate1(data[0].innerText);
+                    $('#StockDate').val(data[0].innerText);
+                    $('#OpenStk').val(data[1].innerText);
+                    $('#ConsStk').val(data[2].innerText);
+                    $('#PurStk').val(data[3].innerText);
+                    $('#MidCost').val(data[4].innerText);
+                    $('#deadStk').val(data[5].innerText);
+                    $('#usableStk').val(data[6].innerText);
+                    $('#firmOrder').val(data[7].innerText);
+                    $('#Rate').val(data[8].innerText);
+                    $('#remarks').val($(data[9]).children().html());
+
+                }
+                else {
+
+                    var StockId = $(this).attr('stockid');
+                    $('#OpenStk').attr('stockId', StockId);
+                    var data = $(this).parent().parent().parent().find('span.clsStk');
+                    debugger;
+                    //$.each(data , function(index,value){
+                    var x = formatdate1(data[0].innerText);
+                    $('#StockDate').val(data[0].innerText);
+                    $('#OpenStk').val(data[1].innerText);
+                    $('#ConsStk').val(data[2].innerText);
+                    $('#PurStk').val(data[3].innerText);
+                    $('#usableStk').val(data[4].innerText);
+                    $('#firmOrder').val(data[5].innerText);
+                    $('#Rate').val(data[6].innerText);
+                    $('#remarks').val($(data[7]).children().html());
+
+                }
+
+                //	});
+
+            });
+            LoadStockData();
+
+            function LoadStockData() {
+
+                if (stockMenuAccess == 1 || stockMenuAccess == 2)
+                {
+                    $('.OpenStk').text('Opening Stock (MT)');
+                }
+                else {
+
+                    $('.OpenStk').text('Opening Stock (KL)');
+                }
+
+
+                if (stockMenuAccess == 2) {
+                    $('#MidCost').attr('disabled', true);
+                    $('#deadStk').attr('disabled', true);
+                    // $('#usableStk').attr('readonly', true);
+                    $('.usableThead').text('On-Site Inventory');
+                    $('.deadstockThead').text('Off-Site Inventory');
+                }
+                else {
+                    $('.usableThead').text('Dead Stock (KL)');
+                    $('.deadstockThead').text('Usable Stock (KL)');
+                }
+
+                var vendorId = $('#producerSite').val();
+
+                    $('#tbl_stock_tbody').html('');
+                    debugger;
+                    $.ajax({
+                        type: "GET",
+                        url: "../Stock/GetStockData?vendorId=" + vendorId,
+                        dataType: 'json',
+
+                        beforeSend: function () {
+                            $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+                        },
+                        complete: function () {
+                            $.unblockUI();
+                        },
+                        success: function (data) {
+                            debugger;
+                            if ($('#tbl_stock').hasClass('dataTable')) {
+                                $('#tbl_stock').dataTable().fnDestroy();
+                            }
+                            var $InvList = data;
+                            var numberOfColumn = [];
+
+                            if (data.length > 0) {
+
+                                $.each($InvList, function (i, j) {
+                                    $('#tbl_stock_tbody').html('');
+
+                                    $('#tbl_stock').DataTable().clear().destroy();
+                                    $('#tbl_stock thead').html('');
+                                    $('#tbl_stock thead').html(tHead);
+
+                                    debugger;
+
+                                    $.each(data, function (index, value) {
+                                        var StockId = value.StockId;
+                                        var MidCost = "", DeadStock = "";
+                                        // var TransactionDate = value.TransactionDate;
+                                        // var TransactionDate = (value.TransactionDate).match(/\(([^)]+)\)/)[1];
+                                        var TransactionDate = formatdate1(value.TransactionDate);
+                                        var OpeningStock = (value.OpeningStock).toFixed(4);
+                                        var creationDate = value.Creation_Date;
+                                        var Purchased = (value.Purchased).toFixed(4);
+                                        var Consumed = (value.Consumed).toFixed(4);
+                                        if (stockMenuAccess == 1 || stockMenuAccess == 3) {
+                                            MidCost = (value.MidCost).toFixed(4);
+                                            DeadStock = (value.DeadStock).toFixed(4);
+                                        }
+
+                                        var Status = (value.Status);
+
+                                        closing = (parseFloat($('#OpenStk').val()) + parseFloat($('#PurStk').val())) - parseFloat($('#ConsStk').val());
+                                       
+                                        if (DeadStock != "") {
+
+                                            var UsableFinal = $('#usableStk').val(closing - parseFloat(DeadStock));
+                                        }
+                                        var StockPosition = (value.StockPosition).toFixed(4);
+                                        var UsableStock = (value.UsableStock).toFixed(4);
+                                        var FirmOrder = (value.FirmOrder).toFixed(4);
+                                        var Rate = (value.Rate).toFixed(4);
+                                        var Remarks = (value.Remarks);
+
+
+
+                                        if (stockMenuAccess == 1 || stockMenuAccess == 3) {
+                                            numberOfColumn = [{ "width": "80px", "targets": 0 },
+                                            { "width": "80px", "targets": 1 },
+                                            { "width": "80px", "targets": 2 },
+                                            { "width": "80px", "targets": 3 },
+                                            { "width": "80px", "targets": 4 },
+                                            { "width": "80px", "targets": 5 },
+                                            { "width": "80px", "targets": 6 },
+                                            { "width": "80px", "targets": 7 },
+                                            { "width": "80px", "targets": 8 },
+                                            { "width": "60px", "targets": 9 },
+                                            { "width": "60px", "targets": 10 },
+                                            { "width": "20px", "targets": 11 }];
+                                            var t = '<tr stockid="' + StockId + '" status="' + Status + '"><td><span class="weight-500 clsStk">' + TransactionDate + '</span></td><td><span class="txt-dark weight-500 clsStk pull-right">' + OpeningStock + '</span></td><td><span class="txt-dark weight-500 clsStk pull-right">' + Consumed + '</span></td><td><span class="txt-dark weight-500 clsStk pull-right">' + Purchased + '</span></td><td><span class="txt-dark weight-500 pull-right" >' + StockPosition + '</span></td><td><span class="txt-dark weight-500 clsStk pull-right"> ' + MidCost + '</span></td><td><span class="txt-dark weight-500 clsStk pull-right"> ' + DeadStock + '</span></td><td><span class="txt-dark weight-500 clsStk pull-right"> ' + UsableStock + '</span></td><td><span class="txt-dark weight-500 clsStk pull-right"> ' + FirmOrder + '</span></td><td><span class="txt-dark weight-500 clsStk pull-right"> ' + Rate + '</span></td><td><span class="txt-dark weight-500 clsStk pull-left"> <textarea readonly style="resize: none;  overflow: hidden; border:none; background: none !important;" cols="37" rows="5"> ' + Remarks + ' </textarea></span></td>';
+                                        }
+                                        else {
+                                            numberOfColumn = [
+                                                { "width": "80px", "targets": 0 },
+                                                { "width": "80px", "targets": 1 },
+                                                { "width": "80px", "targets": 2 },
+                                                { "width": "80px", "targets": 3 },
+                                                { "width": "80px", "targets": 4 },
+                                                { "width": "80px", "targets": 5 },
+                                                { "width": "80px", "targets": 6 },
+                                                { "width": "60px", "targets": 7 },
+                                                { "width": "60px", "targets": 8 },
+                                                { "width": "20px", "targets": 9 }
+                                            ];
+                                            var t = '<tr stockid="' + StockId + '" status="' + Status + '"><td><span class=" weight-500 clsStk">' + TransactionDate + '</span></td><td><span class="txt-dark weight-500 clsStk pull-right">' + OpeningStock + '</span></td><td><span class="txt-dark weight-500 clsStk pull-right">' + Consumed + '</span></td><td><span class="txt-dark weight-500 clsStk pull-right">' + Purchased + '</span></td><td><span class="txt-dark weight-500 pull-right" >' + StockPosition + '</span></td><td><span class="txt-dark weight-500 clsStk pull-right"> ' + UsableStock + '</span></td><td><span class="txt-dark weight-500 clsStk pull-right"> ' + FirmOrder + '</span></td><td><span class="txt-dark weight-500 clsStk pull-right"> ' + Rate + '</span></td><td><span class="txt-dark weight-500 clsStk pull-left"> <textarea readonly style="resize: none;  overflow: hidden; border:none; background: none !important;" cols="37" rows="5"> ' + Remarks + ' </textarea></span></td>';
+                                        }
+
+                                        if (Status == 'Draft') {
+                                            t = t + '<td><center><button class="btn-success btnEdit" style="padding: 0px 0px !important;" stockid="' + StockId + '">Edit</button></center></td></tr>';
+                                        }
+                                        else if (Status == 'Submitted') {
+                                            t = t + '<td></td></tr>';
+                                        }
+                                        $('#tbl_stock_tbody').append(t);
+                                    });//end of each loop
+
+
+                                    var lastClosing = data[0].StockPosition; //setting last record's closing as new record-to-be-entered's opening(insert case)
+                                    // $('#OpenStk').val(lastClosing);
+                                    // $('#usableStk').val(parseFloat($('#OpenStk').val()));
+                                    table = $('#tbl_stock').DataTable({
+                                        "sScrollX": "100%",
+                                        "dom": 'lBfrtip',
+
+                                        columnDefs: numberOfColumn,
+                                        // "order": [[0, 'desc']],
+                                        "ordering": false,
+                                        //"sScrollXInner": "100%","columnDefs": [{ "type": "date-dd-mmm-yyyy HH:mm", "targets": 3 }],
+                                        "aLengthMenu": [[10, 25, 50, 100, 150, 250, 500, -1], [10, 25, 50, 100, 150, 250, 500, "All"]],
+                                        "iDisplayLength": 10,
+                                        "bSortCellsTop": true,
+                                        "sPaginationType": "full_numbers",
+                                        "bJQueryUI": false,
+                                        "bAutoWidth": false,
+                                        "bLengthChange": true,
+                                        "fnInitComplete": function (oSettings, json) {
+                                            $('.dataTables_filter>label>input').attr('id', 'search');
+                                            $('.dataTables_filter>label>input').attr('placeholder', 'Search All');
+                                        }
+                                    });//.fnAdjustColumnSizing( true );
+
+
+
+
+                                    if (stockMenuAccess == 1 || stockMenuAccess == 3) {
+                                        $('#tbl_stock_length').append(
+                                            '<div class="dt-buttons" style="margin-left: 15px;"><a id="prntEXL" class="dt-button buttons-excel buttons-html5 form-control" tabindex="0" aria-controls="tbl_stock" href="#" style="min-height: 88%;line-height: 40px;background-color: #1d4a6d;"><span>Export to Excel</span></a></div>');
+                                    }
+
+                                    $('#tbl_stock_length').attr('style', 'width: 400px;display: inline-flex;');
+                                });
+                            }
+                            else {
+                                $('#OpenStk').val('0');
+
+
+                                $('#tbl_stock').dataTable().fnClearTable();
+                            }
+                            $.unblockUI();
+
+                        },
+                        error: function (request, textStatus, errorThrown) {
+                            // alert(request.getResponseHeader('some_header'));
+                            $.unblockUI();
+                        }
+                    });
+                }            
+            $('body').off('click', '#prntEXL');
+            $('body').on('click', '#prntEXL', function (e) {
+                e.preventDefault();
+                $('#tbl_stock').tableExport({ fileName: 'Stock Data', type: 'excel', escape: 'false' });
+                e.preventDefault();
+            });
+
+            $('body').off('change', '#producerSite');
+            $('body').on('change', '#producerSite', function (e) {
+                vendorSiteId = $('#producerSite').val().split('½')[1];
+                e.preventDefault();
+                getOpeningStock(fuelType, vendorSiteId);
+                LoadStockData();
+                Clear();
+            });
+            //aymen
+            const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+            ];
+            function formatdate1(date) {
+                try {
+                    var d = new Date(date);
+                    var dd = d.getDate() < 10 ? "0" + d.getDate() : d.getDate();
+                    return dd + "-" + monthNames[d.getMonth()] + "-" + d.getFullYear();
+                }
+                catch (err) {
+                    return "";
+                }
+
+            }
+
+
+            //aymen
+
+            $('body').off('change', '#ConsStk, #PurStk, #MidCost, #firmOrder');
+            $('body').on('change', '#ConsStk, #PurStk, #MidCost, #firmOrder', function (event) {
+
+                if ($(this).val() == "") {
+                    $(this).val("0.0000");
+                }
+
+            });
+
+
+        });//End of Doc Ready
+
+
+        function getOpeningStock(fuelType, vendorSiteId) {
+            $.ajax({
+                type: "GET",
+                url: "../Stock/GetOpeningStockBySiteId?vendorSiteId=" + vendorSiteId + "&fuelType=" + fuelType,
+
+                data: 'json',
+
+
+                beforeSend: function () {
+                    $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+                },
+                complete: function () {
+                    $.unblockUI();
+                },
+
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    debugger;
+                    var response = $.parseJSON(response);
+                    //console.log(response);
+                    //LoadStockData();
+                    $('#OpenStk').val(response[0]["StockPosition"]);
+                    $('#usableStk').val(response[0]["StockPosition"]);
+                }
+            });
+        }
+
+    </script>
+</div>

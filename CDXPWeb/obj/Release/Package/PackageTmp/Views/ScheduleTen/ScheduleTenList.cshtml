@@ -1,0 +1,203 @@
+﻿@{
+    ViewBag.Title = "Schedule 10";
+}
+<div id="pcontent">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff;"></i>
+                        <h6 class="panel-title txt-light">@ViewBag.Title</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                        <div style="margin-bottom: 20px;">
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button id="btnCreatePEC" style="float:right;" class="btn btn-success" type="button">New Schedule 10</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>@*END OF tab0*@
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Detail</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom:20px;">
+                            <div id="tblContainer11"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(function () {
+                debugger;
+                LoadGrid();
+            });
+
+            function LoadGrid() {
+                debugger;
+                $("#tblContainer11").html('<div style="text-align:center;padding:20px;"><img alt="" src="../Content/img/DataLoader.gif" /></div>');
+
+                var fromdata = new FormData();
+                fromdata.append("vls", '10½');
+                var choice = {};
+                choice.url = '/ScheduleTen/GetList' + $(location).attr('search');
+                choice.type = "POST";
+                choice.data = fromdata;
+                choice.contentType = false;
+                choice.processData = false;
+                choice.success = function (response) {
+                    if ($('#tblJ1').hasClass('dataTable')) {
+                        $('#tblJ1').dataTable().fnDestroy();
+                    }
+                    $('#tblContainer11').html(response);
+                    $($('#tblJ1 thead tr th')[0]).css('width', '35px');
+                    $('#tblJ1 tbody tr').each(function (index, element) {
+                        $($(this).find('td')[0]).html(parseInt(index) + 1);
+                    });
+
+                    var $editoption = '<i class="vedit fa fa-edit" title="Edit"  style="font-size:20px;"></i>';
+
+                    $('#tblJ1 thead tr').append('<th style="width:35px;"></th><th style="width:35px;"></th>');
+                    $('#tblJ1 tbody tr').append('<td style="width: 35px;"><div class="controls center" style="text-align:center">\
+                                                                       '+ $editoption + '\
+                                                                  </div ></td >');
+
+
+                    $('#tblJ1').append('<tfoot></tfoot>');
+                    $('#tblJ1 tfoot').html($('#tblJ1 thead').html());
+                    $('#tblJ1 tfoot tr').attr("style", "border-bottom: 1px solid #c4c4c4;border-right: 1px solid #c4c4c4;");
+                    $('#tblJ1').addClass('dynamicTable');
+
+                    //$('#tblJ1 tbody tr').each(function (index, element) {
+                    //    if ($($(this).find('td')[7]).html() == "Acknowledged") {
+                    //        $($(this).find('td')[10]).html('');
+                    //    }
+                    //    if ($($(this).find('td')[8]).html() == "" || $($(this).find('td')[8]).html() == "False") {
+                    //        $($(this).find('td')[8]).html('');
+                    //    }
+                    //    if ($($(this).find('td')[8]).html() == "True") {
+                    //        $($(this).find('td')[8]).html('YES');
+                    //    }
+                    //    if ($($(this).find('td')[9]).html() == "-1") {
+                    //        $($(this).find('td')[9]).html('');
+                    //    }
+                    //});
+
+                    $('#tblJ1 tfoot th').each(function () {
+                        var title = $(this).text();
+                        if ($.trim(title) != "") {
+                            $(this).html('<input type="text" class="form-control" style="width:90%;" placeholder="' + title + '" />');
+                        }
+
+                    });
+
+                    var table = $('#tblJ1').DataTable({
+                        "aLengthMenu": [[10, 25, 50, 100, 150, 250, 500, -1], [10, 25, 50, 100, 150, 250, 500, "All"]],
+                        "iDisplayLength": -1,
+                        //"bSort": false,
+                        "order": [[0, "asc"]],
+                        "sPaginationType": "full_numbers",
+                        "bJQueryUI": false,
+                        "bAutoWidth": false,
+                        "bLengthChange": true,
+                        "fnInitComplete": function (oSettings, json) {
+                            $('.dataTables_filter>label>input').attr('id', 'search');
+                        }
+                    });
+                    table.columns().every(function () {
+                        var that = this;
+
+                        $('input', this.footer()).on('keyup change', function () {
+                            if (that.search() !== this.value) {
+                                that
+                                    .search(this.value)
+                                    .draw();
+                            }
+                        });
+                    });
+
+                    $('#tblJ1_length').append('<input type="image" name="btnExcel" id="btnExcel" title="Export to Excel" class="Grd" src="../Content/img/xcel.png" style="margin-left: 30px;margin-top:5px;border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnWord" id="btnWord" title="Export to Word" class="Grd" src="../Content/img/wrd.png" style="border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnPNG" id="btnPNG" title="Export to PNG" class="Grd" src="../Content/img/png.png" style="width: 17px;border-width:0px;">');
+
+                };
+                choice.error = function (err) {
+                    console.log(err.statusText);
+                };
+                $.ajax(choice);
+            }//End of Load Grid
+
+            //$('body').off('click', '#btnCreatePEC');
+            //$('body').on('click', '#btnCreatePEC', function (e) {
+            //    e.preventDefault();
+            //    debugger;
+            //    var options = {};
+            //    $("#pageContainer").hide('slide', options, 300);
+            //    $.ajax({
+            //        type: "POST",
+            //        url: "/ScheduleTen/ScheduleTenForm?Id=0",
+            //        success: function (result) {
+            //            var options = {};
+            //            $('#pageContainer').html($(result).find('#pcontent').html());
+            //            $("#pageContainer").show('slide', options, 500);
+            //        }
+            //    });
+            //});//End of btnCreateSch click
+
+            // Start of Edit Click
+            $('body').off('click', '.vedit,#btnCreatePEC');
+            $('body').on('click', '.vedit,#btnCreatePEC', function (e) {
+                console.log("Edit Option hit !!");
+                e.preventDefault();
+                debugger;
+                var $id = $(this).parent().parent().parent().attr('tag');
+                if ($(this).hasClass("vedit")) {
+                    $id += "½e";
+                }
+                else {
+                    $id = "0½v";
+                }
+                console.log($id);
+                var options = {};
+                var fromdata = new FormData();
+                fromdata.append('vls', $id);
+                $("#pageContainer").hide('slide', options, 300);
+                $.ajax({
+                    type: "POST",
+                    url: "/ScheduleTen/ScheduleTenForm?Id=" + $id,
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (result) {
+                        var options = {};
+                        $('#pageContainer').html($(result).find('#pcontent').html());
+                        $("#pageContainer").show('slide', options, 500);
+                    }
+                });
+            });
+            //datatable
+
+        });//END OF DOC READY
+    </script>
+</div>
+
+

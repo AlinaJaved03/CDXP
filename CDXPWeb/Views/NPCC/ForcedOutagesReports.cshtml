@@ -1,0 +1,314 @@
+﻿@{
+    ViewBag.Title = "Forced Outages Reports";
+}
+<div id="pcontent">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff;"></i>
+                        <h6 class="panel-title txt-light">@ViewBag.Title</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+
+
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                        @*<a class="pull-left inline-block close-panel" href="#" data-effect="fadeOut">
+                                <i class="zmdi zmdi-close"></i>
+                            </a>*@
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body">
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Search</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <table class="tblFrm">
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Power Producer</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control frm" id="ddlIPP" required>
+                                            <option selected="selected" value="-1">Select</option>
+                                            @Html.Raw(@ViewBag.IPP)
+                                        </select>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Site</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control frm" id="ddlSite">
+                                            <option selected="selected" value="-1">Select</option>
+                                        </select>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Block / Complex </label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control Ipp" id="ddlBlock">
+                                            <option selected="selected" value="-1">Select</option>
+                                        </select>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Month</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input tabindex="-1" type="text" value="" class="form-control frm dtDateTime" id="" name="">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Outage Type</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select tabindex="-1" class="form-control frm" id="typeOfOutage">
+                                            <option selected="selected" value="-1">Select</option>
+                                            <option value="Forced Outage">Forced</option>
+                                            <option value="Partial FO">Partial Forced</option>
+                                            <option value="Scheduled Outages">Scheduled</option>
+                                            <option value="Washing">Maintenance</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button id="btnSearch" class="btn btn-success" type="button">
+                                            Search
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>@*End Of Table*@
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Details</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" id="tblMeterData">
+                                @*<tbody>
+                                        <tr>
+                                            <th style="width:100px;text-align:center;" rowspan="2">Sr.No</th>
+                                            <th style="width:100px;text-align:center;" colspan="2">From</th>
+                                            <th style="width:100px;text-align:center;" colspan="2">To</th>
+                                            <th style="width:100px;text-align:center;" rowspan="2">DG / STG No.</th>
+                                            <th style="width:100px;text-align:center;" rowspan="2">Block No.</th>
+                                            <th style="width:100px;text-align:center;" rowspan="2">Capacity(MW)</th>
+                                            <th style="width:100px;text-align:center;" rowspan="2">Remarks</th>
+                                        </tr>
+
+                                        <tr>
+                                            <th style="width:100px;text-align:center;">Date</th>
+                                            <th style="width:100px;text-align:center;">Time</th>
+                                            <th style="width:100px;text-align:center;">Date</th>
+                                            <th style="width:100px;text-align:center;">Time</th>
+                                        </tr>
+                                    </tbody>*@
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            //LoadGrid(); Load the data upon page load
+
+            $('body').off('change', '#ddlIPP');
+            $('body').on('change', '#ddlIPP', function (e) {
+                LoadVendorSites();
+            });// End of change ipp
+
+
+            $('body').off('change', '#ddlSite');
+            $('body').on('change', '#ddlSite', function (e) {
+                LoaddllBlockFuel();
+            });// End of change sites
+
+            function LoadVendorSites() {
+                var fromdata = new FormData();
+                fromdata.append('vls', '0½' + $('#ddlIPP').val());
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        $('#ddlSite').html(response);
+                        if ($('#ddlSite').val() != null || $('#ddlSite').val() != undefined) {
+                            LoaddllBlockFuel();
+                        }
+                        else {
+                            $('#ddlBlock').html('');
+                        }
+                    }
+                });
+            }//END OF LOAD SITES
+
+            function LoaddllBlockFuel() {
+                var fromdata = new FormData();
+                fromdata.append('vls', '1½' + $('#ddlSite').val() + "½" + $('#ddlIPP').val());
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        $('#ddlBlock').html(response);
+                        if (response == null || response == undefined) {
+                            $('#ddlBlock').html('');
+                        }
+                    }
+                });
+            }//END OF LOAD BLOCK
+
+            $('body').off('focus', '.dtDateTime');
+            $('body').on('focus', '.dtDateTime', function () {
+                $(this).datetimepicker({
+                    viewMode: 'months',
+                    format: 'MMM-YYYY'
+                });
+            });
+
+
+            $('body').off('click', '#btnSearch');
+            $('body').on('click', '#btnSearch', function (e) {
+                e.preventDefault();
+                debugger;
+                LoadGrid();
+            });//END OF SEARCH
+
+            function LoadGrid() {
+                $("#tblContainer").html('<div style="text-align:center;padding:20px;"><img alt="" src="../Content/img/DataLoader.gif" /></div>');
+
+                var $data = '33½' + $('#ddlIPP').val() + '½' + $('#ddlSite').val() + '½' + $('#ddlBlock').val().split('½')[0];
+                if ($('.dtDateTime').val() == "")
+                    $data += '½' + '-1';
+                else
+                    $data += '½' + $('.dtDateTime').val();
+                $data += '½' + $('#typeOfOutage').val();
+
+                var fromdata = new FormData();
+                fromdata.append("vls", $data);
+                debugger;
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+
+                        if ($('#tblJ1').hasClass('dataTable')) {
+                            $('#tblJ1').dataTable().fnDestroy();
+                        }
+
+                        $('#tblContainer').html(response);
+                        $($('#tblJ1 thead tr th')[0]).css('width', '35px');
+
+                        $('#tblJ1 tbody tr').each(function (index, element) {
+                            $($(this).find('td')[0]).html(parseInt(index) + 1);
+                        });
+
+                        $('#tblJ1').append('<tfoot></tfoot>');
+                        $('#tblJ1 tfoot').html($('#tblJ1 thead').html());
+                        $('#tblJ1 tfoot tr').attr("style", "border-bottom: 1px solid #c4c4c4;border-right: 1px solid #c4c4c4;");
+
+                        $('#tblJ1').addClass('dynamicTable');
+
+                        $('#tblJ1 tfoot th').each(function () { // for placeholders
+                            var title = $(this).text();
+                            if ($.trim(title) != "") {
+                                $(this).html('<input type="text" class="form-control" style="width:90%;" placeholder="' + title + '" />');
+                            }
+
+                        });
+
+                        var table = $('#tblJ1').DataTable({
+                            "aLengthMenu": [[10, 25, 50, 100, 150, 250, 500, -1], [10, 25, 50, 100, 150, 250, 500, "All"]],
+                            "iDisplayLength": -1,
+                            "order": [[0, "asc"]],
+                            "sPaginationType": "full_numbers",
+                            "bJQueryUI": false,
+                            "bAutoWidth": false,
+                            "bLengthChange": true,
+                            "fnInitComplete": function (oSettings, json) {
+                                $('.dataTables_filter>label>input').attr('id', 'search');
+                            }
+                        });
+                        table.columns().every(function () { // for searching in footers
+                            var that = this;
+                            $('input', this.footer()).on('keyup change', function () {
+                                if (that.search() !== this.value) {
+                                    that
+                                        .search(this.value)
+                                        .draw();
+                                }
+                            });
+                        });
+
+                        $('#tblJ1 thead tr:first').each(function () {
+                            $(this).replaceWith('<tr><th style="width:100px;text-align:center;" rowspan="2">Sr #</th><th style="width:100px;text-align:center;" colspan="2">From</th><th style="width:100px;text-align:center;" colspan="2">To</th><th style="width:100px;text-align:center;" rowspan="2">DG / STG No.</th><th style="width:100px;text-align:center;" rowspan="2">Block No.</th><th style="width:100px;text-align:center;" rowspan="2">Capacity(MW)</th><th style="width:100px;text-align:center;" rowspan="2">Remarks</th></tr><tr><th style="width:100px;text-align:center;">Date</th><th style="width:100px;text-align:center;">Time</th><th style="width:100px;text-align:center;">Date</th><th style="width:100px;text-align:center;">Time</th></tr>');
+                        });
+
+                        $('#tblJ1_length').append('<input type="image" name="btnExcel" id="btnExcel" title="Export to Excel" class="Grd" src="../Content/img/xcel.png" style="margin-left: 30px;margin-top:5px;border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnWord" id="btnWord" title="Export to Word" class="Grd" src="../Content/img/wrd.png" style="border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnPNG" id="btnPNG" title="Export to PNG" class="Grd" src="../Content/img/png.png" style="width: 17px;border-width:0px;">');
+                    },
+                    error: function (err) {
+                        console.log(err.statusText);
+                    }
+                });
+            }//END OF LOAD GRID
+
+            $('body').off('click', '#btnExcel');
+            $('body').on('click', '#btnExcel', function (e) {
+                e.preventDefault();
+                $('#tblJ1').tableExport({ type: 'excel', escape: 'false' });
+                e.preventDefault();
+            });
+            $('body').off('click', '#btnWord');
+            $('body').on('click', '#btnWord', function (e) {
+                e.preventDefault();
+                $('#tblJ1').tableExport({ type: 'doc', escape: 'false' });
+                e.preventDefault();
+            });
+            $('body').off('click', '#btnPNG');
+            $('body').on('click', '#btnPNG', function (e) {
+                e.preventDefault();
+                $('#tblJ1').tableExport({ type: 'png', escape: 'false' });
+                e.preventDefault();
+            });
+
+        });
+    </script>
+</div>

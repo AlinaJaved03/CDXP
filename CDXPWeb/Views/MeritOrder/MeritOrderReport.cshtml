@@ -1,0 +1,627 @@
+﻿
+@{
+    ViewBag.Title = "MeritOrderReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>MeritOrderReport</h2>
+
+
+
+
+
+<div id="pcontent">
+
+    <style type="text/css">
+        /* width */
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px grey;
+            border-radius: 5px;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #1D4A6D;
+            border-radius: 5px;
+        }
+
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+                background: #1D4A6D;
+            }
+
+        .txt-dark {
+            line-height: 5px !important;
+        }
+
+        .td, th {
+            padding: 0px !important;
+        }
+
+        table.dataTable tbody th, table.dataTable tbody td {
+            padding: 0px 8px !important;
+        }
+
+
+
+        /*******************************
+        * MODAL AS LEFT/RIGHT SIDEBAR
+        * Add "left" or "right" in modal parent div, after class="modal".
+        * Get free snippets on bootpen.com
+        *******************************/
+        .modal.left .modal-dialog,
+        .modal.right .modal-dialog {
+            position: fixed;
+            margin: auto;
+            width: 320px;
+            height: 100%;
+            -webkit-transform: translate3d(0%, 0, 0);
+            -ms-transform: translate3d(0%, 0, 0);
+            -o-transform: translate3d(0%, 0, 0);
+            transform: translate3d(0%, 0, 0);
+        }
+
+        .modal.left .modal-content,
+        .modal.right .modal-content {
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .modal.left .modal-body,
+        .modal.right .modal-body {
+            padding: 15px 15px 80px;
+        }
+
+        /*Left*/
+        .modal.left.fade .modal-dialog {
+            left: -320px;
+            -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+            -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+            -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+            transition: opacity 0.3s linear, left 0.3s ease-out;
+        }
+
+        .modal.left.fade.in .modal-dialog {
+            left: 0;
+        }
+
+        /*Right*/
+        .modal.right.fade .modal-dialog {
+            right: -320px;
+            -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+            -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+            -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+            transition: opacity 0.3s linear, right 0.3s ease-out;
+            width: 800px;
+        }
+
+        .modal.right.fade.in .modal-dialog {
+            right: 0;
+        }
+
+        /* ----- MODAL STYLE ----- */
+        .modal-content {
+            border-radius: 0;
+            border: none;
+        }
+
+        .modal-header {
+            border-bottom-color: #EEEEEE;
+            background-color: #FAFAFA;
+        }
+
+        /* ----- v CAN BE DELETED v ----- */
+        body {
+            background-color: #78909C;
+        }
+
+        .demo {
+            padding-top: 60px;
+            padding-bottom: 110px;
+        }
+
+        .btn-demo {
+            margin: 15px;
+            padding: 10px 15px;
+            border-radius: 0;
+            font-size: 16px;
+            background-color: #FFFFFF;
+        }
+
+            .btn-demo:focus {
+                outline: 0;
+            }
+
+        .demo-footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 15px;
+            background-color: #212121;
+            text-align: center;
+        }
+
+            .demo-footer > a {
+                text-decoration: none;
+                font-weight: bold;
+                font-size: 16px;
+                color: #fff;
+            }
+
+        .customRoundbutton {
+            border-radius: 20px;
+        }
+
+        .darkblueBg {
+            background-color: #1d4a6deb;
+            color: white;
+        }
+
+        .fa-trash {
+            color: red;
+        }
+
+        .fa-edit {
+            color: blue;
+        }
+
+        .dropdownCustomStyle {
+            background: #1d4a6deb;
+            color: white;
+            border-radius: 10px !important;
+        }
+
+        .noBorder {
+            border: none !important;
+        }
+
+        .noBottomBorder {
+            border-bottom: none !important;
+            font-weight: bold !important;
+        }
+
+        .OnlyLeftBorder {
+            border-top: none !important;
+            border-bottom: none !important;
+            border-right: none !important;
+        }
+
+        .roundedDate {
+            border-radius: 15px !important;
+        }
+
+
+
+        .table-bordered > thead > tr > td, .table-bordered > thead > tr > th {
+            border-width: 3px;
+        }
+
+        .td, th {
+            padding: 13px !important;
+        }
+        /*Aymen*/
+        .customRoundbutton {
+            border-radius: 7px;
+            line-height: 14px;
+            float: right;
+        }
+
+        input[type=text] {
+            height: 35px;
+        }
+        .dropdownCustomStyle {
+            background: #1d4a6deb;
+            color: white;
+            border-radius: 10px !important;
+            height: 35px;
+        }
+            .dropdownCustomStyle option {
+                background: white;
+                color: black;
+            }
+        .date-icon-dateRange {
+            /*position: absolute;
+            top: 33px;
+            right: 28px;*/
+            /* pointer-events: none; */
+            /*cursor: pointer;
+            color: #aaa;
+            font-size: 24px;*/
+            position: absolute;
+            top: 68%;
+            left: 219px;
+            transform: translateY(-50%);
+            font-size: 15px;
+            color: #1D4A6D;
+        }
+        .daterangepicker .drp-calendar {
+            max-width: 300px !important;
+        }
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="container-fluid">
+
+
+                    @*<div class="row">
+                <div class="col-md-3">
+                    <input type="text" id="daterange" class="form-control roundedDate" />
+                </div>
+            </div>*@
+                    <br />
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3">
+                            <label style="color: #1d4a6deb; font-weight: bold;">Select Power Plant </label>
+                            <div class="form-group">
+                                <select class="form-control dropdownCustomStyle" id="vendorIdDrp" onchange="return populateFuelTypes()">
+                                    <option value="0" selected>ALL</option>
+                                    @Html.Raw(@ViewBag.Ipplist)
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3">
+                            <label style="color: #1d4a6deb; font-weight: bold;">Select Fuel Type </label>
+                            <div class="form-group">
+                                <select class="form-control dropdownCustomStyle" id="fuelType" onchange="return populateFuelIndex()">
+                                    <option value="ALL" selected>ALL</option>
+                                    @Html.Raw(@ViewBag.FuelType)
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 ">
+                            <label style="color: #1d4a6deb; font-weight: bold; ">Select Date Range</label>
+                            <input class=" form-control  roundedDate" readonly id="daterange" style="color: #1d4a6deb; background: #fff !important; font-weight: bold; border-color: #1d4a6deb; padding-left: 6%;width:81%" />
+                            <i id="dateRangeIcon" class="date-icon-dateRange fa fa-calendar" aria-hidden="true"></i>
+                        </div>
+
+                        <div class="col-md-1 pull-right" style=" padding-top: 26px;">
+                            <button class="btn btn-primary" id="btnExportDetailedList" style=" border-color: #1d4a6deb; background-color: #1d4a6deb; border-radius: 7px; float: right; text-align: center; line-height: 14px;">
+                                <i class="fa fa-download"></i> Export
+                            </button>
+                        </div>
+                        <div class="col-md-2" style="padding-top: 26px;padding-right: 11%;">
+                            <button class="btn btn-success" id="SearchSumbit" style="border-color: #008000; background-color: #008000; border-radius: 7px; float: right; text-align: center; line-height: 14px; ">
+                                <i class="fa fa-paper-plane"></i> Submit
+                            </button>
+                        </div>
+                    </div>
+
+                    <br />
+                    <div class="table-responsive" style="overflow: auto; max-height: 642px; min-height: auto !important; ">
+                        @*<label class="ExportCol">Power Producer</label>
+                <label class="ExportCol">'+ $('#NameTitlebar').text()  +'</label>
+                <label class="ExportCol">Date Range</label>
+                <label class="ExportCol">'+ $('#daterange').val() +'</label>*@
+
+
+                        <table class="table table-bordered" id="tbl_results_detailedList">
+                            <thead style="position: sticky; top: -2px;">
+                                @*<tr>
+                            <th class="ExportCol">Power Producer: </th>
+                            <th class="ExportCol" id="expIPP"></th>
+                            <th class="ExportCol"></th>
+                            <th class="ExportCol">Fuel Type: </th>
+                            <th class="ExportCol" id="expFuel"></th>
+                            <th class="ExportCol"></th>
+                            <th class="ExportCol">Date Range: </th>
+                            <th class="ExportCol" id="expDate"></th>
+                        </tr>*@
+                                <tr style="height: 35px;">
+                                    <th scope="col" width="100px" class="text-center darkblueBg noBorder noBottomBorder"></th>
+                                    <th scope="col" width="100px" class="text-center darkblueBg noBorder noBottomBorder"></th>
+                                    <th scope="col" width="100px" class="text-center darkblueBg noBorder noBottomBorder"></th>
+                                    <th scope="col" class="text-center darkblueBg noBottomBorder" colspan="3">Opening Stock</th>
+                                    <th scope="col" class="text-center darkblueBg noBottomBorder" colspan="3">Receipt</th>
+                                    <th scope="col" class="text-center darkblueBg noBottomBorder" colspan="4">Actual Consumption</th>
+                                    <th scope="col" class="text-center darkblueBg noBottomBorder" colspan="3">Closing</th>
+                                </tr>
+                                <tr style="height: 35px;">
+                                    <th scope="col" class="text-center darkblueBg noBorder" style="padding: 0px 32px !important">Date <br /> &nbsp;</th>
+                                    <th scope="col" class="text-center darkblueBg noBorder" style="padding: 0px 32px !important">Vendor ID <br /> &nbsp;</th>
+                                    <th scope="col" class="text-center darkblueBg noBorder" style="padding: 0px 32px !important">Fuel Type <br /> &nbsp;</th>
+                                    <th scope="col" class="text-center darkblueBg OnlyLeftBorder">Quantity <br />(MT)</th>
+                                    <th scope="col" class="text-center darkblueBg noBorder">Rate <br />(Rs./MT)</th>
+                                    <th scope="col" class="text-center darkblueBg noBorder">Amount <br />(Rs.)</th>
+                                    <th scope="col" class="text-center darkblueBg OnlyLeftBorder">Quantity <br />(MT)</th>
+                                    <th scope="col" class="text-center darkblueBg noBorder">Rate <br />(Rs./MT)</th>
+                                    <th scope="col" class="text-center darkblueBg noBorder">Amount <br />(Rs.)</th>
+                                    <th scope="col" class="text-center darkblueBg OnlyLeftBorder">Quantity <br />(MT)</th>
+                                    <th scope="col" class="text-center darkblueBg noBorder">Rate <br />(Rs./MT)</th>
+                                    <th scope="col" class="text-center darkblueBg noBorder">Amount <br />(Rs.)</th>
+                                    <th scope="col" class="text-center darkblueBg noBorder">WAR <br />(Rs.)</th>
+                                    <th scope="col" class="text-center darkblueBg OnlyLeftBorder">Quantity <br />(MT)</th>
+                                    <th scope="col" class="text-center darkblueBg noBorder">Rate <br />(Rs./MT)</th>
+                                    <th scope="col" class="text-center darkblueBg noBorder">Amount <br />(Rs.)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ajaxRes_detailedlist">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="dvexl_detailedList" style="display: none;">
+                        <table id="tblprnt_detailedList">
+                            <thead id="tblprntHead_detailedList">
+                                <tr>
+                                    <th class="ExportCol">Power Producer: </th>
+                                    <th class="ExportCol" id="expIPP"></th>
+                                    <th class="ExportCol"></th>
+                                    <th class="ExportCol">Fuel Type: </th>
+                                    <th class="ExportCol" id="expFuel"></th>
+                                    <th class="ExportCol"></th>
+                                    <th class="ExportCol">Date Range: </th>
+                                    <th class="ExportCol" id="expDate"></th>
+                                </tr>
+                                <tr style="height: 35px;">
+                                    <th scope="col" width="100px" class="text-center darkblueBg noBorder noBottomBorder"></th>
+                                    <th scope="col" width="100px" class="text-center darkblueBg noBorder noBottomBorder"></th>
+                                    <th scope="col" width="100px" class="text-center darkblueBg noBorder noBottomBorder"></th>
+                                    <th scope="col" class="text-center darkblueBg noBottomBorder" colspan="3">Opening Stock</th>
+                                    <th scope="col" class="text-center darkblueBg noBottomBorder" colspan="3">Receipt</th>
+                                    <th scope="col" class="text-center darkblueBg noBottomBorder" colspan="4">Actual Consumption</th>
+                                    <th scope="col" class="text-center darkblueBg noBottomBorder" colspan="3">Closing</th>
+                                </tr>
+                                <tr style="height: 35px;">
+                                    <th scope="col" class="text-cenr darkblueBg noBorder" style="padding: 0px 32px !important">Date<br /> &nbsp;</th>
+                                    <th scope="col" class="text-center darkblueBg noBorder" style="padding: 0px 32px !important">Vendor ID <br /> &nbsp;</th>
+                                    <th scope="col" class="text-center darkblueBg noBorder" style="padding: 0px 32px !important">Fuel Type <br /> &nbsp;</th>
+                                    <th scope="col" class="text-center darkblueBg OnlyLeftBorder">Quantity<br /> (MT)</th>
+                                    <th scope="col" class="text-center darkblueBg noBorder">Rate <br />(Rs./MT)</th>
+                                    <th scope="col" class="text-center darkblueBg noBorder">Amount <br />(Rs.)</th>
+                                    <th scope="col" class="text-center darkblueBg OnlyLeftBorder">Quantity <br />(MT)</th>
+                                    <th scope="col" class="text-center darkblueBg noBorder">Rate <br />(Rs./MT)</th>
+                                    <th scope="col" class="text-center darkblueBg noBorder">Amount <br />(Rs.)</th>
+                                    <th scope="col" class="text-center darkblueBg OnlyLeftBorder">Quantity <br />(MT)</th>
+                                    <th scope="col" class="text-center darkblueBg noBorder">Rate <br />(Rs./MT)</th>
+                                    <th scope="col" class="text-center darkblueBg noBorder">Amount <br />(Rs.)</th>
+                                    <th scope="col" class="text-center darkblueBg noBorder">WAR <br />(Rs.)</th>
+                                    <th scope="col" class="text-center darkblueBg OnlyLeftBorder">Quantity <br />(MT)</th>
+                                    <th scope="col" class="text-center darkblueBg noBorder">Rate <br />(Rs./MT)</th>
+                                    <th scope="col" class="text-center darkblueBg noBorder">Amount <br />(Rs.)</th>
+                                </tr>
+
+
+                            </thead>
+                            <tbody id="tblprntBody_detailedList"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/plugins/moment/min/moment.min.js"></script>
+    <script>
+        document.getElementById("dateRangeIcon").onclick = function (e) {
+            document.getElementById("daterange").focus();
+            // You could write code to toggle this
+        }
+
+        var _date = new Date();
+        var fromDate = _date.setDate(_date.getDate() - 3);
+        fromDate = moment(fromDate)['_d'];
+
+        _date = new Date();
+        var toDate = _date.setDate(_date.getDate() - 1);
+        toDate = moment(toDate)['_d'];
+
+        var firstDay = new Date(fromDate);
+        var lastDay = new Date(toDate);
+
+        function populateFuelTypes() {
+
+            var vendorIdDrp = $('#vendorIdDrp').find(":selected").val();
+
+            $('#vendorId').val(vendorIdDrp);
+            $.ajax
+                ({
+                    type: "GET",
+                    url: "/MeritOrder/populateFuelTypes?VendorId=" + vendorIdDrp,
+                    dataType: 'json',
+                    beforeSend: function () {
+                        $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+                    },
+                    complete: function () {
+                        $.unblockUI();
+                    },
+                    success: function (result) {
+
+
+                        $('#fuelType').html('');
+                        if (result.length > 0) {
+                            var options;
+                            if (result.length > 1) {
+                                $('#fuelType').html(`<option value="ALL" selected>ALL</option>`);
+                            }
+                            $(result).each(function (index, option) {
+
+                                $('#fuelType').append('<option value="' + option.FUEL_TYPE_New + '">' + option.FUEL_TYPE + '</option>');
+                            });
+
+
+                        }
+                    },     // end of success
+
+                    error: function (request, textStatus, errorThrown) {
+                        console.log(request);
+                    }
+                }); //  ajax ended
+        }//end of Function
+
+        $('#daterange').daterangepicker({
+            startDate: moment(firstDay),
+
+            endDate: moment(lastDay),
+            locale: {
+                format: 'DD-MMM-YYYY'
+            }
+        });        
+
+        $('#daterange').on('apply.daterangepicker', function (ev, picker) {
+
+            getDetailedList();
+
+        });
+
+        $('body').off('click', '#SearchSumbit');
+        $('body').on('click', '#SearchSumbit', function (e) {
+            e.preventDefault();
+
+            getDetailedList();
+        });
+
+        function getDetailedList() {         
+
+
+                var fuelType = $('#fuelType').find(":selected").val();
+                var vendorId = $('#vendorIdDrp').find(":selected").val();
+               var  date = $('#daterange').val();
+                var dateSplit = $('#daterange').val().split(' - ');
+                var fromDate = moment(dateSplit[0]).format('YYYY-MM-DD');
+                var toDate = moment(dateSplit[1]).format('YYYY-MM-DD');
+
+                $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+
+                setTimeout(function () {
+                    $.ajax({
+                        type: "GET",
+                        url: "../MeritOrder/getDetailedListReport?vendorId=" + vendorId + "&fuelType=" + fuelType + "&fromDate=" + fromDate + "&toDate=" + toDate,
+                        dataType: 'json',
+                        async: false,
+                        beforeSend: function () {
+                            $.unblockUI();
+                            // $.blockUI({ css: { backgroundColor: 'rgb(170, 170, 170)', color: '#fff' } });
+                        },
+                        complete: function () {
+                            $.unblockUI();
+                        },
+                        success: function (data) {
+                            debugger;
+                            //$('#ajaxRes_detailedlist').html('');
+
+                            if ($.fn.DataTable.isDataTable('#tbl_results_detailedList')) {
+                                $('#tbl_results_detailedList').DataTable().destroy();
+                            }
+
+                            $('#tbl_results_detailedList tbody').html('');
+
+                            if (data.length > 0) {
+                                                              
+                                var counter = 1;
+                                var momentTimestamp;
+                                var formatedDate;
+                                $.each(data, function (index, value) {
+
+                                    if (moment(value.Stock_date).format("DD-MMM-YYYY") != formatedDate || index == 0) { //TBC
+                                        counter = 1;
+                                    }
+
+                                    momentTimestamp = moment(value.Stock_date);
+                                    formatedDate = momentTimestamp.format("DD-MMM-YYYY");
+
+                                    if (counter == 1) {
+
+                                        $('#ajaxRes_detailedlist, #tblprntBody_detailedList').append(
+                                            '<tr>\
+                                                <td align="center" rowspan='+ value.r_count + ' style="vertical-align: middle">' + formatedDate + '</td>\
+                                                <td align="right">'+ value.vendor_id  + '</td>\
+                                                <td align="right">'+ value.fuel_type + '</td>\
+                                                <td align="right">'+ (value.Opening_Quantity === null ? "null" : currencyFormat(value.Opening_Quantity)) + '</td>\
+                                                <td align="right">'+ (value.Opening_Rate === null ? "null" : currencyFormat(value.Opening_Rate)) + '</td>\
+                                                <td align="right">'+ (value.Opening_Amount === null ? "null" : currencyFormat(value.Opening_Amount)) + '</td>\
+                                                <td align="right">'+ (value.Reciept_Quantity === null ? "null" : currencyFormat(value.Reciept_Quantity)) + '</td>\
+                                                <td align="right">'+ (value.Reciept_Rate === null ? "null" : currencyFormat(value.Reciept_Rate)) + '</td>\
+                                                <td align="right">'+ (value.Reciept_Amount === null ? "null" : currencyFormat(value.Reciept_Amount)) + '</td>\
+                                                <td align="right">'+ (value.Consumed_Quantity === null ? "null" : currencyFormat(value.Consumed_Quantity)) + '</td>\
+                                                <td align="right">'+ (value.Consumed_Rate === null ? "null" : currencyFormat(value.Consumed_Rate)) + '</td>\
+                                                <td align="right">'+ (value.Consumed_Amount === null ? "null" : currencyFormat(value.Consumed_Amount)) + '</td>\
+                                                <td align="right" rowspan='+ value.r_count + ' style="vertical-align: middle">' + (value.Weighted_Avg_Rate === null ? "null" : currencyFormat(value.Weighted_Avg_Rate))  + '</td>\
+                                                <td align="right">'+ (value.Closing_Quantity === null ? "null" : currencyFormat(value.Closing_Quantity)) + '</td>\
+                                                <td align="right">'+ (value.Closing_Rate === null ? "null" : currencyFormat(value.Closing_Rate)) + '</td>\
+                                                <td align="right">'+ (value.Closing_Amount === null ? "null" : currencyFormat(value.Closing_Amount)) + '</td>\
+                                            </tr>'
+
+                                        );
+                                    }
+                                    else {
+                                        $('#ajaxRes_detailedlist, #tblprntBody_detailedList').append(
+                                            '<tr>\
+                                                <td align="right">'+ value.vendor_id + '</td>\
+                                                <td align="right">'+ value.fuel_type + '</td>\
+                                                <td align="right">'+ (value.Opening_Quantity === null ? "null" : currencyFormat(value.Opening_Quantity)) + '</td>\
+                                                <td align="right">'+ (value.Opening_Rate === null ? "null" : currencyFormat(value.Opening_Rate)) + '</td>\
+                                                <td align="right">'+ (value.Opening_Amount === null ? "null" : currencyFormat(value.Opening_Amount)) + '</td>\
+                                                <td align="right">'+ (value.Reciept_Quantity === null ? "null" : currencyFormat(value.Reciept_Quantity)) + '</td>\
+                                                <td align="right">'+ (value.Reciept_Rate === null ? "null" : currencyFormat(value.Reciept_Rate)) + '</td>\
+                                                <td align="right">'+ (value.Reciept_Amount === null ? "null" : currencyFormat(value.Reciept_Amount)) + '</td>\
+                                                <td align="right">'+ (value.Consumed_Quantity === null ? "null" : currencyFormat(value.Consumed_Quantity)) + '</td>\
+                                                <td align="right">'+ (value.Consumed_Rate === null ? "null" : currencyFormat(value.Consumed_Rate)) + '</td>\
+                                                <td align="right">'+ (value.Consumed_Amount === null ? "null" : currencyFormat(value.Consumed_Amount)) + '</td>\
+                                                <td align="right">'+ (value.Closing_Quantity === null ? "null" : currencyFormat(value.Closing_Quantity)) + '</td>\
+                                                <td align="right">'+ (value.Closing_Rate === null ? "null" : currencyFormat(value.Closing_Rate)) + '</td>\
+                                                <td align="right">'+ (value.Closing_Amount === null ? "null" : currencyFormat(value.Closing_Amount)) + '</td>\
+                                              </tr>'
+
+                                        );
+                                    }
+                                    counter++;
+
+                                    
+                                });
+                            }
+                            
+                            $('#expIPP').text($($('#vendorIdDrp').find(":selected")).text());
+                            $('#expFuel').text($('#fuelType').find(":selected").val());
+                            $('#expDate').text($('#daterange').val());
+                                                     
+
+                        },
+                        error: function (request, textStatus, errorThrown) {
+                            // alert(request.getResponseHeader('some_header'));
+                            $.unblockUI();
+                        }
+                    });
+                }, 500);
+
+            
+        }
+
+        function currencyFormat(value) {
+
+            var amount = value.toLocaleString(undefined, {
+                minimumFractionDigits: 4,
+                maximumFractionDigits: 4
+            });
+            return amount;
+
+        }
+
+        $('body').off('click', '#btnExportDetailedList');
+        $('body').on('click', '#btnExportDetailedList', function (e) {
+            e.preventDefault();
+
+            $('#dvexl_detailedList').show();
+            $('#tblprnt_detailedList').tableExport({ fileName: 'Exported Data', type: 'excel', escape: 'false' });
+            $('#dvexl_detailedList').hide();
+            e.preventDefault();
+        });
+
+    </script>
+</div>

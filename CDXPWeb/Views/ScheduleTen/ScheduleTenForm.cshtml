@@ -1,0 +1,623 @@
+﻿@model IEnumerable<CDXPWeb.Models.CPPA_PPA_SCH_10_DTL>
+@{
+    ViewBag.Title = "Schedule 10";
+}
+<div id="pcontent">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff;"></i>
+                        <h6 class="panel-title txt-light">@ViewBag.Title</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Header</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <table class="tblFrm">
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Power Producer<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control frm requiredFieldBGC" id="ddlPEF_IPP" required></select>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Fuel</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control frm requiredFieldBGC" id="txtPEF_Fuel" required></select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Schedule Type<span class="startColor">*</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control frm requiredFieldBGC" id="txtSchType" required>
+                                            <option>Full</option>
+                                            <option>Half</option>
+                                        </select>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Remarks<span class="startColor"></span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" value="" class="form-control" id="txtRemarks" name="">
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>@*End Of Table*@
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Detail</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <table id="tblDetails" class="table table-striped table-bordered table-hover dynamicTable dataTable" cellpadding="0" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Ambient Temperature</th>
+                                        <th>NetPlant Output</th>
+                                        <th>Correction Factor</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (ViewBag.SCH_ID != 0)
+                                    {
+                                        foreach (CDXPWeb.Models.CPPA_PPA_SCH_10_DTL obj in Model)
+                                        {
+                                            <tr tg="@obj.SCH_10_DTL_ID">
+                                                <td><input type="text" class="form-control clsNumberWithNegativeValues" id="amb_temp" value="@obj.Ambient_Temperature" /></td>
+                                                <td><input type="text" class="form-control clsNumberWithNegativeValues" id="net_output" value="@obj.NetPlant_Output" /></td>
+                                                <td><input type="text" class="form-control clsNumberWithNegativeValues" id="cor_fac" value="@obj.Correction_Factor" /></td>
+                                                <td>@*<input type="button" class="btn btn-default btnCloseCls" value="Remove" onclick="Remove(this)" />*@</td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr tg="0">
+                                            <td><input type="text" class="form-control clsNumberWithNegativeValues" id="amb_temp" value="0" /></td>
+                                            <td><input type="text" class="form-control clsNumberWithNegativeValues" id="net_output" value="0" /></td>
+                                            <td><input type="text" class="form-control clsNumberWithNegativeValues" id="cor_fac" value="0" /></td>
+                                            <td>@*<input type="button" class="btn btn-default btnCloseCls" value="Remove" onclick="Remove(this)" />*@</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td><input type="text" id="txtAmbient_Temperature" class="form-control clsNumberWithNegativeValues" /></td>
+                                        <td><input type="text" id="txtNetPlant_Output" class="form-control clsNumberWithNegativeValues" /></td>
+                                        <td><input type="text" id="txtCorrection_Factor" class="form-control clsNumberWithNegativeValues" /></td>
+                                        <td><input type="button" class="btn btn-default btnCloseCls" id="btnAdd" value="Add" /></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button id="btnSave" value="Save" style="float:right; margin-left: 10px;" class="btn btn-success btnAction" type="button">
+                                        Save
+                                    </button>
+                                    <button id="btnUpdate" value="Update" style="float:right; margin-left: 10px;" class="btn btn-success btnAction" type="button">
+                                        Update
+                                    </button>
+                                    <button id="btnClose" style="float:right;" class="btn btn-default btnCloseCls" tg="@ViewBag.tg" type="button">
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $("body").off("click", "#btnAdd");
+        $("body").on("click", "#btnAdd", function () {
+            debugger;
+            //Reference the Name and Country TextBoxes.
+            var txtAmbient_Temperature = $("#txtAmbient_Temperature").val();
+            var txtNetPlant_Output = $("#txtNetPlant_Output").val();
+            var txtCorrection_Factor = $("#txtCorrection_Factor").val();
+
+            //Get the reference of the Table's TBODY element.
+            var tBody = $("#tblDetails > TBODY")[0];
+
+            $('#tblDetails > TBODY').append(`<tr tg="0">
+                                <td><input type="text" class="form-control clsNumberWithNegativeValues" id="amb_temp" value="`+ txtAmbient_Temperature+`"></td>
+                                <td><input type="text" class="form-control clsNumberWithNegativeValues" id="net_output" value="`+ txtNetPlant_Output +`"></td>
+                                <td><input type="text" class="form-control clsNumberWithNegativeValues" id="cor_fac" value="`+ txtCorrection_Factor +`"></td>
+                                <td><input type="button" class="btn btn-default btnCloseCls" value="Remove" onclick="Remove(this)"></td>
+                                </tr>`);
+
+
+            ////Add Button cell.
+            //cell = $(row.insertCell(-1));
+            //var btnRemove = $("<input />");
+            //btnRemove.attr("type", "button");
+            //btnRemove.attr("onclick", "Remove(this);");
+            //btnRemove.val("Remove");
+            //btnRemove.attr("class", "btn btn-default btnCloseCls");
+            //cell.append(btnRemove);
+
+            //Clear the TextBoxes.
+            $("#txtAmbient_Temperature").val("");
+            $("#txtNetPlant_Output").val("");
+            $("#txtCorrection_Factor").val("");
+        });
+
+        function Remove(button) {
+            //Determine the reference of the Row using the Button.
+            debugger;
+            var row = $(button).closest("TR");
+            var custFlag = false;
+            swal({
+                title: "Warning!",
+                text: "Deleting Selected Row!",
+                type: "warning"
+            },
+                function () {
+                    var table = $("#tblDetails")[0];
+
+                    //Delete the Table row using it's Index.
+                    table.deleteRow(row[0].rowIndex);
+                });
+
+            if (custFlag == true) {
+                //Get the reference of the Table.
+                var table = $("#tblDetails")[0];
+
+                //Delete the Table row using it's Index.
+                table.deleteRow(row[0].rowIndex);
+            }
+            else {
+                custFlag = false;
+            }
+        };
+
+        $(document).ready(function () {
+            debugger;
+            var fromdata2 = new FormData();
+            var SCH_Id = @(ViewBag.SCH_ID);
+
+
+            if (SCH_Id == 0) {
+
+                $('#btnUpdate').hide();
+                $('#btnSave').show();
+
+                AjaxCall('/ScheduleTen/GetIPP', null).done(function (response) {
+                    if (response.length > 0) {
+                        $('#ddlPEF_IPP').html('<option value="Select">Select</option>');
+                        $('#ddlPEF_IPP').append(response);
+                    }
+                }).fail(function (error) {
+                    alert(error.StatusText);
+                });
+
+
+
+            }
+            else {
+
+                $('#btnUpdate').show();
+                $('#btnSave').hide();
+
+                $.ajax({
+
+                    type: "POST",
+                    url: "/ScheduleTen/GetVendorName?Id=" + SCH_Id + $(location).attr("search"),
+                    data: fromdata2,
+                    contentType: false,
+                    async: false,
+                    processData: false,
+                    success: function (response) {
+                        if (response != "0") {
+                            $('#ddlPEF_IPP').html('');
+                            $('#ddlPEF_IPP').append('<option>' + response + '</option>');
+                        }
+                    }
+                });
+
+                $.ajax({
+                    type: "POST",
+                    url: "/ScheduleTen/GetHeaderVendorValues?Id=" + SCH_Id + $(location).attr("search"),
+                    data: fromdata2,
+                    contentType: false,
+                    async: false,
+                    processData: false,
+                    success: function (response) {
+                        var finalValues = response.split('½');
+                        $('#txtPEF_Fuel').html('');
+                        $('#txtPEF_Fuel').append('<option>' + finalValues[0] + '</option>');
+                        $('#txtSchType').html('');
+                        $('#txtSchType').append('<option>' + finalValues[1] + '</option>');
+                        $('#txtRemarks').html('');
+                        $('#txtRemarks').append('<option>' + finalValues[2] + '</option>');
+                    }
+                });
+            }
+
+
+
+            $('#ddlPEF_IPP').on("change", function () {
+                var venderid = $('#ddlPEF_IPP').val();
+                var obj = { venderid: venderid };
+                AjaxCall('/ScheduleTen/GetFule', JSON.stringify(obj), 'POST').done(function (response) {
+                    if (response.length > 0) {
+                        $('#txtPEF_Fuel').html('');
+                        $('#txtPEF_Fuel').append(response);
+                    }
+                }).fail(function (error) {
+                    alert(error.StatusText);
+                });
+            });
+
+            $('body').off('click', '#btnUpdate');
+            $('body').on('click', '#btnUpdate', function (e) {
+                var txtAmbient_Temperature, txtNetPlant_Output, txtCorrection_Factor,Sch10dtlID;
+                var dtl = "";
+                var checkAmbient = "";
+                var RangeCheck = false;
+                debugger;
+
+
+                e.preventDefault();
+                $("#tblDetails TBODY TR").each(function () {
+                    var indexPoint=0;
+                    var row = $(this);
+
+                    if (row.find("TD").eq(0).find("input").val() > 56 || row.find("TD").eq(0).find("input").val() < -20) {
+                        RangeCheck = true;
+                    }
+                    else {
+                        Sch10dtlID = $(this).attr("tg");
+                        txtAmbient_Temperature = row.find("TD").eq(0).find("input").val();
+                        checkAmbient += txtAmbient_Temperature + '½';
+                        indexPoint++;
+                        txtNetPlant_Output = row.find("TD").eq(1).find("input").val();
+                        txtCorrection_Factor = row.find("TD").eq(2).find("input").val();
+                        dtl += Sch10dtlID + '½' + txtAmbient_Temperature + '½' + txtNetPlant_Output + '½' + txtCorrection_Factor;
+                        dtl += '¼';
+                        RangeCheck = false;
+                    }
+
+
+                });
+
+                var lst=[];
+
+                for (var ind = 0; ind < $("#tblDetails TBODY TR").length; ind++) {
+                    lst[ind] = checkAmbient.split('½')[ind];
+                }
+
+                var count = count_duplicate_val(lst);
+                var dupFlag = false;
+
+                var indexCount;
+                for (indexCount = 1; indexCount <= Object.keys(count).length; indexCount++) {
+                    if (count[lst[indexCount]] > 1) {
+                        dupFlag = true;
+                        break;
+                    }
+                    else {
+                        dupFlag = false;
+                    }
+                }
+
+
+                if (dupFlag == true) {
+                    swal({
+                        title: "Error",
+                        text: "Duplicate Ambient Temperature!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK"
+                    });
+                }
+                else {
+                    var sch10_id = @(ViewBag.SCH_ID);
+                    var $data = '1¡' + sch10_id + '¡' + dtl;
+                    var formdata2 = new FormData();
+                    var Sch_10_id = @(ViewBag.SCH_ID);
+
+                    formdata2.append("vls", $data);
+
+                    if (RangeCheck == true) {
+                        swal({
+                            title: "Error",
+                            text: "Enter temperature between (-25) - 56!",
+                            type: "warning",
+                            showCancelButton: false,
+                            confirmButtonClass: "btn btn-danger",
+                            confirmButtonText: "OK"
+                        },
+                            function () {
+                                setTimeout(() => ($control).focus(), 100);
+                            });
+                        return false;
+                    }
+                    else if (RangeCheck == false) {
+                        $.ajax({
+
+                            type: "POST",
+                            url: "/ScheduleTen/AjaxCall" + $(location).attr("search"),
+                            data: formdata2,
+                            contentType: false,
+                            async: false,
+                            processData: false,
+                            success: function (response) {
+                                if (response != "0") {
+                                    swal({
+                                        title: "Success",
+                                        text: "Record Updated Successfully!",
+                                        type: "warning",
+                                        showCancelButton: false,
+                                        confirmButtonClass: "btn btn-danger",
+                                        confirmButtonText: "OK",
+                                        closeOnConfirm: true,
+                                    },
+                                        function () {
+                                            var options = {};
+                                            $("#pageContainer").hide('slide', options, 300);
+                                            $.ajax({
+                                                url: "/ScheduleTen/ScheduleTenList" + $(location).attr('search'),
+                                                success: function (result) {
+                                                    var options = {};
+                                                    $('#pageContainer').html($(result).find('#pcontent').html());
+                                                    $("#pageContainer").show('slide', options, 500);
+                                                }
+                                            });
+                                        }
+                                    );
+                                }
+                            }
+                        });
+                    }
+
+
+                }
+
+
+
+                e.preventDefault();
+            });
+
+            $('body').off('click', '#btnClose');
+            $('body').on('click', '#btnClose', function (e) {
+                debugger;
+                e.preventDefault();
+                var options = {};
+                $("#pageContainer").hide('slide', options, 300);
+                $.ajax({
+                    url: "/ScheduleTen/ScheduleTenList" + $(location).attr('search'),
+                    success: function (result) {
+                        var options = {};
+                        $('#pageContainer').html($(result).find('#pcontent').html());
+                        $("#pageContainer").show('slide', options, 500);
+                    }
+                });
+            });//End of edit click
+
+            $("body").off("click", "#btnSave");
+            $("body").on("click", "#btnSave", function () {
+                //Loop through the Table rows and build a JSON array.
+                debugger;
+
+                if ($("#ddlPEF_IPP option:selected").val() == "Select") {
+                    swal({
+                        title: "Error",
+                        text: "Please Select IPP First!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK"
+                    });
+                    return false;
+                }
+
+                else {
+                    var lst = new Array();
+                    debugger;
+                    var obj1 = {};
+                    var arrPoint = 0;
+                    var RangeCheck = false;
+                    obj1.VendorIDvalue = $("#ddlPEF_IPP option:selected").val();
+                    obj1.Fuel_Lookup_Code = $("#txtPEF_Fuel option:selected").val();
+                    obj1.SCH_10_TYPE = $("#txtSchType option:selected").val();
+                    //obj1.Ambient_Temperature = $("#amb_temp").val();
+                    //obj1.NetPlant_Output = $("#net_output").val();
+                    //obj1.Correction_Factor = $("#cor_fac").val();
+                    obj1.Remaks = $("#txtRemarks").val();
+                    lst.push(obj1);
+
+                    $("#tblDetails TBODY TR").each(function () {
+
+                        var row = $(this);
+                        var obj = {};
+                        debugger;
+
+                        if (row.find("TD").eq(0).children().val() < -20 || row.find("TD").eq(0).children().val() > 56) {
+                            RangeCheck = true;
+                        }
+                        else {
+                            obj.VendorIDvalue = $("#ddlPEF_IPP option:selected").val();
+                            obj.Fuel_Lookup_Code = $("#txtPEF_Fuel option:selected").val();
+                            obj.SCH_10_TYPE = $("#txtSchType option:selected").val();
+                            obj.Ambient_Temperature = row.find("TD").eq(0).children().val();
+                            obj.NetPlant_Output = row.find("TD").eq(1).children().val();
+                            obj.Correction_Factor = row.find("TD").eq(2).children().val();
+                            obj.Remaks = "";
+                            lst.push(obj);
+                            RangeCheck = false;
+                        }
+
+                    });
+
+                    var count = count_duplicate(lst);
+                    var dupFlag = false;
+                    debugger;
+
+                    var indexCount;
+                    for (indexCount = 1; indexCount <= Object.keys(count).length; indexCount++) {
+                        if (count[lst[indexCount].Ambient_Temperature] > 1) {
+                            dupFlag = true;
+                            break;
+                        }
+                        else {
+                            dupFlag = false;
+                        }
+                    }
+
+
+                    if (dupFlag == true) {
+                        swal({
+                            title: "Error",
+                            text: "Duplicate Values!",
+                            type: "warning",
+                            showCancelButton: false,
+                            confirmButtonClass: "btn btn-danger",
+                            confirmButtonText: "OK"
+                        });
+                    }
+                    else {
+                        if (RangeCheck == true) {
+                            swal({
+                                title: "Error",
+                                text: "Enter temperature between (-25) - 56!",
+                                type: "warning",
+                                showCancelButton: false,
+                                confirmButtonClass: "btn btn-danger",
+                                confirmButtonText: "OK"
+                            },
+                                function () {
+                                    setTimeout(() => ($control).focus(), 100);
+                                });
+                            return false;
+                        }
+                        else if (RangeCheck == false) {
+                            debugger;
+                            $.ajax({
+                                type: "POST",
+                                url: "/ScheduleTen/InsertRecord",
+                                data: JSON.stringify(lst),
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                success: function (result) {
+                                    debugger;
+                                    var a = result;
+
+                                    if (a == 0) {
+                                        swal({
+                                            title: "Error!",
+                                            text: "Schedule 10 Already present in Database!",
+                                            type: "error",
+                                            showCancelButton: true,
+                                            confirmButtonClass: "btn-danger",
+                                            confirmButtonText: "OK",
+                                            closeOnConfirm: true,
+                                        });
+                                    }
+                                    else {
+                                        swal({
+                                            title: "Success",
+                                            text: "Schedule 10 saved successfully!",
+                                            type: "success",
+                                            showCancelButton: true,
+                                            confirmButtonClass: "btn-danger",
+                                            confirmButtonText: "OK",
+                                            closeOnConfirm: true,
+                                        },
+                                            function () {
+                                                var options = {};
+                                                $("#pageContainer").hide('slide', options, 300);
+                                                $.ajax({
+                                                    url: "/ScheduleTen/ScheduleTenList" + $(location).attr('search'),
+                                                    success: function (result) {
+                                                        var options = {};
+                                                        $('#pageContainer').html($(result).find('#pcontent').html());
+                                                        $("#pageContainer").show('slide', options, 500);
+                                                    }
+                                                });
+                                            });
+                                    }
+                                }
+                            });
+
+                        }
+
+                    }
+
+
+
+                }
+
+
+            });
+
+        });
+
+        function count_duplicate(a) {
+            debugger;
+            let counts = {};
+            let dupValues = [];
+
+            for (let i = 1; i < a.length; i++) {
+                if (a[i].Ambient_Temperature.length > 0) {
+                    dupValues[i-1] = a[i].Ambient_Temperature;
+                }
+            }
+            dupValues.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; });
+
+            return counts;
+        }
+
+        function count_duplicate_val(a) {
+            debugger;
+            let counts = {};
+            let dupValues = [];
+
+            for (let i = 0; i < a.length; i++) {
+                if (a[i].length > 0) {
+                    dupValues[i] = a[i];
+                }
+            }
+            dupValues.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; });
+
+            return counts;
+        }
+
+
+        function AjaxCall(url, data, type) {
+            return $.ajax({
+                url: url,
+                type: type ? type : 'GET',
+                data: data,
+                contentType: 'application/json'
+            });
+        }
+    </script>
+</div>

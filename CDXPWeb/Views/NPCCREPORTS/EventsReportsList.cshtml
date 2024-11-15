@@ -1,0 +1,589 @@
+﻿
+@{
+    ViewBag.Title = "Events Reports List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="pcontent">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff;"></i>
+                        <h6 class="panel-title txt-light">@ViewBag.Title</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Search</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <table class="tblFrm">
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="ddlIPP_Cat">IPP Category<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control requiredFieldBGC Ipp" id="ddlIPP_Cat" required>
+                                            <option value="All">All</option>
+                                            @Html.Raw(@ViewBag.IPP_Category)
+                                        </select>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Generation Company</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select id="ddlIPP" class="form-control srch">@Html.Raw(@ViewBag.IPP)</select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="ddlSite">Site </label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control srch" id="ddlSite"></select>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Block / Complex / Unit<span class="startColor">*</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control frm srch requiredFieldBGC" id="ddlPEF_BLOCK" required></select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Power Policy</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" id="txtPowerPolicy" class="form-control" readonly>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="ddlStatus">Status </label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select id="ddlStatus" class="form-control srch">
+                                            <option value="%">All</option>
+                                            <option value="Draft">Draft</option>
+                                            <option value="Submitted">Submitted</option>
+                                            <option value="Acknowledged">Acknowledged</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="txtFromDate">From Date </label>
+                                    </td>
+                                    <td>
+                                        <input id="txtFromDate" type="text" class="form-control srch dtDate" />
+                                    </td>
+                                    <td>
+                                        <label for="txtToDate">To Date </label>
+                                    </td>
+                                    <td>
+                                        <input id="txtToDate" type="text" class="form-control srch dtDate" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame">Event Type<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control frmAck srch requiredFieldBGC" id="forNPCC_ddlPEF_Event" required>
+                                            <option value="%">All</option>
+                                            <option>Desync</option>
+                                            <option>Sync</option>
+                                            <option>Supply Failure</option>
+                                            <option>Supply Restoration</option>
+                                            <option>Declaration Of PFO</option>
+                                            <option>Availability After PFO</option>
+                                            <option>Miscellaneous</option>
+                                        </select>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="Disconame" id="OutageLabel">Type of Outage<span class="startColor"> *</span></label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control frmAck srch requiredFieldBGC" id="forNPCC_ddlPEF_TypeOfOutage" required>
+                                            <option value="%">All</option>
+                                            <option>Forced Outage</option>
+                                            <option>Scheduled Outage</option>
+                                            <option>Supply Failure</option>
+                                            <option>Standby</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-12" style="text-align: right;">
+                                        <button id="btnCancel" class="btn btn-default btnCloseCls" type="button">
+                                            Clear
+                                        </button>
+                                        <button id="btnSearch" class="btn btn-success" type="button">
+                                            Apply
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-12" style="text-align: right;">
+                                        <div class="col-md-6">
+                                            <div class="col-md-2">
+                                                <button id="btnSearch" class="btn btn-success" type="button"> Print </button>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button id="btnSearch" class="btn btn-success" type="button"> Export </button>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button id="btnSearch" class="btn btn-success" type="button"> Settings </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Detail</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom:20px;">
+                            <div id="tblContainer"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var usertype = 0;
+            function CheckUser()
+            {
+                 @if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 7 )
+                {
+                    @: usertype = 7;
+                }
+                else if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 9)
+                {
+                    @: usertype = 9;
+                }
+
+                console.log(usertype);
+            }
+            //loading list of ftadl
+            $(function () {
+                CheckUser();
+                LoadVendorSites();
+                //LoadGrid();
+            });
+
+            $('body').off('change', '#ddlIPP_Cat');
+            $('body').on('change', '#ddlIPP_Cat', function (e) {
+                LoadVendors();
+            });// End of change
+
+
+
+            $('body').off('change', '#ddlIPP');
+            $('body').on('change', '#ddlIPP', function (e) {
+                LoadVendorSites();
+            });// End of change
+
+            function IPPSelectOrder() {
+                var select = $('#ddlIPP');
+                select.html(select.find('option').sort(function (x, y) {
+                    return $(x).text() > $(y).text() ? 1 : -1;
+                }));
+            }
+
+            function IPPSiteSelectOrder() {
+                var select = $('#ddlSite');
+                select.html(select.find('option').sort(function (x, y) {
+                    return $(x).text() > $(y).text() ? 1 : -1;
+                }));
+            }
+
+            function IPPSiteBlockSelectOrder() {
+                var select = $('#ddlPEF_BLOCK');
+                select.html(select.find('option').sort(function (x, y) {
+                    return $(x).text() > $(y).text() ? 1 : -1;
+                }));
+            }
+
+            //START OF LOAD VENDORS / GENERATION COMPANIES
+
+            function LoadVendors() {
+                var ippCategory = $('#ddlIPP_Cat option:selected').val();
+
+                if (ippCategory == "All") {
+                    var fromdata = new FormData();
+                    fromdata.append('vls', '1003');
+                    $.ajax({
+                        type: "POST",
+                        url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                        data: fromdata,
+                        contentType: false,
+                        processData: false,
+                        success: function (response) {
+                            $('#ddlIPP').html(response);
+
+                            var optionText = 'All';
+                            var optionValue = '%';
+
+                            $('#ddlIPP').append(`<option value="${optionValue}"> 
+                                       ${optionText} 
+                                  </option>`);
+
+                            IPPSelectOrder();
+                            $("#ddlIPP").prop('selectedIndex', 0);
+
+                            if ($('#ddlIPP').val() == null || $('#ddlIPP').val() == undefined || $('#ddlIPP').val() == "") {
+
+                                $('#ddlSite').html('');
+                            }
+                            else {
+                                LoadVendorSites();
+                            }
+                        }
+                    });
+                }
+                else {
+                    var fromdata = new FormData();
+                    fromdata.append('vls', '100½' + $('#ddlIPP_Cat').val());
+                    $.ajax({
+                        type: "POST",
+                        url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                        data: fromdata,
+                        contentType: false,
+                        processData: false,
+                        success: function (response) {
+
+                            $('#ddlIPP').html(response);
+
+                            var optionText = 'All';
+                            var optionValue = '%';
+
+                            $('#ddlIPP').append(`<option value="${optionValue}"> 
+                                       ${optionText} 
+                                  </option>`);
+
+                            IPPSelectOrder();
+                            $("#ddlIPP").prop('selectedIndex', 0);
+
+                            if ($('#ddlIPP').val() == null || $('#ddlIPP').val() == undefined || $('#ddlIPP').val() == "") {
+
+                                $('#ddlSite').html('');
+                            }
+                            else {
+                                LoadVendorSites();
+                            }
+                        }
+                    });
+                }
+            }
+            //END OF LOAD VENDORS / GENERATION COMPANIES
+
+
+            //START OF LOAD VENDOR SITES
+
+            function LoadVendorSites() {
+                // debugger;
+                var fromdata = new FormData();
+                fromdata.append('vls', '0½' + $('#ddlIPP').val());
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCall" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        $('#ddlSite').html(response);
+
+                        var optionText = 'All';
+                        var optionValue = '%';
+
+                        $('#ddlSite').append(`<option value="${optionValue}"> 
+                                    ${optionText} 
+                                </option>`);
+
+                        IPPSiteSelectOrder();
+
+                        if ($('#ddlSite').val() == null || $('#ddlSite').val() == undefined || $('#ddlSite').val() == "") {
+
+                            $('#ddlPEF_BLOCK').html('');
+                            $('#txtPowerPolicy').val('');
+                        }
+                        else {
+                            LoadBlockComplexFuels();
+                        }
+                    }
+                });
+            }
+
+            // IPP Site dropdown change code
+
+            $('body').off('change', '#ddlSite');
+            $('body').on('change', '#ddlSite', function (e) {
+                e.preventDefault();
+
+                if ($('#ddlSite option:selected').val() != "") {
+                    LoadBlockComplexFuels();
+                }
+            });
+
+            // Start of loading power producer sites block dropdown
+
+            function LoadBlockComplexFuels() {
+                $('#ddlPEF_BLOCK').html('');
+                var fromdata = new FormData();
+                fromdata.append("vls", '707' + '½' + $('#ddlIPP').val() + '½' + $('#ddlSite').val());
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        $('#ddlPEF_BLOCK').html(response);
+
+                        var optionText = 'All';
+                        var optionValue = '%';
+
+                        $('#ddlSite').append(`<option value="${optionValue}"> 
+                                    ${optionText} 
+                                </option>`);
+
+                        IPPSiteBlockSelectOrder();
+
+                        if ($('#ddlPEF_BLOCK').val() != null || $('#ddlPEF_BLOCK').val() != undefined || $('#ddlPEF_BLOCK').val() != "") {
+                            $('#ddlPEF_BLOCK option').filter(function () { return $.trim($(this).text()) == 'Complex'; }).prop('selected', true);
+                            $('#ddlPEF_BLOCK').change();
+                        }
+                        else {
+
+                        }
+                    }
+                });
+            }
+
+            // End of loading power producer sites block dropdown
+
+            // Start of empty dropdowns validation
+
+            function validations() {
+                if ($('#ddlIPP option').length == 0) {
+                    swal({
+                        title: "Error",
+                        text: "No power producers found. Please try with another category!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#ddlIPP').focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+
+                if ($('#ddlSite option').length == 0) {
+                    swal({
+                        title: "Error",
+                        text: "No sites found. Please try with selecting another power producer!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#ddlSite').focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+                if ($('#ddlPEF_BLOCK option').length == 0 ) {
+                    swal({
+                        title: "Error",
+                        text: "No blocks / units available. Please try with another site!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#ddlPEF_BLOCK').focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+                return true;
+            }
+
+            // End of empty dropdowns validation
+
+            //Button Cancel / Clear code
+
+            $('body').off('click', '#btnCancel');
+            $('body').on('click', '#btnCancel', function (e) {
+
+                $("#ddlIPP_Cat").prop('selectedIndex', 0);
+                $('#ddlIPP_Cat').trigger("change");
+                $("#ddlSite").prop('selectedIndex', 0);
+                $("#ddlPEF_BLOCK").prop('selectedIndex', 0);
+                $("#txtPowerPolicy").val("");
+                $("#ddlStatus").prop('selectedIndex', 0);
+                $("#txtFromDate").val("");
+                $("#txtToDate").val("");
+                $("#forNPCC_ddlPEF_Event").prop('selectedIndex', 0);
+                $('#forNPCC_ddlPEF_TypeOfOutage').prop('selectedIndex', 0);
+            });
+
+            //Start - Button Search Code
+
+            $('body').off('click', '#btnSearch');
+            $('body').on('click', '#btnSearch', function (e) {
+
+                var isTrue = validations();
+                if (isTrue) {
+                    e.preventDefault();
+                    $("#tblContainer").html('<div style="text-align:center;padding:20px;"><img alt="" src="../Content/img/DataLoader.gif" /></div>');
+
+                    var fromdata = new FormData();
+                    fromdata.append("vls", '1001½' + $('#ddlIPP option:selected').val() + '½' + $('#ddlSite option:selected').val() + '½' + $('#ddlPEF_BLOCK option:selected').val() + '½' + $('#ddlStatus option:selected').text() + '½' + $('#txtFromDate').val() + '½' + $('#txtToDate').val() + '½' + $('#forNPCC_ddlPEF_Event option:selected').val() + '½' + $('#forNPCC_ddlPEF_TypeOfOutage option:selected').val());
+                    var choice = {};
+                    choice.url = '/NPCC/AjaxCallNext' + $(location).attr('search');
+                    choice.type = "POST";
+                    choice.data = fromdata; 
+                    choice.contentType = false; 
+                    choice.processData = false;
+                    choice.success = function (response) {
+                        if ($('#tblJ1').hasClass('dataTable')) {
+                            $('#tblJ1').dataTable().fnDestroy();
+                        }
+                        $('#tblContainer').html(response);
+                        $($('#tblJ1 thead tr th')[0]).css('width', '35px');
+                        $('#tblJ1 tbody tr').each(function (index, element) {
+                            $($(this).find('td')[0]).html(parseInt(index) + 1);
+                        });
+
+                        var $editoption = '<i class="vedit fa fa-edit" title="Edit"  style="font-size:20px;"></i>';
+
+                        $('#tblJ1 thead tr').append('<th style="width:35px;"></th><th style="width:35px;"></th>');
+                        $('#tblJ1 tbody tr').append('<td style="width: 35px;"><div class="controls center" style="text-align:center">\
+                                                                   '+ $editoption + '\
+                                                              </div ></td ><td><div class="controls center" style="text-align:center"><i class="vview fa fa-file" style="font-size:20px;" title="View"></i></div></td> ');
+
+
+                        $('#tblJ1').append('<tfoot></tfoot>');
+                        $('#tblJ1 tfoot').html($('#tblJ1 thead').html());
+                        $('#tblJ1 tfoot tr').attr("style", "border-bottom: 1px solid #c4c4c4;border-right: 1px solid #c4c4c4;");
+                        $('#tblJ1').addClass('dynamicTable');
+
+                        $('#tblJ1 tbody tr').each(function (index, element) {
+                            if ($($(this).find('td')[7]).html() == "Acknowledged") {
+                                $($(this).find('td')[10]).html('');
+                            }
+                            if ($($(this).find('td')[8]).html() == "" || $($(this).find('td')[8]).html() == "False") {
+                                $($(this).find('td')[8]).html('NO');
+                            }
+                            if ($($(this).find('td')[8]).html() == "True") {
+                                $($(this).find('td')[8]).html('YES');
+                            }
+                            if ($($(this).find('td')[9]).html() == "-1") {
+                                $($(this).find('td')[9]).html('');
+                            }
+                        });
+
+                        $('#tblJ1 tfoot th').each(function () {
+                            var title = $(this).text();
+                            if ($.trim(title) != "") {
+                                $(this).html('<input type="text" class="form-control" style="width:90%;" placeholder="' + title + '" />');
+                            }
+
+                        });
+
+                        var table = $('#tblJ1').DataTable({
+                            "aLengthMenu": [[10, 25, 50, 100, 150, 250, 500, -1], [10, 25, 50, 100, 150, 250, 500, "All"]],
+                            "iDisplayLength": -1,
+                            //"bSort": false,
+                            "order": [[0, "asc"]],
+                            "sPaginationType": "full_numbers",
+                            "bJQueryUI": false,
+                            "bAutoWidth": false,
+                            "bLengthChange": true,
+                            "fnInitComplete": function (oSettings, json) {
+                                $('.dataTables_filter>label>input').attr('id', 'search');
+                            }
+                        });
+                        table.columns().every(function () {
+                            var that = this;
+
+                            $('input', this.footer()).on('keyup change', function () {
+                                if (that.search() !== this.value) {
+                                    that
+                                        .search(this.value)
+                                        .draw();
+                                }
+                            });
+                        });
+
+                        $('#tblJ1_length').append('<input type="image" name="btnExcel" id="btnExcel" title="Export to Excel" class="Grd" src="../Content/img/xcel.png" style="margin-left: 30px;margin-top:5px;border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnWord" id="btnWord" title="Export to Word" class="Grd" src="../Content/img/wrd.png" style="border-width:0px;width: 17px;">&nbsp;<input type="image" name="btnPNG" id="btnPNG" title="Export to PNG" class="Grd" src="../Content/img/png.png" style="width: 17px;border-width:0px;">');
+
+                    };
+                    choice.error = function (err) {
+                        console.log(err.statusText);
+                    };
+                    $.ajax(choice);
+                }
+            });
+
+
+
+
+            $('body').off('click', '.vview');
+            $('body').on('click', '.vview', function (e) {
+                console.log("View Option hit !!");
+                e.preventDefault();
+                var $id = $(this).parent().parent().parent().attr('tag');
+                if ($(this).hasClass("vview")) {
+                    $id += "½v";
+                }
+
+                var options = {};
+                var fromdata = new FormData();
+                fromdata.append('vls', $id);
+                $("#pageContainer").hide('slide', options, 300);
+                $.ajax({
+                    type: "POST",
+                    url: "/Invoice/NewDIReport" + $(location).attr('search'),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (result) {
+                        var options = {};
+                        $('#pageContainer').html($(result).find('#pcontent').html());
+                        $("#pageContainer").show('slide', options, 500);
+                    }
+                });
+            });
+
+        });//End of ready function
+    </script>
+</div>
+

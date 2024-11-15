@@ -1,0 +1,701 @@
+﻿
+@{
+    ViewBag.Title = "New DI Specification";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="pcontent">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+            <div class="panel panel-default card-view panel-refresh">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
+                <div class="panel-heading">
+                    <div class="pull-left" style="display: inline-flex;">
+                        <i class="fa fa-wpforms" style="padding-top: 4px;margin-right: 5px;color:#fff;"></i>
+                        <h6 class="panel-title txt-light">@ViewBag.Title</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a class="pull-left inline-block mr-15" data-toggle="collapse" href="#collapse_1" aria-expanded="true">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                            <i class="zmdi zmdi-chevron-up"></i>
+                        </a>
+
+
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="collapse_1" class="panel-wrapper collapse in">
+                    <div class="panel-body">
+
+                        <div style="margin-bottom: 20px;">
+
+
+                        </div>@*END OF tab0*@
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Create New Dispatch Instruction Specification</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <table class="tblFrm">
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="ddlPEF_IPP">Generation Company</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control frm requiredFieldBGC" id="ddlPEF_IPP" required>
+                                            @Html.Raw(@ViewBag.IPP)
+                                        </select>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="ddlPEF_Site">IPP Site</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control frm requiredFieldBGC" id="ddlPEF_Site" required></select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="ddlPEF_Unit">Unit</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control frm requiredFieldBGC" id="ddlPEF_Unit" required></select>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="ddlPresent_State">Present State</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <select class="form-control frm requiredFieldBGC" id="ddlPresent_State" required></select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="txtClassification_Formula">Classification Formula</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" value="" class="form-control" id="txtClassification_Formula" name="" required>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="txtNTS_Minutes">NTS Minutes</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" value="" class="form-control numbers" id="txtNTS_Minutes" name="" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="txtFull_Load">Full Load</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" value="" class="form-control numbers" id="txtFull_Load" name="" required>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="txtFullLoadTimeWithST">Full Load Time With ST</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" value="0" class="form-control numbers" id="txtFullLoadTimeWithST" name="" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="txtGreater_Equal_To_Hour_Present_State">Greater Than & Equal To Hour Present State</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" value="" class="form-control floatingPoint" id="txtGreater_Equal_To_Hour_Present_State" name="" required>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="txtLess_Than_Hour_Present_State">Less Than Hour Present State</label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" value="" class="form-control floatingPoint" id="txtLess_Than_Hour_Present_State" name="" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="txtRAMP_RATE">Ramp Rate </label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" value="" class="form-control floatingPoint" id="txtRAMP_RATE" name="" required>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="txtLOAD_HELD">Load Held </label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" value="" class="form-control floatingPoint" id="txtLOAD_HELD" name="" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="txtMinimumLoadLimit">Minimum Load Limit </label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" value="" class="form-control floatingPoint" id="txtMinimumLoadLimit" name="" required>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="txtGreaterThanEqualToRampRateRange">Greater Than & Equal To Ramp Rate Range </label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" value="" class="form-control floatingPoint" id="txtGreaterThanEqualToRampRateRange" name="" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="txtGreaterThanEqualToLoadHeldRange">Greater Than & Equal To Load Held Range </label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" value="" class="form-control floatingPoint" id="txtGreaterThanEqualToLoadHeldRange" name="" required>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="txtLessThanRampRate">Less Than Ramp Rate </label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" value="" class="form-control floatingPoint" id="txtLessThanRampRate" name="" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 25%;">
+                                        <label for="txtLessThanLoadHeldRange">Less Than Load Held Range </label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="text" value="" class="form-control floatingPoint" id="txtLessThanLoadHeldRange" name="" required>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <label for="chkIsHeader">Is Header </label>
+                                    </td>
+                                    <td style="width: 25%;">
+                                        <input type="checkbox" value="" class="form-check-input" id="chkIsHeader" name="" required>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 10 || ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 7 || ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 9)
+                                        {
+                                            <button id="btnSubmitDISpecification" value="Submitted" style="float:right;" class="btn btn-success btnAction" type="button"> Submit </button>
+                                        }
+                                        <button id="btnClose" class="btn btn-default btnCloseCls" tg="@ViewBag.tg" type="button" style="margin-right: 10px;" onclick="location.href='@Url.Action("DespatchInstructionSpecificationList", "NPCC")'">
+                                            Close
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>@*END OF tab0*@
+
+                        <div class="tab0">
+                            &nbsp;<div class="tab1">&nbsp;Detail</div>
+                            <div class="tab2">&nbsp;</div>
+                        </div>
+                        <div style="margin-bottom:20px;">
+
+                            <div id="tblContainer"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var submitDateTime;
+        //Check Status
+        var $status = "";
+
+        $(document).ready(function () {
+            LoadPresentState();
+            LoadVendorSites();
+           // LoadGrid();
+
+            //Anonymous Initiate Function
+            $(function () {
+
+                @if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 7)
+                {
+                     @: usertype = 7;
+                }
+                else if (ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 9)
+                {
+                     @: usertype = 9;
+                }
+                else if(ViewBag.userinfo.WP_SETUP_USER_TYPES_ID == 10)
+                {
+                    @: usertype = 10;
+                }
+
+                if ($('.btnCloseCls').attr('tg') == "0") {
+                    LoadPresentState();
+                    LoadVendorSites();
+                    //CheckStatus()
+                }
+                else {
+
+                    //FILL FORM TO UPDATE OR VIEW OR FOR FLOW
+                    LoadFormByID();  // keep this to edit and view form
+                  //  CheckStatus()
+                }
+            });
+            //End Anonymous Initiate Fuction
+
+            // Check Status Start
+
+            function CheckStatus() {
+                $('.clsdivPEF_NPCCRemarks').hide();
+                $('#btnPEF_submit').hide();
+                $('#btnClose').hide();
+                $('#btnAckNpcc').hide();
+                $('#btnCloseNpcc').hide();
+                $('#btnPEF_save').hide();
+                $('#btnRevoke').hide();
+                $('#btnUpdateNpcc').hide();
+
+
+                if (((usertype == 7) || (usertype == 9)) && $status == "Draft") {
+                    $('#txtPEF_Remarks').prop("disabled", true);
+                    $('.clsdivPEF_NPCCRemarks').show();
+                    $('.frm').prop("disabled", true);
+                    $('#chkVerifyAck').hide();
+                    $('#labelVerifyAck').hide();
+                    $('#btnCloseNpcc').show();
+                    $('#trPEF_Availability').find('input').prop("disabled", true);
+                    return false;
+                }
+
+                if (((usertype == 7) || (usertype == 9)) && $status == "Submitted") {
+                    $('#txtPEF_Remarks').prop("disabled", true);
+                    $('.clsdivPEF_NPCCRemarks').show();
+                    $('.frm').prop("disabled", true);
+                    $('#btnAckNpcc').show();
+
+                    var date = new Date(); // checking whether 5 mins have passed or not
+                    if (new Date(submitDateTime) > date) {
+                        $('#btnAckNpcc').show();
+                    }
+
+                    $('#chkVerifyAck').hide();
+                    $('#labelVerifyAck').hide();
+                    $('#btnCloseNpcc').show();
+                    $('#trPEF_Availability').find('input').prop("disabled", true);
+                    $('#btnUpdateNpcc').show();
+
+                    return false;
+                }
+
+                if (((usertype == 7) || (usertype == 9)) && $status == "Acknowledged") {
+                    $('#txtPEF_Remarks,.frm').prop("disabled", true);
+                    $('.clsdivPEF_NPCCRemarks').show();
+                    $('#btnCloseNpcc').show();
+                    $('.frmAck').prop("disabled", false);
+                    $('#trPEF_Availability').find('input').prop("disabled", true);
+                    //$('#btnPEF_submit').show();
+                    $('#btnUpdateNpcc').show();
+
+                    return false;
+                }
+
+                if (((usertype == 7) || (usertype == 9) || (usertype == 10)) && $status == "") {
+                    $('#btnClose').show();
+                    $('#btnPEF_submit').show();
+                    //$('#btnPEF_save').show();
+                    return false;
+                }
+
+                if (usertype == 10 && $status == "Draft") {
+                    $('#btnClose').show();
+                    $('#btnPEF_submit').hide();
+                    return false;
+                }
+
+                if (usertype == 10 && $status == "Submitted") {
+
+                    var date = new Date(); // for showing revoke button within 5 mins
+                    if (new Date(submitDateTime) > date) {
+                        $('#btnRevoke').show();
+                    }
+                    $('#btnPEF_submit').hide();
+
+                    $('#btnClose').show();
+                    $('.frm').prop("disabled", true);
+                    $('#trPEF_Availability').find('input').prop("disabled", true);
+                    return false;
+                }
+
+                if (usertype == 10 && $status == "Acknowledged") {
+                    $('#btnClose').hide();
+                    $('.clsdivPEF_NPCCRemarks').show();
+                    $('.Npcconly').hide();
+                    $('#btnCloseNpcc').show();
+                    $('#btnPEF_submit').hide();
+
+                    $('.frm,.frmAck').prop("disabled", true);
+                    $('#trPEF_Availability').find('input').prop("disabled", true);
+                    return false;
+                }
+            }
+
+            //Check Status END
+
+            var fd;
+            var CompORUnit_NPCC;
+            //Start OF EDIT
+            function LoadFormByID() {
+
+                var fromdata = new FormData();
+                fromdata.append("vls", '711½' + $('#btnClose').attr('tg'));
+                $.ajax({
+
+                    type: "POST",
+                    url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+
+                        fd = $.parseJSON(response);
+
+                        console.log(fd);
+
+
+                        $('#ddlPEF_IPP option:selected').text(fd[0].GENERATION_COMPANY);
+                        $('#ddlPEF_Site option:selected').text(fd[0].SITE);
+                        $('#ddlPEF_Unit option:selected').text(fd[0].BLOCK);
+                        $('#ddlPresent_State option:selected').text(fd[0].PRESENT_STATE);
+
+                   //     CheckStatus();
+
+                        $('#txtClassification_Formula').val(fd[0].CLASSIFICATION_FORMULA);
+                        $('#txtNTS_Minutes').val(fd[0].NTS);
+                        $('#txtFull_Load').val(fd[0].FULL_LOAD_TIME);
+                        $('#txtGreater_Equal_To_Hour_Present_State').val(fd[0].GREATER_THAN_AND_EQUAL_TO_HOUR_PRESENT_STATE);
+                        $('#txtLess_Than_Hour_Present_State').val(fd[0].LESS_THAN_HOUR_PRESENT_STATE);
+                        $('#txtRAMP_RATE').val(fd[0].RAMP_RATE);
+                        $('#txtLOAD_HELD').val(fd[0].LOAD_HELD);
+
+                        var checkValue = fd[0].IS_HEADER;
+                        if (checkValue.text == 1) {
+                            $('#chkIsHeader').prop('checked', true);
+                        }
+                        else {
+                            $('#chkIsHeader').prop('checked', false);
+                        }
+
+                        $('#txtMinimumLoadLimit').val(fd[0].MINIMUM_LOAD_LIMIT);
+                        $('#txtGreaterThanEqualToRampRateRange').val(fd[0].GREATER_THAN_AND_EQUAL_TO_RAMP_RATE_RANGE);
+                        $('#txtGreaterThanEqualToLoadHeldRange').val(fd[0].GREATER_THAN_AND_EQUAL_TO_LOAD_HELD_RANGE);
+                        $('#txtLessThanRampRate').val(fd[0].LESS_THAN_RAMP_RATE);
+                        $('#txtLessThanLoadHeldRange').val(fd[0].LESS_THAN_LOAD_HELD_RANGE);
+                        $('#txtFullLoadTimeWithST').val(fd[0].FULL_LOAD_TIME_WITH_ST);
+                    }
+                });
+            }
+
+            // END of EDIT or View
+
+
+            // Start of power producer dropdown change
+
+            $('body').off('change', '#ddlPEF_IPP');
+            $('body').on('change', '#ddlPEF_IPP', function (e) {
+                e.preventDefault();
+                LoadVendorSites();
+                LoadPresentState();
+            });
+
+            // End of power producer dropdown change
+
+            // Start of loading power producer sites dropdown change
+
+            function LoadVendorSites() {
+                var fromdata = new FormData();
+                fromdata.append("vls", '0½' + $('#ddlPEF_IPP').val());
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        $('#ddlPEF_Site').html(response);
+                        if ($('#ddlPEF_Site').val() == null || $('#ddlPEF_Site').val() == undefined || $('#ddlPEF_Site').val() == "") {
+                            $('#ddlPEF_Unit').val('');
+                        } else {
+                            LoadBlockComplexFuels();
+                        }
+                    }
+                });
+            }
+
+            // End of loading power producer sites dropdown change
+
+            // Start of power producer site dropdown change
+
+            $('body').off('change', '#ddlPEF_Site');
+            $('body').on('change', '#ddlPEF_Site', function (e) {
+                e.preventDefault();
+
+                if ($('#ddlPEF_Site option:selected').val() != "") {
+                    LoadBlockComplexFuels();
+                }
+            });
+
+            // End of power producer site dropdown change
+
+            // Start of loading power producer sites block dropdown
+
+            function LoadBlockComplexFuels() {
+                var fromdata = new FormData();
+                fromdata.append("vls", '707' + '½' + $('#ddlPEF_IPP').val() + '½' + $('#ddlPEF_Site').val());
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        $('#ddlPEF_Unit').html(response);
+                        if ($('#ddlPEF_Unit').val() != null || $('#ddlPEF_Unit').val() != undefined || $('#ddlPEF_Unit').val() != "") {
+                            $('#ddlPEF_Unit option').filter(function () { return $.trim($(this).text()) == 'Complex'; }).prop('selected', true);
+                            $('#ddlPEF_Unit').change();
+                            //LoadFuelCapacity();
+                            //LoadBeforeAfterAvailability();
+                        }
+                        else {
+                        }
+                    }
+                });
+            }
+
+            // End of loading power producer sites block dropdown
+
+            // Start of loading present state dropdown
+
+            function LoadPresentState() {
+                var fromdata = new FormData();
+                fromdata.append("vls", '708');
+                $.ajax({
+                    type: "POST",
+                    url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                    data: fromdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        $('#ddlPresent_State').html(response);
+                    }
+                });
+            }
+
+            // End of loading present state dropdown
+
+            // Start of submit new dispatch instruction specification button
+
+            $('body').off('click', '#btnSubmitDISpecification');
+            $('body').on('click', '#btnSubmitDISpecification', function (e) {
+                e.preventDefault();
+                var chkIsHeader;
+
+                if ($("#chkIsHeader").prop('checked') == true) {
+                    chkIsHeader = 1;
+                }
+                else {
+                    chkIsHeader = "";
+                }
+
+                var isTrue = validations();
+                if (isTrue) {
+                    var fromdata = new FormData();
+                    fromdata.append("vls", '709½' + $('.btnCloseCls').attr('tg').split('½')[0] + '½' + $('#ddlPEF_IPP').val() + '½' + $('#txtClassification_Formula').val() + '½' + $('#ddlPresent_State').val() + '½' + $('#ddlPEF_Site').val() + '½' + $('#ddlPEF_Unit').val() + '½' + $('#txtNTS_Minutes').val() + '½' + $('#txtFull_Load').val() + '½' + $('#txtGreater_Equal_To_Hour_Present_State').val() + '½' + $('#txtLess_Than_Hour_Present_State').val() + '½' + $('#ddlPEF_IPP option:selected').text() + '½' + $('#ddlPEF_Site option:selected').text() + '½' + $('#ddlPEF_Unit option:selected').text() + '½' + $('#ddlPresent_State option:selected').text() + '½' + $('#txtRAMP_RATE').val() + '½' + $('#txtLOAD_HELD').val() + '½' + chkIsHeader + '½' + $('#txtMinimumLoadLimit').val() + '½' + $('#txtGreaterThanEqualToRampRateRange').val() + '½' + $('#txtGreaterThanEqualToLoadHeldRange').val() + '½' + $('#txtLessThanRampRate').val() + '½' + $('#txtLessThanLoadHeldRange').val() + '½' + $('#txtFullLoadTimeWithST').val());
+                    $.ajax({
+                        type: "POST",
+                        url: "/NPCC/AjaxCallNext" + $(location).attr("search"),
+                        data: fromdata,
+                        contentType: false,
+                        processData: false,
+                        success: function () {
+                            e.preventDefault();
+                            var options = {};
+                            $("#pageContainer").hide('slide', options, 300);
+                            $.ajax({
+                                type: "POST",
+                                url: "/NPCC/DespatchInstructionSpecificationList" + $(location).attr('search'),
+                                success: function (result) {
+                                    var options = {};
+                                    $('#pageContainer').html($(result).find('#pcontent').html());
+                                    $("#pageContainer").show('slide', options, 500);
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+
+            // End of submit new dispatch instruction specification button
+
+            // Start of textboxes validation for digits only
+
+            $(".numbers").keypress(function (e) {
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    return false;
+                }
+            });
+
+            // End of textboxes validation for digits only
+
+            // Start of textboxes validation for digits only
+
+            $(".numbers").keypress(function (e) {
+                $('.floatingPoint').keypress(function (event) {
+                    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+                        event.preventDefault();
+                    }
+                });
+            });
+
+            // End of textboxes validation for digits only
+
+            // Start of form validation before submit
+
+            function validations() {
+                if ($('#ddlPEF_IPP option').length == 0) {
+                    swal({
+                        title: "Error",
+                        text: "Please select power producer!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#ddlDIF_IPP').focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+                if ($('#ddlPEF_Site option').length == 0) {
+                    swal({
+                        title: "Error",
+                        text: "No Producer Site found. Please try with another Power Producer!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#ddlDIF_Site').focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+                if ($('#ddlPEF_Unit option').length == 0) {
+                    swal({
+                        title: "Error",
+                        text: "No complex/block/unit found. Please try with another Power Producer!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#ddlPEF_Unit').focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+                if ($('#ddlPresent_State option').length == 0) {
+                    swal({
+                        title: "Error",
+                        text: "Please select present state!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#ddlPresent_State').focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+                if ($('#txtClassification_Formula').val() == '') {
+                    swal({
+                        title: "Error",
+                        text: "Please enter classification formula!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#txtClassification_Formula').focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+                if ($('#txtNTS_Minutes').val() == '') {
+                    swal({
+                        title: "Error",
+                        text: "Please enter NTS Minutes!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#txtNTS_Minutes').focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+                if ($('#txtFull_Load').val() == '') {
+                    swal({
+                        title: "Error",
+                        text: "Please enter full load value!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#txtFull_Load').focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+                if ($('#txtGreater_Equal_To_Hour_Present_State').val() == '') {
+                    swal({
+                        title: "Error",
+                        text: "Please enter greater than equal to hour present state value!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#txtGreater_Equal_To_Hour_Present_State').focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+                if ($('#txtLess_Than_Hour_Present_State').val() == '') {
+                    swal({
+                        title: "Error",
+                        text: "Please enter less than hour present state value!",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn btn-danger",
+                        confirmButtonText: "OK",
+                        onAfterClose: () => {
+                            setTimeout(() => $('#txtLess_Than_Hour_Present_State').focus(), 100)
+                        }
+                    });
+                    return false;
+                }
+                return true;
+            }
+
+            // End of form validation before submit
+
+
+
+        });
+    </script>
+</div>
